@@ -1,0 +1,5 @@
+<p *ngIf="story">{{ story }}</p>
+<div *ngFor="let answer of answers">
+  <input type="radio" [value]="answer" />
+  <label>{{ answer }}</label>
+</div>
