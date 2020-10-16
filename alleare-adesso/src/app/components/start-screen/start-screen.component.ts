@@ -18,7 +18,7 @@ export class StartScreenComponent implements OnInit {
     },
     {
       text: ' lorem eslkg sekljs g',
-      answers: ['Arbeitnehmer', 'Arnold', 'Student'],
+      answers: ['Arbeitnehmer', 'Arno', 'Student'],
     },
     {
       text: ' lorem eslkg sekljs g',
