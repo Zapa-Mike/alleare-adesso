@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "alleare-adesso": {
+      "hosting": {
+        "Alleare": [
+          "alleare-adesso"
+        ]
+      }
+    }
+  }
+}
