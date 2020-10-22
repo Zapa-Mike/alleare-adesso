@@ -1,17 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="header.component.css">
-</head>
-<body>
-    <div>
-        
-        <img src=".jpg" alt="W3Schools.com" width="104" height="142"><button>Das ist ein Button</button>
-        <p>
-            <button onclick="location.href='./home.component.html';"><img src=".jpg" alt="Home" width="104" height="142"></button>
-        </p>
-    </div>
+<html lang="en-de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-</body>
+    <link rel="stylesheet" href="header.component.css" />
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-light bg-light">
+      <form class="form-inline">
+        <button class="btn" type="button" href="#">
+          <img src=".jpg" alt="Logo-Icon" width="104" height="142" />
+        </button>
+        <button class="btn" type="button" href="#">
+          <img src=".jpg" alt="Search-Icon" width="104" height="142" />
+        </button>
+      </form>
+    </nav>
+  </body>
 </html>
+
+<!--<button id=logoIcon onclick="location.href='./home.component.html';"><img src=".jpg" alt="Logo-Icon" width="104" height="142"></button>   
+    <button id=searchIcon onclick=""><img src=".jpg" alt="Search-Icon" width="104" height="142"></button>    onclick:" location.href='./search.component.html'; " ->Search wird spaeter implementiert
+-->
+<!--<header>
+        <div class="container header fixed-top">
+            <div class="col">
+                <div class="row">
+                    <button type="button" class="btn btn-secondary"><img src=".jpg" alt="Logo-Icon" width="104" height="142"></button>
+                    <button type="button" class="btn btn-secondary"><img src=".jpg" alt="Search-Icon" width="104" height="142"></button>
+                </div>
+        </div>
+    </header>-->
