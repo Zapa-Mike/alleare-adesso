@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="57.999" viewBox="0 0 58 57.999">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f2f9fd;
+      }
+
+      .cls-2 {
+        filter: url(#Icon_ionic-md-settings);
+      }
+    </style>
+    <filter id="Icon_ionic-md-settings" x="0" y="0" width="58" height="57.999" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#131314" flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Icon_ionic-md-settings-2" data-name="Icon ionic-md-settings" class="cls-1" d="M38.564,25.375a12.506,12.506,0,0,0,.1-2c0-.7-.1-1.3-.1-2l4.295-3.3a.918.918,0,0,0,.2-1.3l-4.091-6.9a1,1,0,0,0-1.228-.4l-5.114,2a14.886,14.886,0,0,0-3.477-2l-.716-5.3a1.1,1.1,0,0,0-1.023-.8H19.232a1.1,1.1,0,0,0-1.023.8l-.818,5.3a17.32,17.32,0,0,0-3.478,2l-5.114-2a.958.958,0,0,0-1.228.4l-4.091,6.9a1.208,1.208,0,0,0,.2,1.3l4.4,3.3c0,.7-.1,1.3-.1,2s.1,1.3.1,2l-4.295,3.3a.919.919,0,0,0-.2,1.3l4.091,6.9a1,1,0,0,0,1.228.4l5.114-2a14.884,14.884,0,0,0,3.477,2l.818,5.3a.991.991,0,0,0,1.023.8h8.182a1.1,1.1,0,0,0,1.023-.8l.819-5.3a17.31,17.31,0,0,0,3.477-2l5.114,2a.958.958,0,0,0,1.228-.4l4.091-6.9a1.206,1.206,0,0,0-.2-1.3Zm-15.24,5a7,7,0,1,1,0-14,7,7,0,1,1,0,14Z" transform="translate(5.63 2.62)"/>
+  </g>
+</svg>

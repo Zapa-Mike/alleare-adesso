@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80.076" height="55" viewBox="0 0 80.076 55">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2a2d2f;
+      }
+
+      .cls-2 {
+        filter: url(#Icon_quiz);
+      }
+    </style>
+    <filter id="Icon_quiz" x="0" y="0" width="80.076" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feFlood flood-color="#6b7075" flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Icon_quiz-2" data-name="Icon quiz" class="cls-1" d="M44.075,26.82a14.005,14.005,0,0,0-12.539,7.809,14,14,0,1,0,0,12.382A13.993,13.993,0,1,0,44.075,26.82ZM25.249,45.048l-2.007,2.01L19.012,42.8l-4.255,4.256-2.009-2.01L17,40.821l-4.2-4.229,2.01-2.01,4.2,4.228,4.229-4.228,2.007,2.01L21,40.821ZM42.8,46.19,36.59,39.98l2.01-2.009L42.8,42.2l6.749-6.748,2.007,2.01Z" transform="translate(8.5 -10.32)"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="63" height="62.398" viewBox="0 0 63 62.398">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2a2d2f;
+      }
+
+      .cls-2 {
+        filter: url(#Icon_home);
+      }
+    </style>
+    <filter id="Icon_home" x="0" y="0" width="63" height="62.398" filterUnits="userSpaceOnUse">
+      <feOffset dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feFlood flood-color="#6b7075" flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Icon_home-2" data-name="Icon home" class="cls-1" d="M22.334,5.1l-18,16.992h5.83V40.5h8.425V28.671h7.489V40.5H34.5V22.09h5.83Z" transform="translate(9.17 11.4)"/>
+  </g>
+</svg>
