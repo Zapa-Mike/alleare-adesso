@@ -1,25 +1,8 @@
-
-
-/* 
-#container header{
-    padding: 10px;
-    background:lightgray;
+.navbar{
+    background-color:whitesmoke;
 }
-
-.logoIcon{
-    width: 10;
-    height: 10;
-    font: left;
-    overflow: auto;
+/*
+.navbar{
+    background-color:white;
 }
-.search{
-    float:right;
-}
-
-Button ist ein Bild
-button{
-    color:black;
-    background:white;
-    border: 2px solid rgb(224, 12, 12);
-} 
 */
