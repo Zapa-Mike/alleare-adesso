@@ -1,0 +1,18 @@
+
+.containername{font-family: lato;}
+.container{font-family: lato;}
+
+body{
+ background:linear-gradient(to bottom, #5B86E5, #36D1DC);
+  padding-bottom: 50%;
+   /* Center and scale the image nicely */
+  background-position: center fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.btn{
+  color:black;
+  background:white;
+  display: table-cell;
+  padding: 20%;
+}

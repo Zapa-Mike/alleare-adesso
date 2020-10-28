@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "Alleare"
+  "defaultProject": "Alleare",
+  "cli": {
+    "analytics": false
+  }
 }
