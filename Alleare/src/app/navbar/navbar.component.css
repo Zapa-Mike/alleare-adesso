@@ -1,11 +1,16 @@
-button{
-    
+.navbar{
+    background-color: lightskyblue
+   
+}
+.btn{
     margin-left: auto;
     margin-right: auto;
+    padding: 0%;
 }
 
 
-/*
+/*width: 50;
+    height: 50;
 #container navbar{
     padding: 10px;
     background:lightgray;
