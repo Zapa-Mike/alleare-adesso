@@ -1,9 +1,9 @@
 <header>
-    <app-header></app-header>
+  <app-header></app-header>
 </header>
 <main>
-    <body>
-        <router-outlet></router-outlet>
-    </body>
-    <app-navbar></app-navbar>
+  <body>
+    <router-outlet></router-outlet>
+  </body>
+  <app-navbar *ngIf="showNavbar"></app-navbar>
 </main>
