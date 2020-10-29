@@ -26,3 +26,9 @@ body{
 .abtn{
   padding: 40%;
 }
+
+#flash{
+  
+  width: 100%;
+  height: 100%;
+}
