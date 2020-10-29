@@ -1,50 +1,12 @@
 .navbar{
-    background-color: lightskyblue
-   
+    background-color: lightskyblue;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 50px;
 }
 .btn{
     margin-left: auto;
     margin-right: auto;
     padding: 0%;
 }
-
-
-/*width: 50;
-    height: 50;
-#container navbar{
-    padding: 10px;
-    background:lightgray;
-   ? border: powderblue;
-}
-
-.quizIcon{
-    width: 10;
-    height: 10;
-    margin: auto;
-    overflow: auto;
-} 
-.tippsIcon{
-    width: 10;
-    height: 10;
-    margin: auto;
-    overflow: auto;
-} 
-.homeIcon{
-    width: 10;
-    height: 10;
-    margin: auto;
-    overflow: auto;
-} 
-.faqIcon{
-    width: 10;
-    height: 10;
-    margin: auto;
-    overflow: auto;
-}   
-.flashcardsIcon{
-    width: 10;
-    height: 10;
-    margin: auto;
-    overflow: auto;
-}    
-*/
