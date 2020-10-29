@@ -1,9 +1,21 @@
 body{
-    background-color: powderblue;
+    background-color:   #F2F9FD;
     padding-bottom: 150%;
+    text-align: center;
 }
 
+.Titel{
+    margin-top: 50px;
+}
 .btn{
     background-color: rgb(94, 217, 233);
-    
+    width: 150px;
+    color: white;
+    padding: 5%;
+    position: sticky;
+}
+
+.form-group{
+    margin-left: 10%;
+    margin-right: 10%;
 }
