@@ -4,15 +4,25 @@
 
 body{
  background:linear-gradient(to bottom, #5B86E5, #36D1DC);
-  padding-bottom: 50%;
-   /* Center and scale the image nicely */
-  background-position: center fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  position:fixed;
+  height: 100%;
+  width: 100%;
+
 }
 .btn{
   color:black;
   background:white;
+  text-align: center!important;
   display: table-cell;
   padding: 20%;
+  position:relative;
+  border: 2px  #f2f9fd;
+  box-shadow: #131314 25% blur;
+  border-radius: 25px;
+}
+
+.abtn{
+  padding: 40%;
 }
