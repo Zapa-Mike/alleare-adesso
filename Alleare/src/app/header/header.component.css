@@ -1,10 +1,11 @@
 .navbar{
-    background-color:whitesmoke;
+    background-color:#FCFCFC;
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
     height: 50px;
     position: fixed;
+    align-content: center;
 }
 
 .btn{
