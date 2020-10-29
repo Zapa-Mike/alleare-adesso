@@ -1,9 +1,7 @@
 .navbar{
-    background-color: lightskyblue;
-    padding: 1%;
-    padding-left: 5%;
-    padding-right: 5%;
-    height: 50px;
+    background-color:#38CDDC;
+    box-shadow:#131314 25%, y-Achse 5px, x-Achse 0px;
+   
 }
 .btn{
     margin-left: auto;
