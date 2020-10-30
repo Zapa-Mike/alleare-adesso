@@ -11,20 +11,20 @@ import { SettingsComponent } from './settings/settings.component';
 import { TippsComponent } from './tipps/tipps.component';
 
 const routes: Routes = [
-{path: 'home', component: HomeComponent},
-{ path: '',  redirectTo: '/home', pathMatch:'full'},
-{ path: 'quiz', component: QuizComponent},
-{ path: 'tipps', component: TippsComponent},
-{ path: 'faq', component: FaqComponent},
-{ path: 'flashcards', component: FlashcardsComponent},
-{ path: 'settings', component: SettingsComponent},
-{ path: 'nova', component: NovaComponent},
-{ path: 'intro', component: IntroComponent},
-{ path: 'questions', component: QuestionsComponent}
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/intro', pathMatch: 'full' },
+  { path: 'quiz', component: QuizComponent },
+  { path: 'tipps', component: TippsComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'flashcards', component: FlashcardsComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'nova', component: NovaComponent },
+  { path: 'intro', component: IntroComponent },
+  { path: 'questions', component: QuestionsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
