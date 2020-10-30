@@ -4,9 +4,6 @@ body{
     text-align: center;
 }
 
-.Titel{
-    margin-top: 50px;
-}
 .btn{
     background-color: rgb(94, 217, 233);
     width: 150px;
@@ -19,3 +16,5 @@ body{
     margin-left: 10%;
     margin-right: 10%;
 }
+
+
