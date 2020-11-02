@@ -1,20 +1,30 @@
 body{
     background-color:   #F2F9FD;
-    padding-bottom: 150%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:fixed;
+    height: 100%;
+    width: 100%;
     text-align: center;
 }
 
+.Titel{
+    font-family: lato;
+    color:  #2A2D2F;
+}
+
 .btn{
-    background-color: rgb(94, 217, 233);
+    background-color: #38CDDC;
     width: 150px;
-    color: white;
-    padding: 5%;
+    color:  #F2F9FD;
+    padding: 20px;
     position: sticky;
+    box-shadow: #131314 25%;
 }
 
 .form-group{
     margin-left: 10%;
     margin-right: 10%;
 }
-
 
