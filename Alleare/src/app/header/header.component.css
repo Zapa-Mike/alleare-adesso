@@ -10,8 +10,7 @@
 
 .btn{
     padding: 0%;
+
+    float: inline;
 }
 
-.topnav #search{
-    float: right;
-}
