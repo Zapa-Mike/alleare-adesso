@@ -1,4 +1,3 @@
-
 .containername{font-family: lato;}
 .container{font-family: lato;}
 
@@ -71,4 +70,22 @@ body{
   right: 3%;
 }
 
+#nova{
 
+  margin-top:-7%;
+  margin-right:5%;
+}
+
+#icon{
+  margin-top:19%;
+}
+
+#settingsButton{
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#novaButton{
+  background-color: transparent;
+  border-color: transparent;
+}
