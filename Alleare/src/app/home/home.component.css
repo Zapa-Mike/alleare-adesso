@@ -80,3 +80,13 @@ body{
 #icon{
   margin-top:19%;
 }
+
+#settingButton{
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#novaButton{
+  background-color: transparent;
+  border-color: transparent;
+}
