@@ -71,4 +71,22 @@ body{
   right: 3%;
 }
 
+#nova{
 
+  margin-top:-7%;
+  margin-right:5%;
+}
+
+#icon{
+  margin-top:19%;
+}
+
+#settingButton{
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#novaButton{
+  background-color: transparent;
+  border-color: transparent;
+}

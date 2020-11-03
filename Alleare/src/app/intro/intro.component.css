@@ -1,17 +1,36 @@
 body{
     background-color:   #F2F9FD;
-
     background-repeat: no-repeat;
     background-size: cover;
-    position:fixed;
+    /*position:fixed;*/
     height: 100%;
     width: 100%;
     text-align: center;
+    font-family: lato;
 }
 
+/*Intro-Willkommen Logo*/
+.IntroLogo{
+    margin-top: 80%;
+    margin-bottom: 10%;
+}
+
+.IntroWillkommen{
+    margin-bottom: 100%;
+}
+
+/*Intro-Nameneingabe*/
 .Titel{
     font-family: lato;
     color:  #2A2D2F;
+    margin-top: 10%;
+}
+
+.form-group{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 40%;
+    margin-bottom: 40%;
 }
 
 .btn{
@@ -23,8 +42,46 @@ body{
     box-shadow: #131314 25%;
 }
 
-.form-group{
-    margin-left: 10%;
-    margin-right: 10%;
+.col{
+    padding-bottom: 20%;
 }
 
+/*Intro-Nova vorstellung*/
+.bubble {
+    position: relative;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 80px;
+    width: 200px;
+    background: #F5CE00;
+    border-radius: 50%;
+    padding: 24px;
+    text-align: center;
+    color: #000;
+    margin-top: 60%;
+    float: left;
+    margin-left: 10%;
+    
+}
+
+.bubble-bottom-right:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-style: solid;
+    border-width: 0 25px 25px 0;
+    border-top: 12px solid #F5CE00;
+    border-color:#F5CE00;
+    border-bottom: 20px solid transparent;
+    right: 32px;
+    bottom: -14px;
+}
+
+.col2{
+    padding-bottom: 40%;
+}
+
+#NovaImage{
+    margin-left:50%;
+}
