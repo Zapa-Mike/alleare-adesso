@@ -3,39 +3,56 @@
     <link rel="stylesheet" href="questions.component.css" />
   </head>
   <body>
-    <div class="Titel justify-content-center">
+    <div class="titel">
       <h1>Fragenkatalog</h1>
     </div>
 
 
     <div>
-      <!--Textfeld-->
-      <div class="test123"><!--Image Story--><img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px"></div>
-      <div>{{Storyliste[0]}}<p>Story...</p></div>
-      <div><!--"Anhören" Button--><button class="btn">Anhören</button></div>
-      <div class="RadioButtonsJaNein">
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio" 
-            id="Story1ja"           
-            name="Story1"
-          />
-          <label class="form-check-label" > Ja </label>
+      <!--Fragen und Antworten Feld-->
+      <div class="card"><!--weiße Box wo der Inhalt sich befindent-->
+        <img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px">
+        <!--Story-->
+        <div>{{Storyliste[0]}}<p>Story...</p></div>
+        <div><!--"Anhören" Button-->
+          <button class="btn">Anhören</button>
         </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story1nein"
-            name="Story1"
-          />
-          <label class="form-check-label" for="rb_Nein"> Nein </label>
+        <div class="answers">
+          <!--Radiobutton Antwort Ja-->
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio" 
+              id="Story1ja"           
+              name="Story1"
+            />
+            <label class="form-check-label" > Ja </label>
+          </div>
+          <!--Radiobutton Antwort Nein-->
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="Story1nein"
+              name="Story1"
+            />
+            <label class="form-check-label" for="rb_Nein"> Nein </label>
+          </div>
         </div>
-        <button (click)="weiter1()">Weiter</button>
       </div>
+      
+      <!-- Vor-und Zurück Button mit Pfeile-->
+        <button (click)="weiter1()">Weiter</button>
+        <button (click)="weiter1()">Zurück</button>
+      
     </div>
+
+
+<!--Neue Frage-->
+
     <div>
+
+
       <div class="test123"><!--Image Story--><img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px"></div>
       <div>{{Storyliste[1]}}<p>Story...</p></div>
       <div><!--"Anhören" Button--><button class="btn">Anhören</button></div>

@@ -11,10 +11,16 @@ body{
 .btn{
     border-color: black;
 }
-.Titel{
+.titel{
     color:#2a2d2f;
+    font-family: lato;
 }
-.test123{
-  position: static;
-  
+
+.card{
+  position: relative;
+  background-color: #ffffff;
+  width: 320px;
+  height: 700px;
+  box-shadow: 0 3px 6px 0 rgba(19,19,20,0.25);
+  border-radius: 10px;
 }
