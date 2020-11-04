@@ -1,0 +1,51 @@
+
+h2{
+color: black;
+font-family: lato;
+font-weight: bold;
+
+
+}
+
+body{
+ background:#F2F9FD;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position:fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.abody{
+  position: relative;
+  width:97%;
+  height: 0%;
+  right:3%;
+  left:1.6%;
+  padding-top: 20%;
+}
+
+.btn{
+  color:black;
+  background:white;
+  display: table-cell;
+  padding: 6%;
+  position:relative;
+  border: 2px  #f2f9fd;
+  box-shadow: #131314 25% blur;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.abtn{
+ position: relative;
+ padding-right: 100px;
+  width:100%;
+
+}
+#nova{
+
+  margin-top:-6%;
+  margin-left:53%;
+}
+
