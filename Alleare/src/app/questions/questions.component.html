@@ -10,8 +10,8 @@
 
     <div>
       <!--Fragen und Antworten Feld-->
-      <div class="card"><!--weiße Box wo der Inhalt sich befindent-->
-        <img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px">
+      <div class="card"><!--weiße Box wo der Inhalt sich befindet-->
+        <img class="img-responsive" src="/assets/fragenkatalog/story_shopping.png" alt=story_shopping>
         <!--Story-->
         <div>{{Storyliste[0]}}<p>Story...</p></div>
         <div><!--"Anhören" Button-->
@@ -42,8 +42,9 @@
       </div>
       
       <!-- Vor-und Zurück Button mit Pfeile-->
-        <button (click)="weiter1()">Weiter</button>
         <button (click)="weiter1()">Zurück</button>
+        <button (click)="weiter1()">Weiter</button>
+        
       
     </div>
 
