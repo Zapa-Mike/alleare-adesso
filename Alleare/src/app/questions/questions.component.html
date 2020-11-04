@@ -1,6 +1,7 @@
 
   <head> 
     <link rel="stylesheet" href="questions.component.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div class="titel">
@@ -13,7 +14,9 @@
       <div class="card"><!--weiße Box wo der Inhalt sich befindet-->
         <img class="img-responsive" src="/assets/fragenkatalog/story_shopping.png" alt=story_shopping>
         <!--Story-->
-        <div>{{Storyliste[0]}}<p>Story...</p></div>
+        <div>
+          <p>{{Storyliste[0]}}</p>
+        </div>
         <div><!--"Anhören" Button-->
           <button class="btn">Anhören</button>
         </div>
@@ -42,7 +45,7 @@
       </div>
       
       <!-- Vor-und Zurück Button mit Pfeile-->
-        <button (click)="weiter1()">Zurück</button>
+        <button (click)="zurueck1()">Zurück</button>
         <button (click)="weiter1()">Weiter</button>
         
       
@@ -51,85 +54,15 @@
 
 <!--Neue Frage-->
 
-    <div>
 
 
-      <div class="test123"><!--Image Story--><img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px"></div>
-      <div>{{Storyliste[1]}}<p>Story...</p></div>
-      <div><!--"Anhören" Button--><button class="btn">Anhören</button></div>
-      <div class="RadioButtonsJaNein">
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio" 
-            id="Story2ja"           
-            name="Story2"
-          />
-          <label class="form-check-label" > Ja </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story2nein"
-            name="Story2"
-          />
-          <label class="form-check-label" for="rb_Nein"> Nein </label>
-        </div>
-        <button (click)="weiter2()">Weiter</button>
-      </div>
-    </div>
-    <div>
-      <div class="test123"><!--Image Story-->{{Fragenliste[2]}}</div>
-      <div class="CheckboxAbfrage">
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitnehmer" name="Haupttätigkeit">
-          <label class="form-check-label" > Arbeitnehmer </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Selbstständig" name="Haupttätigkeit">
-          <label class="form-check-label"> Selbstständig </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Student" name="Haupttätigkeit">
-          <label class="form-check-label"> Student </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitslos" name="Haupttätigkeit">
-          <label class="form-check-label"> Arbeitslos </label>
-        </div>
-        <button (click)="weiter3()">Weiter</button>
-      </div>
-    </div>
-    <div>
-      <div class="test123"><!--Image Story-->{{Fragenliste[3]}}</div>
-      <div class="CheckboxAbfrage">
-        <div class="form-check form-check-inline">
-          <button  id="Haus"><img src="/assets/fragenkatalog/familienhaus.png" width="70px" height="50px" (click)="frage4haus()"></button>
-          <label class="form-check-label" > Haus </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <button  id="Wohnung"><img src="/assets/fragenkatalog/wohnungen.png" width="70px" height="50px" (click)="frage4wohnung()"></button>
-          <label class="form-check-label"> Wohnung </label>
-        </div>
-        <button (click)="weiter4()">Weiter</button>
-    </div>
-  </div>
-  <div>
-    <div class="test123"><!--Image Story-->{{Fragenliste[4]}}</div>
-    <div>{{Storyliste[2]}}</div>
-    <div class="CheckboxAbfrage">
-      <div class="form-check form-check-inline">
-        <input type="radio" id="Rechtschutz1" name="Rechtsschutz">
-        <label class="form-check-label" > ja </label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input type="radio" id="Rechtschutz2" name="Rechtsschutz">
-        <label class="form-check-label"> nein </label>
-      </div>
-      <button (click)="weiter5()">Weiter</button>
-  </div>
-</div>
+<!--neue Fragen-->
+
+
+
+     
+    
+
 
     <div><!--Vor-/ Zurück- Buttons--></div>
     <div><!--Sprechblase Frage--></div>
