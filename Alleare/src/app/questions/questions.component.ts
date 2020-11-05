@@ -389,7 +389,16 @@ zurueck4(){
 zurueck5(){
 
 }
-zurueck6(){
+zurueck6a(){
+
+}
+zurueck6b(){
+
+}
+zurueck6c(){
+
+}
+zurueck6d(){
 
 }
 zurueck7(){
