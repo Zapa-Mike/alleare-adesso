@@ -8,6 +8,7 @@ body{
     height: 100%;*/
 }
 
+
 /*Bild in responsive*/
 .img-responsive{
   display: block;
@@ -22,12 +23,14 @@ body{
   display: inline-block;
   margin-left: 2.5%;
   margin-right: 2.5%;
+
   background-color: #ffffff;
   width: 320px;
   height: 700px;
   box-shadow: 0 3px 6px 0 rgba(19,19,20,0.25);
   border-radius: 10px;
 }
+
 
 /*Story Text*/
 .p{
@@ -46,3 +49,4 @@ body{
     color:#2a2d2f;
     font-family: lato;
 }
+
