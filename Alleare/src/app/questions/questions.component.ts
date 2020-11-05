@@ -7,64 +7,76 @@ import { Observable } from 'rxjs';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
+
 export class QuestionsComponent implements OnInit {
-
-
-  
-  constructor() { 
-    
-    firebase.firestore().collection("Fragenkatalog")
-  .onSnapshot({ includeMetadataChanges: true }, function(snapshot) {
-      snapshot.docChanges().forEach(function(change) {
-          if (change.type === "added") {
-              console.log("Name: ", change.doc.data());
-          }
-
-          var source = snapshot.metadata.fromCache ? "local cache" : "server";
-          console.log("Data came from " + source);
-      });
-  });
-
-    
-  }
-  Fragenliste:string[] =[];
-  Storyliste:string[] =[];
-  BildWohnung:boolean=false;
-  BildHaus:boolean=false;
+  Fragenliste: string[]=[];
+  Storyliste: string[]=[];
+  BildWohnung: boolean = false;
+  BildHaus: boolean = false;
   Frage7pferd:boolean=false;
   Frage7hund:boolean=false;
   Frage7andere:boolean=false;
   Frage7keins:boolean=false;
   Frage12single:boolean=false;
   Frage12paar:boolean=false;
+  
+  constructor() {
+
+    var db = firebase.firestore();
+    var questions: string[] =[];
+    var stories : string[]= [];
+
+    firebase.firestore().collection("Fragenkatalog")
+      .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+        snapshot.docChanges().forEach(function (change) {
+          if (change.type === "added") {
+            console.log("Name: ", change.doc.data());
+          }
+
+          var source = snapshot.metadata.fromCache ? "local cache" : "server";
+          console.log("Data came from " + source);
+        });
+      });
+
+    //Fragen von der Datenbank abgreifen und umwandeln in ein String
+    for (let i = 1; i <= 13; i++) {
+      db.collection("Fragenkatalog_").doc("Frage" + i.toString().padStart(2, '0'))
+        .withConverter(questionConverter)
+        .get().then(function (doc) {
+          if (doc.exists) {
+            questions.push(doc.data().Question);
+            tmpFragen.push(questions[i-1]);
+          } else {
+            console.log("No such document!")
+          }
+        }
+        ).catch(function (error) {
+          console.log("Error getting document:", error)
+        });
+    }
+    //Stories von der Datenbank abgreifen und umwandeln in ein String
+    for (let i = 1; i <= 6; i++) {
+      db.collection("Fragenkatalog_").doc("Story" + i.toString().padStart(2, '0'))
+        .withConverter(storyConverter)
+        .get().then(function (doc) {
+          if (doc.exists) {
+            stories.push(doc.data().Story);
+            tmpStories.push(stories[i-1]);
+          } else {
+            console.log("No such document!")
+          }
+        }
+        ).catch(function (error) {
+          console.log("Error getting document:", error)
+        });
+    }
+    this.Fragenliste = tmpFragen;
+    this.Storyliste = tmpStories;
+  }
+
 
 
   ngOnInit() {
-//Kann verbessert werden!
-      const test=firebase.firestore().collection("Fragenkatalog").doc("Fragen");
-      test.get().then((doc) => {
-          this.Fragenliste[0] = doc.data().Frage0001;
-          this.Fragenliste[1] =doc.data().Frage0010;
-          this.Fragenliste[2] =doc.data().Frage0011;
-          this.Fragenliste[3] =doc.data().Frage0100;
-          this.Fragenliste[4] =doc.data().Frage0101;
-          this.Fragenliste[5] =doc.data().Frage0110;
-          this.Fragenliste[6] =doc.data().Frage0111;
-          this.Fragenliste[7] =doc.data().Frage1000;
-          this.Fragenliste[8] =doc.data().Frage1001;
-          this.Fragenliste[9] =doc.data().Frage1010;
-          this.Fragenliste[10] =doc.data().Frage1011;
-          this.Fragenliste[11] =doc.data().Frage1100;
-          this.Fragenliste[12] =doc.data().Frage1101;
-          this.Storyliste[0] =doc.data().Story0001;
-          this.Storyliste[1] =doc.data().Story0010;
-          this.Storyliste[2] =doc.data().Story0101;
-          this.Storyliste[3] =doc.data().Story1000;
-          this.Storyliste[4] =doc.data().Story1001;
-          this.Storyliste[5] =doc.data().Story1010;
-      }
-      )//Für die Erstellung der collection und des docs des jeweiligen Users
-
       var docRef = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten')
       docRef.get().then((doc) => {
       if (doc.exists) {
@@ -85,79 +97,82 @@ export class QuestionsComponent implements OnInit {
             Frage1: true,
         })
       }
-        else if((<HTMLInputElement>document.getElementById('Story1nein')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+
+      else if ((<HTMLInputElement>document.getElementById('Story1nein')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage1: false,
         });
-        }
       }
-      weiter2(){
-        if((<HTMLInputElement>document.getElementById('Story2ja')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage2: true,
+    }
+    weiter2(){
+      if ((<HTMLInputElement>document.getElementById('Story2ja')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage2: true,
         })
       }
-        else if((<HTMLInputElement>document.getElementById('Story2nein')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+      else if ((<HTMLInputElement>document.getElementById('Story2nein')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage2: false,
         });
-        }
       }
-      weiter3(){
-        if((<HTMLInputElement>document.getElementById('Arbeitnehmer')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage3: 'Arbeitnehmer',
+    }
+    weiter3(){
+      if ((<HTMLInputElement>document.getElementById('Arbeitnehmer')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage3: 'Arbeitnehmer',
         })
       }
-        else if((<HTMLInputElement>document.getElementById('Selbstständig')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+      else if ((<HTMLInputElement>document.getElementById('Selbstständig')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage3: 'Selbstständig',
         });
-        }
-        if((<HTMLInputElement>document.getElementById('Student')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage3: 'Student',
+      }
+      if ((<HTMLInputElement>document.getElementById('Student')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage3: 'Student',
         })
       }
-        else if((<HTMLInputElement>document.getElementById('Arbeitslos')).checked){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+      else if ((<HTMLInputElement>document.getElementById('Arbeitslos')).checked) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage3: 'Arbeitslos',
         });
+      }
+    }
+    frage4wohnung(){
+      this.BildHaus = false;
+      if (this.BildWohnung == false) {
+        this.BildWohnung = true;
+      }
+      else if (this.BildWohnung == true) {
+        this.BildWohnung = false;
+      }
+    }
+    frage4haus(){
+      this.BildWohnung = false;
+      if (this.BildHaus == false) {
+        this.BildHaus = true;
+      }
+      else if (this.BildHaus == true) {
+        this.BildHaus = false;
+      }
+    }
+    weiter4(){
+      if (this.BildHaus == false && this.BildWohnung == false) {
+        console.log("Wähl etwas aus");
+      }
+      if (this.BildWohnung == true) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage4: 'Wohnung',
         }
+        )
       }
-      frage4wohnung(){
-        this.BildHaus=false;
-      if(this.BildWohnung==false){
-        this.BildWohnung=true;
-      }
-      else if(this.BildWohnung==true){
-        this.BildWohnung=false;
-      }
-      }
-      frage4haus(){
-        this.BildWohnung=false;
-        if(this.BildHaus==false){
-          this.BildHaus=true;
+      if (this.BildHaus == true) {
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage4: 'Haus',
         }
-        else if(this.BildHaus==true){
-          this.BildHaus=false;
-        }
+        )
       }
-      weiter4(){
-        if(this.BildHaus==false && this.BildWohnung==false){
-          console.log("Wähl etwas aus");
-        }
-        if(this.BildWohnung==true){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage4: 'Wohnung',
-        }
-          )}
-          if(this.BildHaus==true){
-            firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-              Frage4: 'Haus',
-          }
-          )}
-      }
+    }
       weiter5(){
         if((<HTMLInputElement>document.getElementById('Rechtsschutz1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
@@ -399,4 +414,47 @@ zurueck13(){
 
 }
 
+}
+let tmpFragen: string[]=[];
+let tmpStories: string[]=[]; 
+export class Questions {
+  Question: string;
+
+  constructor(question) {
+    this.Question = question;
+  }
+}
+
+// Firestore data converter
+var questionConverter = {
+  toFirestore: function (questions) {
+    return {
+      _: questions.name
+    }
+  },
+  fromFirestore: function (snapshot, options) {
+    const data = snapshot.data(options);
+    return new Questions(data._)
+  }
+}
+
+export class Stories {
+  Story: string;
+
+  constructor(story) {
+    this.Story = story;
+  }
+}
+
+// Firestore data converter
+var storyConverter = {
+  toFirestore: function (story) {
+    return {
+      _: story.name
+    }
+  },
+  fromFirestore: function (snapshot, options) {
+    const data = snapshot.data(options);
+    return new Stories(data._)
+  }
 }
