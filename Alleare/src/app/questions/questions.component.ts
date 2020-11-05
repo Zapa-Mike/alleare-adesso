@@ -149,7 +149,13 @@ export class QuestionsComponent implements OnInit {
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage5: false
         });
-      }
       
-}
+        
+      
+    }
+   }
+
+   zurueck1(){
+     
+   }
 }
