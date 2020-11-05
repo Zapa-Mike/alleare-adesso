@@ -20,12 +20,11 @@ body{
 /*weiße Box worin sich der Content befindet*/
 .card{
   display: inline-block;
-  position: absolute;
   margin-left: 2.5%;
   margin-right: 2.5%;
   background-color: #ffffff;
-  width: 360px;
-  height: 660px;
+  width: 320px;
+  height: 700px;
   box-shadow: 0 3px 6px 0 rgba(19,19,20,0.25);
   border-radius: 10px;
 }
