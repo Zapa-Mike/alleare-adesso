@@ -1,57 +1,86 @@
-
-  <head> 
+<!DOCTYPE html>
+<html>
+    <head>
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-
+          TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    /> 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="questions.component.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   </head>
-  <body>
-    <div class="Titel">
+    <div class="titel">
       <h1>Fragenkatalog</h1>
     </div>
 
 
-    <div>
-      <!--Textfeld-->
-    
-      <div class="card"><!--Image Story-->
-        <img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px">
-        <div>{{Storyliste[0]}}<p>Story...</p></div>
-      </div>
-        
-          <div><!--"Anhören" Button--><button class="btn">Anhören</button></div>
-            <div class="RadioButtonsJaNein">
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio" 
-                  id="Story1ja"           
-                  name="Story1"
-          />
-          <label class="form-check-label" > Ja </label>
+
+      <!--Fragen und Antworten Feld-->
+      <div class="card"><!--weiße Box wo der Inhalt sich befindet-->
+        <img class="img-responsive" src="/assets/fragenkatalog/story_shopping.png" alt=story_shopping>
+        <!--Story-->
+        <div>
+          <p>{{Storyliste[0]}}</p>
         </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story1nein"
-            name="Story1"
-          />
-          <label class="form-check-label" for="rb_Nein"> Nein </label>
+        <div><!--"Anhören" Button-->
+          <button class="btn">Anhören</button>
         </div>
+        <div>{{Fragenliste[0]}}</div>
+        <div class="answers">
+          <!--Radiobutton Antwort Ja-->
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio" 
+              id="Story1ja"           
+              name="Story1"
+            />
+            <label class="form-check-label" > Ja </label>
+          </div>
+          <!--Radiobutton Antwort Nein-->
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="Story1nein"
+              name="Story1"
+            />
+            <label class="form-check-label" for="rb_Nein"> Nein </label>
+          </div>
+        </div>
+        <div>
+          <button (click)="zurueck1()">Zurück</button>
         <button (click)="weiter1()">Weiter</button>
+        </div>
       </div>
-     </div>
+    
     <div>
-      <div class="test123"><!--Image Story--><img src="/assets/fragenkatalog/story_shopping.png" width="400px" height="150px"></div>
-      <div>{{Storyliste[1]}}<p>Story...</p></div>
+      <div class="test123">
+        <!--Image Story--><img
+          src="/assets/fragenkatalog/story_shopping.png"
+          width="300px"
+          height="150px"
+        />
+      </div>
+      <div>
+        {{ Storyliste[1] }}
+        <p>Story...</p>
+      </div>
       <div><!--"Anhören" Button--><button class="btn">Anhören</button></div>
+      <div>{{Fragenliste[1]}}</div>
       <div class="RadioButtonsJaNein">
         <div class="form-check form-check-inline">
           <input
             class="form-check-input"
-            type="radio" 
-            id="Story2ja"           
+            type="radio"
+            id="Story2ja"
             name="Story2"
           />
-          <label class="form-check-label" > Ja </label>
+          <label class="form-check-label"> Ja </label>
         </div>
         <div class="form-check form-check-inline">
           <input
@@ -64,60 +93,273 @@
         </div>
         <button (click)="weiter2()">Weiter</button>
       </div>
+      
+
+    <div class="test123">
+      <!--Image Story--><img
+        src="/assets/fragenkatalog/story_shopping.png"
+        width="300px"
+        height="150px"
+      />
     </div>
     <div>
-      <div class="test123"><!--Image Story-->{{Fragenliste[2]}}</div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[2] }}</div>
       <div class="CheckboxAbfrage">
         <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitnehmer" name="Haupttätigkeit">
-          <label class="form-check-label" > Arbeitnehmer </label>
+          <input type="radio" id="Arbeitnehmer" name="Haupttätigkeit" />
+          <label class="form-check-label"> Arbeitnehmer </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Selbstständig" name="Haupttätigkeit">
+          <input type="radio" id="Selbstständig" name="Haupttätigkeit" />
           <label class="form-check-label"> Selbstständig </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Student" name="Haupttätigkeit">
+          <input type="radio" id="Student" name="Haupttätigkeit" />
           <label class="form-check-label"> Student </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitslos" name="Haupttätigkeit">
+          <input type="radio" id="Arbeitslos" name="Haupttätigkeit" />
           <label class="form-check-label"> Arbeitslos </label>
         </div>
         <button (click)="weiter3()">Weiter</button>
       </div>
     </div>
     <div>
-      <div class="test123"><!--Image Story-->{{Fragenliste[3]}}</div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[3] }}</div>
       <div class="CheckboxAbfrage">
         <div class="form-check form-check-inline">
-          <button  id="Haus"><img src="/assets/fragenkatalog/familienhaus.png" width="70px" height="50px" (click)="frage4haus()"></button>
-          <label class="form-check-label" > Haus </label>
+          <button id="Haus">
+            <img
+              src="/assets/fragenkatalog/familienhaus.png"
+              width="70px"
+              height="50px"
+              (click)="frage4haus()"
+            />
+          </button>
+          <label class="form-check-label"> Haus </label>
         </div>
         <div class="form-check form-check-inline">
-          <button  id="Wohnung"><img src="/assets/fragenkatalog/wohnungen.png" width="70px" height="50px" (click)="frage4wohnung()"></button>
+          <button id="Wohnung">
+            <img
+              src="/assets/fragenkatalog/wohnungen.png"
+              width="70px"
+              height="50px"
+              (click)="frage4wohnung()"
+            />
+          </button>
           <label class="form-check-label"> Wohnung </label>
         </div>
         <button (click)="weiter4()">Weiter</button>
-    </div>
-  </div>
-  <div>
-    <div class="test123"><!--Image Story-->{{Fragenliste[4]}}</div>
-    <div>{{Storyliste[2]}}</div>
-    <div class="CheckboxAbfrage">
-      <div class="form-check form-check-inline">
-        <input type="radio" id="Rechtschutz1" name="Rechtsschutz">
-        <label class="form-check-label" > ja </label>
       </div>
-      <div class="form-check form-check-inline">
-        <input type="radio" id="Rechtschutz2" name="Rechtsschutz">
-        <label class="form-check-label"> nein </label>
+    </div>
+    <div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[4] }}</div>
+      <div>{{ Storyliste[2] }}</div>
+      <div class="CheckboxAbfrage">
+        <div class="form-check form-check-inline">
+          <input type="radio" id="Rechtschutz1" name="Rechtsschutz" />
+          <label class="form-check-label"> ja </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" id="Rechtschutz2" name="Rechtsschutz" />
+          <label class="form-check-label"> nein </label>
+        </div>
+        <button (click)="weiter5()">Weiter</button>
       </div>
       <button (click)="weiter5()">Weiter</button>
   </div>
-</div>
+  <div>
+    <!--ngif Abfrage für die einzelnen Bilder-->
+    <div class="test123"><!--Image Story-->{{ Fragenliste[5] }}</div>
+    <div>
+      <div class="form-check form-check-inline">
+        <img src="/assets/fragenkatalog/auto.png" height="50px" width="30px" />
+      </div>
 
-    <div><!--Vor-/ Zurück- Buttons--></div>
-    <div><!--Sprechblase Frage--></div>
-    <div><!--Nova Image--></div>
-</body>
+      <input type="radio" id="auto1" name="auto" />
+      <label class="form-check-label"> ja </label>
+      <input type="radio" id="auto2" name="auto" />
+      <label class="form-check-label"> nein </label>
+
+      <button (click)="weiter6a()">Weiter</button>
+    </div>
+    <div>
+      <div class="form-check form-check-inline">
+        <img
+          src="/assets/fragenkatalog/motorrad.png"
+          height="50px"
+          width="30px"
+        />
+      </div>
+
+      <input type="radio" id="motorrad1" name="motorrad" />
+      <label class="form-check-label"> ja </label>
+      <input type="radio" id="motorrad2" name="motorrad" />
+      <label class="form-check-label"> nein </label>
+
+      <button (click)="weiter6b()">Weiter</button>
+    </div>
+    <div>
+      <div class="form-check form-check-inline">
+        <img
+          src="/assets/fragenkatalog/fahrrad.png"
+          height="50px"
+          width="30px"
+        />
+      </div>
+
+      <input type="radio" id="fahrrad1" name="fahrrad" />
+      <label class="form-check-label"> ja </label>
+      <input type="radio" id="fahrrad2" name="fahrrad" />
+      <label class="form-check-label"> nein </label>
+
+      <button (click)="weiter6c()">Weiter</button>
+    </div>
+    <div>
+      <div class="form-check form-check-inline">
+        <img
+          src="/assets/fragenkatalog/drohne.png"
+          height="50px"
+          width="30px"
+        />
+      </div>
+
+      <input type="radio" id="drohne1" name="drohne" />
+      <label class="form-check-label"> ja </label>
+      <input type="radio" id="drohne2" name="drohne" />
+      <label class="form-check-label"> nein </label>
+
+      <button (click)="weiter6d()">Weiter</button>
+    </div>
+  </div>
+  <div>
+    <div class="form-check form-check-inline">
+      <div class="test123"><!--Image Story-->{{ Fragenliste[6] }}</div>
+    </div>
+
+    <button (click)="frage7pferd()">
+      <img src="/assets/fragenkatalog/pferd.png" width="50px" height="30px" />
+    </button>
+    <label class="form-check-label"> Pferd </label>
+    <button (click)="frage7hund()">
+      <img src="/assets/fragenkatalog/hund.png" width="50px" height="30px" />
+    </button>
+    <label class="form-check-label"> Hund </label>
+
+    <input type="checkbox" id="frage7andere" name="nodub"/>
+    <label class="form-check-label"> Andere </label>
+    <input type="checkbox" id="frage7keins" name="nodub"/>
+    <label class="form-check-label"> Keins </label>
+
+    <button (click)="weiter7()">Weiter</button>
+  </div>
+  <!--Neue Frage-->
+  <div>
+    <div class="form-check form-check-inline">
+      <div>{{Storyliste[3]}}<p>Story...</p></div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[7] }}</div>
+    </div>
+    
+
+    <input type="radio" id="frage8ja" name="frage8"/>
+    <label class="form-check-label"> Ja </label>
+    <input type="radio" id="frage8nein" name="frage8"/>
+    <label class="form-check-label"> Nein </label>
+
+    <button (click)="weiter8()">Weiter</button>
+  </div>
+  <!--Neue Frage-->
+  <div>
+    <div class="form-check form-check-inline">
+      <div>{{Storyliste[4]}}<p>Story...</p></div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[8] }}</div>
+    </div>
+    
+
+    <input type="radio" id="frage9ja" name="frage9"/>
+    <label class="form-check-label"> Ja </label>
+    <input type="radio" id="frage9nein" name="frage9"/>
+    <label class="form-check-label"> Nein </label>
+
+    <button (click)="weiter9()">Weiter</button>
+  </div>
+  <!--Neue Frage-->
+  <div>
+    <div class="form-check form-check-inline">
+      <div>{{Storyliste[5]}}<p>Story...</p></div>
+      <div class="test123"><!--Image Story-->{{ Fragenliste[9] }}</div>
+    </div>
+    
+
+    <input type="radio" id="frage10ja" name="frage10"/>
+    <label class="form-check-label"> Ja </label>
+    <input type="radio" id="frage10nein" name="frage10"/>
+    <label class="form-check-label"> Nein </label>
+
+    <button (click)="weiter10()">Weiter</button>
+  </div>
+  <!--Neue Frage-->
+  <div>
+    <div class="form-check form-check-inline">
+      <!--Bild-->
+      <div class="test123"><!--Image Story-->{{ Fragenliste[10] }}</div>
+    </div>
+
+    <input type="radio" id="frage11ja" name="frage11"/>
+    <label class="form-check-label"> Ja </label>
+    <input type="radio" id="frage11nein" name="frage11"/>
+    <label class="form-check-label"> Nein </label>
+
+    <button (click)="weiter11()">Weiter</button>
+  </div>
+  <!--Neue Frage  -->
+  <div>
+    <div class="form-check form-check-inline">
+      <!--Bild-->
+      <div class="test123"><!--Image Story-->{{ Fragenliste[11] }}</div>
+    </div>
+
+    <button  id="Wohnung"><img src="/assets/fragenkatalog/wohnungen.png" width="70px" height="50px" (click)="frage12single()"></button>
+    <label class="form-check-label"> Single </label>
+    <button  id="Wohnung"><img src="/assets/fragenkatalog/wohnungen.png" width="70px" height="50px" (click)="frage12paar()"></button>
+    <label class="form-check-label"> Paar </label>
+
+    <button (click)="weiter12()">Weiter</button>
+  </div>
+  <!--Neue Frage-->
+  <div>
+    <div class="form-check form-check-inline">
+      <!--Bild-->
+      <div class="test123"><!--Image Story-->{{ Fragenliste[12] }}</div>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Action
+      </button>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" >Baden-Württenberg</a>
+      <a class="dropdown-item" >Bayer</a>
+      <a class="dropdown-item" >Berlin</a>
+      <a class="dropdown-item" >Brandenburg</a>
+      <a class="dropdown-item" >Bremen</a>
+      <a class="dropdown-item" >Hamburg</a>
+      <a class="dropdown-item" >Hessen</a>
+      <a class="dropdown-item" >Mecklenburg-Vorpommern</a>
+      <a class="dropdown-item" >Niedersachsen</a>
+      <a class="dropdown-item" >Nordrhein-Westfalen</a>
+      <a class="dropdown-item" >Rheinland-Pfalz</a>
+      <a class="dropdown-item" >Saarland</a>
+      <a class="dropdown-item" >Sachsen</a>
+      <a class="dropdown-item" >Sachsen-Anhalt</a>
+      <a class="dropdown-item" >Schleswig-Holstein</a>
+      <a class="dropdown-item" >Thüringen</a>
+
+      </div>
+      </div>
+
+    <button (click)="weiter13()">Weiter</button>
+  </div>
+
+  <div><!--Vor-/ Zurück- Buttons--></div>
+  <div><!--Sprechblase Frage--></div>
+  <div><!--Nova Image--></div>
