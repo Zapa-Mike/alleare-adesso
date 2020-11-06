@@ -32,7 +32,7 @@ body{
   padding: 19%;
   position:relative;
   border: 2px  #f2f9fd;
-  box-shadow: #131314 25% blur;
+  box-shadow: 0 3px 3px 0 rgba(19,19,20,0.25);
   border-radius: 10px;
   font-weight: bold;
   font-size: 20px;
