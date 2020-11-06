@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,DoCheck} from '@angular/core';
 import firebase from 'firebase';
 import { Observable } from 'rxjs';
 
@@ -20,11 +20,41 @@ export class QuestionsComponent implements OnInit {
   Frage12single:boolean=false;
   Frage12paar:boolean=false;
   
+Frage1:boolean=true;
+Frage2:boolean=false;
+Frage3:boolean=false;
+Frage4:boolean=false;
+Frage5:boolean=false;
+Frage6a:boolean=false;
+Frage6b:boolean=false;
+Frage6c:boolean=false;
+Frage6d:boolean=false;
+Frage7:boolean=false;
+Frage8:boolean=false;
+Frage9:boolean=false;
+Frage10:boolean=false;
+Frage11:boolean=false;
+Frage12:boolean=false;
+Frage13:boolean=false;
+
   constructor() {
+
+
 
     var db = firebase.firestore();
     var questions: string[] =[];
     var stories : string[]= [];
+
+    //Bundesland-ListenAbfrage
+    $(document).ready(function () {
+      $('#drop a').on('click', function () {
+        var txt= ($(this).text());
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage13: txt,
+        })
+      });
+    });
+
 
     firebase.firestore().collection("Fragenkatalog")
       .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
@@ -72,7 +102,9 @@ export class QuestionsComponent implements OnInit {
     }
     this.Fragenliste = tmpFragen;
     this.Storyliste = tmpStories;
+    
   }
+
 
 
 
@@ -88,9 +120,12 @@ export class QuestionsComponent implements OnInit {
       }
         )}
     });
- }
+
+  }
 
       weiter1(){
+        this.Frage1=false;
+        this.Frage2=true;
         //ngif einfügen
         if((<HTMLInputElement>document.getElementById('Story1ja')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
@@ -105,6 +140,8 @@ export class QuestionsComponent implements OnInit {
       }
     }
     weiter2(){
+      this.Frage2=false;
+      this.Frage3=true;
       if ((<HTMLInputElement>document.getElementById('Story2ja')).checked) {
         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage2: true,
@@ -117,6 +154,8 @@ export class QuestionsComponent implements OnInit {
       }
     }
     weiter3(){
+      this.Frage3=false;
+      this.Frage4=true;
       if ((<HTMLInputElement>document.getElementById('Arbeitnehmer')).checked) {
         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
           Frage3: 'Arbeitnehmer',
@@ -157,6 +196,8 @@ export class QuestionsComponent implements OnInit {
       }
     }
     weiter4(){
+      this.Frage4=false;
+      this.Frage5=true;
       if (this.BildHaus == false && this.BildWohnung == false) {
         console.log("Wähl etwas aus");
       }
@@ -174,6 +215,8 @@ export class QuestionsComponent implements OnInit {
       }
     }
       weiter5(){
+        this.Frage5=false;
+        this.Frage6a=true;
         if((<HTMLInputElement>document.getElementById('Rechtsschutz1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
             Frage5: true,
@@ -186,6 +229,8 @@ export class QuestionsComponent implements OnInit {
       }
 }
       weiter6a(){
+        this.Frage6a=false;
+        this.Frage6b=true;
         if((<HTMLInputElement>document.getElementById('auto1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
             Frage6a: true
@@ -198,6 +243,8 @@ export class QuestionsComponent implements OnInit {
       }
       }
       weiter6b(){
+        this.Frage6b=false;
+        this.Frage6c=true;
         if((<HTMLInputElement>document.getElementById('motorrad1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
             Frage6b: true
@@ -210,6 +257,8 @@ export class QuestionsComponent implements OnInit {
       }
       }
       weiter6c(){
+        this.Frage6c=false;
+        this.Frage6d=true;
         if((<HTMLInputElement>document.getElementById('fahrrad1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
             Frage6c: true
@@ -222,6 +271,8 @@ export class QuestionsComponent implements OnInit {
       }
       }
       weiter6d(){
+        this.Frage6d=false;
+        this.Frage7=true;
         if((<HTMLInputElement>document.getElementById('drohne1')).checked){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
             Frage6d: true
@@ -263,6 +314,8 @@ export class QuestionsComponent implements OnInit {
       }
       }
       weiter7(){
+        this.Frage7=false;
+        this.Frage8=true;
         if(this.Frage7hund==false && this.Frage7pferd==false){
           console.log("Wähl etwas aus");
         }
@@ -290,6 +343,8 @@ export class QuestionsComponent implements OnInit {
       }
     }
 weiter8(){
+  this.Frage8=false;
+  this.Frage9=true;
   if((<HTMLInputElement>document.getElementById('frage8ja')).checked){
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
       Frage8: true
@@ -302,6 +357,8 @@ weiter8(){
 }
 }
 weiter9(){
+  this.Frage9=false;
+  this.Frage10=true;
   if((<HTMLInputElement>document.getElementById('frage9ja')).checked){
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
       Frage9: true
@@ -314,6 +371,8 @@ weiter9(){
 }
 }
 weiter10(){
+  this.Frage10=false;
+  this.Frage11=true;
   if((<HTMLInputElement>document.getElementById('frage10ja')).checked){
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
       Frage10: true
@@ -326,6 +385,8 @@ weiter10(){
 }
 }
 weiter11(){
+  this.Frage11=false;
+  this.Frage12=true;
   if((<HTMLInputElement>document.getElementById('frage11ja')).checked){
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
       Frage11: true
@@ -357,6 +418,8 @@ frage12single(){
   }
 }
 weiter12(){
+  this.Frage12=false;
+  this.Frage13=true;
   if(this.Frage12paar==true){
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
       Frage12: 'Paar',
@@ -372,60 +435,83 @@ else if(this.Frage12single==true){
 }
 }
 weiter13(){
+  this.Frage13=false;
+  this.Frage7=true;
+  if((<HTMLInputElement>document.getElementById('test110')).checked){
+console.log("greift ab");
+  }
 
 }
-zurueck1(){
+weiter14(){
+ }
 
-}
+
 zurueck2(){
-
+  this.Frage1=true;
+  this.Frage2=false;
 }
 zurueck3(){
-
+  this.Frage2=true;
+  this.Frage3=false;
 }
 zurueck4(){
-
+  this.Frage3=true;
+  this.Frage4=false;
 }
 zurueck5(){
-
+  this.Frage4=true;
+  this.Frage5=false;
 }
 zurueck6a(){
-
+  this.Frage5=true;
+  this.Frage6a=false;
 }
 zurueck6b(){
-
+  this.Frage6a=true;
+  this.Frage6b=false;
 }
 zurueck6c(){
-
+  this.Frage6b=true;
+  this.Frage6c=false;
 }
 zurueck6d(){
-
+  this.Frage6c=true;
+  this.Frage6d=false;
 }
 zurueck7(){
-
+  this.Frage6a=true;
+  this.Frage7=false;
 }
 zurueck8(){
-
+  this.Frage7=true;
+  this.Frage8=false;
 }
 zurueck9(){
-
+  this.Frage8=true;
+  this.Frage9=false;
 }
 zurueck10(){
-
+  this.Frage9=true;
+  this.Frage10=false;
 }
 zurueck11(){
-
+  this.Frage10=true;
+  this.Frage11=false;
 }
 zurueck12(){
-
+  this.Frage11=true;
+  this.Frage12=false;
 }
 zurueck13(){
-
+  this.Frage12=true;
+  this.Frage13=false;
 }
 
 }
+
 let tmpFragen: string[]=[];
 let tmpStories: string[]=[]; 
+
 export class Questions {
   Question: string;
 
