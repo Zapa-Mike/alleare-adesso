@@ -9,6 +9,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TippsComponent } from './tipps/tipps.component';
+import { EvaluationComponent} from './evaluation/evaluation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'nova', component: NovaComponent },
   { path: 'intro', component: IntroComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'evaluation', component: EvaluationComponent}
 ];
 
 @NgModule({
