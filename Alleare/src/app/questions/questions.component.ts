@@ -37,6 +37,8 @@ Frage11:boolean=false;
 Frage12:boolean=false;
 Frage13:boolean=false;
 
+test22=6;
+
   constructor() {
 
 
@@ -123,6 +125,11 @@ Frage13:boolean=false;
 
   }
 
+
+
+
+  
+/*
       weiter1(){
         this.Frage1=false;
         this.Frage2=true;
@@ -507,8 +514,9 @@ zurueck13(){
   this.Frage13=false;
 }
 
-}
+}*/
 
+}
 let tmpFragen: string[]=[];
 let tmpStories: string[]=[]; 
 
