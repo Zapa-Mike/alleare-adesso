@@ -37,7 +37,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
         </button>
       </div>
 
-      <div class="ImageStory"><!--Story "Frage"-->{{jalla}}</div>
+      <div class="ImageStory"><!--Story "Frage"--></div>
       <div class="d-flex Nova justify-content-end">
         <img
           src="/assets/nova/nova_intro_rechts.png"
@@ -53,23 +53,20 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 })
 export class RadioComponent implements OnInit {
 
-@Input() Fragenliste1;
-
-@Input() jalla;
+@Input() Fragenliste;
+ 
   constructor() { 
-
-    
+   
   }
 
   ngOnInit(): void {
-    console.log("Lan "+this.Fragenliste1);
+    fragen = this.Fragenliste;
+    console.log(this.Fragenliste);
   }
 
 
   push(){
-
-    console.log(this.Fragenliste1)
-    console.log(this.jalla)
+     console.log(fragen);
   }
 
   zurueck(){
@@ -77,3 +74,4 @@ export class RadioComponent implements OnInit {
   }
 
 }
+let fragen:string[]=[]; 

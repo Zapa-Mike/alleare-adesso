@@ -65,12 +65,8 @@ import { RadioComponent } from './questions/radio.component';
 })
 export class AppModule {
 
-  constructor(injector: Injector){
-    const Stories = createCustomElement(StoriesComponent, {injector});
-    customElements.define('app-stories',Stories);
 
-    const radio = createCustomElement(RadioComponent, {injector});
-    customElements.define('app-radio',radio);
+  
   
   }
  }
