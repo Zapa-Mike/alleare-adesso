@@ -1,4 +1,4 @@
-import { Component, OnInit ,DoCheck} from '@angular/core';
+import { Component, OnInit ,Input, Output} from '@angular/core';
 import firebase from 'firebase';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 
 export class QuestionsComponent implements OnInit {
   Fragenliste: string[]=[];
+  Fragenliste1=["Halli","Halla","Tada"];
   Storyliste: string[]=[];
   BildWohnung: boolean = false;
   BildHaus: boolean = false;
@@ -19,6 +20,8 @@ export class QuestionsComponent implements OnInit {
   Frage7keins:boolean=false;
   Frage12single:boolean=false;
   Frage12paar:boolean=false;
+
+  mama="es geeeeeeeeeeeht";
   
 Frage1:boolean=true;
 Frage2:boolean=false;
@@ -122,7 +125,6 @@ test22=6;
       }
         )}
     });
-
   }
 
 

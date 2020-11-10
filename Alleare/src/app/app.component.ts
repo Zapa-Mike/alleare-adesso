@@ -13,7 +13,6 @@ export class AppComponent implements DoCheck, OnInit {
   public showheader = true;
   title = 'Alleare';
 
-  test22=5;
   constructor(private route: LocationStrategy) {}
 
   ngOnInit() {

@@ -23,6 +23,7 @@
     "@angular/router": "~10.1.5",
     "@angular/service-worker": "~10.1.5",
     "@types/jquery": "^3.5.4",
+    "document-register-element": "^1.7.2",
     "firebase": "^7.24.0",
     "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
