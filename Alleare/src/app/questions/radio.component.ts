@@ -89,27 +89,6 @@ dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('han
         this.dbpush.update({
           Frage2:this.form.value.fragen
         })
-        case 2:
-        this.dbpush.update({
-          Frage3:this.form.value.fragen
-        })
-        case 3:
-        this.dbpush.update({
-          Frage4:this.form.value.fragen
-        })
-        case 4:
-        this.dbpush.update({
-          Frage5:this.form.value.fragen
-        })
-        case 5:
-        this.dbpush.update({
-          Frage6:this.form.value.fragen
-        })
-        case 6:
-        this.dbpush.update({
-          Frage7:this.form.value.fragen
-        })
-
         break;
     }
     if(this.form.value.fragen=="nein"){

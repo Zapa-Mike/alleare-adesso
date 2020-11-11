@@ -11,9 +11,10 @@ import { Observable } from 'rxjs';
 
 
 export class QuestionsComponent implements OnInit {
-  Fragenliste:string[]=[];
-  Fragenliste1=["Halli","Halla","Tada"];
-  Storyliste: string[]=[];
+  Fragenliste:string[]=[]; //Anderen Fragen
+  Storyliste: string[]=[]; //Alle Stories für Radio Buttons
+  StorybezogeneFragenliste: string[]=[]; //Fragen zu den Stories
+  RadiobuttonFragen: string[]=[]; //Radio Fragen ohne Story
  
 
   constructor() {
@@ -45,15 +46,16 @@ export class QuestionsComponent implements OnInit {
         });
       });
 
-    //Fragen von der Datenbank abgreifen und umwandeln in ein String
-    for (let i = 1; i <= 13; i++) {
+    //Fragen, welche nicht die Stories betreffen, von der Datenbank abgreifen und umwandeln in ein String
+    for (let i = 1; i <= 7; i++) {
       db.collection("Fragenkatalog").doc("Frage" + i.toString().padStart(2, '0'))
         .withConverter(questionConverter)
         .get().then(function (doc) {
           if (doc.exists) {
             questions.push(doc.data().Question);
             tmpFragen.push(questions[i-1]);
-
+            if((i == 3) || (i == 5))
+              tmpRadioFragen.push(doc.data().Question);
           } else {
             console.log("No such document!")
           }
@@ -62,6 +64,22 @@ export class QuestionsComponent implements OnInit {
           console.log("Error getting document:", error)
         });
     }
+    //Storybezogene Fragen von der Datenbank abgreifen und umwandeln in ein String
+    for (let i = 1; i <= 6; i++) {
+      db.collection("_Fragenkatalog").doc("Frage" + i.toString().padStart(2, '0'))
+        .withConverter(questionConverter)
+        .get().then(function (doc) {
+          if (doc.exists) {
+            tmpStorybezogeneFragen.push(doc.data().Question);
+          } else {
+            console.log("No such document!")
+          }
+        }
+        ).catch(function (error) {
+          console.log("Error getting document:", error)
+        });
+    }
+    
     //Stories von der Datenbank abgreifen und umwandeln in ein String
     for (let i = 1; i <= 6; i++) {
       db.collection("_Fragenkatalog").doc("Story" + i.toString().padStart(2, '0'))
@@ -70,8 +88,6 @@ export class QuestionsComponent implements OnInit {
           if (doc.exists) {
             stories.push(doc.data().Story);
             tmpStories.push(stories[i-1]);
-
-
           } else {
             console.log("No such document!")
           }
@@ -80,10 +96,10 @@ export class QuestionsComponent implements OnInit {
           console.log("Error getting document:", error)
         });
     }
-  
     this.Fragenliste = tmpFragen;
     this.Storyliste = tmpStories;
-    
+    this.StorybezogeneFragenliste = tmpStorybezogeneFragen;
+    this.RadiobuttonFragen = tmpRadioFragen;
   }
 
   ngOnInit() {
@@ -99,13 +115,12 @@ export class QuestionsComponent implements OnInit {
         )}
     });
   }
-  
-
 }
 
 let tmpFragen: string[]=[];
+let tmpRadioFragen: string[]=[];
+let tmpStorybezogeneFragen: string []=[];
 let tmpStories: string[]=[]; 
-
 
 
 export class Questions {
