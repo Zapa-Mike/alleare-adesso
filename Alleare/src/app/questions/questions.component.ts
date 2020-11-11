@@ -11,16 +11,12 @@ import { Observable } from 'rxjs';
 
 
 export class QuestionsComponent implements OnInit {
-  Fragenliste: string[]=[];
+  Fragenliste:string[]=[];
   Fragenliste1=["Halli","Halla","Tada"];
   Storyliste: string[]=[];
  
 
   constructor() {
-
-
-    
-
 
     var db = firebase.firestore();
     var questions: string[] =[];
@@ -35,8 +31,6 @@ export class QuestionsComponent implements OnInit {
         })
       });
     });
-
-    
 
 
     firebase.firestore().collection("Fragenkatalog")
@@ -53,7 +47,7 @@ export class QuestionsComponent implements OnInit {
 
     //Fragen von der Datenbank abgreifen und umwandeln in ein String
     for (let i = 1; i <= 13; i++) {
-      db.collection("Fragenkatalog_").doc("Frage" + i.toString().padStart(2, '0'))
+      db.collection("Fragenkatalog").doc("Frage" + i.toString().padStart(2, '0'))
         .withConverter(questionConverter)
         .get().then(function (doc) {
           if (doc.exists) {
@@ -70,13 +64,13 @@ export class QuestionsComponent implements OnInit {
     }
     //Stories von der Datenbank abgreifen und umwandeln in ein String
     for (let i = 1; i <= 6; i++) {
-      db.collection("Fragenkatalog_").doc("Story" + i.toString().padStart(2, '0'))
+      db.collection("_Fragenkatalog").doc("Story" + i.toString().padStart(2, '0'))
         .withConverter(storyConverter)
         .get().then(function (doc) {
           if (doc.exists) {
             stories.push(doc.data().Story);
             tmpStories.push(stories[i-1]);
-            console.log(tmpFragen[5]);
+
 
           } else {
             console.log("No such document!")
@@ -91,9 +85,6 @@ export class QuestionsComponent implements OnInit {
     this.Storyliste = tmpStories;
     
   }
-
-
-
 
   ngOnInit() {
       var docRef = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten')
@@ -111,7 +102,6 @@ export class QuestionsComponent implements OnInit {
   
 
 }
-
 
 let tmpFragen: string[]=[];
 let tmpStories: string[]=[]; 
