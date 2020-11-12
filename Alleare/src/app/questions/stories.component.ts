@@ -44,6 +44,8 @@ import firebase from 'firebase';
         </button>
       </div>
 
+      <div>{{fragenanzeige}} </div>
+
       <div class="ImageStory"><!--Story "Frage"--></div>
       <div class="d-flex Nova justify-content-end">
         <img
@@ -83,8 +85,6 @@ export class StoriesComponent implements DoCheck {
     this.imgArray[3] = '/assets/fragenkatalog/wunsch.png';
 
     this.imgArray[4] = '/assets/fragenkatalog/immobilien_sparen.png';
-
-    this.imgArray[5] ="/assets/fragenkatalog/reisen.png";
   
     this.form=new FormGroup({
       stories:new FormControl()
@@ -95,6 +95,7 @@ export class StoriesComponent implements DoCheck {
     this.fragen = this.Fragenliste;
     this.story = this.Storyliste;
     this.storyanzeige = this.story[this.i];
+    this.fragenanzeige = this.fragen[this.i];
   }
 
   push() {
@@ -140,11 +141,6 @@ export class StoriesComponent implements DoCheck {
             case 4:
             this.dbpush.update({
               Frage5:this.form.value.stories
-            })
-            break;
-            case 5:
-            this.dbpush.update({
-              Frage6:this.form.value.stories
             })
             break;
         }
