@@ -21,8 +21,8 @@ export class QuestionsComponent implements OnInit {
   constructor() {
 
     this.form= new FormGroup({
-      Haupttaetigkeit:new FormControl()
-
+      Haupttaetigkeit:new FormControl(),
+      tiercheckbox:new FormControl()
     });
 
     var db = firebase.firestore();
@@ -48,18 +48,30 @@ export class QuestionsComponent implements OnInit {
     $(document).ready(function(){
       $("#pferd").click(function(){
           $("#tierandere").prop("checked",false);
-          $("#tierkeins").prop("checked",false);    
+          $("#tierkeins").prop("checked",false); 
+          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+            Frage16: "Pferd"
+          })   
       });
 
       $("#hund").click(function(){
         $("#tierandere").prop("checked",false);
         $("#tierkeins").prop("checked",false);  
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage16: "Hund"
+        })
     });
     $("#tierandere").click(function(){
       $("#tierkeins").prop("checked",false);     
+      firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+        Frage16: "Andere"
+      })
   });
   $("#tierkeins").click(function(){
     $("#tierandere").prop("checked",false); 
+    firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+      Frage16: "Keine"
+    })
 });
 
 
@@ -185,13 +197,13 @@ export class QuestionsComponent implements OnInit {
       }
     });
   }
-  datapush(wohnung?:any){
+  datapush(wohnung?:any,tier?:any){
     if(this.form.value.Haupttaetigkeit!=null){
     this.dbpush.update({
       Frage14:this.form.value.Haupttaetigkeit
     })
     }
-    if(wohnung=="Haus"){
+    if(wohnung=="Haus"){ //
       this.dbpush.update({
         Frage15:'Haus'
       })
@@ -200,7 +212,7 @@ export class QuestionsComponent implements OnInit {
         Frage15:'Wohnung'
       })
     }
-
+//Frage 16 wird über jquery abgefragt
 
 
   }
