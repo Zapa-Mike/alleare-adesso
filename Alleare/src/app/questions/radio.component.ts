@@ -19,6 +19,7 @@ import firebase from 'firebase';
             <img src="{{ imgArray[i] }}" class="img-responsive" />
           </div>
 
+         
           <input
             type="radio"
             name="fragen"

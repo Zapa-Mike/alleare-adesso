@@ -12,8 +12,16 @@ export class QuestionsComponent implements OnInit {
   Storyliste: string[] = []; //Alle Stories für Radio Buttons
   StorybezogeneFragenliste: string[] = []; //Fragen zu den Stories
   RadiobuttonFragen: string[] = []; //Radio Fragen ohne Story
+   dbpush = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'))
+    .collection('Fragenkatalog')
+    .doc('Antworten');
 
+  
   constructor() {
+
     var db = firebase.firestore();
     var questions: string[] = [];
     var stories: string[] = [];
@@ -23,16 +31,40 @@ export class QuestionsComponent implements OnInit {
       $('#drop a').on('click', function () {
         var txt = $(this).text();
         firebase
-          .firestore()
-          .collection('Benutzer')
-          .doc(localStorage.getItem('hans'))
-          .collection('Fragenkatalog')
-          .doc('Antworten')
-          .update({
+        .firestore()
+        .collection('Benutzer')
+        .doc(localStorage.getItem('hans'))
+        .collection('Fragenkatalog')
+        .doc('Antworten')
+        .update({
             Frage13: txt,
           });
       });
     });
+// Tierfrage 
+    $(document).ready(function(){
+      $("#pferd").click(function(){
+          $("#frage7andere").prop("checked",false);
+          $("#frage7keins").prop("checked",false);    
+      });
+
+      $("#hund").click(function(){
+        $("#frage7andere").prop("checked",false);
+        $("#frage7keins").prop("checked",false);  
+    });
+    $("#frage7andere").click(function(){
+      $("#frage7keins").prop("checked",false);     
+  });
+  $("#frage7keins").click(function(){
+    $("#frage7andere").prop("checked",false); 
+});
+
+
+
+      $("#Wbutton").click(function(){
+          $("#redundant1").prop("checked", false);
+      });
+  });
 
     firebase
       .firestore()

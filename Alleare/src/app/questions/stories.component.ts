@@ -16,6 +16,14 @@ import firebase from 'firebase';
             <div class="ImageStory">
             {{ storyanzeige}}
           </div>
+           <!--"Anhören" Button-->
+           <div class="AnhoerenButton">
+            <button class="btn" id="anhoeren">
+              <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
+              Anhören
+            </button>
+          </div>
+
             <input type="radio" name="stories" formControlName="stories" value="ja" id="redundant"/>
             <label class="form-check-label"> ja </label>
             <input type="radio" name="stories" formControlName="stories" value="nein" id="redundant1"/>
