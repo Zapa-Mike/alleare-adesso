@@ -51,11 +51,9 @@ export class QuestionsComponent implements OnInit {
       .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
           if (change.type === 'added') {
-            console.log('Name: ', change.doc.data());
           }
 
           var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-          console.log('Data came from ' + source);
         });
       });
 

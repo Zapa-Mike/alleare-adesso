@@ -14,13 +14,11 @@ import firebase from 'firebase';
   <div class="Frage">
       <div [formGroup]="form" class="card">
         <div>
+        <div class="ImageStory"><!--Story "Frage"-->{{fragenanzeige}}</div>
           <div class="form-check form-check-inline">
-            <img
-              src="/assets/fragenkatalog/auto.png"
-              height="50px"
-              width="30px"
-            />
+          <img src="{{imgArray[i]}}" class="img-responsive" >
           </div>
+         
 
           <input type="radio" name="fragen" formControlName="fragen" value="ja" />
           <label class="form-check-label"> ja </label>
@@ -37,7 +35,7 @@ import firebase from 'firebase';
         </button>
       </div>
 
-      <div class="ImageStory"><!--Story "Frage"-->{{fragenanzeige}}</div>
+     
       <div class="d-flex Nova justify-content-end">
         <img
           src="/assets/nova/nova_intro_rechts.png"
@@ -57,6 +55,7 @@ fragen:string[];
 i:number=0;
 fragenanzeige:string;
 @Input() Fragenliste;
+imgArray = [];
 zurueckButton=false;
 dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten');
 
@@ -64,6 +63,20 @@ dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('han
     this.form=new FormGroup({
       fragen:new FormControl()
     }) 
+
+    this.imgArray = [];
+
+    this.imgArray[0] ="/assets/fragenkatalog/auto.png";
+
+    this.imgArray[1] = "/assets/fragenkatalog/motorrad.png";
+
+    this.imgArray[2] ="/assets/fragenkatalog/fahrrad.png";
+
+    this.imgArray[3] ="/assets/fragenkatalog/drohne.png";
+
+    this.imgArray[4] = "/assets/fragenkatalog/sport.png";
+
+  
   }
 
   ngDoCheck(){
