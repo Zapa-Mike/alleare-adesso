@@ -1,13 +1,25 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-stories',
   template: `
     <div class="Frage">
-      <div class="card">
-        <div>
-          <div class="form-check form-check-inline">
-            <img src="{{ imgArray[i] }}" class="img-responsive" />
+        <div [formGroup]="form" class="card">
+          <div>
+            <div class="form-check form-check-inline">
+              <img src="{{imgArray[i]}}" class="img-responsive" >
+            </div>
+            <div class="ImageStory">
+            {{ storyanzeige}}
+          </div>
+            <input type="radio" name="stories" formControlName="stories" value="ja"/>
+            <label class="form-check-label"> ja </label>
+            <input type="radio" name="stories" formControlName="stories" value="nein"/>
+            <label class="form-check-label"> nein </label>
           </div>
           <div class="ImageStory">
             {{ storyanzeige }}
@@ -40,25 +52,30 @@ import { Component, DoCheck, Input, OnInit } from '@angular/core';
           id="NovaImage"
         />
       </div>
-    </div>
+  
+      
   `,
   styleUrls: ['./questions.component.css'],
 })
 export class StoriesComponent implements DoCheck {
   @Input() Fragenliste;
   @Input() Storyliste;
-  i: number = 0;
-  test2: string;
-  imgArray = [];
-  fragen: string[] = [];
+  i:number=0;
+  form:FormGroup;
+  test2:string;
+  imgArray= [];
+  fragen:string[]=[]; 
   fragenanzeige: string;
   story: string[] = [];
   storyanzeige: string;
+  dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten');
 
-  constructor() {
-    this.imgArray = [];
-
-    this.imgArray[0] = '/assets/fragenkatalog/story_shopping.png';
+  
+  constructor() { 
+   this.imgArray= [];
+    this.imgArray[0]="/assets/fragenkatalog/story_shopping.png";
+  
+    this.imgArray[1] ="/assets/fragenkatalog/story_bahnhof.png";
 
     this.imgArray[1] = '/assets/fragenkatalog/story_bahnhof.png';
 
@@ -68,7 +85,11 @@ export class StoriesComponent implements DoCheck {
 
     this.imgArray[4] = '/assets/fragenkatalog/immobilien_sparen.png';
 
-    this.imgArray[5] = '/assets/fragenkatalog/reisen.png';
+    this.imgArray[5] ="/assets/fragenkatalog/reisen.png";
+  
+    this.form=new FormGroup({
+      stories:new FormControl()
+    }) 
   }
 
   ngDoCheck(): void {
@@ -78,13 +99,46 @@ export class StoriesComponent implements DoCheck {
   }
 
   push() {
-    if (this.fragen.length > this.i) {
-      this.fragenanzeige = this.fragen[this.i];
-    }
-
-    if (this.story.length > this.i) {
-      this.storyanzeige = this.story[this.i];
-    }
+      if(this.fragen.length>this.i){
+      this.fragenanzeige=this.fragen[this.i]
+      }
+  
+  
+      if(this.story.length>this.i){
+        this.storyanzeige=this.story[this.i]
+      }
+        switch(this.i){
+          case 0:
+            this.dbpush.update({
+            Frage3:this.form.value.stories
+            })
+            break;
+          case 1:
+            this.dbpush.update({
+              Frage4:this.form.value.stories
+            })
+            break;
+            case 2:
+            this.dbpush.update({
+              Frage5:this.form.value.stories
+            })
+            break;
+            case 3:
+            this.dbpush.update({
+              Frage6:this.form.value.stories
+            })
+            break;
+            case 4:
+            this.dbpush.update({
+              Frage7:this.form.value.stories
+            })
+            break;
+            case 5:
+            this.dbpush.update({
+              Frage8:this.form.value.stories
+            })
+            break;
+        }
 
     this.i = this.i + 1;
   }
