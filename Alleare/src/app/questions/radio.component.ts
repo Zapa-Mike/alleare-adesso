@@ -46,7 +46,6 @@ import firebase from 'firebase';
           />
         </button>
         <button
-          *ngIf="zurueckButton"
           id="Zbutton"
           class="btn"
           (click)="zurueck()"
@@ -74,7 +73,6 @@ export class RadioComponent implements DoCheck {
   fragenanzeige: string;
   @Input() Fragenliste;
   imgArray = [];
-  zurueckButton = false;
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
@@ -106,9 +104,7 @@ export class RadioComponent implements DoCheck {
   }
 
   push() {
-    if (this.i >= 0) {
-      this.zurueckButton = true;
-    }
+
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i];
     }
@@ -143,15 +139,14 @@ export class RadioComponent implements DoCheck {
   }
 
   zurueck() {
-    if (this.i <= 1) {
-      this.zurueckButton = false;
-    }
+
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
       this.i = this.i - 1;
     }
   }
 }
+
 $(document).ready(function () {
   $('#Vbutton').click(function () {
     $('#redundant2').prop('checked', false);

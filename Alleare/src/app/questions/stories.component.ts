@@ -31,7 +31,7 @@ import firebase from 'firebase';
             height="50"
           />
         </button>
-        <button id="Zbutton" class="btn" (click)="zurueck()">
+        <button id="bbutton" class="btn" (click)="zurueck()" *ngIf="zurueckButton">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
@@ -62,7 +62,7 @@ export class StoriesComponent implements DoCheck {
   story: string[] = [];
   storyanzeige: string;
   dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten');
-
+  zurueckButton=false;
   
   constructor() { 
    this.imgArray= [];
@@ -90,6 +90,8 @@ export class StoriesComponent implements DoCheck {
   }
 
   push() {
+    
+
     const radio1 =  document.getElementById("redundant") as HTMLInputElement;
     const radio2 =  document.getElementById("redundant1") as HTMLInputElement;
 
@@ -97,6 +99,9 @@ export class StoriesComponent implements DoCheck {
    
       if(this.fragen.length>this.i){
       this.fragenanzeige=this.fragen[this.i]
+      if (this.i <=0) {
+        this.zurueckButton = true;
+      }
       }
   
   
@@ -141,12 +146,16 @@ export class StoriesComponent implements DoCheck {
 }
 
   zurueck() {
+    if (this.i <= 1) {
+      this.zurueckButton = false;
+    }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
       this.i = this.i - 1;
     }
   }
 }
+//Radio-Button disabled Auswahl bei weiter Button
   $(document).ready(function(){
     $("#Wbutton").click(function(){
         $("#redundant").prop("checked",false);
