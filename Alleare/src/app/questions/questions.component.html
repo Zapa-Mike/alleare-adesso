@@ -20,26 +20,26 @@
   </div>
 <app-stories [Fragenliste]="StorybezogeneFragenliste" [Storyliste]="Storyliste" ></app-stories>
 <app-radio [Fragenliste]="RadiobuttonFragen"></app-radio>
-
+<div [formGroup]="form"><!--Form für das auslesen der Werte-->
 <!--Radio Button Abfrage für Tätigkeit-->
-<div class="Frage3">
+<div class="FrageTaetigkeit">
     <div class="card">
       <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[2] }}</div>
       <div class="CheckboxAbfrage">
         <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitnehmer" name="Haupttätigkeit" />
+          <input type="radio" id="Arbeitnehmer" name="Haupttaetigkeit" formControlName="Haupttaetigkeit" value="Arbeitnehmer"/>
           <label class="form-check-label"> Arbeitnehmer </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Selbstständig" name="Haupttätigkeit" />
+          <input type="radio" id="Selbstständig" name="Haupttaetigkeit" formControlName="Haupttaetigkeit" value="Selbststaendig"/>
           <label class="form-check-label"> Selbstständig </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Student" name="Haupttätigkeit" />
+          <input type="radio" id="Student" name="Haupttaetigkeit" formControlName="Haupttaetigkeit" value="Student"/>
           <label class="form-check-label"> Student </label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitslos" name="Haupttätigkeit" />
+          <input type="radio" id="Arbeitslos" name="Haupttaetigkeit" formControlName="Haupttaetigkeit" value="Arbeitslos" />
           <label class="form-check-label"> Arbeitslos </label>
         </div>
       </div>
@@ -50,6 +50,7 @@
           src="/assets/icons/icon_arrow_forward.svg"
           width="50"
           height="50"
+          (click)="datapush()"
         />
       </button>
       <button id="Zbutton" class="btn">
@@ -71,12 +72,12 @@
 
 
 <!--Bilder abfrage für Haus Wohnung-->
-  <div class="Frage4">
+  <div class="FrageWohnsitz">
     <div class="card">
       <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[3] }}</div>
       <div class="CheckboxAbfrage">
         <div class="form-check form-check-inline">
-          <button id="Haus">
+          <button id="Haus" value="Haus">
             <img
               src="/assets/fragenkatalog/familienhaus.png"
               width="70px"
@@ -86,7 +87,7 @@
           <label class="form-check-label"> Haus </label>
         </div>
         <div class="form-check form-check-inline">
-          <button id="Wohnung">
+          <button id="Wohnung" value="Wohnung" >
             <img
               src="/assets/fragenkatalog/wohnungen.png"
               width="70px"
@@ -122,7 +123,7 @@
 
 
 <!--Bilder und Radio-Button Abfrage für Hund Pferd keine Andere-->
-    <div class="Frage7">
+    <div class="FrageTier">
         <div class="card">
           <button id="pferd">
             <img src="/assets/fragenkatalog/pferd.png" width="50px" height="30px" />
@@ -133,9 +134,9 @@
           </button>
           <label class="form-check-label"> Hund </label>
     
-          <input type="checkbox" id="frage7andere" name="nodub" />
+          <input type="checkbox" id="tierandere" name="nodub" />
           <label class="form-check-label"> Andere </label>
-          <input type="checkbox" id="frage7keins" name="nodub" />
+          <input type="checkbox" id="tierkeins" name="nodub" />
           <label class="form-check-label"> Keins </label>
         </div>
         <div class="col rowVZ">
@@ -167,27 +168,27 @@
       </div>
 
 <!--Bilder Abfrage Single/Paar-->
-  <div class="Frage12">
+  <div class="FrageBeziehung">
     <div class="card">
       <div class="form-check form-check-inline">
         <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[11] }}</div>
       </div>
-      <button id="Wohnung">
+      <button id="Single">
         <img
-          src="/assets/fragenkatalog/wohnungen.png"
+          src="/assets/fragenkatalog/single.png"
           width="70px"
           height="50px"
         />
       </button>
-      <label class="form-check-label"> Single </label>
-      <button id="Wohnung">
+      <label class="form-check-label"> Ledig </label>
+      <button id="Verheiratet">
         <img
-          src="/assets/fragenkatalog/wohnungen.png"
+          src="/assets/fragenkatalog/verheiratet.png"
           width="70px"
           height="50px"
         />
       </button>
-      <label class="form-check-label"> Paar </label>
+      <label class="form-check-label"> Verheiratet </label>
     </div>
 
     <div class="col rowVZ">
@@ -215,7 +216,7 @@
   </div>
 
   <!--Listen Abfrage für Bundesland-->
-  <div class="Frage13">
+  <div class="FrageBundesland">
     <div class="card">
       <div class="form-check form-check-inline">
         <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[12] }}</div>
@@ -266,4 +267,4 @@
     </div>
   </div>
   </div>
-
+</div>

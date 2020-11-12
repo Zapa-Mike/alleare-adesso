@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import firebase from 'firebase';
+import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-questions',
@@ -12,15 +14,16 @@ export class QuestionsComponent implements OnInit {
   Storyliste: string[] = []; //Alle Stories für Radio Buttons
   StorybezogeneFragenliste: string[] = []; //Fragen zu den Stories
   RadiobuttonFragen: string[] = []; //Radio Fragen ohne Story
-   dbpush = firebase
-    .firestore()
-    .collection('Benutzer')
-    .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog')
-    .doc('Antworten');
-
+  dbpush = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten');
+  form:FormGroup;
+  
   
   constructor() {
+
+    this.form= new FormGroup({
+      Haupttaetigkeit:new FormControl()
+
+    });
 
     var db = firebase.firestore();
     var questions: string[] = [];
@@ -44,19 +47,19 @@ export class QuestionsComponent implements OnInit {
 // Tierfrage 
     $(document).ready(function(){
       $("#pferd").click(function(){
-          $("#frage7andere").prop("checked",false);
-          $("#frage7keins").prop("checked",false);    
+          $("#tierandere").prop("checked",false);
+          $("#tierkeins").prop("checked",false);    
       });
 
       $("#hund").click(function(){
-        $("#frage7andere").prop("checked",false);
-        $("#frage7keins").prop("checked",false);  
+        $("#tierandere").prop("checked",false);
+        $("#tierkeins").prop("checked",false);  
     });
-    $("#frage7andere").click(function(){
-      $("#frage7keins").prop("checked",false);     
+    $("#tierandere").click(function(){
+      $("#tierkeins").prop("checked",false);     
   });
-  $("#frage7keins").click(function(){
-    $("#frage7andere").prop("checked",false); 
+  $("#tierkeins").click(function(){
+    $("#tierandere").prop("checked",false); 
 });
 
 
@@ -93,7 +96,7 @@ export class QuestionsComponent implements OnInit {
       });
 
     //Fragen, welche nicht die Stories betreffen, von der Datenbank abgreifen und umwandeln in ein String
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 11; i++) {
       db.collection('Fragenkatalog')
         .doc('Frage' + i.toString().padStart(2, '0'))
         .withConverter(questionConverter)
@@ -102,7 +105,7 @@ export class QuestionsComponent implements OnInit {
           if (doc.exists) {
             questions.push(doc.data().Question);
             tmpFragen.push(questions[i - 1]);
-            if (i == 3 || i == 5 || i==8 || i==9 || i==10)
+            if (i == 3 || i == 5 || i==8 || i==9 || i==10 || i==11)
             tmpRadioFragen.push(doc.data().Question);
           } else {
             console.log('No such document!');
@@ -113,7 +116,7 @@ export class QuestionsComponent implements OnInit {
         });
     }
     //Storybezogene Fragen von der Datenbank abgreifen und umwandeln in ein String
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 5; i++) {
       db.collection('_Fragenkatalog')
         .doc('Frage' + i.toString().padStart(2, '0'))
         .withConverter(questionConverter)
@@ -131,7 +134,7 @@ export class QuestionsComponent implements OnInit {
     }
 
     //Stories von der Datenbank abgreifen und umwandeln in ein String
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 5; i++) {
       db.collection('_Fragenkatalog')
         .doc('Story' + i.toString().padStart(2, '0'))
         .withConverter(storyConverter)
@@ -155,6 +158,11 @@ export class QuestionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    var el = document.getElementById("Wohnung");
+    el.addEventListener("click",()=> this.datapush("Wohnung"), false);
+    var el1 = document.getElementById("Haus");
+    el1.addEventListener("click",()=> this.datapush("Haus"), false);
+
     var docRef = firebase
       .firestore()
       .collection('Benutzer')
@@ -177,6 +185,26 @@ export class QuestionsComponent implements OnInit {
       }
     });
   }
+  datapush(wohnung?:any){
+    if(this.form.value.Haupttaetigkeit!=null){
+    this.dbpush.update({
+      Frage14:this.form.value.Haupttaetigkeit
+    })
+    }
+    if(wohnung=="Haus"){
+      this.dbpush.update({
+        Frage15:'Haus'
+      })
+    }else if(wohnung=="Wohnung"){
+      this.dbpush.update({
+        Frage15:'Wohnung'
+      })
+    }
+
+
+
+  }
+
 }
 
 let tmpFragen: string[] = [];

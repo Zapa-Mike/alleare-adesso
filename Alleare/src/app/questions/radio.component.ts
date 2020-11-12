@@ -18,8 +18,6 @@ import firebase from 'firebase';
           <div class="form-check form-check-inline">
             <img src="{{ imgArray[i] }}" class="img-responsive" />
           </div>
-
-         
           <input
             type="radio"
             name="fragen"
@@ -105,10 +103,15 @@ export class RadioComponent implements DoCheck {
   }
 
   push() {
+    const radio3 =  document.getElementById("redundant2") as HTMLInputElement;
+    const radio4 =  document.getElementById("redundant3") as HTMLInputElement;
 
-    if (this.fragen.length > this.i) {
-      this.fragenanzeige = this.fragen[this.i];
-    }
+    if(radio3.checked || radio4.checked) {
+   
+      if(this.fragen.length>this.i){
+      this.fragenanzeige=this.fragen[this.i]
+      }
+
     switch (this.i) {
       case 0:
         this.dbpush.update({
@@ -135,8 +138,14 @@ export class RadioComponent implements DoCheck {
           Frag11: this.form.value.fragen,
         });
         break;
+        case 5:
+        this.dbpush.update({
+          Frag12: this.form.value.fragen,
+        });
+        break;
     }
     this.i = this.i + 1;
+  }
   }
 
   zurueck() {
