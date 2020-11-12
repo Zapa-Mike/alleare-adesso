@@ -43,6 +43,7 @@ export class QuestionsComponent implements OnInit {
           }
 
           var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+          console.log("Data came from " + source);
         });
       });
     firebase
@@ -51,14 +52,16 @@ export class QuestionsComponent implements OnInit {
       .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
           if (change.type === 'added') {
+
           }
 
           var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+          console.log("Data came from " + source);
         });
       });
 
     //Fragen, welche nicht die Stories betreffen, von der Datenbank abgreifen und umwandeln in ein String
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 10; i++) {
       db.collection('Fragenkatalog')
         .doc('Frage' + i.toString().padStart(2, '0'))
         .withConverter(questionConverter)
@@ -67,7 +70,8 @@ export class QuestionsComponent implements OnInit {
           if (doc.exists) {
             questions.push(doc.data().Question);
             tmpFragen.push(questions[i - 1]);
-            if (i == 3 || i == 5) tmpRadioFragen.push(doc.data().Question);
+            if (i == 3 || i == 5 || i==8 || i==9 || i==10)
+            tmpRadioFragen.push(doc.data().Question);
           } else {
             console.log('No such document!');
           }

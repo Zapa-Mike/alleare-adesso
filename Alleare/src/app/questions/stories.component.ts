@@ -16,15 +16,15 @@ import firebase from 'firebase';
             <div class="ImageStory">
             {{ storyanzeige}}
           </div>
-            <input type="radio" name="stories"  id="auto1" formControlName="stories" value="ja"/>
+            <input type="radio" name="stories" formControlName="stories" value="ja" id="redundant"/>
             <label class="form-check-label"> ja </label>
-            <input type="radio" name="stories" id="auto2" formControlName="stories" value="nein"/>
+            <input type="radio" name="stories" formControlName="stories" value="nein" id="redundant1"/>
             <label class="form-check-label"> nein </label>
           </div>
         </div>
       </div>
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="push()">
+        <button id="Wbutton" class="btn" (click)="push()"> <!--Andere id als bei radio.component-->
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
@@ -90,8 +90,8 @@ export class StoriesComponent implements DoCheck {
   }
 
   push() {
-    const radio1 =  document.getElementById("auto1") as HTMLInputElement;
-    const radio2 =  document.getElementById("auto2") as HTMLInputElement;
+    const radio1 =  document.getElementById("redundant") as HTMLInputElement;
+    const radio2 =  document.getElementById("redundant1") as HTMLInputElement;
 
     if(radio1.checked || radio2.checked) {
    
@@ -106,32 +106,32 @@ export class StoriesComponent implements DoCheck {
         switch(this.i){
           case 0:
             this.dbpush.update({
-            Frage3:this.form.value.stories
+            Frage1:this.form.value.stories
             })
             break;
           case 1:
             this.dbpush.update({
-              Frage4:this.form.value.stories
+              Frage2:this.form.value.stories
             })
             break;
             case 2:
             this.dbpush.update({
-              Frage5:this.form.value.stories
+              Frage3:this.form.value.stories
             })
             break;
             case 3:
             this.dbpush.update({
-              Frage6:this.form.value.stories
+              Frage4:this.form.value.stories
             })
             break;
             case 4:
             this.dbpush.update({
-              Frage7:this.form.value.stories
+              Frage5:this.form.value.stories
             })
             break;
             case 5:
             this.dbpush.update({
-              Frage8:this.form.value.stories
+              Frage6:this.form.value.stories
             })
             break;
         }
@@ -148,8 +148,10 @@ export class StoriesComponent implements DoCheck {
   }
 }
   $(document).ready(function(){
-    $("#Vbutton").click(function(){
-      $("#auto1").prop("checked",false);
-        $("#auto2").prop("checked", false);
+    $("#Wbutton").click(function(){
+        $("#redundant").prop("checked",false);
+    });
+    $("#Wbutton").click(function(){
+        $("#redundant1").prop("checked", false);
     });
 });
