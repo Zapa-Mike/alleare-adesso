@@ -16,18 +16,11 @@ import firebase from 'firebase';
             <div class="ImageStory">
             {{ storyanzeige}}
           </div>
-            <input type="radio" name="stories" formControlName="stories" value="ja"/>
+            <input type="radio" name="stories"  id="auto1" formControlName="stories" value="ja"/>
             <label class="form-check-label"> ja </label>
-            <input type="radio" name="stories" formControlName="stories" value="nein"/>
+            <input type="radio" name="stories" id="auto2" formControlName="stories" value="nein"/>
             <label class="form-check-label"> nein </label>
           </div>
-          <div class="ImageStory">
-            {{ storyanzeige }}
-          </div>
-          <input type="radio" id="auto1" name="auto" />
-          <label class="form-check-label"> ja </label>
-          <input type="radio" id="auto2" name="auto" />
-          <label class="form-check-label"> nein </label>
         </div>
       </div>
       <div class="col rowVZ">
@@ -74,8 +67,6 @@ export class StoriesComponent implements DoCheck {
   constructor() { 
    this.imgArray= [];
     this.imgArray[0]="/assets/fragenkatalog/story_shopping.png";
-  
-    this.imgArray[1] ="/assets/fragenkatalog/story_bahnhof.png";
 
     this.imgArray[1] = '/assets/fragenkatalog/story_bahnhof.png';
 
@@ -99,6 +90,11 @@ export class StoriesComponent implements DoCheck {
   }
 
   push() {
+    const radio1 =  document.getElementById("auto1") as HTMLInputElement;
+    const radio2 =  document.getElementById("auto2") as HTMLInputElement;
+
+    if(radio1.checked || radio2.checked) {
+   
       if(this.fragen.length>this.i){
       this.fragenanzeige=this.fragen[this.i]
       }
@@ -142,6 +138,7 @@ export class StoriesComponent implements DoCheck {
 
     this.i = this.i + 1;
   }
+}
 
   zurueck() {
     if (this.fragen.length > this.i) {
@@ -152,9 +149,7 @@ export class StoriesComponent implements DoCheck {
 }
   $(document).ready(function(){
     $("#Vbutton").click(function(){
-        $("#auto1").prop("checked",false);
-    });
-    $("#Vbutton").click(function(){
+      $("#auto1").prop("checked",false);
         $("#auto2").prop("checked", false);
     });
 });
