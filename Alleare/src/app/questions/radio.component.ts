@@ -44,11 +44,7 @@ import firebase from 'firebase';
             height="50"
           />
         </button>
-        <button
-          id="Zbutton"
-          class="btn"
-          (click)="zurueck()"
-        >
+        <button id="Zbutton" class="btn" (click)="zurueck()">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
@@ -84,17 +80,13 @@ export class RadioComponent implements DoCheck {
       fragen: new FormControl(),
     });
 
-    this.imgArray = [];
-
-    this.imgArray[0] = '/assets/fragenkatalog/auto.png';
-
-    this.imgArray[1] = '/assets/fragenkatalog/motorrad.png';
-
-    this.imgArray[2] = '/assets/fragenkatalog/fahrrad.png';
-
-    this.imgArray[3] = '/assets/fragenkatalog/drohne.png';
-
-    this.imgArray[4] = '/assets/fragenkatalog/sport.png';
+    this.imgArray = [
+      '/assets/fragenkatalog/auto.png',
+      '/assets/fragenkatalog/motorrad.png',
+      '/assets/fragenkatalog/fahrrad.png',
+      '/assets/fragenkatalog/drohne.png',
+      '/assets/fragenkatalog/sport.png',
+    ];
   }
 
   ngDoCheck() {
@@ -103,53 +95,51 @@ export class RadioComponent implements DoCheck {
   }
 
   push() {
-    const radio3 =  document.getElementById("redundant2") as HTMLInputElement;
-    const radio4 =  document.getElementById("redundant3") as HTMLInputElement;
+    const radio3 = document.getElementById('redundant2') as HTMLInputElement;
+    const radio4 = document.getElementById('redundant3') as HTMLInputElement;
 
-    if(radio3.checked || radio4.checked) {
-   
-      if(this.fragen.length>this.i){
-      this.fragenanzeige=this.fragen[this.i]
+    if (radio3.checked || radio4.checked) {
+      if (this.fragen.length > this.i) {
+        this.fragenanzeige = this.fragen[this.i];
       }
 
-    switch (this.i) {
-      case 0:
-        this.dbpush.update({
-          Frage7: this.form.value.fragen,
-        });
-        break;
-      case 1:
-        this.dbpush.update({
-          Frage8: this.form.value.fragen,
-        });
-        break;
-      case 2:
-        this.dbpush.update({
-          Frage9: this.form.value.fragen,
-        });
-        break;
-      case 3:
-        this.dbpush.update({
-          Frage10: this.form.value.fragen,
-        });
-        break;
-      case 4:
-        this.dbpush.update({
-          Frag11: this.form.value.fragen,
-        });
-        break;
+      switch (this.i) {
+        case 0:
+          this.dbpush.update({
+            Frage7: this.form.value.fragen,
+          });
+          break;
+        case 1:
+          this.dbpush.update({
+            Frage8: this.form.value.fragen,
+          });
+          break;
+        case 2:
+          this.dbpush.update({
+            Frage9: this.form.value.fragen,
+          });
+          break;
+        case 3:
+          this.dbpush.update({
+            Frage10: this.form.value.fragen,
+          });
+          break;
+        case 4:
+          this.dbpush.update({
+            Frag11: this.form.value.fragen,
+          });
+          break;
         case 5:
-        this.dbpush.update({
-          Frag12: this.form.value.fragen,
-        });
-        break;
+          this.dbpush.update({
+            Frag12: this.form.value.fragen,
+          });
+          break;
+      }
+      this.i = this.i + 1;
     }
-    this.i = this.i + 1;
-  }
   }
 
   zurueck() {
-
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
       this.i = this.i - 1;
