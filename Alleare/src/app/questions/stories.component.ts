@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
+import { DataService } from '.././services/data.service';
 
 @Component({
   selector: 'app-stories',
@@ -96,16 +97,13 @@ export class StoriesComponent implements DoCheck {
   zurueckButton = false;
 
   constructor() {
-    this.imgArray = [];
-    this.imgArray[0] = '/assets/fragenkatalog/story_shopping.png';
-
-    this.imgArray[1] = '/assets/fragenkatalog/story_bahnhof.png';
-
-    this.imgArray[2] = '/assets/fragenkatalog/rechtliche_Hilfe.png';
-
-    this.imgArray[3] = '/assets/fragenkatalog/wunsch.png';
-
-    this.imgArray[4] = '/assets/fragenkatalog/immobilien_sparen.png';
+    this.imgArray = [
+      '/assets/fragenkatalog/story_shopping.png',
+      '/assets/fragenkatalog/story_bahnhof.png',
+      '/assets/fragenkatalog/rechtliche_Hilfe.png',
+      '/assets/fragenkatalog/wunsch.png',
+      '/assets/fragenkatalog/immobilien_sparen.png',
+    ];
 
     this.form = new FormGroup({
       stories: new FormControl(),
