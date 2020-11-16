@@ -1,5 +1,5 @@
 import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
@@ -98,7 +98,7 @@ export class StoriesComponent implements DoCheck {
     .collection('Fragenkatalog')
     .doc('Antworten');
 
-  constructor() {
+  constructor(private dataservice:DataService) {
     this.imgArray = [
       '/assets/fragenkatalog/story_shopping.png',
       '/assets/fragenkatalog/story_bahnhof.png',
@@ -137,6 +137,8 @@ export class StoriesComponent implements DoCheck {
 
     if (radio1.checked || radio2.checked) {
       if (this.fragen.length > this.i) {
+        $('#redundant').prop('checked', false);
+        $('#redundant1').prop('checked', false);
         this.fragenanzeige = this.fragen[this.i];
         if (this.i <= 0) {
         }
@@ -145,6 +147,11 @@ export class StoriesComponent implements DoCheck {
       if (this.story.length > this.i) {
         this.storyanzeige = this.story[this.i];
       }
+      if(this.i==this.fragen.length) {
+        console.log("ende");
+        console.log(this.i);
+      }else {
+
       switch (this.i) {
         case 0:
           this.dbpush.update({
@@ -174,7 +181,9 @@ export class StoriesComponent implements DoCheck {
       }
 
       this.i = this.i + 1;
+      this.sendIndexstory(); 
     }
+  }
   }
 
   zurueck() {
@@ -191,13 +200,10 @@ export class StoriesComponent implements DoCheck {
       this.i = this.i - 1;
     }
   }
+
+  sendIndexstory() :void{
+    this.dataservice.sendIndexstory(this.i);
+  }
+
 }
-//Radio-Button disabled Auswahl bei weiter Button
-$(document).ready(function () {
-  $('#Wbutton').click(function () {
-    $('#redundant').prop('checked', false);
-  });
-  $('#Wbutton').click(function () {
-    $('#redundant1').prop('checked', false);
-  });
-});
+

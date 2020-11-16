@@ -26,6 +26,7 @@ import { createCustomElement } from '@angular/elements';
 
 import { StoriesComponent } from './questions/stories.component';
 import { RadioComponent } from './questions/radio.component';
+import { DataService } from './services/data.service';
 
 
 
@@ -60,8 +61,9 @@ import { RadioComponent } from './questions/radio.component';
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [DataService,AngularFirestore],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule {
 

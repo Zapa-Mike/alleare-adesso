@@ -1,5 +1,5 @@
-import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, DoCheck, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
@@ -10,21 +10,39 @@ import { DataService } from ".././services/data.service";
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
 })
-export class QuestionsComponent implements OnInit {
+export class QuestionsComponent implements OnInit, DoCheck{
   Fragenliste: string[] = []; //Anderen Fragen
   Storyliste: string[] = []; //Alle Stories für Radio Buttons
   StorybezogeneFragenliste: string[] = []; //Fragen zu den Stories
   RadiobuttonFragen: string[] = []; //Radio Fragen ohne Story
   dbpush = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten');
   form:FormGroup;
-  
-  
-  constructor() {
+  indexradiovisible:boolean=false;
+  indexstoryvisible:boolean=true;
 
-    this.form= new FormGroup({
-      Haupttaetigkeit:new FormControl(),
-      tiercheckbox:new FormControl()
+  indexradio:number;
+  indexstory:number;
+
+  Frage1:boolean=false;
+  Frage2:boolean=false;
+  Frage3:boolean=false;
+  Frage4:boolean=false;
+  Frage5:boolean=false;
+  routing:number=1;
+  
+  
+  constructor(private dataservice:DataService) {
+    this.form= new FormGroup({ //Muss raus alles mit jquery
+      Haupttaetigkeit:new FormControl()
     });
+    
+
+    this.dataservice.getIndexradio();
+    this.dataservice.currentIndex.subscribe(currentIndex => this.indexradio=currentIndex);
+    console.log(this.indexradio);
+    this.dataservice.getIndexstory();
+    this.dataservice.currentIndex1.subscribe(currentIndex1 => this.indexstory=currentIndex1);
+    console.log(this.indexstory);
 
     var db = firebase.firestore();
     var questions: string[] = [];
@@ -45,42 +63,7 @@ export class QuestionsComponent implements OnInit {
           });
       });
     });
-// Tierfrage 
-    $(document).ready(function(){
-      $("#pferd").click(function(){
-          $("#tierandere").prop("checked",false);
-          $("#tierkeins").prop("checked",false); 
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage16: "Pferd"
-          })   
-      });
 
-      $("#hund").click(function(){
-        $("#tierandere").prop("checked",false);
-        $("#tierkeins").prop("checked",false);  
-        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-          Frage16: "Hund"
-        })
-    });
-    $("#tierandere").click(function(){
-      $("#tierkeins").prop("checked",false);     
-      firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-        Frage16: "Andere"
-      })
-  });
-  $("#tierkeins").click(function(){
-    $("#tierandere").prop("checked",false); 
-    firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-      Frage16: "Keine"
-    })
-});
-
-
-
-      $("#Wbutton").click(function(){
-          $("#redundant1").prop("checked", false);
-      });
-  });
 
     firebase
       .firestore()
@@ -169,12 +152,7 @@ export class QuestionsComponent implements OnInit {
     this.StorybezogeneFragenliste = tmpStorybezogeneFragen;
     this.RadiobuttonFragen = tmpRadioFragen;
   }
-
   ngOnInit() {
-    var el = document.getElementById("Wohnung");
-    el.addEventListener("click",()=> this.datapush("Wohnung"), false);
-    var el1 = document.getElementById("Haus");
-    el1.addEventListener("click",()=> this.datapush("Haus"), false);
 
     var docRef = firebase
       .firestore()
@@ -198,24 +176,92 @@ export class QuestionsComponent implements OnInit {
       }
     });
   }
-  datapush(wohnung?:any,tier?:any){
+
+  ngDoCheck(){
+
+    if(this.indexstory==5){
+      this.indexstoryvisible=false;
+      this.indexradiovisible=true;
+      this.indexstory=+1;
+    }
+    if(this.indexradio==6){
+      this.indexradiovisible=false;
+      this.Frage1=true;
+      this.indexradio=+1;
+    }
+    
+  }
+
+ async datapush(wohnung?:any){
+   console.log(this.routing);
     if(this.form.value.Haupttaetigkeit!=null){
     this.dbpush.update({
       Frage14:this.form.value.Haupttaetigkeit
     })
     }
-    if(wohnung=="Haus"){ //
-      this.dbpush.update({
-        Frage15:'Haus'
-      })
-    }else if(wohnung=="Wohnung"){
-      this.dbpush.update({
-        Frage15:'Wohnung'
-      })
+    switch (this.routing){
+      case 1: this.Frage1=false; this.Frage2=true;
+      if(this.Frage2==true){
+        //Geht nicht!
+       var el = document.getElementById("Wohnung");
+       el.addEventListener("click",()=> this.datapush("Wohnung"), false);
+       var el1 = document.getElementById("Haus");
+       el1.addEventListener("click",()=> this.datapush("Haus"), false);
+       if(wohnung=="Haus"){
+        this.dbpush.update({
+          Frage15:'Haus'
+        })
+      }else if(wohnung=="Wohnung"){
+        this.dbpush.update({
+          Frage15:'Wohnung'
+        })
+      }
+     }
+        break;
+     case 2: this.Frage2=false; this.Frage3=true;
+     if(this.Frage3==true){
+       $(document).ready(function(){
+         $("#pferd").click(function(){
+             $("#tierandere").prop("checked",false);
+             $("#tierkeins").prop("checked",false); 
+             firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+               Frage16: "Pferd"
+             })   
+         });
+     
+         $("#hund").click(function(){
+           $("#tierandere").prop("checked",false);
+           $("#tierkeins").prop("checked",false);  
+           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+             Frage16: "Hund"
+           })
+       });
+       $("#tierandere").click(function(){
+         $("#tierkeins").prop("checked",false);     
+         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+           Frage16: "Andere"
+         })
+     });
+     $("#tierkeins").click(function(){
+       $("#tierandere").prop("checked",false); 
+       firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+         Frage16: "Keine"
+       })
+     });
+         $("#Wbutton").click(function(){
+             $("#redundant1").prop("checked", false);
+         });
+     });
+     }
+        break;
+     case 3: this.Frage3=false; this.Frage4=true;
+        break;
+     case 4: this.Frage4=false; this.Frage5=true;
+        break;
+     case 5: console.log("Fertig");
+        break;
     }
-//Frage 16 wird über jquery abgefragt
-
-
+    this.routing=this.routing+1;
   }
 
 }
