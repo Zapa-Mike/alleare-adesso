@@ -39,30 +39,14 @@ export class QuestionsComponent implements OnInit, DoCheck{
 
     this.dataservice.getIndexradio();
     this.dataservice.currentIndex.subscribe(currentIndex => this.indexradio=currentIndex);
-    console.log(this.indexradio);
     this.dataservice.getIndexstory();
     this.dataservice.currentIndex1.subscribe(currentIndex1 => this.indexstory=currentIndex1);
-    console.log(this.indexstory);
 
     var db = firebase.firestore();
     var questions: string[] = [];
     var stories: string[] = [];
 
     //Bundesland-ListenAbfrage
-    $(document).ready(function () {
-      $('#drop a').on('click', function () {
-        var txt = $(this).text();
-        firebase
-        .firestore()
-        .collection('Benutzer')
-        .doc(localStorage.getItem('hans'))
-        .collection('Fragenkatalog')
-        .doc('Antworten')
-        .update({
-            Frage13: txt,
-          });
-      });
-    });
 
 
     firebase
@@ -269,13 +253,41 @@ export class QuestionsComponent implements OnInit, DoCheck{
    }
         break;
      case 4: this.Frage4=false; this.Frage5=true;
-        break;
-     case 5: console.log("Fertig");
+     if(this.Frage5==true){
+     $(document).ready(function () {
+      $('#drop a').on('click', function () {
+        var txt = $(this).text();
+        firebase
+        .firestore()
+        .collection('Benutzer')
+        .doc(localStorage.getItem('hans'))
+        .collection('Fragenkatalog')
+        .doc('Antworten')
+        .update({
+            Frage13: txt,
+          });
+      });
+    });
+     }
         break;
     }
     this.routing=this.routing+1;
   }
 
+  zurueck(){
+    this.routing=this.routing-1;
+    switch(this.routing){
+      case 1: this.Frage1=true; this.Frage2=false;
+      break;
+      case 2: this.Frage2=true; this.Frage3=false;
+      break;
+      case 3: this.Frage3=true; this.Frage4=false;
+      break;
+      case 4: this.Frage4=true; this.Frage5=false;
+      break;
+    }
+    
+  }
 }
 
 let tmpFragen: string[] = [];
