@@ -192,7 +192,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
     
   }
 
- async datapush(wohnung?:any){
+ async datapush(){
    console.log(this.routing);
     if(this.form.value.Haupttaetigkeit!=null){
     this.dbpush.update({
@@ -202,20 +202,18 @@ export class QuestionsComponent implements OnInit, DoCheck{
     switch (this.routing){
       case 1: this.Frage1=false; this.Frage2=true;
       if(this.Frage2==true){
-        //Geht nicht!
-       var el = document.getElementById("Wohnung");
-       el.addEventListener("click",()=> this.datapush("Wohnung"), false);
-       var el1 = document.getElementById("Haus");
-       el1.addEventListener("click",()=> this.datapush("Haus"), false);
-       if(wohnung=="Haus"){
-        this.dbpush.update({
-          Frage15:'Haus'
-        })
-      }else if(wohnung=="Wohnung"){
-        this.dbpush.update({
-          Frage15:'Wohnung'
-        })
-      }
+        $(document).ready(function(){
+          $("#Wohnung").click(function(){
+              firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+                Frage15: "Wohnung"
+              })   
+          });
+          $("#Haus").click(function(){
+            firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+              Frage15: "Haus"
+            })   
+        });
+      });
      }
         break;
      case 2: this.Frage2=false; this.Frage3=true;
@@ -255,6 +253,20 @@ export class QuestionsComponent implements OnInit, DoCheck{
      }
         break;
      case 3: this.Frage3=false; this.Frage4=true;
+     if(this.Frage4==true){
+      $(document).ready(function(){
+        $("#Single").click(function(){
+            firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+              Frage17: "Ledig"
+            })   
+        });
+        $("#Verheiratet").click(function(){
+          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+            Frage17 : "Verheiratet"
+          })   
+      });
+    });
+   }
         break;
      case 4: this.Frage4=false; this.Frage5=true;
         break;
