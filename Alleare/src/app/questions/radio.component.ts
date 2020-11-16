@@ -17,27 +17,36 @@ import { DataService } from ".././services/data.service";
       <div [formGroup]="form" class="card">
         <div>
           <div class="ImageStory"><!--Story "Frage"-->{{ fragenanzeige }}</div>
-          <div class="form-check form-check-inline">
-            <img src="{{ imgArray[i] }}" class="img-responsive" />
+
+          <img src="{{ imgArray[i] }}" class="img-responsive" />
+          <br />
+
+          <div class="RadioButtonsJaNein form-group">
+            <div id="ButtonJa" class="form-check form-check-inline">
+              <input
+                type="radio"
+                name="fragen"
+                formControlName="fragen"
+                value="ja"
+                id="redundant2"
+              />
+              <label class="form-check-label"> ja </label>
+            </div>
+
+            <div id="ButtonNein" class="form-check form-check-inline">
+              <input
+                type="radio"
+                name="fragen"
+                formControlName="fragen"
+                value="nein"
+                id="redundant3"
+              />
+              <label class="form-check-label"> nein </label>
+            </div>
           </div>
-          <input
-            type="radio"
-            name="fragen"
-            formControlName="fragen"
-            value="ja"
-            id="redundant2"
-          />
-          <label class="form-check-label"> ja </label>
-          <input
-            type="radio"
-            name="fragen"
-            formControlName="fragen"
-            value="nein"
-            id="redundant3"
-          />
-          <label class="form-check-label"> nein </label>
         </div>
       </div>
+
       <div class="col rowVZ">
         <button id="Vbutton" class="btn" (click)="push()">
           <img
@@ -97,8 +106,12 @@ export class RadioComponent implements DoCheck {
   }
 
   push() {
-    const radio3 = document.getElementById('redundant2') as HTMLInputElement;
-    const radio4 = document.getElementById('redundant3') as HTMLInputElement;
+    const radio3 = (document.getElementById(
+      'redundant2'
+    ) as unknown) as HTMLInputElement;
+    const radio4 = (document.getElementById(
+      'redundant3'
+    ) as unknown) as HTMLInputElement;
 
     if (radio3.checked || radio4.checked) {
       if (this.fragen.length > this.i) {

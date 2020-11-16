@@ -35,7 +35,6 @@ export class AppComponent implements DoCheck, OnInit {
       this.showheader = false;
     } else if (route.startsWith('/questions')) {
       this.showNavbar = false;
-      this.showheader = false;
     } else {
       this.showNavbar = true;
       this.showheader = true;

@@ -11,9 +11,8 @@ import { DataService } from '.././services/data.service';
     <div class="Frage">
       <div [formGroup]="form" class="card">
         <div>
-          <div class="form-check form-check-inline">
-            <img src="{{ imgArray[i] }}" class="img-responsive" />
-          </div>
+          <img src="{{ imgArray[i] }}" class="img-responsive" />
+
           <div class="ImageStory">
             {{ storyanzeige }}
           </div>
@@ -25,26 +24,32 @@ import { DataService } from '.././services/data.service';
             </button>
           </div>
 
-          <input
-            type="radio"
-            name="stories"
-            formControlName="stories"
-            value="ja"
-            id="redundant"
-          />
-          <label class="form-check-label"> ja </label>
-          <input
-            type="radio"
-            name="stories"
-            formControlName="stories"
-            value="nein"
-            id="redundant1"
-          />
-          <label class="form-check-label"> nein </label>
+          <div class="RadioButtonsJaNein form-group">
+            <div id="ButtonJa" class="form-check form-check-inline">
+              <input
+                type="radio"
+                name="stories"
+                formControlName="stories"
+                value="ja"
+                id="redundant"
+              />
+              <label class="form-check-label"> Ja </label>
+            </div>
+            <div id="ButtonNein" class="form-check form-check-inline">
+              <input
+                type="radio"
+                name="stories"
+                formControlName="stories"
+                value="nein"
+                id="redundant1"
+              />
+              <label class="form-check-label"> Nein </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col rowVZ">
+    <div class="col rowVZ form-group">
       <button id="Wbutton" class="btn" (click)="push()">
         <!--Andere id als bei radio.component-->
         <img
@@ -53,26 +58,24 @@ import { DataService } from '.././services/data.service';
           height="50"
         />
       </button>
-      <button
-        id="bbutton"
-        class="btn"
-        (click)="zurueck()"
-        *ngIf="zurueckButton"
-      >
+      <button id="bbutton" class="btn" (click)="zurueck()">
         <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
       </button>
     </div>
 
-    <div>{{ fragenanzeige }}</div>
+    <div class="grid-containerNovaSprechblase">
+      <div class="bubble shadow bubble-bottom-right" contenteditable="false">
+        {{ fragenanzeige }}
+      </div>
 
-    <div class="ImageStory"><!--Story "Frage"--></div>
-    <div class="d-flex Nova justify-content-end">
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
+      <div class="Nova">
+        <img
+          src="/assets/nova/nova_fragenkatalog.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+        />
+      </div>
     </div>
   `,
   styleUrls: ['./questions.component.css'],
@@ -94,7 +97,6 @@ export class StoriesComponent implements DoCheck {
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog')
     .doc('Antworten');
-  zurueckButton = false;
 
   constructor() {
     this.imgArray = [
@@ -115,17 +117,28 @@ export class StoriesComponent implements DoCheck {
     this.story = this.Storyliste;
     this.storyanzeige = this.story[this.i];
     this.fragenanzeige = this.fragen[this.i];
+    const zurueck1 = (document.getElementById(
+      'bbutton'
+    ) as unknown) as HTMLInputElement;
+    if (this.i < 1) {
+      zurueck1.disabled = true;
+    } else if (this.i >= 1) {
+      zurueck1.disabled = false;
+    }
   }
 
   push() {
-    const radio1 = document.getElementById('redundant') as HTMLInputElement;
-    const radio2 = document.getElementById('redundant1') as HTMLInputElement;
+    const radio1 = (document.getElementById(
+      'redundant'
+    ) as unknown) as HTMLInputElement;
+    const radio2 = (document.getElementById(
+      'redundant1'
+    ) as unknown) as HTMLInputElement;
 
     if (radio1.checked || radio2.checked) {
       if (this.fragen.length > this.i) {
         this.fragenanzeige = this.fragen[this.i];
         if (this.i <= 0) {
-          this.zurueckButton = true;
         }
       }
 
@@ -165,8 +178,13 @@ export class StoriesComponent implements DoCheck {
   }
 
   zurueck() {
-    if (this.i <= 1) {
-      this.zurueckButton = false;
+    const zurueck1 = (document.getElementById(
+      'bbutton'
+    ) as unknown) as HTMLInputElement;
+    if (this.i < 1) {
+      zurueck1.disabled = true;
+    } else if (this.i >= 1) {
+      zurueck1.disabled = false;
     }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
