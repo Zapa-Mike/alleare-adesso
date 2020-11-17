@@ -1,1 +1,73 @@
-<p>settings works!</p>
+<head> </head>
+<body>
+  <div class="Settings">
+    <div class="Titel text-center">
+      <h1>Einstellungen</h1>
+    </div>
+    <div class="col EinstellungButtons">
+      <button class="EBSwitch">
+        Push-Benachrichtigung
+        <div class="SwitchMitText">
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </button>
+      <button class="EBSwitch">
+        Sprache einstellen
+        <div class="SwitchMitText">
+          <a>EN</a>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+          <a>DE</a>
+        </div>
+      </button>
+      <button class="EBSwitch">
+        Dark Mode
+        <div class="SwitchMitText">
+          <a>off</a>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <a>on</a>
+        </div>
+      </button>
+      <button class="EBPfeil">
+        Datenschutzrichlinien<img
+          id="pfeil"
+          src="/assets/icons/icon_auswertung_arrow.svg"
+        />
+      </button>
+      <button class="EBPfeil">
+        Impressum<img
+          id="pfeil"
+          src="/assets/icons/icon_auswertung_arrow.svg"
+        />
+      </button>
+      <button class="EBPfeil">
+        Audio Einstellungen<img
+          id="pfeil"
+          src="/assets/icons/icon_auswertung_arrow.svg"
+        />
+      </button>
+      <button class="EBPfeil">
+        AGB<img id="pfeil" src="/assets/icons/icon_auswertung_arrow.svg" />
+      </button>
+    </div>
+  </div>
+  <div class="d-flex Nova justify-content-end">
+    <!--NovaImage-->
+    <button class="NovaLink" routerLink="/nova">
+      <img
+        src="/assets/nova/nova_flashcard_singing.png"
+        width="100"
+        height="100"
+        id="NovaImage"
+      />
+    </button>
+  </div>
+</body>

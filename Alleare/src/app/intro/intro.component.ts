@@ -30,7 +30,6 @@ public Name:string;
           console.log("Data came from " + source);
       });
   });
-
   }
   saveName(){
     

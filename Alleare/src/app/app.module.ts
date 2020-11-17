@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,17 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { createCustomElement } from '@angular/elements';
+
+import { StoriesComponent } from './questions/stories.component';
+import { RadioComponent } from './questions/radio.component';
+import { DataService } from './services/data.service';
+import { novadialogComponent } from './intro/novadialog.component';
+import { insuranceComponent } from './intro/insurance.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +46,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TippsComponent,
     NovaComponent,
     IntroComponent,
-    HeaderComponent
+    HeaderComponent,
+    EvaluationComponent,
+    StoriesComponent,
+    RadioComponent,
+    novadialogComponent,
+    insuranceComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +65,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [DataService,AngularFirestore],
   bootstrap: [AppComponent]
+  
 })
-export class AppModule { }
+export class AppModule {
+
+  
+  }
+ 
