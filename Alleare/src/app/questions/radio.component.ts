@@ -128,32 +128,32 @@ export class RadioComponent implements DoCheck {
       switch (this.i) {
         case 0:
           this.dbpush.update({
-            Frage7: this.form.value.fragen,
+            Frage6: this.form.value.fragen,
           });
           break;
         case 1:
           this.dbpush.update({
-            Frage8: this.form.value.fragen,
+            Frage7: this.form.value.fragen,
           });
           break;
         case 2:
           this.dbpush.update({
-            Frage9: this.form.value.fragen,
+            Frage8: this.form.value.fragen,
           });
           break;
         case 3:
           this.dbpush.update({
-            Frage10: this.form.value.fragen,
+            Frage9: this.form.value.fragen,
           });
           break;
         case 4:
           this.dbpush.update({
-            Frag11: this.form.value.fragen,
+            Frage10: this.form.value.fragen,
           });
           break;
         case 5:
           this.dbpush.update({
-            Frag12: this.form.value.fragen,
+            Frage11: this.form.value.fragen,
           });
           break;
       }

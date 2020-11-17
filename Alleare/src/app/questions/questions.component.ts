@@ -1,8 +1,8 @@
 import { Component, DoCheck, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import firebase from 'firebase';
+import firebase, { firestore } from 'firebase';
 import { DataService } from ".././services/data.service";
 
 @Component({
@@ -29,9 +29,8 @@ export class QuestionsComponent implements OnInit, DoCheck{
   Frage4:boolean=false;
   Frage5:boolean=false;
   routing:number=1;
-  back: number
-  
-  
+
+
   constructor(private dataservice:DataService) {
     this.form= new FormGroup({ //Muss raus alles mit jquery
       Haupttaetigkeit:new FormControl()
@@ -154,8 +153,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
           .collection('Benutzer')
           .doc(localStorage.getItem('hans'))
           .collection('Fragenkatalog')
-          .doc('Antworten')
-          .set({
+          .add({
             Initialisierung: true,
           });
       }
@@ -180,13 +178,13 @@ export class QuestionsComponent implements OnInit, DoCheck{
     $(document).ready(function(){
       $("#Wohnung").click(function(){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage15: "Wohnung"
+            Frage14: "Wohnung"
           })   
       });
       $("#Haus").click(function(){
         console.log("Haus ausgewählt")
         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-          Frage15: "Haus"
+          Frage14: "Haus"
         })   
     });
   });
@@ -198,7 +196,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
           $("#tierandere").prop("checked",false);
           $("#tierkeins").prop("checked",false); 
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage16: "Pferd"
+            Frage15: "Pferd"
           })   
       });
   
@@ -206,19 +204,19 @@ export class QuestionsComponent implements OnInit, DoCheck{
         $("#tierandere").prop("checked",false);
         $("#tierkeins").prop("checked",false);  
         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-          Frage16: "Hund"
+          Frage15: "Hund"
         })
     });
     $("#tierandere").click(function(){
       $("#tierkeins").prop("checked",false);     
       firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-        Frage16: "Andere"
+        Frage15: "Andere"
       })
   });
   $("#tierkeins").click(function(){
     $("#tierandere").prop("checked",false); 
     firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-      Frage16: "Keine"
+      Frage15: "Keine"
     })
   });
       $("#Wbutton").click(function(){
@@ -230,12 +228,12 @@ export class QuestionsComponent implements OnInit, DoCheck{
     $(document).ready(function(){
       $("#Single").click(function(){
           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage17: "Ledig"
+            Frage16: "Ledig"
           })   
       });
       $("#Verheiratet").click(function(){
         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-          Frage17 : "Verheiratet"
+          Frage16 : "Verheiratet"
         })   
     });
   });
@@ -245,7 +243,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
    console.log(this.routing);
     if(this.form.value.Haupttaetigkeit!=null){
     this.dbpush.update({
-      Frage14:this.form.value.Haupttaetigkeit
+      Frage13:this.form.value.Haupttaetigkeit
     })
     }
     switch (this.routing){
@@ -278,7 +276,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
         .collection('Fragenkatalog')
         .doc('Antworten')
         .update({
-            Frage13: txt,
+            Frage12: txt,
           });
       });
     });
@@ -304,7 +302,6 @@ export class QuestionsComponent implements OnInit, DoCheck{
   }
   }
 }
-
 
 let tmpFragen: string[] = [];
 let tmpRadioFragen: string[] = [];
