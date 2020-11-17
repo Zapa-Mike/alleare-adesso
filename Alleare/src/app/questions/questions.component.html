@@ -1,299 +1,103 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-
           TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="questions.component.css" />
-    <link
-      href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext"
-      rel="stylesheet"
-      type="text/css"
-    />
-  </head>
+    crossorigin="anonymous"
+  />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="questions.component.css" />
+  <link
+    href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext"
+    rel="stylesheet"
+    type="text/css"
+  />
+</head>
+<body>
   <div class="Titel text-center">
     <h1>Fragenkatalog</h1>
   </div>
-
-  <!--Frage 1-->
-  <div class="Frage1">
-    <div class="card">
-      <img
-        class="img-responsive"
-        src="/assets/fragenkatalog/story_shopping.png"
-        alt="story_shopping"
-      />
-      <!--Story-->
-      <div class="ImageStory">
-        {{ Storyliste[0] }}
-      </div>
-      <!--"Anhören" Button-->
-      <div class="AnhoerenButton">
-        <button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <!--Radio Buttons-->
-      <div class="RadioButtonsJaNein">
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story1ja"
-            name="Story1"
-          />
-          <label class="form-check-label"> Ja </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story1nein"
-            name="Story1"
-          />
-          <label class="form-check-label" for="rb_Nein"> Nein </label>
-        </div>
-      </div>
-    </div>
-    <!--Vor- und Zurück-Buttons-->
-    <div class="col rowVZ form-group">
-      <button id="Vbutton" class="btn" (click)="weiter1()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <!-- ... -->
-    <div>{{ Fragenliste[0] }}</div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_fragenkatalog.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 2-->
-  <div class="Frage2">
-    <div class="card">
-      <!--Image--><img
-        class="img-responsive"
-        src="/assets/fragenkatalog/story_bahnhof.png"
-        width="100%"
-        height="180"
-      />
-      <!--Story-->
-      <div class="ImageStory">
-        {{ Storyliste[1] }}
-      </div>
-      <!--"Anhören" Button-->
-      <div class="AnhoerenButton">
-        <button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <div class="RadioButtonsJaNein">
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story2ja"
-            name="Story2"
-          />
-          <label class="form-check-label"> Ja </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="Story2nein"
-            name="Story2"
-          />
-          <label class="form-check-label" for="rb_Nein"> Nein </label>
-        </div>
-      </div>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter2()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck2()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <!-- ... -->
-    <div>{{ Fragenliste[1] }}</div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage3-->
-  <div class="Frage3">
-    <div class="card">
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[2] }}</div>
-      <div class="CheckboxAbfrage">
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitnehmer" name="Haupttätigkeit" />
-          <label class="form-check-label"> Arbeitnehmer </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Selbstständig" name="Haupttätigkeit" />
-          <label class="form-check-label"> Selbstständig </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Student" name="Haupttätigkeit" />
-          <label class="form-check-label"> Student </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" id="Arbeitslos" name="Haupttätigkeit" />
-          <label class="form-check-label"> Arbeitslos </label>
-        </div>
-      </div>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter3()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck3()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <!-- ... -->
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage4-->
-  <div class="Frage4">
-    <div class="card">
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[3] }}</div>
-      <div class="CheckboxAbfrage">
-        <div class="form-check form-check-inline">
-          <button id="Haus">
-            <img
-              src="/assets/fragenkatalog/familienhaus.png"
-              width="70px"
-              height="50px"
-              (click)="frage4haus()"
-            />
-          </button>
-          <label class="form-check-label"> Haus </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <button id="Wohnung">
-            <img
-              src="/assets/fragenkatalog/wohnungen.png"
-              width="70px"
-              height="50px"
-              (click)="frage4wohnung()"
-            />
-          </button>
-          <label class="form-check-label"> Wohnung </label>
-        </div>
-      </div>
-      <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter4()">
-          <img
-            src="/assets/icons/icon_arrow_forward.svg"
-            width="50"
-            height="50"
-          />
-        </button>
-        <button id="Zbutton" class="btn" (click)="zurueck4()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-        </button>
-      </div>
-      <!--NovaImage-->
-      <div class="d-flex Nova justify-content-end">
-        <img
-          src="/assets/nova/nova_intro_rechts.png"
-          width="100"
-          height="100"
-          id="NovaImage"
-        />
-      </div>
-    </div>
-
-    <!--Frage 5-->
-    <div class="Frage5">
+  <app-stories
+    [Fragenliste]="StorybezogeneFragenliste"
+    [Storyliste]="Storyliste"
+  ></app-stories>
+  <app-radio [Fragenliste]="RadiobuttonFragen"></app-radio>
+  <div [formGroup]="form">
+    <!--Form für das auslesen der Werte-->
+    <!--Radio Button Abfrage für Tätigkeit-->
+    <div class="FrageTaetigkeit">
       <div class="card">
-          <!--Image Story--><img
-            class="img-responsive"
-            src="/assets/fragenkatalog/rechtliche_Hilfe.png"
-            width="100%"
-            height="180"
-          />
-        <div class="ImageStory"><!--Story-->{{ Storyliste[2] }}</div>
-        <div class="AnhoerenButton">
-          <!--"Anhören" Button--><button class="btn" id="anhoeren">
-            <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-            Anhören
-          </button>
-        </div>
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[0] }}</div>
         <div class="CheckboxAbfrage">
-          <div class="form-check form-check-inline">
-            <input type="radio" id="Rechtschutz1" name="Rechtsschutz" />
-            <label class="form-check-label"> ja </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input type="radio" id="Rechtschutz2" name="Rechtsschutz" />
-            <label class="form-check-label"> nein </label>
+          <div class="grid-containerRadioBAntwort">
+            <div class="form-check form-check-inline">
+              <div class="grid-element">
+                <input
+                  type="radio"
+                  id="Arbeitnehmer"
+                  name="Haupttaetigkeit"
+                  formControlName="Haupttaetigkeit"
+                  value="Arbeitnehmer"
+                />
+                <label class="form-check-label"> Arbeitnehmer </label>
+              </div>
+            </div>
+            <div class="form-check form-check-inline">
+              <div class="grid-element">
+                <input
+                  type="radio"
+                  id="Selbstständig"
+                  name="Haupttaetigkeit"
+                  formControlName="Haupttaetigkeit"
+                  value="Selbststaendig"
+                />
+                <label class="form-check-label"> Selbstständig </label>
+              </div>
+            </div>
+            <div class="form-check form-check-inline">
+              <div class="grid-element">
+                <input
+                  type="radio"
+                  id="Student"
+                  name="Haupttaetigkeit"
+                  formControlName="Haupttaetigkeit"
+                  value="Student"
+                />
+                <label class="form-check-label"> Student </label>
+              </div>
+            </div>
+            <div class="form-check form-check-inline">
+              <div class="grid-element">
+                <input
+                  type="radio"
+                  id="Arbeitslos"
+                  name="Haupttaetigkeit"
+                  formControlName="Haupttaetigkeit"
+                  value="Arbeitslos"
+                />
+                <label class="form-check-label"> Arbeitslos </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter5()">
+        <button id="Vbutton" class="btn">
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
             height="50"
+            (click)="datapush()"
           />
         </button>
-        <button id="Zbutton" class="btn" (click)="zurueck5()">
+        <button id="Zbutton" class="btn">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
       <!--Sprechblase-->
       <!-- ... -->
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[4] }}</div>
       <div class="d-flex Nova justify-content-end">
         <!--NovaImage-->
         <img
@@ -305,40 +109,108 @@
       </div>
     </div>
 
-    <!--Frage 6a-->
-    <!--ngif Abfrage für die einzelnen Bilder-->
-    <div class="Frage6a">
+    <!--Bilder abfrage für Haus Wohnung-->
+    <div class="FrageWohnsitz">
       <div class="card">
-        <div>
-          <div class="form-check form-check-inline">
-            <img
-              src="/assets/fragenkatalog/auto.png"
-              height="50px"
-              width="30px"
-            />
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[1] }}</div>
+        <div class="CheckboxAbfrage">
+          <div class="grid-containerBilderAntwort">
+            <div class="form-check form-check-inline">
+              <button id="Haus" class="BildButtons" value="Haus">
+                <img
+                  id="Bild"
+                  src="/assets/fragenkatalog/familienhaus.png"
+                  width="70px"
+                  height="50px"
+                />
+                <p><label class="form-check-label"> Haus </label></p>
+              </button>
+            </div>
+            <div class="form-check form-check-inline">
+              <button id="Wohnung" class="BildButtons" value="Wohnung">
+                <img
+                  id="Bild"
+                  src="/assets/fragenkatalog/wohnungen.png"
+                  width="70px"
+                  height="50px"
+                />
+                <p><label class="form-check-label"> Wohnung </label></p>
+              </button>
+            </div>
           </div>
-
-          <input type="radio" id="auto1" name="auto" />
-          <label class="form-check-label"> ja </label>
-          <input type="radio" id="auto2" name="auto" />
-          <label class="form-check-label"> nein </label>
         </div>
       </div>
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter6a()">
+        <button id="Vbutton" class="btn">
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
             height="50"
           />
         </button>
-        <button id="Zbutton" class="btn" (click)="zurueck6a()">
+        <button id="Zbutton" class="btn">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
+      </div>
+      <!--NovaImage-->
+      <div class="d-flex Nova justify-content-end">
+        <img
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+        />
+      </div>
+    </div>
+
+    <!--Bilder und Radio-Button Abfrage für Hund Pferd keine Andere-->
+    <div class="FrageTier">
+      <div class="card">
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[3] }}</div>
+        <div class="grid-containerBilderAntwort">
+          <button id="pferd" class="BildButtons">
+            <img id="Bild" src="/assets/fragenkatalog/pferd.png" />
+            <p><label class="form-check-label"> Pferd </label></p>
+          </button>
+          <button id="hund" value="Hund" class="BildButtons">
+            <img id="Bild" src="/assets/fragenkatalog/hund.png" />
+            <p><label class="form-check-label"> Hund </label></p>
+          </button>
+
+          <div class="grid-element">
+            <input
+              type="checkbox"
+              id="tierandere"
+              name="nodub"
+              formControlName="tiercheckbox"
+            />
+            <label class="form-check-label"> Andere </label>
+          </div>
+          <div class="grid-element">
+            <input
+              type="checkbox"
+              id="tierkeins"
+              name="nodub"
+              formControlName="tiercheckbox"
+            />
+            <label class="form-check-label"> Keins </label>
+          </div>
+        </div>
+      </div>
+      <div class="col rowVZ">
+        <button id="Vbutton" class="btn">
+          <img
+            src="/assets/icons/icon_arrow_forward.svg"
+            width="50"
+            height="50"
+          />
+        </button>
+        <button id="Zbutton" class="btn">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
       <!--Sprechblase-->
       <!-- ... -->
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
       <div class="d-flex Nova justify-content-end">
         <!--NovaImage-->
         <img
@@ -349,450 +221,117 @@
         />
       </div>
     </div>
-    <!--Frage6a Zu!!!-->
 
-    <!--Frage 6b-->
-    <div class="Frage6b">
-      <div>
-        <div class="card">
-          <div class="form-check form-check-inline">
-            <img
-              src="/assets/fragenkatalog/motorrad.png"
-              height="50px"
-              width="30px"
-            />
+    <!--Bilder Abfrage Single/Paar-->
+    <div class="FrageBeziehung">
+      <div class="card">
+        <div class="form-check form-check-inline">
+          <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
+        </div>
+        <div class="grid-containerBilderAntwort">
+          <button id="Single" class="BildButtons">
+            <img id="BildSingle" src="/assets/fragenkatalog/single.png" />
+            <p><label class="form-check-label"> Ledig </label></p>
+          </button>
+          <button id="Verheiratet" class="BildButtons">
+            <img id="Bild" src="/assets/fragenkatalog/verheiratet.png" />
+            <p><label class="form-check-label"> Verheiratet </label></p>
+          </button>
+        </div>
+      </div>
+
+      <div class="col rowVZ">
+        <button id="Vbutton" class="btn">
+          <img
+            src="/assets/icons/icon_arrow_forward.svg"
+            width="50"
+            height="50"
+          />
+        </button>
+        <button id="Zbutton" class="btn">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
+      </div>
+      <!--Sprechblase-->
+      <div class="d-flex Nova justify-content-end">
+        <!--NovaImage-->
+        <img
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+        />
+      </div>
+    </div>
+
+    <!--Listen Abfrage für Bundesland-->
+    <div class="FrageBundesland">
+      <div class="card">
+        <div class="form-check form-check-inline">
+          <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[6] }}</div>
+        </div>
+        <div class="btn-group bundesliste">
+          <button
+            type="button"
+            class="btn DropdownB dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Bundesland
+          </button>
+          <div class="dropdown-menu" id="drop">
+            <a
+              id="Baden-Württemberg"
+              value="Baden-Württemberg"
+              class="dropdown-item"
+              >Baden-Württenberg</a
+            >
+            <a id="Bayern" class="dropdown-item">Bayern</a>
+            <a id="Berlin" class="dropdown-item">Berlin</a>
+            <a id="Brandenburg" class="dropdown-item">Brandenburg</a>
+            <a id="Bremen" class="dropdown-item">Bremen</a>
+            <a id="Hamburg" class="dropdown-item">Hamburg</a>
+            <a id="Hessen" class="dropdown-item">Hessen</a>
+            <a id="Mecklenburg-Vorpommern" class="dropdown-item"
+              >Mecklenburg-Vorpommern</a
+            >
+            <a id="Niedersachsen" class="dropdown-item">Niedersachsen</a>
+            <a id="Nordrhein-Westfalen" class="dropdown-item"
+              >Nordrhein-Westfalen</a
+            >
+            <a id="Rheinland-Pfalz" class="dropdown-item">Rheinland-Pfalz</a>
+            <a id="Saarland" class="dropdown-item">Saarland</a>
+            <a id="Sachsen" class="dropdown-item">Sachsen</a>
+            <a id="Sachsen-Anhalt" class="dropdown-item">Sachsen-Anhalt</a>
+            <a id="Schleswig-Holstein" class="dropdown-item"
+              >Schleswig-Holstein</a
+            >
+            <a id="Thüringen" class="dropdown-item">Thüringen</a>
           </div>
-
-          <input type="radio" id="motorrad1" name="motorrad" />
-          <label class="form-check-label"> ja </label>
-          <input type="radio" id="motorrad2" name="motorrad" />
-          <label class="form-check-label"> nein </label>
         </div>
       </div>
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter6b()">
+        <button id="Vbutton" class="btn" routerLink="/evaluation">
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
             height="50"
           />
         </button>
-        <button id="Zbutton" class="btn" (click)="zurueck6b()">
+        <button id="Zbutton" class="btn">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
-    </div>
-  </div>
-
-  <!--Frage 6c-->
-  <div class="Frage6c">
-    <div>
-      <div class="card">
-        <div class="form-check form-check-inline">
-          <img
-            src="/assets/fragenkatalog/fahrrad.png"
-            height="50px"
-            width="30px"
-          />
-        </div>
-
-        <input type="radio" id="fahrrad1" name="fahrrad" />
-        <label class="form-check-label"> ja </label>
-        <input type="radio" id="fahrrad2" name="fahrrad" />
-        <label class="form-check-label"> nein </label>
-      </div>
-      <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter6c()">
-          <img
-            src="/assets/icons/icon_arrow_forward.svg"
-            width="50"
-            height="50"
-          />
-        </button>
-        <button id="Zbutton" class="btn" (click)="zurueck6c()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!--Frage 6d-->
-  <div class="Frage6d">
-    <div>
-      <div class="card">
-        <div class="form-check form-check-inline">
-          <img
-            src="/assets/fragenkatalog/drohne.png"
-            height="50px"
-            width="30px"
-          />
-        </div>
-
-        <input type="radio" id="drohne1" name="drohne" />
-        <label class="form-check-label"> ja </label>
-        <input type="radio" id="drohne2" name="drohne" />
-        <label class="form-check-label"> nein </label>
-      </div>
-
-      <button id="Vbutton" class="btn" (click)="weiter6d()">
+      <div class="d-flex Nova justify-content-end">
+        <!--NovaImage-->
         <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100"
+          height="100"
+          id="NovaImage"
         />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck6d()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
+      </div>
     </div>
   </div>
-
-  <!--Frage 7-->
-  <div class="Frage7">
-    <div class="card">
-      <button (click)="frage7pferd()">
-        <img src="/assets/fragenkatalog/pferd.png" width="50px" height="30px" />
-      </button>
-      <label class="form-check-label"> Pferd </label>
-      <button (click)="frage7hund()">
-        <img src="/assets/fragenkatalog/hund.png" width="50px" height="30px" />
-      </button>
-      <label class="form-check-label"> Hund </label>
-
-      <input type="checkbox" id="frage7andere" name="nodub" />
-      <label class="form-check-label"> Andere </label>
-      <input type="checkbox" id="frage7keins" name="nodub" />
-      <label class="form-check-label"> Keins </label>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter7()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck7()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <!-- ... -->
-    <div class="form-check form-check-inline">
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[6] }}</div>
-    </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 8-->
-  <div class="Frage8">
-    <div class="card">     
-        <!--Image--><img
-          class="img-responsive"
-          src="/assets/fragenkatalog/wunsch.png"
-          width="100%"
-          height="180"
-        />
-      <div class="ImageStory"><!--Story-->{{ Storyliste[3] }}</div>
-      <!--"Anhören" Button-->
-      <div class="AnhoerenButton">
-        <button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <input type="radio" id="frage8ja" name="frage8" />
-      <label class="form-check-label"> Ja </label>
-      <input type="radio" id="frage8nein" name="frage8" />
-      <label class="form-check-label"> Nein </label>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter8()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck8()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <div class="ImageStory"><!--Frage-->{{ Fragenliste[7] }}</div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 9-->
-  <div class="Frage9">
-    <div class="card">
-        <!--Image--><img
-          class="img-responsive"
-          src="/assets/fragenkatalog/immobilien_sparen.png"
-          width="100%"
-          height="180"
-        />
-      <div class="form-check form-check-inline">
-        <div class="ImageStory">{{ Storyliste[4] }}</div>
-      </div>
-      <div class="AnhoerenButton">
-        <!--"Anhören" Button--><button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <input type="radio" id="frage9ja" name="frage9" />
-      <label class="form-check-label"> Ja </label>
-      <input type="radio" id="frage9nein" name="frage9" />
-      <label class="form-check-label"> Nein </label>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter9()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck9()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <div class="form-check form-check-inline">
-      <!--Muss das so sein ?-->
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[8] }}</div>
-    </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 10-->
-  <div class="Frage10">
-    <div class="card">
-        <!--Image--><img
-          class="img-responsive"
-          src="/assets/fragenkatalog/reisen.png"
-          width="100%"
-          height="180"
-        />
-      <div class="form-check form-check-inline">
-        <div class="ImageStory"><!--Story-->{{ Storyliste[5] }}</div>
-      </div>
-      <!--"Anhören" Button-->
-      <div class="AnhoerenButton">
-        <button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <input type="radio" id="frage10ja" name="frage10" />
-      <label class="form-check-label"> Ja </label>
-      <input type="radio" id="frage10nein" name="frage10" />
-      <label class="form-check-label"> Nein </label>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter10()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck10()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <div class="form-check form-check-inline">
-      <div class="ImageStory"><!--Image Story-->{{ Fragenliste[9] }}</div>
-    </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 11-->
-  <div class="Frage11">
-    <div class="card">
-        <!--Image--><img
-          class="img-responsive"
-          src="/assets/fragenkatalog/sport.png"
-          width="100%"
-          height="180"
-        />
-      <div class="form-check form-check-inline">
-        <div class="ImageStory"><!--Story-->{{ Storyliste[06] }}</div>
-      </div>
-      <!--"Anhören" Button-->
-      <div class="AnhoerenButton">
-        <button class="btn" id="anhoeren">
-          <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-          Anhören
-        </button>
-      </div>
-      <input type="radio" id="frage11ja" name="frage11" />
-      <label class="form-check-label"> Ja </label>
-      <input type="radio" id="frage11nein" name="frage11" />
-      <label class="form-check-label"> Nein </label>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter11()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck11()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <!-- ... -->
-    <div class="form-check form-check-inline">
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[10] }}</div>
-    </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-  <!--Frage 12-->
-  <div class="Frage12">
-    <div class="card">
-      <div class="form-check form-check-inline">
-        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[11] }}</div>
-      </div>
-      <button id="Wohnung">
-        <img
-          src="/assets/fragenkatalog/wohnungen.png"
-          width="70px"
-          height="50px"
-          (click)="frage12single()"
-        />
-      </button>
-      <label class="form-check-label"> Single </label>
-      <button id="Wohnung">
-        <img
-          src="/assets/fragenkatalog/wohnungen.png"
-          width="70px"
-          height="50px"
-          (click)="frage12paar()"
-        />
-      </button>
-      <label class="form-check-label"> Paar </label>
-    </div>
-
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter12()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck12()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <!--Sprechblase-->
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-
-
-  <!--Frage 13-->
-  <div class="Frage13">
-    <div class="card">
-      <div class="form-check form-check-inline">
-        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[12] }}</div>
-      </div>
-      <div class="btn-group bundesliste">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Action
-        </button>
-        <div class="dropdown-menu" id="drop">
-        <a id="Baden-Württemberg" value ="Baden-Württemberg" class="dropdown-item" >Baden-Württenberg</a>
-        <a id="Bayern" class="dropdown-item" >Bayern</a>
-        <a id="Berlin" class="dropdown-item" >Berlin</a>
-        <a id="Brandenburg" class="dropdown-item" >Brandenburg</a>
-        <a id="Bremen" class="dropdown-item" >Bremen</a>
-        <a id="Hamburg" class="dropdown-item" >Hamburg</a>
-        <a id="Hessen" class="dropdown-item" >Hessen</a>
-        <a id="Mecklenburg-Vorpommern" class="dropdown-item" >Mecklenburg-Vorpommern</a>
-        <a id="Niedersachsen" class="dropdown-item" >Niedersachsen</a>
-        <a id="Nordrhein-Westfalen" class="dropdown-item" >Nordrhein-Westfalen</a>
-        <a id="Rheinland-Pfalz" class="dropdown-item" >Rheinland-Pfalz</a>
-        <a id="Saarland" class="dropdown-item" >Saarland</a>
-        <a id="Sachsen" class="dropdown-item" >Sachsen</a>
-        <a id="Sachsen-Anhalt" class="dropdown-item" >Sachsen-Anhalt</a>
-        <a id="Schleswig-Holstein" class="dropdown-item" >Schleswig-Holstein</a>
-        <a id="Thüringen" class="dropdown-item" >Thüringen</a>
-    </div>
-    </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn" (click)="weiter13()">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="Zbutton" class="btn" (click)="zurueck13()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-  </div>
-</html>
+</body>

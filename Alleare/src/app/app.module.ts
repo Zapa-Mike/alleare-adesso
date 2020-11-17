@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
+import { createCustomElement } from '@angular/elements';
+
+import { StoriesComponent } from './questions/stories.component';
+import { RadioComponent } from './questions/radio.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +44,9 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
     NovaComponent,
     IntroComponent,
     HeaderComponent,
-    EvaluationComponent
+    EvaluationComponent,
+    StoriesComponent,
+    RadioComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,4 +63,8 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  
+  }
+ 
