@@ -1,8 +1,8 @@
 import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
+import { Observable, Subject } from 'rxjs';
 import { DataService } from ".././services/data.service";
 
 
@@ -86,7 +86,7 @@ export class RadioComponent implements DoCheck {
     .collection('Fragenkatalog')
     .doc('Antworten');
 
-  constructor() {
+  constructor(private dataservice: DataService) {
     this.form = new FormGroup({
       fragen: new FormControl(),
     });
@@ -103,6 +103,7 @@ export class RadioComponent implements DoCheck {
   ngDoCheck() {
     this.fragen = this.Fragenliste;
     this.fragenanzeige = this.Fragenliste[this.i];
+
   }
 
   push() {
@@ -115,8 +116,14 @@ export class RadioComponent implements DoCheck {
 
     if (radio3.checked || radio4.checked) {
       if (this.fragen.length > this.i) {
+        $('#redundant2').prop('checked', false);
+        $('#redundant3').prop('checked', false);
         this.fragenanzeige = this.fragen[this.i];
       }
+      if(this.i>=this.fragen.length) {
+        console.log("ende");
+        console.log(this.i);
+      }else {
 
       switch (this.i) {
         case 0:
@@ -151,7 +158,9 @@ export class RadioComponent implements DoCheck {
           break;
       }
       this.i = this.i + 1;
+      this.sendIndexradio();
     }
+  }
   }
 
   zurueck() {
@@ -160,13 +169,11 @@ export class RadioComponent implements DoCheck {
       this.i = this.i - 1;
     }
   }
+
+sendIndexradio() :void{
+  this.dataservice.sendIndexradio(this.i);
 }
 
-$(document).ready(function () {
-  $('#Vbutton').click(function () {
-    $('#redundant2').prop('checked', false);
-  });
-  $('#Vbutton').click(function () {
-    $('#redundant3').prop('checked', false);
-  });
-});
+}
+
+
