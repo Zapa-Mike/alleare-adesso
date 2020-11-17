@@ -27,6 +27,8 @@ import { createCustomElement } from '@angular/elements';
 import { StoriesComponent } from './questions/stories.component';
 import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
+import { novadialogComponent } from './intro/novadialog.component';
+import { insuranceComponent } from './intro/insurance.component';
 
 
 
@@ -48,6 +50,8 @@ import { DataService } from './services/data.service';
     EvaluationComponent,
     StoriesComponent,
     RadioComponent,
+    novadialogComponent,
+    insuranceComponent
   ],
   imports: [
     BrowserModule,

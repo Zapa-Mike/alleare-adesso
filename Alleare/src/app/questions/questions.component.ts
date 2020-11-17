@@ -29,6 +29,7 @@ export class QuestionsComponent implements OnInit, DoCheck{
   Frage4:boolean=false;
   Frage5:boolean=false;
   routing:number=1;
+  back: number
   
   
   constructor(private dataservice:DataService) {
@@ -175,6 +176,70 @@ export class QuestionsComponent implements OnInit, DoCheck{
     }
     
   }
+  async wohnort(){
+    $(document).ready(function(){
+      $("#Wohnung").click(function(){
+          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+            Frage15: "Wohnung"
+          })   
+      });
+      $("#Haus").click(function(){
+        console.log("Haus ausgewählt")
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage15: "Haus"
+        })   
+    });
+  });
+  }
+
+  async tiere(){
+    $(document).ready(function(){
+      $("#pferd").click(function(){
+          $("#tierandere").prop("checked",false);
+          $("#tierkeins").prop("checked",false); 
+          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+            Frage16: "Pferd"
+          })   
+      });
+  
+      $("#hund").click(function(){
+        $("#tierandere").prop("checked",false);
+        $("#tierkeins").prop("checked",false);  
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage16: "Hund"
+        })
+    });
+    $("#tierandere").click(function(){
+      $("#tierkeins").prop("checked",false);     
+      firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+        Frage16: "Andere"
+      })
+  });
+  $("#tierkeins").click(function(){
+    $("#tierandere").prop("checked",false); 
+    firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+      Frage16: "Keine"
+    })
+  });
+      $("#Wbutton").click(function(){
+          $("#redundant1").prop("checked", false);
+      });
+  });
+  }
+  async beziehung (){
+    $(document).ready(function(){
+      $("#Single").click(function(){
+          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+            Frage17: "Ledig"
+          })   
+      });
+      $("#Verheiratet").click(function(){
+        firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
+          Frage17 : "Verheiratet"
+        })   
+    });
+  });
+  }
 
  async datapush(){
    console.log(this.routing);
@@ -186,70 +251,19 @@ export class QuestionsComponent implements OnInit, DoCheck{
     switch (this.routing){
       case 1: this.Frage1=false; this.Frage2=true;
       if(this.Frage2==true){
-        $(document).ready(function(){
-          $("#Wohnung").click(function(){
-              firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-                Frage15: "Wohnung"
-              })   
-          });
-          $("#Haus").click(function(){
-            firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-              Frage15: "Haus"
-            })   
-        });
-      });
+        this.wohnort();
+      
      }
         break;
      case 2: this.Frage2=false; this.Frage3=true;
      if(this.Frage3==true){
-       $(document).ready(function(){
-         $("#pferd").click(function(){
-             $("#tierandere").prop("checked",false);
-             $("#tierkeins").prop("checked",false); 
-             firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-               Frage16: "Pferd"
-             })   
-         });
-     
-         $("#hund").click(function(){
-           $("#tierandere").prop("checked",false);
-           $("#tierkeins").prop("checked",false);  
-           firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-             Frage16: "Hund"
-           })
-       });
-       $("#tierandere").click(function(){
-         $("#tierkeins").prop("checked",false);     
-         firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-           Frage16: "Andere"
-         })
-     });
-     $("#tierkeins").click(function(){
-       $("#tierandere").prop("checked",false); 
-       firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-         Frage16: "Keine"
-       })
-     });
-         $("#Wbutton").click(function(){
-             $("#redundant1").prop("checked", false);
-         });
-     });
+       this.tiere();
+      
      }
         break;
      case 3: this.Frage3=false; this.Frage4=true;
      if(this.Frage4==true){
-      $(document).ready(function(){
-        $("#Single").click(function(){
-            firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-              Frage17: "Ledig"
-            })   
-        });
-        $("#Verheiratet").click(function(){
-          firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Fragenkatalog').doc('Antworten').update({
-            Frage17 : "Verheiratet"
-          })   
-      });
-    });
+     this.beziehung();
    }
         break;
      case 4: this.Frage4=false; this.Frage5=true;
@@ -273,22 +287,24 @@ export class QuestionsComponent implements OnInit, DoCheck{
     }
     this.routing=this.routing+1;
   }
-
   zurueck(){
     this.routing=this.routing-1;
-    switch(this.routing){
-      case 1: this.Frage1=true; this.Frage2=false;
-      break;
-      case 2: this.Frage2=true; this.Frage3=false;
-      break;
-      case 3: this.Frage3=true; this.Frage4=false;
-      break;
-      case 4: this.Frage4=true; this.Frage5=false;
-      break;
-    }
-    
+  switch(this.routing){
+    case 1: this.Frage1=true; this.Frage2=false;
+    break;
+    case 2: this.Frage2=true; this.Frage3=false;
+    this.wohnort();
+    break;
+    case 3: this.Frage3=true; this.Frage4=false;
+    this.tiere();
+    break;
+    case 4: this.Frage4=true; this.Frage5=false;
+    this.beziehung();
+    break;
+  }
   }
 }
+
 
 let tmpFragen: string[] = [];
 let tmpRadioFragen: string[] = [];
