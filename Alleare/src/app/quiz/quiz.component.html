@@ -1,1 +1,34 @@
-<p>quiz works!</p>
+<body>
+  <div class="Titel text-center">
+    <h1>Quiz</h1>
+  </div>
+  <div class="card">
+    <div class="Fragenstellung">Frage ?{{ null }}</div>
+  </div>
+  <div class="grid-containerAntworten">
+    <button id="A1" class="antwort shadow">A1</button>
+    <button id="A2" class="antwort shadow">A2</button>
+    <button id="A3" class="antwort shadow">A3</button>
+    <button id="A4" class="antwort shadow">A4</button>
+  </div>
+
+  <div class="col rowVZ">
+    <button id="Vbutton" class="btn">
+      <img src="/assets/icons/icon_arrow_forward.svg" width="50" height="50" />
+    </button>
+    <button id="Zbutton" class="btn">
+      <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+    </button>
+  </div>
+  <div class="d-flex Nova justify-content-end">
+    <button class="NovaButton" routerLink="/nova">
+      <img
+        id="NovaImage"
+        src="/assets/nova/nova_home.png"
+        alt="nova"
+        width="100"
+        height="100"
+      />
+    </button>
+  </div>
+</body>
