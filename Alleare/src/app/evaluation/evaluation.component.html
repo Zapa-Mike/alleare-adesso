@@ -1,28 +1,28 @@
 <body>
   <div class="Auswertung">
     <div class="Titel text-center">
-      <h1>Deine Auswertung</h1>
+      <h3>Deine Auswertung</h3>
     </div>
     <div class="col AuswertungVersicherungen">
-      <button class="ButtonVersicherung" routerLink="/flashcards">
+      <button class="ButtonVersicherung form-check-inline" routerLink="/flashcards">
         Kfz-Versicherung<img
           id="pfeil"
           src="/assets/icons/icon_auswertung_arrow.svg"
         />
       </button>
-      <button class="ButtonVersicherung" routerLink="/flashcards">
+      <button class="ButtonVersicherung form-check-inline" routerLink="/flashcards">
         Hausratversicherung<img
           id="pfeil"
           src="/assets/icons/icon_auswertung_arrow.svg"
         />
       </button>
-      <button class="ButtonVersicherung" routerLink="/flashcards">
+      <button class="ButtonVersicherung form-check-inline" routerLink="/flashcards">
         Haftpflichtversicherung<img
           id="pfeil"
           src="/assets/icons/icon_auswertung_arrow.svg"
         />
       </button>
-      <button class="ButtonVersicherung" routerLink="/flashcards">
+      <button class="ButtonVersicherung form-check-inline" routerLink="/flashcards">
         Berufsunfähigkeitsversicherung<img
           id="pfeil"
           src="/assets/icons/icon_auswertung_arrow.svg"
@@ -38,14 +38,16 @@
         ZUM HAUPTMENÜ
       </button>
     </div>
-    <div class="d-flex Nova justify-content-end">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_home.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
+    <div class="grid-containerNovaSprechblase">
+      <div class="bubble shadow bubble-bottom-right" contenteditable="false">
+        Versicherungen in der Auswertung findest du unter den Favoriten in den Flashcards wieder.
+      </div>
+      <button class="NovaLink" routerLink="/nova">
+        <img
+          src="/assets/nova/nova_fragenkatalog.png"
+          id="NovaImage"
+        />
+      </button>
     </div>
   </div>
 </body>

@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="Titel text-center">
-    <h1>Fragenkatalog</h1>
+    <h3>Fragenkatalog</h3>
   </div>
   <app-stories
     *ngIf="indexstoryvisible" [Fragenliste]="StorybezogeneFragenliste"
@@ -33,7 +33,7 @@
         <div class="CheckboxAbfrage">
           <div class="grid-containerRadioBAntwort">
             <div class="form-check form-check-inline">
-              <div class="grid-element">
+              <div class="grid-element form-check-inline">
                 <input
                   type="radio"
                   id="Arbeitnehmer"
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="form-check form-check-inline">
-              <div class="grid-element">
+              <div class="grid-element form-check-inline">
                 <input
                   type="radio"
                   id="Selbstständig"
@@ -57,7 +57,7 @@
               </div>
             </div>
             <div class="form-check form-check-inline">
-              <div class="grid-element">
+              <div class="grid-element form-check-inline">
                 <input
                   type="radio"
                   id="Student"
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="form-check form-check-inline">
-              <div class="grid-element">
+              <div class="grid-element form-check-inline">
                 <input
                   type="radio"
                   id="Arbeitslos"
@@ -179,7 +179,7 @@
             <p><label class="form-check-label"> Hund </label></p>
           </button>
 
-          <div class="grid-element">
+          <div class="grid-element form-check-inline">
             <input
               type="checkbox"
               id="tierandere"
@@ -187,7 +187,7 @@
             />
             <label class="form-check-label"> Andere </label>
           </div>
-          <div class="grid-element">
+          <div class="grid-element form-check-inline">
             <input
               type="checkbox"
               id="tierkeins"
@@ -226,16 +226,14 @@
     <!--Bilder Abfrage Single/Paar-->
     <div *ngIf="Frage4"  class="FrageBeziehung">
       <div class="card">
-        <div class="form-check form-check-inline">
           <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
-        </div>
         <div class="grid-containerBilderAntwort">
           <button id="Single" class="BildButtons">
             <img id="BildSingle" src="/assets/fragenkatalog/single.png" />
             <p><label class="form-check-label"> Ledig </label></p>
           </button>
           <button id="Verheiratet" class="BildButtons">
-            <img id="Bild" src="/assets/fragenkatalog/verheiratet.png" />
+            <img id="BildVerheiratet" src="/assets/fragenkatalog/verheiratet.png" />
             <p><label class="form-check-label"> Verheiratet </label></p>
           </button>
         </div>
@@ -269,9 +267,7 @@
     <!--Listen Abfrage für Bundesland-->
     <div *ngIf="Frage5" class="FrageBundesland">
       <div class="card">
-        <div class="form-check form-check-inline">
           <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[6] }}</div>
-        </div>
         <div class="btn-group bundesliste">
           <button
             type="button"
