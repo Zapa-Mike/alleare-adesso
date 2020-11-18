@@ -68,14 +68,14 @@ import { DataService } from '.././services/data.service';
         {{ fragenanzeige }}
       </div>
 
-      <div class="Nova">
+     
         <img
           src="/assets/nova/nova_fragenkatalog.png"
           width="100"
           height="100"
           id="NovaImage"
         />
-      </div>
+      
     </div>
   `,
   styleUrls: ['./questions.component.css'],
