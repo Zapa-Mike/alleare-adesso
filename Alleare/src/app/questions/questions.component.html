@@ -20,10 +20,14 @@
     <h3>Fragenkatalog</h3>
   </div>
   <app-stories
-    *ngIf="indexstoryvisible" [Fragenliste]="StorybezogeneFragenliste"
+    *ngIf="indexstoryvisible"
+    [Fragenliste]="StorybezogeneFragenliste"
     [Storyliste]="Storyliste"
   ></app-stories>
-  <app-radio *ngIf="indexradiovisible" [Fragenliste]="RadiobuttonFragen"></app-radio>
+  <app-radio
+    *ngIf="indexradiovisible"
+    [Fragenliste]="RadiobuttonFragen"
+  ></app-radio>
   <div [formGroup]="form">
     <!--Form für das auslesen der Werte-->
     <!--Radio Button Abfrage für Tätigkeit-->
@@ -93,7 +97,12 @@
           />
         </button>
         <button id="Zbutton" class="btn">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" (click)="zurueck()"/>
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            width="50"
+            height="50"
+            (click)="zurueck()"
+          />
         </button>
       </div>
       <!--Sprechblase-->
@@ -113,30 +122,36 @@
     <div *ngIf="Frage2" class="FrageWohnsitz">
       <div class="card">
         <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[1] }}</div>
-        <div class="CheckboxAbfrage">
-          <div class="grid-containerBilderAntwort">
-            <div class="form-check form-check-inline">
-              <button id="Haus" class="BildButtons" value="Haus">
-                <img
-                  id="Bild"
-                  src="/assets/fragenkatalog/familienhaus.png"
-                  width="70px"
-                  height="50px"
-                />
-                <p><label class="form-check-label"> Haus </label></p>
-              </button>
-            </div>
-            <div class="form-check form-check-inline">
-              <button id="Wohnung" class="BildButtons" value="Wohnung">
-                <img
-                  id="Bild"
-                  src="/assets/fragenkatalog/wohnungen.png"
-                  width="70px"
-                  height="50px"
-                />
-                <p><label class="form-check-label"> Wohnung </label></p>
-              </button>
-            </div>
+        <div class="grid-containerBilderAntwort">
+          <div class="form-check form-check-inline">
+            <button id="Haus" class="BildButtons" value="Haus">
+              <img
+                id="Bild"
+                src="/assets/fragenkatalog/familienhaus.png"
+                width="70px"
+                height="50px"
+              />
+              <p><label class="form-check-label"> Haus </label></p>
+            </button>
+          </div>
+          <div class="form-check form-check-inline">
+            <button id="Wohnung" class="BildButtons" value="Wohnung">
+              <img
+                id="Bild"
+                src="/assets/fragenkatalog/wohnungen.png"
+                width="70px"
+                height="50px"
+              />
+              <p><label class="form-check-label"> Wohnung </label></p>
+            </button>
+          </div>
+          <div id="ButtonNein" class="form-check form-check-inline">
+            <input type="radio" name="stories" value="nein" id="redundant4" />
+            <label class="form-check-label"> Miete </label>
+          </div>
+          <div id="ButtonNein" class="form-check form-check-inline">
+            <input type="radio" name="stories" value="nein" id="redundant5" />
+            <label class="form-check-label"> Eigentum </label>
           </div>
         </div>
       </div>
@@ -150,8 +165,12 @@
           />
         </button>
         <button id="Zbutton" class="btn">
-          
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" (click)="zurueck()"/>
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            width="50"
+            height="50"
+            (click)="zurueck()"
+          />
         </button>
       </div>
       <!--NovaImage-->
@@ -180,19 +199,11 @@
           </button>
 
           <div class="grid-element form-check-inline">
-            <input
-              type="checkbox"
-              id="tierandere"
-              name="nodub"
-            />
+            <input type="checkbox" id="tierandere" name="nodub" />
             <label class="form-check-label"> Andere </label>
           </div>
           <div class="grid-element form-check-inline">
-            <input
-              type="checkbox"
-              id="tierkeins"
-              name="nodub"
-            />
+            <input type="checkbox" id="tierkeins" name="nodub" />
             <label class="form-check-label"> Keins </label>
           </div>
         </div>
@@ -207,7 +218,12 @@
           />
         </button>
         <button id="Zbutton" class="btn">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" (click)="zurueck()"/>
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            width="50"
+            height="50"
+            (click)="zurueck()"
+          />
         </button>
       </div>
       <!--Sprechblase-->
@@ -224,16 +240,19 @@
     </div>
 
     <!--Bilder Abfrage Single/Paar-->
-    <div *ngIf="Frage4"  class="FrageBeziehung">
+    <div *ngIf="Frage4" class="FrageBeziehung">
       <div class="card">
-          <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
         <div class="grid-containerBilderAntwort">
           <button id="Single" class="BildButtons">
             <img id="BildSingle" src="/assets/fragenkatalog/single.png" />
             <p><label class="form-check-label"> Ledig </label></p>
           </button>
           <button id="Verheiratet" class="BildButtons">
-            <img id="BildVerheiratet" src="/assets/fragenkatalog/verheiratet.png" />
+            <img
+              id="BildVerheiratet"
+              src="/assets/fragenkatalog/verheiratet.png"
+            />
             <p><label class="form-check-label"> Verheiratet </label></p>
           </button>
         </div>
@@ -249,7 +268,12 @@
           />
         </button>
         <button id="Zbutton" class="btn">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" (click)="zurueck()" />
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            width="50"
+            height="50"
+            (click)="zurueck()"
+          />
         </button>
       </div>
       <!--Sprechblase-->
@@ -267,7 +291,7 @@
     <!--Listen Abfrage für Bundesland-->
     <div *ngIf="Frage5" class="FrageBundesland">
       <div class="card">
-          <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[6] }}</div>
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[6] }}</div>
         <div class="btn-group bundesliste">
           <button
             type="button"
@@ -319,7 +343,12 @@
           />
         </button>
         <button id="Zbutton" class="btn">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" (click)="zurueck()"/>
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            width="50"
+            height="50"
+            (click)="zurueck()"
+          />
         </button>
       </div>
       <div class="d-flex Nova justify-content-end">
