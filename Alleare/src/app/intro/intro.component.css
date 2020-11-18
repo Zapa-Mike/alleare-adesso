@@ -84,3 +84,41 @@ form {
 #NovaImage {
   margin-left: 50%;
 }
+
+
+.novabubble {
+  position: relative;
+  width: 80%;
+  background: #ffffff;
+  border-radius: 50%;
+  text-align: center;
+  color: #000;
+  margin-left: 5%;
+  margin-top: 40%;
+  padding-top: 10%;
+  float: left;
+}
+
+.speech-bubble::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0 45px 30px 0;
+  border-top: 40% solid#ffffff;
+  border-color: #ffffff;
+  border-bottom: 40px solid transparent;
+  right: 25%;
+  bottom: -14px;
+}
+
+#NovaImage1{
+  margin-left: 100%;
+}
+
+p{
+  font-family: sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+}
