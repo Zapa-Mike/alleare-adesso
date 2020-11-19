@@ -81,7 +81,7 @@ import { DataService } from '.././services/data.service';
 export class StoriesComponent implements DoCheck {
   @Input() Fragenliste;
   @Input() Storyliste;
-  i: number = 0;
+  @Input() test;
   form: FormGroup;
   test2: string;
   imgArray = [];
@@ -96,7 +96,10 @@ export class StoriesComponent implements DoCheck {
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
 
+  i = parseInt(localStorage.getItem('storyIndex'));
+
   constructor(private dataservice: DataService) {
+    console.log(this.i);
     this.imgArray = [
       '/assets/fragenkatalog/story_shopping.png',
       '/assets/fragenkatalog/story_bahnhof.png',
@@ -108,6 +111,8 @@ export class StoriesComponent implements DoCheck {
     this.form = new FormGroup({
       stories: new FormControl(),
     });
+     
+    
   }
 
   ngDoCheck(): void {
@@ -176,7 +181,8 @@ export class StoriesComponent implements DoCheck {
             });
             break;
         }
-
+        var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
         this.i = this.i + 1;
         this.sendIndexstory();
       }
@@ -194,6 +200,8 @@ export class StoriesComponent implements DoCheck {
     }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
       this.i = this.i - 1;
     }
   }
