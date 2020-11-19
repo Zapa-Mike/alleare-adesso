@@ -1,1 +1,39 @@
-<p>evaluation works!</p>
+<body>
+  <div class="Auswertung">
+    <div class="Titel text-center">
+      <h3>Deine Auswertung</h3>
+    </div>
+    <div
+      *ngFor="let versicherung of Versicherungsanzeige5"
+      class="col AuswertungVersicherungen"
+    >
+      <button
+        class="ButtonVersicherung form-check-inline"
+        routerLink="/flashcards"
+      >
+        {{ versicherung}}
+        <img id="pfeil" src="/assets/icons/icon_auswertung_arrow.svg" />
+      </button>
+    </div>
+    <div class="grid-containerAuswertung">
+      <button
+        type="submit"
+        class="btnZumHauptmenue rounded-pill"
+        routerLink="/home"
+      >
+        ZUM HAUPTMENÜ
+      </button>
+    </div>
+    <div class="grid-containerNovaSprechblase">
+      <div class="bubble shadow bubble-bottom-right" contenteditable="false">
+        Versicherungen in der Auswertung findest du unter den Favoriten in den Flashcards wieder.
+      </div>
+      <button class="NovaLink" routerLink="/nova">
+        <img
+          src="/assets/nova/nova_fragenkatalog.png"
+          id="NovaImage"
+        />
+      </button>
+    </div>
+  </div>
+</body>

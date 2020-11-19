@@ -1,0 +1,94 @@
+body {
+    background-color: #f2f9fd;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 60px;
+    position: fixed;
+    width:100%;
+    height: 100%;
+  }
+  
+  .Titel {
+    margin-top: 50px;
+    padding-top: 2%;
+    padding-bottom: 10px;
+    color: #2a2d2f;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: lato;
+  }
+
+  .card {
+    position: relative;
+    background-color: #ffffff;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+    border-radius: 10px;
+    height: 100px;
+  }
+  /*Frage*/
+.Fragenstellung {
+    padding-top: 5%;
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 85%;
+    margin-bottom: 5%;
+  }
+/*Grids*/
+.grid-containerAntworten {
+    display: grid;
+    padding-left: 10%;
+    padding-right: 10%;
+    grid-template-columns: 45% 45%;
+    grid-row-gap: 10%;
+    justify-content: space-between;
+    text-align: start;
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+
+  .antwort {
+    padding: 0%;
+    border: none;
+    border-radius: 5px;
+    background: white;
+    width: auto;
+    height: 75px;
+  }
+/*Vor- und Zurück-Buttons*/
+.rowVZ {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 0%;
+  }
+  #Vbutton {
+    float: right;
+    padding: 0%;
+    border: none;
+  }
+  #Zbutton {
+    padding: 0%;
+    border: none;
+  }
+  #bbutton {
+    padding: 0%;
+  }
+  #Wbutton {
+    /*gleiche wie Vbutton, nur andere id für jquery*/
+    float: right;
+    padding: 0%;
+    border: none;
+  }
+
+  /*Nova*/
+  .NovaButton{
+    border: none;
+    background: none;
+    margin-right: 10%;
+    float: right;
+    align-content: end;
+  }
