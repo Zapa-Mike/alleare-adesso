@@ -93,9 +93,9 @@ import { Data } from '@angular/router';
   styleUrls: ['./intro.component.css'],
 })
 export class insuranceComponent implements OnInit{
-drei:boolean=false;
-eins:boolean=true;
-zwei:boolean=false;
+drei:boolean=true;
+eins:boolean=false;
+zwei:boolean=true;
 
 julia:boolean=true;
 julia1:boolean=true;
@@ -109,18 +109,16 @@ constructor(private dataservice: DataService)
 }
   ngOnInit() {
     setTimeout(()=> {
-      this.eins=false;
-      this.zwei=true;
-    }, 5000);
-  
-    setTimeout(()=> {
+      this.eins=true;
       this.zwei=false;
-      this.drei=true;
-    }, 10000);
-  
+    }, 4000);
+    setTimeout(()=> {
+      this.zwei=true;
+      this.drei=false;
+    }, 8000);
     setTimeout(()=> {
       this.sendIndexdialog();
-    }, 15000);
+    }, 12000);
 
     this.HausratObjektAusblenden(); /*Initialisiere Hidden */
     this.AutoschadenObjektAusblenden(); /*Initialisiere Hidden */
@@ -167,7 +165,3 @@ constructor(private dataservice: DataService)
   }
 
 }
- /*ngOnInit() {
-    
-  }*/
-  
