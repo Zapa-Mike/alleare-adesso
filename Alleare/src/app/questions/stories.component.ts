@@ -68,14 +68,12 @@ import { DataService } from '.././services/data.service';
         {{ fragenanzeige }}
       </div>
 
-     
-        <img
-          src="/assets/nova/nova_fragenkatalog.png"
-          width="100"
-          height="100"
-          id="NovaImage"
-        />
-      
+      <img
+        src="/assets/nova/nova_fragenkatalog.png"
+        width="100"
+        height="100"
+        id="NovaImage"
+      />
     </div>
   `,
   styleUrls: ['./questions.component.css'],
@@ -91,14 +89,14 @@ export class StoriesComponent implements DoCheck {
   fragenanzeige: string;
   story: string[] = [];
   storyanzeige: string;
+  Fragen = ['Frage1', 'Frage2', 'Frage3', 'Frage4', 'Frage5'];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog')
-    .doc('Antworten');
+    .collection('Fragenkatalog');
 
-  constructor(private dataservice:DataService) {
+  constructor(private dataservice: DataService) {
     this.imgArray = [
       '/assets/fragenkatalog/story_shopping.png',
       '/assets/fragenkatalog/story_bahnhof.png',
@@ -147,43 +145,42 @@ export class StoriesComponent implements DoCheck {
       if (this.story.length > this.i) {
         this.storyanzeige = this.story[this.i];
       }
-      if(this.i==this.fragen.length) {
-        console.log("ende");
+      if (this.i == this.fragen.length) {
+        console.log('ende');
         console.log(this.i);
-      }else {
+      } else {
+        switch (this.i) {
+          case 0:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 1:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 2:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 3:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 4:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+        }
 
-      switch (this.i) {
-        case 0:
-          this.dbpush.update({
-            Frage1: this.form.value.stories,
-          });
-          break;
-        case 1:
-          this.dbpush.update({
-            Frage2: this.form.value.stories,
-          });
-          break;
-        case 2:
-          this.dbpush.update({
-            Frage3: this.form.value.stories,
-          });
-          break;
-        case 3:
-          this.dbpush.update({
-            Frage4: this.form.value.stories,
-          });
-          break;
-        case 4:
-          this.dbpush.update({
-            Frage5: this.form.value.stories,
-          });
-          break;
+        this.i = this.i + 1;
+        this.sendIndexstory();
       }
-
-      this.i = this.i + 1;
-      this.sendIndexstory(); 
     }
-  }
   }
 
   zurueck() {
@@ -201,9 +198,7 @@ export class StoriesComponent implements DoCheck {
     }
   }
 
-  sendIndexstory() :void{
+  sendIndexstory(): void {
     this.dataservice.sendIndexstory(this.i);
   }
-
 }
-
