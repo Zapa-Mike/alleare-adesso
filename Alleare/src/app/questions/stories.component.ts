@@ -11,7 +11,7 @@ import { DataService } from '.././services/data.service';
     <div class="Frage">
       <div [formGroup]="form" class="card">
         <div>
-          <img src="{{ imgArray[i] }}" class="img-responsive" />
+        <img src="data:image/gif;base64,{{ imgArray[i] }}" class="img-responsive"/>
 
           <div class="ImageStory">
             {{ storyanzeige }}
@@ -78,7 +78,7 @@ import { DataService } from '.././services/data.service';
   `,
   styleUrls: ['./questions.component.css'],
 })
-export class StoriesComponent implements DoCheck {
+export class StoriesComponent implements DoCheck,OnInit {
   @Input() Fragenliste;
   @Input() Storyliste;
   @Input() test;
@@ -89,32 +89,44 @@ export class StoriesComponent implements DoCheck {
   fragenanzeige: string;
   story: string[] = [];
   storyanzeige: string;
+
   Fragen = ['Frage1', 'Frage2', 'Frage3', 'Frage4', 'Frage5'];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
-
+    db = firebase
+    .firestore()
+    .collection('Images_Story');
+    db1 = firebase.firestore();
   i = parseInt(localStorage.getItem('storyIndex'));
 
   constructor(private dataservice: DataService) {
     console.log(this.i);
-    this.imgArray = [
-      '/assets/fragenkatalog/story_shopping.png',
-      '/assets/fragenkatalog/story_bahnhof.png',
-      '/assets/fragenkatalog/rechtliche_Hilfe.png',
-      '/assets/fragenkatalog/wunsch.png',
-      '/assets/fragenkatalog/immobilien_sparen.png',
-    ];
-
+    
+ 
     this.form = new FormGroup({
       stories: new FormControl(),
     });
-     
-    
-  }
 
+    
+}
+ngOnInit(): void {
+  for (let i = 1; i <= 5; i++) {
+    if(i==0) {
+    } else {
+      this.db
+        .doc('Story' + i.toString().padStart(2, ''))
+        .get()
+        .then((doc) => {
+          //Antworten des User
+          this.imgArray.push(doc.data()._); 
+    });
+  }
+}
+}
+ 
   ngDoCheck(): void {
     this.fragen = this.Fragenliste;
     this.story = this.Storyliste;
@@ -209,4 +221,6 @@ export class StoriesComponent implements DoCheck {
   sendIndexstory(): void {
     this.dataservice.sendIndexstory(this.i);
   }
+  
 }
+

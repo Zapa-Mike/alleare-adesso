@@ -41,6 +41,11 @@ export class QuestionsComponent implements OnInit, DoCheck {
   Frage4:boolean=false;
   Frage5:boolean=false;
   routing:number=1;
+  dbImage = firebase
+  .firestore()
+  .collection('Images_Fragen');
+  db1Image = firebase.firestore();
+  imgArray = [];
   
   constructor(private dataservice:DataService) {
     this.form= new FormGroup({ //Muss raus alles mit jquery
@@ -184,6 +189,19 @@ export class QuestionsComponent implements OnInit, DoCheck {
           });
       }
     });
+
+    for (let i = 1; i <= 6; i++) {
+      if(i==0) {
+      } else {
+        this.dbImage
+          .doc('Antwort' + i.toString().padStart(2, ''))
+          .get()
+          .then((doc) => {
+            //Antworten des User
+            this.imgArray.push(doc.data()._); 
+      });
+    }
+  }
   }
 
   ngDoCheck(){
