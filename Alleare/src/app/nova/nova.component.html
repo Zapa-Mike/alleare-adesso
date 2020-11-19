@@ -1,1 +1,72 @@
-<p>nova works!</p>
+<head></head>
+<body>
+  <div class="row Novaheader form-inline">
+    <button class="zurueckButton" type="button" routerLink="/home">
+      <img id="zurueck" src="/assets/icons/icon_auswertung_arrow.svg" />
+    </button>
+    <div class="Titel text-center">
+      <h3>Nova</h3>
+    </div>
+    <button
+      type="button"
+      class="LinkEinfuehrungApp btn-link"
+      routerLink="/intro"
+    >
+      Einführung der App
+    </button>
+  </div>
+  <!--Sprechblase-->
+  <div class="grid-containerNovaSprechblase">
+    <div class="bubble shadow bubble-bottom-left" contenteditable="false">
+      Hi XXX, du befindest dich im Fragenkatalog. Wie kann ich dir helfen? Wie
+      kann ich dir helfen?
+    </div>
+
+    <div class="Nova">
+      <!--NovaImage-->
+      <img
+        src="/assets/nova/nova_intro_links.png"
+        width="100"
+        height="100"
+        id="NovaImage"
+      />
+    </div>
+  </div>
+  <div class="col form-inline AntwortNutzer">
+    <div class="bubble2 shadow bubble-bottom-right" contenteditable="false">
+      Wofür brauche ich den Fragenkatalog?
+    </div>
+  </div>
+
+  <div class="grid-containerAntwortChat">
+    <button type="button" class="chatAntwort shadow rounded-pill">Tipps</button>
+    <button type="button" class="chatAntwort shadow rounded-pill">FAQ</button>
+    <button type="button" class="chatAntwort shadow rounded-pill">Quiz</button>
+  </div>
+  <div class="grid-containerAntwortChat2">
+    <button type="button" class="chatAntwort2 shadow rounded-pill">
+      Fragenkatalog
+    </button>
+    <button type="button" class="chatAntwort2 shadow rounded-pill">
+      Flashcard
+    </button>
+  </div>
+
+  <div class="grid-containerAntwortChat3">
+    <div class="VorgegebeneAntwort">
+      <button type="button" class="chatAntwort3 shadow rounded-pill">
+        Wofür brauche ich den Fragenkatalog?
+      </button>
+    </div>
+    <div class="VorgegebeneAntwort">
+      <button type="button" class="chatAntwort3 shadow rounded-pill">
+        Kann ich auch später den Fragenkatalog weitermachen?
+      </button>
+    </div>
+    <div class="VorgegebeneAntwort">
+      <button type="button" class="chatAntwort3 shadow rounded-pill">
+        Was ist, wenn keine Antwortmöglichkeiten passen?
+      </button>
+    </div>
+  </div>
+</body>

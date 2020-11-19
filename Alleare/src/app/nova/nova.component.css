@@ -1,0 +1,180 @@
+body {
+  background-color: #f2f9fd;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*position:fixed;*/
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-family: lato;
+}
+
+/*Nova "2ter Header"*/
+.Titel {
+  color: #2a2d2f;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: lato;
+}
+.Novaheader {
+  margin-top: 50px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.zurueckButton {
+  padding: 0%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: none;
+  margin-left: 5%;
+}
+#zurueck {
+  transform: scaleX(-1);
+}
+.LinkEinfuehrungApp {
+  padding: 0%;
+  width: 100px;
+  height: 50px;
+  border: none;
+  background: none;
+  margin-right: 5%;
+}
+
+/*Sprechblase*/
+.bubble {
+  position: relative;
+  font-family: lato;
+  font-size: 12px;
+  line-height: 1.3;
+  width: 200px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 26px;
+  text-align: center;
+  color: #000;
+  margin-left: 20%;
+}
+.bubble-bottom-left::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 45px solid #fff;
+  border-right: 25px solid transparent;
+  border-top: 40% solid #fff;
+  border-bottom: 40px solid transparent;
+  left: 25%;
+  bottom: -14px;
+}
+.bubble2 {
+  position: relative;
+  font-family: lato;
+  font-size: 12px;
+  line-height: 1.3;
+  width: 200px;
+  background: #9cd1f0;
+  border-radius: 50%;
+  padding: 26px;
+  text-align: center;
+  color: #000;
+  margin-left: 50%;
+  margin-right: 5%;
+  margin-bottom: 20%;
+}
+.bubble-bottom-right::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0 45px 25px 0;
+  border-top: 40% solid #9cd1f0;
+  border-color: #9cd1f0;
+  border-bottom: 40px solid transparent;
+  right: 25%;
+  bottom: -14px;
+}
+.col form-inline {
+  padding-bottom: 0%;
+}
+
+/*Nova Image*/
+.Nova {
+  padding-bottom: 1%;
+}
+#NovaImage {
+  margin-left: 5%;
+  float: left;
+  align-content: end;
+}
+
+/*Grids*/
+.grid-containerNovaSprechblase {
+  display: grid;
+  align-content: space-evenly;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  background-color: #f2f9fd;
+  margin-bottom: 5%;
+}
+.grid-containerAntwortChat {
+  display: grid;
+  padding-left: 5%;
+  padding-right: 5%;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.grid-containerAntwortChat2 {
+  display: grid;
+  padding-left: 5%;
+  padding-right: 5%;
+  grid-template-columns: 45% 45%;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.grid-containerAntwortChat3 {
+  display: grid;
+  padding-left: 5%;
+  padding-right: 5%;
+  grid-template-columns: 100%;
+  justify-content: space-around;
+  text-align: center;
+  grid-gap: 20px;
+  margin-bottom: 5%;
+}
+
+/*AntwortButtons*/
+.chatAntwort {
+  padding: 0%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #fff;
+  width: 100%;
+  color: black;
+  position: sticky;
+  border: none;
+}
+.chatAntwort2 {
+  padding: 0%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #fff;
+  width: 100%;
+  color: black;
+  position: sticky;
+  border: none;
+}
+.chatAntwort3 {
+  padding: 0%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #fff;
+  width: 100%;
+  color: black;
+  position: sticky;
+  border: none;
+}

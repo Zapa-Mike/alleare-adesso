@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2a2d2f;
+      }
+    </style>
+  </defs>
+  <g id="icon_close" data-name="icon close" transform="translate(-0.001 0)">
+    <rect id="Rechteck_118" data-name="Rechteck 118" class="cls-1" width="4.4" height="26.713" transform="translate(18.89 0) rotate(45)"/>
+    <rect id="Rechteck_119" data-name="Rechteck 119" class="cls-1" width="4.4" height="26.713" transform="translate(22.001 18.889) rotate(135)"/>
+  </g>
+</svg>
