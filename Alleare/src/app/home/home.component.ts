@@ -26,4 +26,9 @@ export class HomeComponent implements OnInit{
   }
     )
 }
+fragebogen(){
+  var index = (0).toString();
+  localStorage.setItem('storyIndex', index);
+  localStorage.setItem('radioIndex', index);
+}
 }

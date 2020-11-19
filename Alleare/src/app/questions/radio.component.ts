@@ -74,7 +74,7 @@ import { DataService } from '.././services/data.service';
 export class RadioComponent implements DoCheck {
   form: FormGroup;
   fragen: string[];
-  i: number = 0;
+
   fragenanzeige: string;
   @Input() Fragenliste;
   imgArray = [];
@@ -84,8 +84,11 @@ export class RadioComponent implements DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
+  i = 0;
 
   constructor(private dataservice: DataService) {
+    
+
     this.form = new FormGroup({
       fragen: new FormControl(),
     });
@@ -97,11 +100,19 @@ export class RadioComponent implements DoCheck {
       '/assets/fragenkatalog/drohne.png',
       '/assets/fragenkatalog/sport.png',
     ];
+
+    if (localStorage.getItem('radioIndex') == null) {
+      this.i = this.i;
+    } else {
+      this.i = parseInt(localStorage.getItem('radioIndex'));
+    }
+  
   }
 
   ngDoCheck() {
     this.fragen = this.Fragenliste;
     this.fragenanzeige = this.Fragenliste[this.i];
+   
   }
 
   push() {
@@ -154,6 +165,8 @@ export class RadioComponent implements DoCheck {
             });
             break;
         }
+        var index = (this.i).toString();
+        localStorage.setItem('radioIndex', index);
         this.i = this.i + 1;
         this.sendIndexradio();
       }
@@ -161,13 +174,19 @@ export class RadioComponent implements DoCheck {
   }
 
   zurueck() {
-    if (this.fragen.length > this.i) {
+   
+    if (this.fragen.length >= this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+      localStorage.setItem('radioIndex', index);
       this.i = this.i - 1;
+      this.sendIndexradio();
     }
+    
   }
 
   sendIndexradio(): void {
     this.dataservice.sendIndexradio(this.i);
+    console.log(this.i);
   }
 }
