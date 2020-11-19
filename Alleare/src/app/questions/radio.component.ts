@@ -17,7 +17,7 @@ import { DataService } from '.././services/data.service';
         <div>
           <div class="ImageStory"><!--Story "Frage"-->{{ fragenanzeige }}</div>
 
-          <img src="{{ imgArray[i] }}" class="img-responsive" />
+          <img src="data:image/gif;base64,{{ imgArray[i] }}" class="img-responsive" />
           <br />
 
           <div class="RadioButtonsJaNein form-group">
@@ -71,7 +71,7 @@ import { DataService } from '.././services/data.service';
   `,
   styleUrls: ['./questions.component.css'],
 })
-export class RadioComponent implements DoCheck {
+export class RadioComponent implements DoCheck,OnInit {
   form: FormGroup;
   fragen: string[];
 
@@ -85,6 +85,10 @@ export class RadioComponent implements DoCheck {
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
   i = 0;
+  db = firebase
+  .firestore()
+  .collection('Images_Radio');
+  db1 = firebase.firestore();
 
   constructor(private dataservice: DataService) {
     
@@ -93,20 +97,27 @@ export class RadioComponent implements DoCheck {
       fragen: new FormControl(),
     });
 
-    this.imgArray = [
-      '/assets/fragenkatalog/auto.png',
-      '/assets/fragenkatalog/motorrad.png',
-      '/assets/fragenkatalog/fahrrad.png',
-      '/assets/fragenkatalog/drohne.png',
-      '/assets/fragenkatalog/sport.png',
-    ];
-
     if (localStorage.getItem('radioIndex') == null) {
       this.i = this.i;
     } else {
       this.i = parseInt(localStorage.getItem('radioIndex'));
     }
   
+  }
+  ngOnInit(): void {
+    for (let i = 1; i <= 6; i++) {
+      if(i==0) {
+      } else {
+        this.db
+          .doc('Frage' + i.toString().padStart(2, ''))
+          .get()
+          .then((doc) => {
+            //Antworten des User
+            this.imgArray.push(doc.data()._); 
+      });
+    }
+  }
+    
   }
 
   ngDoCheck() {

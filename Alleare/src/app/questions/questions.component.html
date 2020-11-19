@@ -127,7 +127,7 @@
             <button id="Haus" class="BildButtons" value="Haus">
               <img
                 id="Bild"
-                src="/assets/fragenkatalog/familienhaus.png"
+                src="data:image/gif;base64,{{ imgArray[0] }}"
                 width="70px"
                 height="50px"
               />
@@ -138,7 +138,7 @@
             <button id="Wohnung" class="BildButtons" value="Wohnung">
               <img
                 id="Bild"
-                src="/assets/fragenkatalog/wohnungen.png"
+                src="data:image/gif;base64,{{ imgArray[1] }}"
                 width="70px"
                 height="50px"
               />
@@ -190,11 +190,11 @@
         <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[3] }}</div>
         <div class="grid-containerBilderAntwort">
           <button id="pferd" class="BildButtons">
-            <img id="Bild" src="/assets/fragenkatalog/pferd.png" />
+            <img id="Bild" src="data:image/gif;base64,{{ imgArray[2] }}" />
             <p><label class="form-check-label"> Pferd </label></p>
           </button>
           <button id="hund" value="Hund" class="BildButtons">
-            <img id="Bild" src="/assets/fragenkatalog/hund.png" />
+            <img id="Bild" src="data:image/gif;base64,{{ imgArray[3] }}" />
             <p><label class="form-check-label"> Hund </label></p>
           </button>
 
@@ -245,13 +245,13 @@
         <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[5] }}</div>
         <div class="grid-containerBilderAntwort">
           <button id="Single" class="BildButtons">
-            <img id="BildSingle" src="/assets/fragenkatalog/single.png" />
+            <img id="BildSingle" src="data:image/gif;base64,{{ imgArray[4] }}" />
             <p><label class="form-check-label"> Ledig </label></p>
           </button>
           <button id="Verheiratet" class="BildButtons">
             <img
               id="BildVerheiratet"
-              src="/assets/fragenkatalog/verheiratet.png"
+              src="data:image/gif;base64,{{ imgArray[5] }}"
             />
             <p><label class="form-check-label"> Verheiratet </label></p>
           </button>
