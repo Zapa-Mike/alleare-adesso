@@ -8,7 +8,17 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-novadialog',
   template: `
-
+<div class="dialog">
+  <div class="novabubble shadow speech-bubble" contenteditable="false">
+    <p>Das war ein Teil von vielen Irrtümer und Alltagssituationen</p>
+      <div class="nova">
+        <img src="/assets/nova/nova_intro_rechts.png"
+            width="100"
+            height="100"
+            id="NovaImage1"/>
+      </div>     
+  </div>
+</div>
   `,
   styleUrls: ['./intro.component.css'],
 })
