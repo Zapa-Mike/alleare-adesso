@@ -37,7 +37,7 @@
   </div>
 <div class="container_main">
   <div class="grid-container" id="firstcont">
-     <button type="button" class="btn btn-default" routerLink="/questions">Fragenkatalog</button>
+     <button type="button" class="btn btn-default" routerLink="/questions"(click)="fragebogen()">Fragenkatalog</button>
     </div>
 
   <div class="grid-container" id="secondcont">
@@ -54,7 +54,8 @@
           <img src="/assets/icons/icon_setting.svg" alt="icon_setting" width="40" height="40" />
         </button>
 
-      <button id="novaButton" routerLink="/settings">
+
+      <button id="novaButton" routerLink="/nova">
         <img src="/assets/nova/nova_home.png" alt="nova_home" width="120" height="120"
         />
       </button>
