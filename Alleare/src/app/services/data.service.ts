@@ -32,14 +32,13 @@ export class DataService {
         return this.subject1.asObservable();
     }
 
-    sendBackIndex(switchPage:number){
-        this.subject2.next(switchPage);
-        console.log("data"+switchPage);
-        }
-    
-    getBackIndex() : Observable<any>{
+    sendIndexdialog(indexdialog:number)
+    {
+        this.subject2.next(indexdialog);
+    }
+
+    getIndexdialog(): Observable<any>{
         return this.subject2.asObservable();
     }
-    
-    
+
 }
