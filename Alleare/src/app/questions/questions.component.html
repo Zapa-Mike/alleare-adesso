@@ -201,32 +201,41 @@
     </div>
   </div>
 
-  <!--Frage4-->
-  <div class="Frage4">
-    <div class="card">
-      <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[3] }}</div>
-      <div class="CheckboxAbfrage">
-        <div class="form-check form-check-inline">
-          <button id="Haus">
-            <img
-              src="/assets/fragenkatalog/familienhaus.png"
-              width="70px"
-              height="50px"
-              (click)="frage4haus()"
-            />
-          </button>
-          <label class="form-check-label"> Haus </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <button id="Wohnung">
-            <img
-              src="/assets/fragenkatalog/wohnungen.png"
-              width="70px"
-              height="50px"
-              (click)="frage4wohnung()"
-            />
-          </button>
-          <label class="form-check-label"> Wohnung </label>
+    <!--Bilder abfrage für Haus Wohnung-->
+    <div *ngIf="Frage2" class="FrageWohnsitz">
+      <div class="card">
+        <div class="ImageStory"><!--Story "Frage"-->{{ Fragenliste[1] }}</div>
+        <div class="grid-containerBilderAntwort">
+          <div class="form-check form-check-inline">
+            <button id="Haus" class="BildButtons" value="Haus">
+              <img
+                id="Bild"
+                src="/assets/fragenkatalog/familienhaus.png"
+                width="70px"
+                height="50px"
+              />
+              <p><label class="form-check-label"> Haus </label></p>
+            </button>
+          </div>
+          <div class="form-check form-check-inline">
+            <button id="Wohnung" class="BildButtons" value="Wohnung">
+              <img
+                id="Bild"
+                src="/assets/fragenkatalog/wohnungen.png"
+                width="70px"
+                height="50px"
+              />
+              <p><label class="form-check-label"> Wohnung </label></p>
+            </button>
+          </div>
+          <div class="grid-element form-check-inline">
+            <input type="radio" name="stories" value="nein" id="redundant4" />
+            <label class="form-check-label"> Miete </label>
+          </div>
+          <div class="grid-element form-check-inline">
+            <input type="radio" name="stories" value="nein" id="redundant5" />
+            <label class="form-check-label"> Eigentum </label>
+          </div>
         </div>
       </div>
       <div class="col rowVZ">
@@ -382,7 +391,6 @@
         </button>
       </div>
     </div>
-  </div>
 
   <!--Frage 6c-->
   <div class="Frage6c">
