@@ -3,8 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { Observable, Subject } from 'rxjs';
-import { DataService } from ".././services/data.service";
-
+import { DataService } from '.././services/data.service';
 
 @Component({
   selector: 'app-radio',
@@ -75,18 +74,21 @@ import { DataService } from ".././services/data.service";
 export class RadioComponent implements DoCheck {
   form: FormGroup;
   fragen: string[];
-  i: number = 0;
+
   fragenanzeige: string;
   @Input() Fragenliste;
   imgArray = [];
+  Fragen = ['Frage6', 'Frage7', 'Frage8', 'Frage9', 'Frage10', 'Frage11'];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog')
-    .doc('Antworten');
+    .collection('Fragenkatalog');
+  i = 0;
 
   constructor(private dataservice: DataService) {
+    
+
     this.form = new FormGroup({
       fragen: new FormControl(),
     });
@@ -98,12 +100,19 @@ export class RadioComponent implements DoCheck {
       '/assets/fragenkatalog/drohne.png',
       '/assets/fragenkatalog/sport.png',
     ];
+
+    if (localStorage.getItem('radioIndex') == null) {
+      this.i = this.i;
+    } else {
+      this.i = parseInt(localStorage.getItem('radioIndex'));
+    }
+  
   }
 
   ngDoCheck() {
     this.fragen = this.Fragenliste;
     this.fragenanzeige = this.Fragenliste[this.i];
-
+   
   }
 
   push() {
@@ -120,60 +129,64 @@ export class RadioComponent implements DoCheck {
         $('#redundant3').prop('checked', false);
         this.fragenanzeige = this.fragen[this.i];
       }
-      if(this.i>=this.fragen.length) {
-        console.log("ende");
+      if (this.i >= this.fragen.length) {
+        console.log('ende');
         console.log(this.i);
-      }else {
-
-      switch (this.i) {
-        case 0:
-          this.dbpush.update({
-            Frage7: this.form.value.fragen,
-          });
-          break;
-        case 1:
-          this.dbpush.update({
-            Frage8: this.form.value.fragen,
-          });
-          break;
-        case 2:
-          this.dbpush.update({
-            Frage9: this.form.value.fragen,
-          });
-          break;
-        case 3:
-          this.dbpush.update({
-            Frage10: this.form.value.fragen,
-          });
-          break;
-        case 4:
-          this.dbpush.update({
-            Frag11: this.form.value.fragen,
-          });
-          break;
-        case 5:
-          this.dbpush.update({
-            Frag12: this.form.value.fragen,
-          });
-          break;
+      } else {
+        switch (this.i) {
+          case 0:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+          case 1:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+          case 2:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+          case 3:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+          case 4:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+          case 5:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.fragen,
+            });
+            break;
+        }
+        var index = (this.i).toString();
+        localStorage.setItem('radioIndex', index);
+        this.i = this.i + 1;
+        this.sendIndexradio();
       }
-      this.i = this.i + 1;
-      this.sendIndexradio();
     }
-  }
   }
 
   zurueck() {
-    if (this.fragen.length > this.i) {
+   
+    if (this.fragen.length >= this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+      localStorage.setItem('radioIndex', index);
       this.i = this.i - 1;
+      this.sendIndexradio();
     }
+    
   }
 
-sendIndexradio() :void{
-  this.dataservice.sendIndexradio(this.i);
+  sendIndexradio(): void {
+    this.dataservice.sendIndexradio(this.i);
+    console.log(this.i);
+  }
 }
-
-}
-
-

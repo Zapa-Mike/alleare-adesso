@@ -68,14 +68,12 @@ import { DataService } from '.././services/data.service';
         {{ fragenanzeige }}
       </div>
 
-      <div class="Nova">
-        <img
-          src="/assets/nova/nova_fragenkatalog.png"
-          width="100"
-          height="100"
-          id="NovaImage"
-        />
-      </div>
+      <img
+        src="/assets/nova/nova_fragenkatalog.png"
+        width="100"
+        height="100"
+        id="NovaImage"
+      />
     </div>
   `,
   styleUrls: ['./questions.component.css'],
@@ -83,7 +81,7 @@ import { DataService } from '.././services/data.service';
 export class StoriesComponent implements DoCheck {
   @Input() Fragenliste;
   @Input() Storyliste;
-  i: number = 0;
+  @Input() test;
   form: FormGroup;
   test2: string;
   imgArray = [];
@@ -91,14 +89,17 @@ export class StoriesComponent implements DoCheck {
   fragenanzeige: string;
   story: string[] = [];
   storyanzeige: string;
+  Fragen = ['Frage1', 'Frage2', 'Frage3', 'Frage4', 'Frage5'];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog')
-    .doc('Antworten');
+    .collection('Fragenkatalog');
 
-  constructor(private dataservice:DataService) {
+  i = parseInt(localStorage.getItem('storyIndex'));
+
+  constructor(private dataservice: DataService) {
+    console.log(this.i);
     this.imgArray = [
       '/assets/fragenkatalog/story_shopping.png',
       '/assets/fragenkatalog/story_bahnhof.png',
@@ -110,6 +111,8 @@ export class StoriesComponent implements DoCheck {
     this.form = new FormGroup({
       stories: new FormControl(),
     });
+     
+    
   }
 
   ngDoCheck(): void {
@@ -147,43 +150,43 @@ export class StoriesComponent implements DoCheck {
       if (this.story.length > this.i) {
         this.storyanzeige = this.story[this.i];
       }
-      if(this.i==this.fragen.length) {
-        console.log("ende");
+      if (this.i == this.fragen.length) {
+        console.log('ende');
         console.log(this.i);
-      }else {
-
-      switch (this.i) {
-        case 0:
-          this.dbpush.update({
-            Frage1: this.form.value.stories,
-          });
-          break;
-        case 1:
-          this.dbpush.update({
-            Frage2: this.form.value.stories,
-          });
-          break;
-        case 2:
-          this.dbpush.update({
-            Frage3: this.form.value.stories,
-          });
-          break;
-        case 3:
-          this.dbpush.update({
-            Frage4: this.form.value.stories,
-          });
-          break;
-        case 4:
-          this.dbpush.update({
-            Frage5: this.form.value.stories,
-          });
-          break;
+      } else {
+        switch (this.i) {
+          case 0:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 1:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 2:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 3:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 4:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+        }
+        var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
+        this.i = this.i + 1;
+        this.sendIndexstory();
       }
-
-      this.i = this.i + 1;
-      this.sendIndexstory(); 
     }
-  }
   }
 
   zurueck() {
@@ -197,13 +200,13 @@ export class StoriesComponent implements DoCheck {
     }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
       this.i = this.i - 1;
     }
   }
 
-  sendIndexstory() :void{
+  sendIndexstory(): void {
     this.dataservice.sendIndexstory(this.i);
   }
-
 }
-

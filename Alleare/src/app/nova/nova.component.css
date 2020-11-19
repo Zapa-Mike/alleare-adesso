@@ -44,8 +44,8 @@ body {
 /*Sprechblase*/
 .bubble {
   position: relative;
-  font-family: sans-serif;
-  font-size: 18px;
+  font-family: lato;
+  font-size: 12px;
   line-height: 1.3;
   width: 200px;
   background: #fff;
@@ -69,8 +69,8 @@ body {
 }
 .bubble2 {
   position: relative;
-  font-family: sans-serif;
-  font-size: 18px;
+  font-family: lato;
+  font-size: 12px;
   line-height: 1.3;
   width: 200px;
   background: #9cd1f0;
