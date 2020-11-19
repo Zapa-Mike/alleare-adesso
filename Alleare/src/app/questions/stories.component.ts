@@ -81,6 +81,7 @@ import { DataService } from '.././services/data.service';
 export class StoriesComponent implements DoCheck {
   @Input() Fragenliste;
   @Input() Storyliste;
+  @Input() test;
   i: number = 0;
   form: FormGroup;
   test2: string;
@@ -108,6 +109,12 @@ export class StoriesComponent implements DoCheck {
     this.form = new FormGroup({
       stories: new FormControl(),
     });
+
+    if (localStorage.getItem('storyIndex') == null) {
+      this.i = this.i;
+    } else {
+      this.i = parseInt(localStorage.getItem('storyIndex'));
+    }
   }
 
   ngDoCheck(): void {
@@ -194,6 +201,8 @@ export class StoriesComponent implements DoCheck {
     }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
       this.i = this.i - 1;
     }
   }
