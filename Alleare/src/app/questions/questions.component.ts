@@ -80,32 +80,6 @@ export class QuestionsComponent implements OnInit, DoCheck {
           });
       });
     });
-
-    firebase
-      .firestore()
-      .collection('Fragenkatalog')
-      .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-        snapshot.docChanges().forEach(function (change) {
-          if (change.type === 'added') {
-          }
-
-          var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-          console.log('Data came from ' + source);
-        });
-      });
-    firebase
-      .firestore()
-      .collection('_Fragenkatalog')
-      .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-        snapshot.docChanges().forEach(function (change) {
-          if (change.type === 'added') {
-          }
-
-          var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-          console.log('Data came from ' + source);
-        });
-      });
-
     //Fragen, welche nicht die Stories betreffen, von der Datenbank abgreifen und umwandeln in ein String
     for (let i = 1; i <= 11; i++) {
       db.collection('Fragenkatalog')
