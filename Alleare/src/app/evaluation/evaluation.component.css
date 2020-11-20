@@ -41,11 +41,11 @@ body {
   width: 20px;
   height: 31px;
 }
-.btnZumHauptmenue {
+.btnZu_Auswertung {
   background-color: #38cddc;
-  width: 200px;
+  width: 210px;
   color: #f2f9fd;
-  padding: 20px;
+  padding: 10px;
   box-shadow: #131314 25%;
   border: none;
 }
