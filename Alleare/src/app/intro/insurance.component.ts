@@ -9,6 +9,7 @@ import { Data } from '@angular/router';
 @Component({
   selector: 'app-insurance',
   template: `
+  <body>
     <!--Screen Intro Irrtümer Anfang-->
 <div [hidden]="eins">
     <div id="HaftpflichtEinblenden">
@@ -88,7 +89,8 @@ import { Data } from '@angular/router';
       </div>
     </div>
 </div>
-    <!-- Screen Intro Altagssituation Private Unfallversicherung Ende-->
+</body>    
+<!-- Screen Intro Altagssituation Private Unfallversicherung Ende-->
   `,
   styleUrls: ['./intro.component.css'],
 })
@@ -108,21 +110,24 @@ constructor(private dataservice: DataService)
 {
 }
   ngOnInit() {
+    this.HausratObjektAusblenden();
     setTimeout(()=> {
       this.eins=true;
       this.zwei=false;
+      this.AutoschadenObjektAusblenden();
     }, 4000);
     setTimeout(()=> {
       this.zwei=true;
       this.drei=false;
+      this.HaushaltsunfallObjektAusblenden();
     }, 8000);
     setTimeout(()=> {
       this.sendIndexdialog();
     }, 12000);
 
-    this.HausratObjektAusblenden(); /*Initialisiere Hidden */
-    this.AutoschadenObjektAusblenden(); /*Initialisiere Hidden */
-    this.HaushaltsunfallObjektAusblenden(); /*Initialisiere Hidden */
+     /*Initialisiere Hidden */
+     /*Initialisiere Hidden */
+     /*Initialisiere Hidden */
   }
 
    /*Bildanimation Hausrat Anfang*/
