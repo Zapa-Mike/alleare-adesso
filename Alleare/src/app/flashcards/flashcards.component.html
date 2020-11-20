@@ -50,7 +50,7 @@
     <div class="row-fluid">
       <div class="abody secondcontainer">
         <div class="FC row-md-12 text-center">
-          <h2>Flashcards</h2>
+          <h2>Infos</h2>
         </div>
         <div class="scrollbar col-md-12" id="scrollbar">
           <div *ngFor="let versicherung of Versicherungen" class="BU row">
@@ -59,7 +59,7 @@
               type="button"
               class="fcbtn btn-outline-secondary col-md-12"
               (click)="open(content)"
-              (click)="intendedContent()"
+              (click)="intendedContent($event)"
             >
               {{ versicherung }}
               <img
