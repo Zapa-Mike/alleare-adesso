@@ -62,7 +62,7 @@ export class FlashcardsComponent implements OnInit {
   }
 
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
-  intendedContent() {
+  intendedContent(event) {
     let title: string = event.target.id;
     document.getElementById("title").innerText = title;
     document.getElementById("content").innerText = this.ContentListe[this.Versicherungen.indexOf(title)];
