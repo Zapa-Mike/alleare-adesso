@@ -44,6 +44,9 @@ export class AppComponent implements DoCheck, OnInit {
     if (route.startsWith('/home')) {
       this.showNavbar = false;
       this.showheader = true;
+    } else if (route.startsWith('/evaluation')) {
+      this.showNavbar = false;
+      this.showheader = true;
     } else if (route.startsWith('/intro')) {
       this.showNavbar = false;
       this.showheader = false;
