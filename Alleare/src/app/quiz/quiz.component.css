@@ -39,14 +39,13 @@ body {
 /*Grids*/
 .grid-containerAntworten {
     display: grid;
-    padding-left: 10%;
-    padding-right: 10%;
-    grid-template-columns: 45% 45%;
-    grid-row-gap: 10%;
-    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
     text-align: start;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .antwort {
