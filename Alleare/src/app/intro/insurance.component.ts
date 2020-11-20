@@ -1,14 +1,16 @@
-import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-insurance',
   template: `
     <!--Screen Intro Irrtümer Anfang-->
+<div [hidden]="eins">
     <div id="HaftpflichtEinblenden">
       <img
         class="HaftpflichtBild"
@@ -24,7 +26,6 @@ import { DataService } from '../services/data.service';
     <div id="HausratEinblenden">
       <img
         class="HausratBild"
-        visibility:visible
         src="/assets/Bilder_Irrtuemer_Altagssituationen/Hausrat.png"
       />
       <div class="TextHausrat">
@@ -33,8 +34,9 @@ import { DataService } from '../services/data.service';
         </p>
       </div>
     </div>
+</div>
     <!--Screen Intro Irrtümer Ende-->
-
+<div [hidden]="zwei">
     <!--Screen Intro Altagssituation Autounfall Anfang-->
     <div id="PersonenbefoerderungEinblenden">
       <img
@@ -57,8 +59,9 @@ import { DataService } from '../services/data.service';
         <p><b>Wer trägt die Kosten?</b></p>
       </div>
     </div>
+</div>
     <!--Screen Intro Altagssituation Autounfall Ende-->
-
+<div [hidden]="drei">
     <!-- Screen Intro Altagssituation Private Unfallversicherung Anfang-->
     <div id="PrivateUnfallversicherungEinblenden">
       <img
@@ -84,14 +87,46 @@ import { DataService } from '../services/data.service';
         </p>
       </div>
     </div>
+</div>
     <!-- Screen Intro Altagssituation Private Unfallversicherung Ende-->
   `,
   styleUrls: ['./intro.component.css'],
 })
-export class insuranceComponent {
-  s;
-  /*Bildanimation Hausrat Anfang*/
-  HausratObjektAusblenden() {
+export class insuranceComponent implements OnInit{
+drei:boolean=true;
+eins:boolean=false;
+zwei:boolean=true;
+
+julia:boolean=true;
+julia1:boolean=true;
+julia2:boolean=true;
+
+Anzeige=['HausratEinblenden','AutoschadenEinblenden','HaushaltsunfallEinblenden']
+
+i:number=1;
+constructor(private dataservice: DataService)
+{
+}
+  ngOnInit() {
+    setTimeout(()=> {
+      this.eins=true;
+      this.zwei=false;
+    }, 4000);
+    setTimeout(()=> {
+      this.zwei=true;
+      this.drei=false;
+    }, 8000);
+    setTimeout(()=> {
+      this.sendIndexdialog();
+    }, 12000);
+
+    this.HausratObjektAusblenden(); /*Initialisiere Hidden */
+    this.AutoschadenObjektAusblenden(); /*Initialisiere Hidden */
+    this.HaushaltsunfallObjektAusblenden(); /*Initialisiere Hidden */
+  }
+
+   /*Bildanimation Hausrat Anfang*/
+   HausratObjektAusblenden() {
     const HausratEinblenden = (document.getElementById(
       'HausratEinblenden'
     ) as unknown) as HTMLInputElement;
@@ -101,12 +136,6 @@ export class insuranceComponent {
     }, 2000);
   }
   /*Bildanimation Hausrat Ende*/
-
-  ngOnInit() {
-    this.HausratObjektAusblenden(); /*Initialisiere Hidden */
-    this.AutoschadenObjektAusblenden(); /*Initialisiere Hidden */
-    this.HaushaltsunfallObjektAusblenden(); /*Initialisiere Hidden */
-  }
 
   /*Bildanimation Autoschaden Anfang*/
   AutoschadenObjektAusblenden() {
@@ -130,5 +159,9 @@ export class insuranceComponent {
       HaushaltsunfallEinblenden.style.visibility = 'visible';
     }, 2000);
   }
-  /*Bildanimation Hauhaltsunfall Ende*/
+
+  sendIndexdialog() {
+    this.dataservice.sendIndexdialog(this.i);
+  }
+
 }
