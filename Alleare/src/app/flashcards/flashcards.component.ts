@@ -22,17 +22,6 @@ export class FlashcardsComponent implements OnInit {
   constructor(private modalService: NgbModal) {
     var db = firebase.firestore();
     let data: string[] = [];
-    firebase.firestore().collection("Flashcards")
-      .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-        snapshot.docChanges().forEach(function (change) {
-          if (change.type === "added") {
-            console.log("Name: ", change.doc.data());
-          }
-          var source = snapshot.metadata.fromCache ? "local cache" : "server";
-          console.log("Data came from " + source);
-        });
-      });
-
     //Fragen von der Datenbank abgreifen und umwandeln in ein String
     db.collection("Flashcards").doc("Versicherungen")
       .get().then(function (doc) {
