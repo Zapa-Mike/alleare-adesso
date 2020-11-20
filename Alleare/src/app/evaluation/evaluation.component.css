@@ -25,14 +25,15 @@ body {
   padding-right: 5%;
 }
 .ButtonVersicherung {
-  padding: 5%;
+  padding-bottom: 3%;
+  padding-left: 2%;
   width: 100%;
   border: none;
   background: none;
   text-align: left;
   justify-content: space-between;
   border-bottom: 1px solid lightslategray;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   vertical-align: middle;
   font-size: 18px;
 }
@@ -48,6 +49,7 @@ body {
   padding: 10px;
   box-shadow: #131314 25%;
   border: none;
+  margin-top: 5%;
 }
 .grid-containerAuswertung {
   /*Auswertung Weiter Zum Hauptmenü-Button*/
@@ -63,7 +65,9 @@ body {
   grid-template-columns: auto auto;
   grid-template-rows: 160px;
   background-color: #f2f9fd;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5%;
   padding-bottom: 0%;
 }
 
