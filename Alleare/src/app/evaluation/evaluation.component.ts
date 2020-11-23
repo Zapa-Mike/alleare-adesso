@@ -82,8 +82,6 @@ ngOnInit() {
           });
       }
     }
-    console.log(perVersicherung);
-    console.log(Versicherungsprioritaet);
     setTimeout(() =>{
       this.sort();//Bessere Methode mit asnyc await promise später machen!
     }, 1500);
@@ -115,6 +113,9 @@ async sort() {
     }
     for(let z=0;z<=4;z++){
       this.Versicherungsanzeige5[z]=this.Versicherungspriorisierung[z]; // Die besten 5 werden ausgegeben
+      this.db1.collection('Versicherungen').doc(this.Versicherungsanzeige5[z]).update({
+        Favorisierung: true,
+      })
     }
     this.Versicherungsanzeige5 = this.Versicherungsanzeige5.filter(function (el) {//Wenn weniger als 5 Versicherungen existieren, dann lösch wieder alle empty Felder
       return el != null;
