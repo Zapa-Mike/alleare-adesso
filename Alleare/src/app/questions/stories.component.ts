@@ -11,7 +11,7 @@ import { DataService } from '.././services/data.service';
     <div class="Frage">
       <div [formGroup]="form" class="card">
         <div>
-          <img src="{{ imgArray[i] }}" class="img-responsive" />
+        <img src="data:image/gif;base64,{{ imgArray[i] }}" class="img-responsive"/>
 
           <div class="ImageStory">
             {{ storyanzeige }}
@@ -68,22 +68,20 @@ import { DataService } from '.././services/data.service';
         {{ fragenanzeige }}
       </div>
 
-     
-        <img
-          src="/assets/nova/nova_fragenkatalog.png"
-          width="100"
-          height="100"
-          id="NovaImage"
-        />
-      
+      <img
+        src="/assets/nova/nova_fragenkatalog.png"
+        width="100"
+        height="100"
+        id="NovaImage"
+      />
     </div>
   `,
   styleUrls: ['./questions.component.css'],
 })
-export class StoriesComponent implements DoCheck {
+export class StoriesComponent implements DoCheck,OnInit {
   @Input() Fragenliste;
   @Input() Storyliste;
-  i: number = 0;
+  @Input() test;
   form: FormGroup;
   test2: string;
   imgArray = [];
@@ -91,27 +89,44 @@ export class StoriesComponent implements DoCheck {
   fragenanzeige: string;
   story: string[] = [];
   storyanzeige: string;
+
+  Fragen = ['Frage1', 'Frage2', 'Frage3', 'Frage4', 'Frage5'];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog')
-    .doc('Antworten');
+    .collection('Fragenkatalog');
+    db = firebase
+    .firestore()
+    .collection('Images_Story');
+    db1 = firebase.firestore();
+  i = parseInt(localStorage.getItem('storyIndex'));
 
-  constructor(private dataservice:DataService) {
-    this.imgArray = [
-      '/assets/fragenkatalog/story_shopping.png',
-      '/assets/fragenkatalog/story_bahnhof.png',
-      '/assets/fragenkatalog/rechtliche_Hilfe.png',
-      '/assets/fragenkatalog/wunsch.png',
-      '/assets/fragenkatalog/immobilien_sparen.png',
-    ];
-
+  constructor(private dataservice: DataService) {
+    console.log(this.i);
+    
+ 
     this.form = new FormGroup({
       stories: new FormControl(),
     });
-  }
 
+    
+}
+ngOnInit(): void {
+  for (let i = 1; i <= 5; i++) {
+    if(i==0) {
+    } else {
+      this.db
+        .doc('Story' + i.toString().padStart(2, ''))
+        .get()
+        .then((doc) => {
+          //Antworten des User
+          this.imgArray.push(doc.data()._); 
+    });
+  }
+}
+}
+ 
   ngDoCheck(): void {
     this.fragen = this.Fragenliste;
     this.story = this.Storyliste;
@@ -147,43 +162,43 @@ export class StoriesComponent implements DoCheck {
       if (this.story.length > this.i) {
         this.storyanzeige = this.story[this.i];
       }
-      if(this.i==this.fragen.length) {
-        console.log("ende");
+      if (this.i == this.fragen.length) {
+        console.log('ende');
         console.log(this.i);
-      }else {
-
-      switch (this.i) {
-        case 0:
-          this.dbpush.update({
-            Frage1: this.form.value.stories,
-          });
-          break;
-        case 1:
-          this.dbpush.update({
-            Frage2: this.form.value.stories,
-          });
-          break;
-        case 2:
-          this.dbpush.update({
-            Frage3: this.form.value.stories,
-          });
-          break;
-        case 3:
-          this.dbpush.update({
-            Frage4: this.form.value.stories,
-          });
-          break;
-        case 4:
-          this.dbpush.update({
-            Frage5: this.form.value.stories,
-          });
-          break;
+      } else {
+        switch (this.i) {
+          case 0:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 1:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 2:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 3:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+          case 4:
+            this.dbpush.doc(this.Fragen[this.i]).set({
+              _: this.form.value.stories,
+            });
+            break;
+        }
+        var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
+        this.i = this.i + 1;
+        this.sendIndexstory();
       }
-
-      this.i = this.i + 1;
-      this.sendIndexstory(); 
     }
-  }
   }
 
   zurueck() {
@@ -197,13 +212,15 @@ export class StoriesComponent implements DoCheck {
     }
     if (this.fragen.length > this.i) {
       this.fragenanzeige = this.fragen[this.i - 2];
+      var index = (this.i).toString();
+        localStorage.setItem('storyIndex', index);
       this.i = this.i - 1;
     }
   }
 
-  sendIndexstory() :void{
+  sendIndexstory(): void {
     this.dataservice.sendIndexstory(this.i);
   }
-
+  
 }
 
