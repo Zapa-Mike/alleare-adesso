@@ -188,6 +188,10 @@ p {
   padding: 0%;
   border: none;
 }
+#V1button{/*Weiterbutton der Willkommenseite*/
+  padding: 0%;
+  margin-left: 75%;
+}
 
 /*Sprechblase*/
 .bubble {
@@ -216,6 +220,20 @@ p {
   border-bottom: 35px solid transparent;
   right: 15%;
   bottom: -14px;
+}
+#WillkommenSpB {
+  position: relative;
+  font-family: lato;
+  font-size: 12px;
+  line-height: 1.3;
+  width: 200px;
+  height: 65%;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 20px;
+  text-align: center;
+  color: #000;
+  justify-self: right;
 }
 
 /*Nova Image*/

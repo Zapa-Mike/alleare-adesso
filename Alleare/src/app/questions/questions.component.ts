@@ -418,7 +418,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
   
 
   }
-
+  weiter(){}
 }
 
 let tmpFragen: string[] = [];
