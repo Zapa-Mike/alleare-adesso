@@ -372,7 +372,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
         if (this.Frage5 == true) {
           $(document).ready(function () {
             $('#drop a').on('click', function () {
-              var txt = $(this).text();
+               var txt = $(this).text();
               firebase
                 .firestore()
                 .collection('Benutzer')
@@ -382,6 +382,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
                 .set({
                   _: txt,
                 });
+                $('#Bundestext').text(txt);
             });
           });
         }
