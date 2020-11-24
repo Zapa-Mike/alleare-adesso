@@ -2,7 +2,7 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  /*position:fixed;*/
+  position:fixed;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -112,11 +112,12 @@ body {
 /*Grids*/
 .grid-containerNovaSprechblase {
   display: grid;
+  height: auto;
   align-content: space-evenly;
   grid-template-columns: auto;
   grid-gap: 10px;
   background-color: #f2f9fd;
-  margin-bottom: 5%;
+  margin-bottom: 50%;
 }
 .grid-containerAntwortChat {
   display: grid;

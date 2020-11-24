@@ -10,10 +10,10 @@ let tmpfieldnames: string[] = [];
 
 @Component({
   selector: 'app-flashcards',
-  templateUrl: './flashcards.component.html',
-  styleUrls: ['./flashcards.component.css']
+  templateUrl: './infos.component.html',
+  styleUrls: ['./infos.component.css']
 })
-export class FlashcardsComponent implements OnInit {
+export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
   Fieldnames: string[] = [];
   dbget=firebase.firestore().collection('Versicherungen');
