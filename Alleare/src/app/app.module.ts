@@ -11,7 +11,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
 import { SettingsComponent } from './settings/settings.component';
-import { FlashcardsComponent } from './flashcards/flashcards.component';
+import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
 import { IntroComponent } from './intro/intro.component';
@@ -42,7 +42,7 @@ import { insuranceComponent } from './intro/insurance.component';
     QuizComponent,
     FaqComponent,
     SettingsComponent,
-    FlashcardsComponent,
+    InfosComponent,
     TippsComponent,
     NovaComponent,
     IntroComponent,
