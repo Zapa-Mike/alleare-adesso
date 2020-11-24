@@ -16,12 +16,18 @@ let tmpfieldnames: string[] = [];
 export class FlashcardsComponent implements OnInit {
   ContentListe: string[] = [];
   Fieldnames: string[] = [];
+  dbget=firebase.firestore().collection('Versicherungen');
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
   Versicherungen: string[] = ["Berufsunfähigkeitsversicherung", "Hausratversicherung", "Kfz-Versicherung", "Rechtschutzversicherung", "Reiseversicherung", "Riester-Rente", "Risikolebensversicherung", "Tierhaftpflichtversicherung", "Wohngebäudeversicherung", "private Haftpflichtversicherung", "private Unfallversicherung"];
+  allgemein1:boolean=true;
+  favorisiert1:boolean=false;
+  Versicherungenfav:any[]=[];
+
 
   constructor(private modalService: NgbModal) {
     var db = firebase.firestore();
     let data: string[] = [];
+
     //Fragen von der Datenbank abgreifen und umwandeln in ein String
     db.collection("Flashcards").doc("Versicherungen")
       .get().then(function (doc) {
@@ -48,7 +54,7 @@ export class FlashcardsComponent implements OnInit {
       });
     this.ContentListe = tmpcontent;
     this.Fieldnames = data;
-  }
+  }n
 
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
   intendedContent(event) {
@@ -78,8 +84,24 @@ export class FlashcardsComponent implements OnInit {
           `Dismissed ${this.getDismissReason(reason)}`;
       });
   }
+  allgemein()
+  {
+    this.favorisiert1=false;
+    this.allgemein1=true;
 
+  }
+  favorisiert()
+  {
+    this.allgemein1=false;
+    this.favorisiert1=true;
+      
+  }
   ngOnInit(): void {
     const test = firebase.firestore().collection("Flashcards").doc("Versicherungen");
+    this.dbget.where("Favorisierung","==", true).get().then((querysnapshot)=>{
+      querysnapshot.forEach((doc)=>{
+        this.Versicherungenfav.push(doc.id);
+      });
+    })
   }
 }
