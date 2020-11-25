@@ -1,6 +1,7 @@
-import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
+import { RouteNameResolverService } from '../services/route-name-resolver-service';
+import { RoutingService } from '../services/routing.service';
 
 @Component({
   selector: 'app-nova',
@@ -8,9 +9,10 @@ import firebase from 'firebase';
   styleUrls: ['./nova.component.css'],
 })
 export class NovaComponent implements OnInit {
-  NameIntro: any;
+  NameIntro: string;
+  previousRoute: string = '';
 
-  constructor(private route: LocationStrategy) {}
+  constructor(private routerService: RoutingService, private routeResolver: RouteNameResolverService) {}
 
   ngOnInit(): void {
     var docRef = firebase
@@ -21,8 +23,16 @@ export class NovaComponent implements OnInit {
     docRef.get().then((doc) => {
       if (doc.exists) {
         this.NameIntro = doc.data().Name;
+        this.getPreviousRoute();
       }
     });
-    
+  }
+
+  public getPreviousRoute() {
+    this.previousRoute = this.routerService.getPreviousUrl();
+  }
+
+  public resolveRoute(route: string) {
+    return this.routeResolver.resolveRoute(route);
   }
 }
