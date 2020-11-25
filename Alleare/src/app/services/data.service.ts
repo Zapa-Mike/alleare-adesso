@@ -23,53 +23,35 @@ export class DataService {
     fragenliste:any[]=[];
 
     constructor() {
-        this.dbget.where("type","==","radiostory").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenstory.push(doc.data()._);
-                this.fragenstory.push(doc.data().story);
-                this.fragenstory.push(doc.data().bild);
-            })
-        })
-        console.log(this.fragenstory);
 
-        this.dbget.where("type","==","zweiradio").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenradio.push(doc.data()._);
-                this.fragenradio.push(doc.data().bild);
-            })
-        })
-        console.log(this.fragenradio);
-
-        this.dbget.where("type","==","vierradio").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenvierradio.push(doc.data()._);
-            })
-        })
-        console.log(this.fragenvierradio);
-        this.dbget.where("type","==","zweibilder").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenzweibilder.push(doc.data()._);
-            })
-        })
-        console.log(this.fragenzweibilder);
-        this.dbget.where("type","==","zweibilderzweiradio").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenzweibilderzweiradio.push(doc.data()._);
-            })
-        })
-        console.log(this.fragenzweibilderzweiradio);
-        this.dbget.where("type","==","liste").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.fragenliste.push(doc.data()._);
-            })
-        })
-        console.log(this.fragenliste);
+        // this.dbget.where("type","==","vierradio").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenvierradio.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenvierradio);
+        // this.dbget.where("type","==","zweibilder").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenzweibilder.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenzweibilder);
+        // this.dbget.where("type","==","zweibilderzweiradio").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenzweibilderzweiradio.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenzweibilderzweiradio);
+        // this.dbget.where("type","==","liste").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenliste.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenliste);
 
     }
 

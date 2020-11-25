@@ -17,7 +17,7 @@ import { DataService } from '.././services/data.service';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
 })
-export class QuestionsComponent implements OnInit, DoCheck {
+export class QuestionsComponent{
   Fragenliste: string[] = []; //Anderen Fragen
   Storyliste: string[] = []; //Alle Stories für Radio Buttons
   StorybezogeneFragenliste: string[] = []; //Fragen zu den Stories
@@ -85,12 +85,6 @@ export class QuestionsComponent implements OnInit, DoCheck {
 //     });
 
    }
-   ngDoCheck(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 //   ngOnInit() {
 //     var docRef = firebase
 //       .firestore()
