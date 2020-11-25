@@ -29,6 +29,8 @@ import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
+import { RoutingService } from '../app/services/routing.service'
+import { RouteNameResolverService } from './services/route-name-resolver-service';
 
 
 
@@ -65,12 +67,12 @@ import { insuranceComponent } from './intro/insurance.component';
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DataService,AngularFirestore],
+  providers: [DataService,AngularFirestore,RoutingService, RouteNameResolverService],
   bootstrap: [AppComponent]
   
 })
 export class AppModule {
-
+  constructor(private routerExtService: RoutingService){}
   
   }
  
