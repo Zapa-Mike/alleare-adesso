@@ -11,6 +11,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { EvaluationComponent} from './evaluation/evaluation.component';
 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/intro', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'intro', component: IntroComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: 'evaluation', component: EvaluationComponent}
+
 ];
 
 @NgModule({

@@ -35,12 +35,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   </head>
 
-
-
-<div class="col-md-12">
-    <br>
-    <br>
-    <br>
-    <p>Tipps!</p>
+<body>
+  <tipps-categories *ngIf = "category"></tipps-categories>
+  <tipps-article *ngIf= "article"></tipps-article>
+  <tipps-topics *ngIf= "topics"></tipps-topics>
     <!--<button (click)="abfrage()">Test</button>-->
-</div>
+
+</body>
+
+

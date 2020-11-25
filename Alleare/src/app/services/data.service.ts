@@ -11,6 +11,8 @@ export class DataService {
     currentIndex1=this.subject1.asObservable();
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
+    private subject3 = new Subject<any>();
+    currentIndex3=this.subject3.asObservable();
 
     constructor() {
 
@@ -18,6 +20,14 @@ export class DataService {
 
     sendIndexradio(indexradio:number){
     this.subject.next(indexradio);
+    }
+
+    sendIndexcategory(indexcategory:number){
+        this.subject3.next(indexcategory)
+    }
+
+    getIndexcategory (): Observable<any>{
+        return this.subject3.asObservable();
     }
 
     getIndexradio() : Observable<any>{
