@@ -122,7 +122,6 @@ body {
   display: grid;
   padding-left: 5%;
   padding-right: 5%;
-  color: #38CDDC;
   grid-template-columns: 30% 30% 30%;
   justify-content: space-between;
   text-align: center;
@@ -142,7 +141,6 @@ body {
   display: grid;
   padding-left: 5%;
   padding-right: 5%;
-  background-color: #38CDDC;
   grid-template-columns: 100%;
   justify-content: space-around;
   text-align: center;
@@ -155,7 +153,7 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #fff;
+  background-color: #38CDDC;
   width: 100%;
   color: black;
   position: sticky;
@@ -165,7 +163,7 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #fff;
+  background-color: #38CDDC;
   width: 100%;
   color: black;
   position: sticky;
