@@ -2,7 +2,7 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  position:fixed;
+  position: fixed;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -131,7 +131,7 @@ body {
   display: grid;
   padding-left: 5%;
   padding-right: 5%;
-  color: #38CDDC;
+  color: #38cddc;
   grid-template-columns: 45% 45%;
   justify-content: space-between;
   text-align: center;
@@ -153,7 +153,6 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #38CDDC;
   width: 100%;
   color: black;
   position: sticky;
@@ -163,7 +162,6 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #38CDDC;
   width: 100%;
   color: black;
   position: sticky;

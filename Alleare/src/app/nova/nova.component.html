@@ -68,7 +68,8 @@
     <!--Sprechblase-->
     <div class="grid-containerNovaSprechblase">
       <div class="bubble shadow bubble-bottom-left" contenteditable="false">
-        {{ NameIntro }},du befindest dich im {{resolveRoute(previousRoute)}} wie kann ich dir helfen?
+        {{ NameIntro }},du befindest dich im
+        {{ resolveRoute(previousRoute) }} wie kann ich dir helfen?
       </div>
 
       <div class="Nova">
@@ -83,11 +84,8 @@
     </div>
 
     <div class="grid-containerAntwortChat">
-      <button
-        type="button"
-        class="chatAntwort shadow rounded-pill"
-      >
-       Fragen zu den Tipps
+      <button type="button" class="chatAntwort shadow rounded-pill">
+        Fragen zu den Tipps
       </button>
       <button
         type="button"
@@ -96,22 +94,30 @@
       >
         Allgemeine Infos
       </button>
-      <button
-        type="button"
-        class="chatAntwort shadow rounded-pill"
-      >
+      <button type="button" class="chatAntwort shadow rounded-pill">
         Fragen zum Quiz
       </button>
     </div>
-    <div class="grid-containerAntwortChat2">
+    <div class="grid-containerAntwortChat">
       <button
         type="button"
-        class="chatAntwort2 shadow rounded-pill"
+        class="chatAntwort shadow rounded-pill"
         routerLink="/questions"
       >
         Fragenkatalog
       </button>
-      <button type="button" class="chatAntwort2 shadow rounded-pill" routerLink="/faq">
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/faq"
+      >
+        Einstellungen
+      </button>
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/faq"
+      >
         FAQ
       </button>
     </div>
