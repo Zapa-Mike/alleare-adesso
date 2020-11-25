@@ -21,6 +21,8 @@ export class DataService {
     fragenzweibilder:any[]=[];
     fragenzweibilderzweiradio:any[]=[];
     fragenliste:any[]=[];
+    private subject3 = new Subject<any>();
+    currentIndex3=this.subject3.asObservable();
 
     constructor() {
 
@@ -57,6 +59,14 @@ export class DataService {
 
     sendIndexradio(indexradio:number){
     this.subject.next(indexradio);
+    }
+
+    sendIndexcategory(indexcategory:number){
+        this.subject3.next(indexcategory)
+    }
+
+    getIndexcategory (): Observable<any>{
+        return this.subject3.asObservable();
     }
 
     getIndexradio() : Observable<any>{

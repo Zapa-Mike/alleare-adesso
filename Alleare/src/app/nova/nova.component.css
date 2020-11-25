@@ -2,7 +2,7 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  /*position:fixed;*/
+  position: fixed;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -44,7 +44,6 @@ body {
 /*Sprechblase*/
 .bubble {
   position: relative;
-  font-family: lato;
   font-size: 12px;
   line-height: 1.3;
   width: 200px;
@@ -112,11 +111,12 @@ body {
 /*Grids*/
 .grid-containerNovaSprechblase {
   display: grid;
+  height: auto;
   align-content: space-evenly;
   grid-template-columns: auto;
   grid-gap: 10px;
   background-color: #f2f9fd;
-  margin-bottom: 5%;
+  margin-bottom: 50%;
 }
 .grid-containerAntwortChat {
   display: grid;
@@ -131,6 +131,7 @@ body {
   display: grid;
   padding-left: 5%;
   padding-right: 5%;
+  color: #38cddc;
   grid-template-columns: 45% 45%;
   justify-content: space-between;
   text-align: center;
@@ -152,7 +153,6 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #fff;
   width: 100%;
   color: black;
   position: sticky;
@@ -162,7 +162,6 @@ body {
   padding: 0%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #fff;
   width: 100%;
   color: black;
   position: sticky;

@@ -11,7 +11,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
 import { SettingsComponent } from './settings/settings.component';
-import { FlashcardsComponent } from './flashcards/flashcards.component';
+import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
 import { IntroComponent } from './intro/intro.component';
@@ -29,6 +29,11 @@ import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
+import { RoutingService } from '../app/services/routing.service'
+import { RouteNameResolverService } from './services/route-name-resolver-service';
+import { categoriesComponent } from './tipps/categories.component';
+import { articleComponent } from './tipps/article.component';
+import { topicsComponent } from './tipps/topics.component';
 
 
 
@@ -42,7 +47,7 @@ import { insuranceComponent } from './intro/insurance.component';
     QuizComponent,
     FaqComponent,
     SettingsComponent,
-    FlashcardsComponent,
+    InfosComponent,
     TippsComponent,
     NovaComponent,
     IntroComponent,
@@ -51,7 +56,10 @@ import { insuranceComponent } from './intro/insurance.component';
     StoriesComponent,
     RadioComponent,
     novadialogComponent,
-    insuranceComponent
+    insuranceComponent,
+    categoriesComponent,
+    articleComponent,
+    topicsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,12 +73,12 @@ import { insuranceComponent } from './intro/insurance.component';
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DataService,AngularFirestore],
+  providers: [DataService,AngularFirestore,RoutingService, RouteNameResolverService],
   bootstrap: [AppComponent]
   
 })
 export class AppModule {
-
+  constructor(private routerExtService: RoutingService){}
   
   }
  
