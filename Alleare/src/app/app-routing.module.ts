@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FaqComponent } from './faq/faq.component';
-import { FlashcardsComponent } from './flashcards/flashcards.component';
+import { InfosComponent } from './infos/infos.component';
 import { HomeComponent } from './home/home.component';
 import { IntroComponent } from './intro/intro.component';
 import { NovaComponent } from './nova/nova.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'quiz', component: QuizComponent },
   { path: 'tipps', component: TippsComponent },
   { path: 'faq', component: FaqComponent },
-  { path: 'flashcards', component: FlashcardsComponent },
+  { path: 'infos', component: InfosComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'nova', component: NovaComponent },
   { path: 'intro', component: IntroComponent },

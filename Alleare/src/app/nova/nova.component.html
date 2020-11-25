@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -24,86 +24,102 @@
       integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-
-
-</head>
-<body>
-  <div class="row Novaheader form-inline">
-    <button class="zurueckButton" type="button" routerLink="/home">
-      <img id="zurueck" src="/assets/icons/icon_auswertung_arrow.svg" />
-    </button>
-    <div class="Titel text-center">
-      <h3>Nova</h3>
-    </div>
-    <button
-      type="button"
-      class="LinkEinfuehrungApp btn-link"
-      routerLink="/intro"
-    >
-      Einführung der App
-    </button>
-  </div>
-  <!--Sprechblase-->
-  <div class="grid-containerNovaSprechblase">
-    <div class="bubble shadow bubble-bottom-left" contenteditable="false">
-      Hi XXX, du befindest dich im Fragenkatalog. Wie kann ich dir helfen? Wie
-      kann ich dir helfen?
-    </div>
-
-    <div class="Nova">
-      <!--NovaImage-->
-      <img
-        src="/assets/nova/nova_intro_links.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>
-  <div class="col form-inline AntwortNutzer">
-    <div class="bubble2 shadow bubble-bottom-right" contenteditable="false">
-      Wofür brauche ich den Fragenkatalog?
-    </div>
-  </div>
-
-  <div class="grid-containerAntwortChat">
-    <button type="button" class="chatAntwort shadow rounded-pill">Tipps</button>
-    <button type="button" class="chatAntwort shadow rounded-pill">FAQ</button>
-    <button type="button" class="chatAntwort shadow rounded-pill">Quiz</button>
-  </div>
-  <div class="grid-containerAntwortChat2">
-    <button type="button" class="chatAntwort2 shadow rounded-pill">
-      Fragenkatalog
-    </button>
-    <button type="button" class="chatAntwort2 shadow rounded-pill">
-      Flashcard
-    </button>
-  </div>
-
-  <div class="grid-containerAntwortChat3">
-    <div class="VorgegebeneAntwort">
-      <button type="button" class="chatAntwort3 shadow rounded-pill">
-        Wofür brauche ich den Fragenkatalog?
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+  </head>
+  <body>
+    <div class="row Novaheader form-inline">
+      <button class="zurueckButton" type="button" routerLink="/home">
+        <img id="zurueck" src="/assets/icons/icon_auswertung_arrow.svg" />
+      </button>
+      <div class="Titel text-center">
+        <h3>Nova</h3>
+      </div>
+      <button
+        type="button"
+        class="LinkEinfuehrungApp btn-link"
+        routerLink="/intro"
+      >
+        Einführung der App
       </button>
     </div>
-    <div class="VorgegebeneAntwort">
-      <button type="button" class="chatAntwort3 shadow rounded-pill">
-        Kann ich auch später den Fragenkatalog weitermachen?
+    <!--Sprechblase-->
+    <div class="grid-containerNovaSprechblase">
+      <div class="bubble shadow bubble-bottom-left" contenteditable="false">
+        {{ NameIntro }},du befindest dich im
+        {{ resolveRoute(previousRoute) }} wie kann ich dir helfen?
+      </div>
+
+      <div class="Nova">
+        <!--NovaImage-->
+        <img
+          src="/assets/nova/nova_intro_links.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+        />
+      </div>
+    </div>
+
+    <div class="grid-containerAntwortChat">
+      <button type="button" class="chatAntwort shadow rounded-pill">
+        Fragen zu den Tipps
+      </button>
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/infos"
+      >
+        Allgemeine Infos
+      </button>
+      <button type="button" class="chatAntwort shadow rounded-pill">
+        Fragen zum Quiz
       </button>
     </div>
-    <div class="VorgegebeneAntwort">
-      <button type="button" class="chatAntwort3 shadow rounded-pill">
-        Was ist, wenn keine Antwortmöglichkeiten passen?
+    <div class="grid-containerAntwortChat">
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/questions"
+      >
+        Fragenkatalog
+      </button>
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/faq"
+      >
+        Einstellungen
+      </button>
+      <button
+        type="button"
+        class="chatAntwort shadow rounded-pill"
+        routerLink="/faq"
+      >
+        FAQ
       </button>
     </div>
-  </div>
-</body>
+  </body>
+</html>
