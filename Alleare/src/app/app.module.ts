@@ -31,6 +31,9 @@ import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
 import { RoutingService } from '../app/services/routing.service'
 import { RouteNameResolverService } from './services/route-name-resolver-service';
+import { categoriesComponent } from './tipps/categories.component';
+import { articleComponent } from './tipps/article.component';
+import { topicsComponent } from './tipps/topics.component';
 
 
 
@@ -53,7 +56,10 @@ import { RouteNameResolverService } from './services/route-name-resolver-service
     StoriesComponent,
     RadioComponent,
     novadialogComponent,
-    insuranceComponent
+    insuranceComponent,
+    categoriesComponent,
+    articleComponent,
+    topicsComponent
   ],
   imports: [
     BrowserModule,

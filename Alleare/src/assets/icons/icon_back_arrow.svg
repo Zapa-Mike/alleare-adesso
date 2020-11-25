@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.009" height="37" viewBox="0 0 25.009 37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6b7075;
+      }
+
+      .cls-2 {
+        filter: url(#Icon_ionic-ios-arrow-forward);
+      }
+    </style>
+    <filter id="Icon_ionic-ios-arrow-forward" x="0" y="0" width="25.009" height="37" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-color="#131314" flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Icon_ionic-ios-arrow-forward-2" data-name="Icon ionic-ios-arrow-forward" class="cls-1" d="M16.073,20.191,26.668,9.6a1.992,1.992,0,0,0,0-2.826,2.018,2.018,0,0,0-2.834,0l-12,12a2,2,0,0,0-.058,2.759L23.825,33.612a2,2,0,1,0,2.834-2.826Z" transform="translate(-7.75 -1.7)"/>
+  </g>
+</svg>
