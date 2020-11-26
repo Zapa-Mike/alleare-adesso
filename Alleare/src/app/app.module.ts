@@ -35,6 +35,8 @@ import { RouteNameResolverService } from './services/route-name-resolver-service
 import { categoriesComponent } from './tipps/categories.component';
 import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-tips.component';
 import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
+import { QuestionsToQuizComponent } from './nova/questions-to-quiz/questions-to-quiz.component';
+import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/quiz-question.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-
     insuranceComponent,
     categoriesComponent,
     QuestionsToTipsComponent,
-    TipQuestionComponent
+    TipQuestionComponent,
+    QuestionsToQuizComponent,
+    QuizQuestionComponent
   ],
   imports: [
     BrowserModule,
