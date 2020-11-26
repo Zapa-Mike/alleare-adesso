@@ -46,8 +46,8 @@ import { DataService } from '../services/data.service';
   </div>
 
   <!--Schlagzeilen und Bilder-->
-  <div class="headlines" *ngFor="let topic of topics">
-    <div id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
+  <div *ngFor="let topic of topics">
+    <div class="headlines" id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
 </div>
 </div>
 
