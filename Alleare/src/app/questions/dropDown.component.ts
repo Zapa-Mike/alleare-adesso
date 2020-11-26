@@ -36,7 +36,7 @@ import { DataService } from '../services/data.service';
       </div>
 
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" (click)="weiter()">
+        <button id="Vbutton" class="btn" routerLink="/evaluation" (click)="weiter()">
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
@@ -115,5 +115,6 @@ export class DropDownComponent implements OnInit, DoCheck {
   // index wird runtergesetzt beim zurueck klicken -> vorherige Frage wird aufgerufen
   zurueck() {
     this.index--;
+    this.dataservice.sendIndexrouting2(1);
   }
 }

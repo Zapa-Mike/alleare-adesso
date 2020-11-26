@@ -209,7 +209,7 @@ export class OptionsComponent implements DoCheck {
       this.anzeigeAntwort4 = this.antwort4[this.index];
      
     }
-    if (this.index >= this.fragenvierradio.length && this.index < this.fragenzweibilder.length+this.fragenvierradio.length) {  
+    if (this.index >= this.fragenvierradio.length && this.index < this.fragenzweibilder.length+this.fragenvierradio.length) { 
       this.anzeige = this. fragenzweibilder[this.index - this.fragenvierradio.length];
       this.zweiBilderLabelvisible=  this.zweiBildervisible = false;
       this.vierradiovisible1=this.vierradiovisible2  = true;
@@ -217,6 +217,9 @@ export class OptionsComponent implements DoCheck {
       this.zweibildAntwort2 = this. zweibilder2[this.index - this.fragenvierradio.length];
       this.label1 = this. zweibilderlabel1[this.index - this.fragenvierradio.length];
       this.label2 = this. zweibilderlabel2[this.index - this.fragenvierradio.length];
+    }
+    if(this.index==this.fragenzweibilder.length+this.fragenvierradio.length && this.index!=0){
+      this.dataservice.sendIndexrouting1(3);
     }
   }
   weiter(){

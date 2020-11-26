@@ -102,10 +102,6 @@ export class StoriesComponent implements OnInit, DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
-    db=firebase
-    .firestore()
-    .collection('Images_Story');
-    db1=firebase.firestore();
     dbget=firebase.firestore().collection('Fragenkatalog');
 
 
@@ -164,8 +160,9 @@ ngDoCheck(){
 
 weiter(){
   this.index=this.index+1;
+  this.dataservice.sendIndexrouting4(this.index);
   if (this.index >=this.storyfrage.length+this.radiofrage.length) {
-    console.log("ende")
+    this.dataservice.sendIndexrouting1(2);
     this.push();
            }
            else{
@@ -214,94 +211,5 @@ const zurueck1 = (document.getElementById(
         zurueck1.disabled = false;
       }
 }
-
-
-//   push() {
-//     const radio1 = (document.getElementById(
-//       'redundant'
-//     ) as unknown) as HTMLInputElement;
-//     const radio2 = (document.getElementById(
-//       'redundant1'
-//     ) as unknown) as HTMLInputElement;
-
-//     if (radio1.checked || radio2.checked) {
-//       if (this.fragen.length > this.i) {
-//         $('#redundant').prop('checked', false);
-//         $('#redundant1').prop('checked', false);
-//         this.fragenanzeige = this.fragen[this.i];
-//         if (this.i <= 0) {
-//         }
-//       }
-
-//       if (this.story.length > this.i) {
-//         this.storyanzeige = this.story[this.i];
-//       }
-//       if (this.i == this.fragen.length) {
-//         console.log('ende');
-//         console.log(this.i);
-//       } else {
-//         switch (this.i) {
-//           case 0:
-//             this.dbpush.doc(this.Fragen[this.i]).set({
-//               _: this.form.value.stories,
-//             });
-//             break;
-//           case 1:
-//             this.dbpush.doc(this.Fragen[this.i]).set({
-//               _: this.form.value.stories,
-//             });
-//             break;
-//           case 2:
-//             this.dbpush.doc(this.Fragen[this.i]).set({
-//               _: this.form.value.stories,
-//             });
-//             break;
-//           case 3:
-//             this.dbpush.doc(this.Fragen[this.i]).set({
-//               _: this.form.value.stories,
-//             });
-//             break;
-//           case 4:
-//             this.dbpush.doc(this.Fragen[this.i]).set({
-//               _: this.form.value.stories,
-//             });
-//             break;
-//         }
-//         var index = (this.i).toString();
-//         localStorage.setItem('storyIndex', index);
-//         this.i = this.i + 1;
-//         this.sendIndexstory();
-//       }
-//     }
-//   }
-
-//   zurueck() {
-//     const zurueck1 = (document.getElementById(
-//       'bbutton'
-//     ) as unknown) as HTMLInputElement;
-//     if (this.i < 1) {
-//       zurueck1.disabled = true;
-//     } else if (this.i >= 1) {
-//       zurueck1.disabled = false;
-//     }
-//     if (this.fragen.length > this.i) {
-//       this.fragenanzeige = this.fragen[this.i - 2];
-//       var index = (this.i).toString();
-//         localStorage.setItem('storyIndex', index);
-//       this.i = this.i - 1;
-//     }
-//   }
-
-//   sendIndexstory(): void {
-//     this.dataservice.sendIndexstory(this.i);
-//   }
-  
 }
-// let bildstory=[];
-// let bildradio=[];
-// let storyfrage=[];
-// let radiofrage=[];
-// let story=[];
-// let docidstory=[];
-// let docidradio=[];
 

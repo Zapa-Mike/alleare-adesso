@@ -1,5 +1,4 @@
 import { Observable, Subject } from 'rxjs';
-import { RadioComponent } from '../questions/radio.component';
 import { StoriesComponent } from '../questions/stories.component';
 import { QuestionsComponent } from '../questions/questions.component';
 import firebase from 'firebase';
@@ -14,70 +13,46 @@ export class DataService {
     currentIndex1=this.subject1.asObservable();
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
-    dbget=firebase.firestore().collection('Fragenkatalog');
-    fragenstory:any[]=[];
-    fragenradio:any[]=[];
-    fragenvierradio:any[]=[];
-    fragenzweibilder:any[]=[];
-    fragenzweibilderzweiradio:any[]=[];
-    fragenliste:any[]=[];
+    private subject3 =new Subject<any>();
+    currentIndex3=this.subject3.asObservable();
+    private subject4 =new Subject<any>();
+    currentIndex4=this.subject4.asObservable();
 
     constructor() {
 
-        // this.dbget.where("type","==","vierradio").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenvierradio.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenvierradio);
-        // this.dbget.where("type","==","zweibilder").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenzweibilder.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenzweibilder);
-        // this.dbget.where("type","==","zweibilderzweiradio").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenzweibilderzweiradio.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenzweibilderzweiradio);
-        // this.dbget.where("type","==","liste").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenliste.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenliste);
-
+    }
+    sendIndexdialog(indexdialog:number)//Intro
+    {
+        this.subject.next(indexdialog);
     }
 
-    sendIndexradio(indexradio:number){
-    this.subject.next(indexradio);
-    }
-
-    getIndexradio() : Observable<any>{
+    getIndexdialog(): Observable<any>{//Intro
         return this.subject.asObservable();
     }
 
-    sendIndexstory(indexstory:number){
-        this.subject1.next(indexstory);
+    sendIndexrouting1(indextemplate1:number){
+        this.subject1.next(indextemplate1);
     }
-
-    getIndexstory(): Observable<any>{
+    getIndexrouting1():Observable<any>{//Vorwärts
         return this.subject1.asObservable();
     }
-
-    sendIndexdialog(indexdialog:number)
-    {
-        this.subject2.next(indexdialog);
+    sendIndexrouting2(indextemplate1:number){//temp3 zurück
+        this.subject2.next(indextemplate1);
     }
-
-    getIndexdialog(): Observable<any>{
+    getIndexrouting2():Observable<any>{
         return this.subject2.asObservable();
+    }
+    sendIndexrouting3(indextemplate1:number){//temp2 index speichern
+        this.subject3.next(indextemplate1);
+    }
+    getIndexrouting3():Observable<any>{
+        return this.subject3.asObservable();
+    }
+    sendIndexrouting4(indextemplate1:number){//temp1 index speichern
+        this.subject4.next(indextemplate1);
+    }
+    getIndexrouting4():Observable<any>{
+        return this.subject4.asObservable();
     }
 
 }
