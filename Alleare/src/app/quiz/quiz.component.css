@@ -39,14 +39,13 @@ body {
 /*Grids*/
 .grid-containerAntworten {
     display: grid;
-    padding-left: 10%;
-    padding-right: 10%;
-    grid-template-columns: 45% 45%;
-    grid-row-gap: 10%;
-    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
     text-align: start;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .antwort {
@@ -91,4 +90,75 @@ body {
     margin-right: 10%;
     float: right;
     align-content: end;
+  }
+
+  /*Willkommenseite */
+  .rowVZ {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 2%;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+  }
+  #V1button{/*Weiterbutton der Willkommenseite*/
+    padding: 0%;
+    margin-left: 75%;
+  }
+  .grid-containerNovaSprechblase {
+    display: grid;
+    align-content: space-evenly;
+    grid-template-columns: auto auto;
+    grid-template-rows: 160px;
+    background-color: #f2f9fd;
+    padding: 10px;
+    padding-bottom: 0%;
+  }
+  .bubble {
+    position: relative;
+    font-family: lato;
+    font-size: 12px;
+    line-height: 1.3;
+    width: 200px;
+    height: 60%;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    color: #000;
+    justify-self: right;
+  }
+  #WillkommenSpB {
+    position: relative;
+    font-family: lato;
+    font-size: 12px;
+    line-height: 1.3;
+    width: 200px;
+    height: 65%;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    color: #000;
+    justify-self: right;
+  }
+  .bubble-bottom-right::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-style: solid;
+    border-width: 0 45px 25px 0;
+    border-top: 40% solid #ffffff;
+    border-color: #ffffff;
+    border-bottom: 35px solid transparent;
+    right: 15%;
+    bottom: -14px;
+  }
+  #NovaImage {
+    margin-right: 20%;
+    float: right;
+    align-content: end;
+    width: 80px;
+    height: 80px;
+    align-self: end;
   }

@@ -25,10 +25,11 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import { createCustomElement } from '@angular/elements';
 
 import { StoriesComponent } from './questions/stories.component';
-import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
+import { OptionsComponent } from './questions/options.component';
+import { DropDownComponent } from './questions/dropDown.component';
 
 
 
@@ -49,9 +50,10 @@ import { insuranceComponent } from './intro/insurance.component';
     HeaderComponent,
     EvaluationComponent,
     StoriesComponent,
-    RadioComponent,
     novadialogComponent,
-    insuranceComponent
+    insuranceComponent,
+    OptionsComponent,
+    DropDownComponent
   ],
   imports: [
     BrowserModule,
