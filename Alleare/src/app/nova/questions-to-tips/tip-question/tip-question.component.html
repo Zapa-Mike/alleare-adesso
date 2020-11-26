@@ -1,0 +1,4 @@
+<button (click)="toggle = !toggle">
+  {{ question }}
+</button>
+<p *ngIf="toggle">{{ answer }}</p>

@@ -3,8 +3,8 @@ import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 
 @Injectable()
 export class RoutingService {
-  private previousUrl: string = undefined;
-  private currentUrl: string = undefined;
+  private previousUrl: string;
+  private currentUrl: string;
 
   constructor(private router: Router) {
     this.currentUrl = this.router.url;
@@ -21,6 +21,6 @@ export class RoutingService {
   }
 
   public getCurrentUrl() {
-      return this.currentUrl;
+    return this.currentUrl;
   }
- }
+}
