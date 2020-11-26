@@ -467,5 +467,3 @@ var storyConverter = {
     return new Stories(data._);
   },
 };
-
-

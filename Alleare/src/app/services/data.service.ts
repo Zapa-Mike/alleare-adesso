@@ -2,6 +2,9 @@ import { Observable, Subject } from 'rxjs';
 import { RadioComponent } from '../questions/radio.component';
 import { StoriesComponent } from '../questions/stories.component';
 import { QuestionsComponent } from '../questions/questions.component';
+import firebase from 'firebase';
+import { query } from '@angular/animations';
+
 
 export class DataService {
 
@@ -11,23 +14,42 @@ export class DataService {
     currentIndex1=this.subject1.asObservable();
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
-    private subject3 = new Subject<any>();
-    currentIndex3=this.subject3.asObservable();
 
     constructor() {
+
+        // this.dbget.where("type","==","vierradio").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenvierradio.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenvierradio);
+        // this.dbget.where("type","==","zweibilder").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenzweibilder.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenzweibilder);
+        // this.dbget.where("type","==","zweibilderzweiradio").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenzweibilderzweiradio.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenzweibilderzweiradio);
+        // this.dbget.where("type","==","liste").get()
+        // .then((querysnapshot)=>{
+        //     querysnapshot.forEach((doc)=>{
+        //         this.fragenliste.push(doc.data()._);
+        //     })
+        // })
+        // console.log(this.fragenliste);
 
     }
 
     sendIndexradio(indexradio:number){
     this.subject.next(indexradio);
-    }
-
-    sendIndexcategory(indexcategory:number){
-        this.subject3.next(indexcategory)
-    }
-
-    getIndexcategory (): Observable<any>{
-        return this.subject3.asObservable();
     }
 
     getIndexradio() : Observable<any>{

@@ -12,7 +12,6 @@ import { DataService } from '.././services/data.service';
       <div [formGroup]="form" class="card">
         <div>
         <img src="data:image/gif;base64,{{ imgArray[i] }}" class="img-responsive"/>
-
           <div class="ImageStory">
             {{ storyanzeige }}
           </div>
@@ -23,7 +22,6 @@ import { DataService } from '.././services/data.service';
               Anhören
             </button>
           </div>
-
           <div class="RadioButtonsJaNein form-group">
             <div id="ButtonJa" class="form-check form-check-inline">
               <input
@@ -62,12 +60,10 @@ import { DataService } from '.././services/data.service';
         <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
       </button>
     </div>
-
     <div class="grid-containerNovaSprechblase">
       <div class="bubble shadow bubble-bottom-right" contenteditable="false">
         {{ fragenanzeige }}
       </div>
-
       <img
         src="/assets/nova/nova_fragenkatalog.png"
         width="100"
@@ -223,4 +219,3 @@ ngOnInit(): void {
   }
   
 }
-

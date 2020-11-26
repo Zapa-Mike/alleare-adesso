@@ -33,9 +33,6 @@ import { insuranceComponent } from './intro/insurance.component';
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
-import { articleComponent } from './tipps/article.component';
-import { topicsComponent } from './tipps/topics.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-tips.component';
 import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
 
@@ -59,10 +56,8 @@ import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-
     novadialogComponent,
     insuranceComponent,
     categoriesComponent,
-    articleComponent,
-    topicsComponent,
     QuestionsToTipsComponent,
-    TipQuestionComponent,
+    TipQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +72,6 @@ import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-    FontAwesomeModule,
   ],
   providers: [
     DataService,
