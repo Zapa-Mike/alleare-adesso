@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import firebase from 'firebase';
 import { RouteNameResolverService } from '../services/route-name-resolver-service';
 import { RoutingService } from '../services/routing.service';
@@ -9,10 +10,15 @@ import { RoutingService } from '../services/routing.service';
   styleUrls: ['./nova.component.css'],
 })
 export class NovaComponent implements OnInit {
-  NameIntro: string;
+  nameIntro: string = this.route.snapshot.paramMap.get('name');
   previousRoute: string = '';
+  toggleQuestionsToTips = false;
 
-  constructor(private routerService: RoutingService, private routeResolver: RouteNameResolverService) {}
+  constructor(
+    private routerService: RoutingService,
+    private routeResolver: RouteNameResolverService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     var docRef = firebase
@@ -22,7 +28,7 @@ export class NovaComponent implements OnInit {
 
     docRef.get().then((doc) => {
       if (doc.exists) {
-        this.NameIntro = doc.data().Name;
+        this.nameIntro = doc.data().Name;
         this.getPreviousRoute();
       }
     });

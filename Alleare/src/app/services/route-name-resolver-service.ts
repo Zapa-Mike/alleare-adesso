@@ -1,11 +1,14 @@
-import {  Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 @Injectable()
 export class RouteNameResolverService {
-    constructor() {}
+  constructor() {}
 
-   public resolveRoute(route: string): string {
-       const displayRoute = route.substring(1);
-       displayRoute.toUpperCase();
-        return displayRoute;
+  public resolveRoute(route: string): string {
+    if (!route || route == '/') {
+      return 'Home';
     }
+    let displayRoute = route.substring(1);
+    displayRoute = displayRoute[0].toUpperCase() + displayRoute.substring(1);
+    return displayRoute;
+  }
 }

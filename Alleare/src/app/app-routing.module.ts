@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: 'intro', component: IntroComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: 'evaluation', component: EvaluationComponent}
-
 ];
 
 @NgModule({
