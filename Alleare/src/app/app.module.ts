@@ -19,24 +19,25 @@ import { HeaderComponent } from './header/header.component';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreModule,
+} from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
-import { createCustomElement } from '@angular/elements';
-
 import { StoriesComponent } from './questions/stories.component';
 import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
-import { RoutingService } from '../app/services/routing.service'
+import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
 import { articleComponent } from './tipps/article.component';
 import { topicsComponent } from './tipps/topics.component';
-
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-tips.component';
+import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,9 @@ import { topicsComponent } from './tipps/topics.component';
     insuranceComponent,
     categoriesComponent,
     articleComponent,
-    topicsComponent
+    topicsComponent,
+    QuestionsToTipsComponent,
+    TipQuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,14 +74,19 @@ import { topicsComponent } from './tipps/topics.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    FontAwesomeModule,
   ],
-  providers: [DataService,AngularFirestore,RoutingService, RouteNameResolverService],
-  bootstrap: [AppComponent]
-  
+  providers: [
+    DataService,
+    AngularFirestore,
+    RoutingService,
+    RouteNameResolverService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private routerExtService: RoutingService){}
-  
-  }
- 
+  constructor(private routerExtService: RoutingService) {}
+}
