@@ -10,119 +10,153 @@ import { DataService } from '../services/data.service';
   selector: 'options',
   template: `
     <div [formGroup]="form">
-      <div class="card">
+      <div class="card2">
         <div class="ImageStory">{{ anzeige }}</div>
-          <div class="CheckboxAbfrage " >
-            <div class="grid-containerRadioBAntwort">
-              <div class="form-check form-check-inline">
-                <div [hidden]="vierradiovisible1"> 
-                  <div class="grid-element form-check-inline">
+        <div class="CheckboxAbfrage ">
+          <div class="grid-containerRadioBAntwort">
+            <div [hidden]="vierradiovisible1">
+              <!--div lässt keinen platz zwischen-->
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="auswahlEins"
+                    name="vierradio"
+                    formControlName="vierradio"
+                    value="{{ anzeigeAntwort1 }}"
+                  />
+                  <label class="form-check-label">
+                    {{ anzeigeAntwort1 }}
+                  </label>
+                </div>
+              </div>
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="auswahlZwei"
+                    name="vierradio"
+                    formControlName="vierradio"
+                    value="{{ anzeigeAntwort2 }}"
+                  />
+                  <label class="form-check-label">
+                    {{ anzeigeAntwort2 }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!---->
+            <div [hidden]="vierradiovisible2">
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="auswahlDrei"
+                    name="vierradio"
+                    formControlName="vierradio"
+                    value="{{ anzeigeAntwort3 }}"
+                  />
+                  <label class="form-check-label">{{ anzeigeAntwort3 }} </label>
+                </div>
+              </div>
+
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="auswahlVier"
+                    name="vierradio"
+                    formControlName="vierradio"
+                    value="{{ anzeigeAntwort4 }}"
+                  />
+                  <label class="form-check-label">
+                    {{ anzeigeAntwort4 }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div [hidden]="zweiBildervisible">
+            <div class="grid-containerBilderAntwort">
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <label class="labelBilder">
                     <input
-                     type="radio"
-                     id="auswahlEins"
-                     name="vierradio"
-                      formControlName="vierradio"
-                      value="{{anzeigeAntwort1}}"
+                      type="radio"
+                      id="auswahlBildEins"
+                      class="BildButtons"
+                      name="zweiBild"
+                      formControlName="zweiBild"
+                      value="{{ label1 }}"
                     />
-                    <label class="form-check-label"> {{ anzeigeAntwort1 }} </label>
-                   </div>
-                  <div class="form-check form-check-inline">
-                    <div class="grid-element form-check-inline">
-                      <input
-                       type="radio"
-                       id="auswahlZwei"
-                       name="vierradio"
-                      formControlName="vierradio"
-                       value="{{anzeigeAntwort2}}"
-                      />
-                     <label class="form-check-label">
-                       {{ anzeigeAntwort2 }}
-                      </label>
-                    </div>
+                    <img
+                      class="BildVorRadio"
+                      id="auswahlEins"
+                      src="data:image/gif;base64,{{ zweibildAntwort1 }}"
+                      width="70px"
+                      height="50px"
+                    />
+                  </label>
+                  <div [hidden]="zweiBilderLabelvisible">
+                    <p>
+                      <label class="form-check-label"> {{ label1 }} </label>
+                    </p>
                   </div>
                 </div>
-                <div [hidden]="zweiBildervisible">
-                  <div class="grid-containerBilderAntwort">
-                    <div class="form-check form-check-inline">
-                      <label>
-                      <input
-                       type="radio" id="auswahlBildEins" class="BildButtons" name="zweiBild" formControlName="zweiBild" value="{{label1}}">
-                        <img
-                          id="auswahlEins"
-                          src="data:image/gif;base64,{{zweibildAntwort1 }}"
-                          width="70px"
-                          height="50px"
-                        />
-</label>
-                        <div [hidden]="zweiBilderLabelvisible">
-                          <p><label class="form-check-label"> {{label1}} </label></p>
-                        </div>
-                     
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label>
-                      <input
-                       type="radio" id="auswahlBildZwei" class="BildButtons" name="zweiBild" formControlName="zweiBild" value="{{label2}}">
-                        <img
-                          id="auswahlZwei"
-                          src="data:image/gif;base64,{{ zweibildAntwort2 }}"
-                          width="70px"
-                          height="50px"
-                        />
-</label>
-                        <div [hidden]="zweiBilderLabelvisible">
-                          <p><label class="form-check-label"> {{label2}}</label></p>
-                        </div>
-                     
-                    </div>
-                  </div>
-                </div>
-                <div [hidden]="vierradiovisible2">
-                  <div class="form-check form-check-inline">
-                    <div class="grid-element form-check-inline">
-                      <input
-                        type="radio"
-                        id="auswahlDrei"
-                        name="vierradio"
-                        formControlName="vierradio"
-                        value="{{anzeigeAntwort3}}"
-                      />
-                      <label class="form-check-label">{{ anzeigeAntwort3 }} </label>
-                    </div>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <div class="grid-element form-check-inline">
-                      <input
-                        type="radio"
-                        id="auswahlVier"
-                        name="vierradio"
-                        formControlName="vierradio"
-                        value="{{anzeigeAntwort4}}"
-                      />
-                      <label class="form-check-label">
-                        {{ anzeigeAntwort4 }}
-                      </label>
-                    </div>
+              </div>
+
+              <div class="grid-element form-check-inline">
+                <div class="form-check form-check-inline">
+                  <label class="labelBilder">
+                    <input
+                      type="radio"
+                      id="auswahlBildZwei"
+                      class="BildButtons"
+                      name="zweiBild"
+                      formControlName="zweiBild"
+                      value="{{ label2 }}"
+                    />
+                    <img
+                      class="BildVorRadio"
+                      id="auswahlZwei"
+                      src="data:image/gif;base64,{{ zweibildAntwort2 }}"
+                      width="70px"
+                      height="50px"
+                    />
+                  </label>
+                  <div [hidden]="zweiBilderLabelvisible">
+                    <p>
+                      <label class="form-check-label"> {{ label2 }}</label>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col rowVZ">
-          <button id="Vbutton" class="btn" (click)="weiter()">
-            <img
-              src="/assets/icons/icon_arrow_forward.svg"
-              width="50"
-              height="50"
-            />
-          </button>
-          <button id="Zbutton" class="btn" (click)="zurueck()">
-            <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-          </button>
-        </div>
       </div>
-   
+      <div class="col rowVZ">
+        <button id="Vbutton" class="btn" (click)="weiter()">
+          <img
+            src="/assets/icons/icon_arrow_forward.svg"
+            width="50"
+            height="50"
+          />
+        </button>
+        <button id="Zbutton" class="btn" (click)="zurueck()">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
+      </div>
+      <div class="d-flex Nova justify-content-end fixed-bottom">
+        <img
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+        />
+      </div>
+    </div>
   `,
   styleUrls: ['./questions.component.css'],
 })
@@ -228,7 +262,6 @@ export class OptionsComponent implements DoCheck, OnInit {
       this.anzeigeAntwort2 = this.antwort2[this.index];
       this.anzeigeAntwort3 = this.antwort3[this.index];
       this.anzeigeAntwort4 = this.antwort4[this.index];
-     
     }
     // Schaut ob Bilderantworten angezeigt werden solle 
     if (this.index >= this.fragenvierradio.length && this.index < this.fragenzweibilder.length+this.fragenvierradio.length) { //Index der alle Seien zählt,muss größer sein als die Anzahl der vorherigen Fragen && Index der alle Seien zählt, muss kleiner sein als alle aktuell aufgerufenen Fragen und alle vorherige Fragen

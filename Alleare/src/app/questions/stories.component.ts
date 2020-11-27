@@ -225,4 +225,3 @@ const zurueck1 = (document.getElementById(
       }
 }
 }
-

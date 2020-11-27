@@ -18,12 +18,27 @@ body {
 
 /*Card*/
 .card {
+  height: 433.95px;
   position: relative;
   background-color: #ffffff;
   margin-left: 3%;
   margin-right: 3%;
   box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
   border-radius: 10px;
+}
+.card2 {
+  height: 230px;
+  position: relative;
+  background-color: #ffffff;
+  margin-left: 3%;
+  margin-right: 3%;
+  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+  border-radius: 10px;
+}
+#UntenInCard{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
 }
 
 /*ImageS*/
@@ -83,14 +98,19 @@ input {
   margin-right: 5px;
 }
 
+/*Bilder in RadioB Frage*/
+.BildVorRadio{
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
 /*Grids*/
 .grid-containerBilderAntwort {
   display: grid;
   padding-left: 10%;
   padding-right: 10%;
   grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  justify-content: space-between;
+  grid-template-rows: auto;
   padding-bottom: 2%;
 }
 .grid-containerRadioBAntwort {
@@ -98,7 +118,8 @@ input {
   padding-left: 10%;
   padding-right: 10%;
   grid-template-columns: auto auto;
-  justify-content: space-between;
+  grid-template-rows: auto auto;
+  justify-content: center;
   padding-bottom: 2%;
 }
 .grid-containerNovaSprechblase {
@@ -244,7 +265,7 @@ p {
   padding-top: 4%;
 }
 #NovaImage {
-  margin-right: 20%;
+  margin-right: 15%;
   float: right;
   align-content: end;
   width: 80px;
