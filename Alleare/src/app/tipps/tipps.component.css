@@ -1,0 +1,127 @@
+body{
+    background-color: #f2f9fd;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width:100%;
+    height: 100%;
+}
+
+
+h3{
+    color: #2A2D2F;
+    margin-top: 22%;
+   
+}
+
+.categories{
+    margin-top: 7%;
+}
+
+.topic{
+   background-color: #ffffff;
+   font-size: 0.9em;
+   border: none;
+   border-radius:30px;
+   height: 2.3em;
+   width: 6em;
+   border-color: none;
+   margin-left: 3%;
+   margin-top: 3%;
+   box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+
+}
+
+.topic1{
+    background-color: #ffffff;
+    font-size: 0.9em;
+    border: none;
+    border-radius:30px;
+    height: 2.3em;
+    width: 8em;
+    border-color: none;
+    margin-left: 3%;
+    margin-top: 3%;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);   
+}
+
+.topic2{
+    background-color: #ffffff;
+    font-size: 0.9em;
+    border: none;
+    border-radius:30px;
+    height: 2.3em;
+    width: 10em;
+    border-color: none;
+    margin-left: 3%;
+    margin-top: 3%;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);  
+}
+
+.box
+{
+    margin-top: 15%;
+    padding-top: 10%;
+    margin-left: 3%;
+    height: 6em;
+    width: 94%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+
+}
+
+p{
+    font-size: 1.2em;
+    font-style: bold;
+    text-align: center;
+    color: #707070;
+    
+}
+
+#NovaImage{
+    float: right;
+    margin-right: 12%;
+}
+
+.headlines{
+    height: 8em;
+    max-width: 93%;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+    border-radius: 10px;
+    margin-left: 3%;
+    margin-top: 10%;
+    padding-top: 4%;
+    padding-left: 3%;
+    text-align: left;
+}
+
+h5
+{
+    font-size: 92%;
+    max-width: 95%;
+    color: #707070;
+    padding-bottom: 17%;
+}
+
+h6{
+    font-size: 70%;
+    color: #707070;
+}
+
+.backArrow{
+    margin-top: -17%;
+    margin-right: 88%;
+    height: 2.2em;
+    width: 2.2em;
+}
+
+.image{
+    float: right;
+    padding-right: 5%;
+    margin-top: -31%;
+    height: 100%;
+    width: 35%;
+    object-fit: cover;
+}

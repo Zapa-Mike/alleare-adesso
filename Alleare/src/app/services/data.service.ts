@@ -13,46 +13,48 @@ export class DataService {
     currentIndex1=this.subject1.asObservable();
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
-    private subject3 =new Subject<any>();
-    currentIndex3=this.subject3.asObservable();
-    private subject4 =new Subject<any>();
-    currentIndex4=this.subject4.asObservable();
+
+    indexvonTemp2zuTemp3:number;
+    indexTemp2:number
+    indexvonTemp3zuTemp2:number;
+    indexTemp1:number;
 
     constructor() {
 
     }
     sendIndexdialog(indexdialog:number)//Intro
     {
-        this.subject.next(indexdialog);
+        this.subject2.next(indexdialog);
     }
 
     getIndexdialog(): Observable<any>{//Intro
-        return this.subject.asObservable();
-    }
-
-    sendIndexrouting1(indextemplate1:number){
-        this.subject1.next(indextemplate1);
-    }
-    getIndexrouting1():Observable<any>{//Vorwärts
-        return this.subject1.asObservable();
-    }
-    sendIndexrouting2(indextemplate1:number){//temp3 zurück
-        this.subject2.next(indextemplate1);
-    }
-    getIndexrouting2():Observable<any>{
         return this.subject2.asObservable();
     }
-    sendIndexrouting3(indextemplate1:number){//temp2 index speichern
-        this.subject3.next(indextemplate1);
+
+    sendIndexrouting1(indextemplate1:number){ // die Anzahl der Seiten von Temp 2 (options) wird Temp 3 (dropDown) übergeben
+        this.indexvonTemp2zuTemp3=indextemplate1;
     }
-    getIndexrouting3():Observable<any>{
-        return this.subject3.asObservable();
+    getIndexrouting1(){
+        return this.indexvonTemp2zuTemp3;
     }
-    sendIndexrouting4(indextemplate1:number){//temp1 index speichern
-        this.subject4.next(indextemplate1);
+    sendIndexrouting2(indextemplate3:number){// die Anzahl der Seiten von Temp 2 (options) wird von Temp 3 (dropDown) an Temp2 übergeben
+        this.indexvonTemp3zuTemp2=indextemplate3;
     }
-    getIndexrouting4():Observable<any>{
-        return this.subject4.asObservable();
+    getIndexrouting2(){
+        return this.indexvonTemp3zuTemp2;
     }
+    addindexTemp2(index){
+        this.indexTemp2=index;
+    }
+    getIndexTemp2(){// Temp2 (options) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
+        return this.indexTemp2;
+    }
+    addIndexTemp1(index){
+        this.indexTemp1=index;
+    }
+    getIndexTemp1(){// Temp1 (stories) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
+        return this.indexTemp1;
+    }
+
 
 }

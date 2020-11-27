@@ -18,7 +18,7 @@ import { Data } from '@angular/router';
           </div>
           <!--"Anhören" Button-->
           <div class="AnhoerenButton">
-            <button class="btn" id="anhoeren">
+            <button *ngIf="storyvisible" class="btn" id="anhoeren">
               <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
               Anhören
             </button>
@@ -129,9 +129,18 @@ constructor(private dataservice:DataService){
 }
 
 ngOnInit(){
-
+  if(this.dataservice.getIndexTemp1()==null){
+    console.log("anfang")
+  }
+  else{
+    this.index=this.dataservice.getIndexTemp1()-1;
+    if(this.index<0){
+      this.index=0;
+    }
   
 }
+}
+
 ngDoCheck(){
   if(this.index<this.storyfrage.length){
     this.storyvisible=true;
@@ -159,10 +168,14 @@ ngDoCheck(){
 }
 
 weiter(){
-  this.index=this.index+1;
-  this.dataservice.sendIndexrouting4(this.index);
+
+  if(this.index<this.storyfrage.length+this.radiofrage.length){
+    this.index++;
+    this.dataservice.addIndexTemp1(this.index);
+    }
+
   if (this.index >=this.storyfrage.length+this.radiofrage.length) {
-    this.dataservice.sendIndexrouting1(2);
+    this.dataservice.sendIndexrouting1(2); //Weiter
     this.push();
            }
            else{

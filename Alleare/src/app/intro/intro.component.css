@@ -251,3 +251,146 @@ form {
     to    {opacity: 1;}
   }
 /*Screen Intro Private Unfallversicherung Animation Ende*/
+
+
+/*Screen Nova + Springanimation + Sprechblase + Content 1/4 Anfang*/
+.Nova_Intro_Irrtuemer_Alltagssituationen1{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-top: 140%;
+  margin-left: 50%;
+  animation: bounce 0.5s;
+  animation-iteration-count: 2;
+  animation-delay: 1s;
+}
+
+
+@keyframes bounce { 
+  0%, 20%, 40%, 60%, 80%, 100% {transform: translateY();}
+  50% {transform: translateY(-20px);}
+} 
+
+
+#Sprechblase1{
+  width: 200px;
+  height: 150px;
+  margin-top:-100%;
+  margin-left: -19%;
+}
+
+.TextIrrtuemerAlltagssituation{
+  font-size: 14px;
+  margin-top: -61%;
+  margin-left: -20%;
+}
+/*Screen Nova + Springanimation + Sprechblase + Content 1/4* Ende */
+ 
+
+/*Screen Nova + Springanimation + Sprechblase + Content 2/4 Anfang */
+.Nova_Intro_Irrtuemer_Alltagssituationen2{
+  width: 100px;
+  height: 100px;
+  margin-top: 140%;
+  margin-left: 50%;
+  animation: bounce 0.5s;
+  animation-iteration-count: 2;
+  animation-delay: 1s;
+}
+
+#Sprechblase2{
+  width: 200px;
+  height: 150px;
+  margin-top:-100%;
+  margin-left: -19%;
+}
+
+.TextNovaVorstellung{ 
+  font-size: 14px;
+  margin-top: -63.5%;
+  margin-left: -20%;
+}
+/*Screen Nova + Springanimation + Sprechblase + Content 2/4* Ende */
+
+
+/*Screen Nova + Springanimation + Sprechblase + Content 3/4 Anfang */
+.Nova_Intro_Irrtuemer_Alltagssituationen3{
+  width: 100px;
+  height: 100px;
+  margin-top: 200%;
+  margin-left: 50%;
+  animation: bounce 0.5s;
+  animation-iteration-count: 2;
+  animation-delay: 1s;
+}
+
+#Sprechblase3{
+  width: 200px;
+  height: 150px;
+  margin-top:-100%;
+  margin-left: -19%;
+}
+
+.TextNovaberatung{ 
+  font-size: 14px;
+  margin-top: -65.5%;
+  margin-left: -19.5%;
+}
+/*Screen Nova + Springanimation + Sprechblase + Content 3/4* Ende */
+
+
+/*Screen Nova + Springanimation + Sprechblase + Content 4/4 Anfang */
+.Nova_Intro_Irrtuemer_Alltagssituationen3{
+  width: 100px;
+  height: 100px;
+  margin-top: 200%;
+  margin-left: 50%;
+  animation: bounce 0.5s;
+  animation-iteration-count: 2;
+  animation-delay: 1s;
+}
+
+#Sprechblase3{
+  width: 200px;
+  height: 150px;
+  margin-top:-100%;
+  margin-left: -19%;
+}
+
+.TextNovaberatung{ 
+  font-size: 14px;
+  margin-top: -65.5%;
+  margin-left: -19.5%;
+}
+/*Screen Nova + Springanimation + Sprechblase + Content 3/4* Ende */
+
+
+/*Screen Nova + Springanimation + Sprechblase + Content 4/4 Anfang */
+.Nova_Intro_Irrtuemer_Alltagssituationen4{
+  width: 100px;
+  height: 100px;
+  margin-top: 200%;
+  margin-left: 50%;
+  animation: schweben 2s;
+  animation-delay: 1s;
+}
+
+@keyframes schweben { 
+  
+  5% {transform: translateY(-20px);}
+} 
+
+
+#Sprechblase4{
+  width: 200px;
+  height: 150px;
+  margin-top:-100%;
+  margin-left: -19%;
+}
+
+.TextZukunftVersicherungen{ 
+  font-size: 14px;
+  margin-top: -65.2%;
+  margin-left: -19.5%;
+}
+/*Screen Nova + Springanimation + Sprechblase + Content 4/4* Ende */

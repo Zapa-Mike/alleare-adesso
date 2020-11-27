@@ -162,3 +162,8 @@ body {
     height: 80px;
     align-self: end;
   }
+  .tick {
+    z-index: 1;
+    margin-left: 60px;
+    margin-top: 25px; 
+  }
