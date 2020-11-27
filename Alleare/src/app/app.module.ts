@@ -26,10 +26,14 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { StoriesComponent } from './questions/stories.component';
-import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
+import { OptionsComponent } from './questions/options.component';
+import { DropDownComponent } from './questions/dropDown.component';
+
+
+
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
@@ -54,9 +58,10 @@ import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/qu
     HeaderComponent,
     EvaluationComponent,
     StoriesComponent,
-    RadioComponent,
     novadialogComponent,
     insuranceComponent,
+    OptionsComponent,
+    DropDownComponent,
     categoriesComponent,
     QuestionsToTipsComponent,
     TipQuestionComponent,

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit,} from '@angular/core';
+import { Data, Router } from '@angular/router';
 import firebase from 'firebase';
+import { IntroComponent } from '../intro/intro.component';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +12,16 @@ import firebase from 'firebase';
 export class HomeComponent implements OnInit {
   nameIntro: string;
 
-  constructor(private router: Router) {}
+  NameIntro:string;
+  index=0;
 
-  ngOnInit() {
-    var docRef = firebase
-      .firestore()
-      .collection('Benutzer')
-      .doc(localStorage.getItem('hans'));
+
+  constructor(private dataservice:DataService, private router : Router) {
+  }
+
+  ngOnInit(){
+    this.dataservice.addIndexTemp1(this.index);// Damit wir aus dem Fragenkatalog raus und rein können
+    var docRef = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans'));
 
     docRef.get().then((doc) => {
       if (doc.exists) {
@@ -36,3 +41,4 @@ export class HomeComponent implements OnInit {
     });
   }
 }
+

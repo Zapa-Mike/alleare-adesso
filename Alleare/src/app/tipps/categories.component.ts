@@ -34,27 +34,22 @@ import { DataService } from '../services/data.service';
          routerLink="/nova"
          id="NovaImage"/>
 </div>
-
 <!--Articles-->
 <div *ngIf="topicsngif">
   <div class="title text-center">
     <h3>{{collection}}</h3>
-
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtocategories()"
         src="/assets/icons/icon_back_arrow.svg"/>
   </div>
-
   <!--Schlagzeilen und Bilder-->
   <div class="headlines" *ngFor="let topic of topics">
     <div id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
 </div>
 </div>
-
 <div *ngIf="articlesngif">
 <div class="title text-center">
     <h3>{{articleueberschrift}}</h3>
-
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtotopics()"
         src="/assets/icons/icon_back_arrow.svg"/>
@@ -63,7 +58,6 @@ import { DataService } from '../services/data.service';
     {{articletext}}
   </div>
 </div>
-
    `,
   styleUrls: ['./tipps.component.css'],
 })
