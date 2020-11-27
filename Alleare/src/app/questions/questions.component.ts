@@ -25,24 +25,25 @@ export class QuestionsComponent implements DoCheck{
   //Routing dataservice
   template:number;
   template1:number;
+
+  template5:any;
   
   constructor(private dataservice:DataService) {
-  this.dataservice.getIndexrouting1();
-  this.dataservice.currentIndex1.subscribe(
-  (currentIndex1) => (this.template = currentIndex1)
-  )
-  this.dataservice.getIndexrouting2();
-  this.dataservice.currentIndex2.subscribe(
-    (currentIndex2) => (this.template1 = currentIndex2)
-  )
+
   }
 
   ngDoCheck(){
+    this.template=this.dataservice.getIndexrouting1();
+    this.template1=this.dataservice.getIndexrouting2();
+    if(this.template==1){
+      this.routing2=false;
+      this.routing1=true;
+    }
     if(this.template==2){
       this.routing1=false;
       this.routing2=true;
     }
-    if(this.template==3){
+    if(this.template==3 && this.routing1==false){
       this.routing2=false;
       this.routing3=true;
     }

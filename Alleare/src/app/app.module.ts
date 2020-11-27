@@ -11,7 +11,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
 import { SettingsComponent } from './settings/settings.component';
-import { FlashcardsComponent } from './flashcards/flashcards.component';
+import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
 import { IntroComponent } from './intro/intro.component';
@@ -19,11 +19,12 @@ import { HeaderComponent } from './header/header.component';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreModule,
+} from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
-import { createCustomElement } from '@angular/elements';
-
 import { StoriesComponent } from './questions/stories.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
@@ -33,6 +34,13 @@ import { DropDownComponent } from './questions/dropDown.component';
 
 
 
+import { RoutingService } from '../app/services/routing.service';
+import { RouteNameResolverService } from './services/route-name-resolver-service';
+import { categoriesComponent } from './tipps/categories.component';
+import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-tips.component';
+import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
+import { QuestionsToQuizComponent } from './nova/questions-to-quiz/questions-to-quiz.component';
+import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/quiz-question.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +51,7 @@ import { DropDownComponent } from './questions/dropDown.component';
     QuizComponent,
     FaqComponent,
     SettingsComponent,
-    FlashcardsComponent,
+    InfosComponent,
     TippsComponent,
     NovaComponent,
     IntroComponent,
@@ -53,7 +61,12 @@ import { DropDownComponent } from './questions/dropDown.component';
     novadialogComponent,
     insuranceComponent,
     OptionsComponent,
-    DropDownComponent
+    DropDownComponent,
+    categoriesComponent,
+    QuestionsToTipsComponent,
+    TipQuestionComponent,
+    QuestionsToQuizComponent,
+    QuizQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -65,14 +78,18 @@ import { DropDownComponent } from './questions/dropDown.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
-  providers: [DataService,AngularFirestore],
-  bootstrap: [AppComponent]
-  
+  providers: [
+    DataService,
+    AngularFirestore,
+    RoutingService,
+    RouteNameResolverService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
-
-  
-  }
- 
+  constructor(private routerExtService: RoutingService) {}
+}

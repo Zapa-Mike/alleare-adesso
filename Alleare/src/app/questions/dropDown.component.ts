@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
 
+
 @Component({
   selector: 'dropDown',
   template: `
@@ -61,6 +62,7 @@ import { DataService } from '../services/data.service';
 })
 export class DropDownComponent implements OnInit, DoCheck {
   Bundesland = [];
+  index1:number;
 
   dbget = firebase.firestore().collection('Bundeslaender'); //in der Collection sind in den Docs die einzelnen Bundesländer abgespeichert
   index: number = 0; // dient zum Hochzähle und wechseln der Fragen
@@ -78,6 +80,7 @@ export class DropDownComponent implements OnInit, DoCheck {
           this.fragenliste.push(doc.data()._);
         });
       });
+
   }
 
   // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
