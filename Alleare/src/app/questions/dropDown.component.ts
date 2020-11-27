@@ -20,7 +20,9 @@ import { DataService } from '../services/data.service';
             aria-haspopup="true"
             aria-expanded="false"
             id="Bundestext"
-          ></button>
+          >
+            <a>Bundesland</a>
+          </button>
 
           <div class="dropdown-menu" id="drop">
             <!--Event fragt geklickte Id ab und setzt diese in die DB-->
@@ -37,7 +39,12 @@ import { DataService } from '../services/data.service';
       </div>
 
       <div class="col rowVZ">
-        <button id="Vbutton" class="btn" routerLink="/evaluation" (click)="weiter()">
+        <button
+          id="Vbutton"
+          class="btn"
+          routerLink="/evaluation"
+          (click)="weiter()"
+        >
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
@@ -48,7 +55,7 @@ import { DataService } from '../services/data.service';
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
-      <div class="d-flex Nova justify-content-end">
+      <div class="d-flex Nova justify-content-end fixed-bottom">
         <img
           src="/assets/nova/nova_intro_rechts.png"
           width="100"
