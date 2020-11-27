@@ -1,0 +1,9 @@
+.questionButton {
+    padding: 0%;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    color: black;
+    position: sticky;
+    border: none;
+  }

@@ -13,6 +13,7 @@ export class NovaComponent implements OnInit {
   nameIntro: string = this.route.snapshot.paramMap.get('name');
   previousRoute: string = '';
   toggleQuestionsToTips = false;
+  toggleQuestionsToQuiz = false;
 
   constructor(
     private routerService: RoutingService,

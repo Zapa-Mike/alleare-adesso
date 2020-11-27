@@ -18,7 +18,7 @@
   <div class="grid-containerNovaSprechblase">
     <div class="bubble shadow bubble-bottom-left" contenteditable="false">
       Hi {{ nameIntro }},du befindest dich im
-      {{ resolveRoute(previousRoute) }} wie kann ich dir helfen?
+      {{ resolveRoute(previousRoute) }}. Wie kann ich dir helfen?
     </div>
 
     <div class="Nova">
@@ -30,7 +30,12 @@
         id="NovaImage"
       />
     </div>
-    <questions-to-tips *ngIf="toggleQuestionsToTips"></questions-to-tips>
+    <div>
+      <questions-to-tips *ngIf="toggleQuestionsToTips"></questions-to-tips>
+    </div>
+    <div>
+      <questions-to-quiz *ngIf="toggleQuestionsToQuiz" ></questions-to-quiz>
+    </div>
   </div>
 
   <div class="grid-containerAntwortChat">
@@ -38,6 +43,7 @@
       type="button"
       class="chatAntwort shadow rounded-pill"
       (click)="toggleQuestionsToTips = !toggleQuestionsToTips"
+      (click)="toggleQuestionsToQuiz=false"
     >
       Fragen zu den Tipps
     </button>
@@ -48,7 +54,12 @@
     >
       Allgemeine Infos
     </button>
-    <button type="button" class="chatAntwort shadow rounded-pill">
+    <button
+      type="button"
+      class="chatAntwort shadow rounded-pill"
+      (click)="toggleQuestionsToQuiz = !toggleQuestionsToQuiz"
+      (click)="toggleQuestionsToTips=false"
+    >
       Fragen zum Quiz
     </button>
   </div>
@@ -56,9 +67,8 @@
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/questions"
     >
-      Fragenkatalog
+      Über den Fragenkatalog
     </button>
     <button
       type="button"
