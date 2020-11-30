@@ -41,6 +41,8 @@ import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-
 import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
 import { QuestionsToQuizComponent } from './nova/questions-to-quiz/questions-to-quiz.component';
 import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/quiz-question.component';
+import { QuestionsToQuestionaireComponent } from './nova/questions-to-questionaire/questions-to-questionaire.component';
+import { QuestionaireQuestionComponent } from './nova/questions-to-questionaire/questionaire-question/questionaire-question.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/qu
     QuestionsToTipsComponent,
     TipQuestionComponent,
     QuestionsToQuizComponent,
-    QuizQuestionComponent
+    QuizQuestionComponent,
+    QuestionsToQuestionaireComponent,
+    QuestionaireQuestionComponent
   ],
   imports: [
     BrowserModule,

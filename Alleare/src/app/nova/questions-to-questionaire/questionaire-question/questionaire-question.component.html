@@ -1,0 +1,8 @@
+<div>
+    <button class="questionButton" (click)="toggle = !toggle">
+      {{ question }}
+    </button>
+    <br />
+  </div>
+  <p *ngIf="toggle">{{ answer }}</p>
+  
