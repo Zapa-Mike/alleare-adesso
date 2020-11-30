@@ -25,7 +25,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort1 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlEins">
                     {{ anzeigeAntwort1 }}
                   </label>
                 </div>
@@ -39,7 +39,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort2 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlZwei">
                     {{ anzeigeAntwort2 }}
                   </label>
                 </div>
@@ -56,7 +56,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort3 }}"
                   />
-                  <label class="form-check-label">{{ anzeigeAntwort3 }} </label>
+                  <label class="form-check-label" for="auswahlDrei">{{ anzeigeAntwort3 }} </label>
                 </div>
               </div>
 
@@ -69,7 +69,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort4 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlVier">
                     {{ anzeigeAntwort4 }}
                   </label>
                 </div>
@@ -100,7 +100,7 @@ import { DataService } from '../services/data.service';
                   </label>
                   <div [hidden]="zweiBilderLabelvisible">
                     <p>
-                      <label class="form-check-label"> {{ label1 }} </label>
+                      <label class="form-check-label" for="auswahlBildEins" > {{ label1 }} </label>
                     </p>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ import { DataService } from '../services/data.service';
 
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
-                  <label class="labelBilder">
+                  <label class="labelBilder" >
                     <input
                       type="radio"
                       id="auswahlBildZwei"
@@ -127,7 +127,7 @@ import { DataService } from '../services/data.service';
                   </label>
                   <div [hidden]="zweiBilderLabelvisible">
                     <p>
-                      <label class="form-check-label"> {{ label2 }}</label>
+                      <label class="form-check-label" for="auswahlBildZwei"> {{ label2 }}</label>
                     </p>
                   </div>
                 </div>
@@ -201,6 +201,7 @@ export class OptionsComponent implements DoCheck, OnInit {
   zweiBilderLabelvisible: boolean = true;
   fragenzweibilder = [];// Fragen aus der DB mit dem Typ "zweibilder"
   docidzweibilder = []; // Speichert die IDs der Fragen von Typ "zweibilder" --> antworten des Nutzers werden richtig abgespeichert 
+ 
   constructor(private dataservice: DataService) {
     this.form = new FormGroup({
       vierradio: new FormControl(),
@@ -235,7 +236,10 @@ export class OptionsComponent implements DoCheck, OnInit {
       });
   }
   ngOnInit() {
-    
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
     this.dataservice.sendIndexrouting2(2);//damit die Temps einzelnd und nicht zusammen angezeigt werden 
     if(this.dataservice.getIndexTemp2()==null){
       console.log("anfang")
@@ -252,6 +256,10 @@ export class OptionsComponent implements DoCheck, OnInit {
   }
 
   ngDoCheck() {
+     const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+   
 
     if (this.index < this.fragenvierradio.length) {  // schaut ob die vierradiobuttons angezeigt werden sollen 
       this.anzeige = this.fragenvierradio[this.index]; // richtige Frage soll angezeigt werden 
@@ -262,6 +270,12 @@ export class OptionsComponent implements DoCheck, OnInit {
       this.anzeigeAntwort2 = this.antwort2[this.index];
       this.anzeigeAntwort3 = this.antwort3[this.index];
       this.anzeigeAntwort4 = this.antwort4[this.index];
+
+      if ($('input[name=vierradio]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+      {
+       weiterButton.disabled = false;  
+      }
+    
     }
     // Schaut ob Bilderantworten angezeigt werden solle 
     if (this.index >= this.fragenvierradio.length && this.index < this.fragenzweibilder.length+this.fragenvierradio.length) { //Index der alle Seien zählt,muss größer sein als die Anzahl der vorherigen Fragen && Index der alle Seien zählt, muss kleiner sein als alle aktuell aufgerufenen Fragen und alle vorherige Fragen
@@ -274,11 +288,20 @@ export class OptionsComponent implements DoCheck, OnInit {
       // Label (Text unter den Bildern) wird in der Oberfläche angezeigt 
       this.label1 = this. zweibilderlabel1[this.index - this.fragenvierradio.length];
       this.label2 = this. zweibilderlabel2[this.index - this.fragenvierradio.length];
+      
+      if ($('input[name=zweiBild]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+      {
+       weiterButton.disabled = false;  
+      }
     }
-  
+   
     
   }
   weiter(){
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
     if(this.index<this.fragenzweibilder.length+this.fragenvierradio.length){ // zählt bis zu der maximalen Anzahl der Seiten hoch 
     this.index++; // index wird hochgesetzt 
     this.dataservice.addindexTemp2(this.index); // Index wird Dataservice übergeben, damit später zurueck geroutet werden kann
@@ -286,25 +309,19 @@ export class OptionsComponent implements DoCheck, OnInit {
     if(this.index>=this.fragenzweibilder.length+this.fragenvierradio.length && this.index!=0){
       this.dataservice.sendIndexrouting1(3);//weiterrotten zu Temp3 wird Dataservice übergeben 
     }
-    //greift die Radiobuttons aus der Oberfläche ab 
-    const radio1 = (document.getElementById(
-      'auswahlEins'
-    ) as unknown) as HTMLInputElement;
-    const radio2 = (document.getElementById(
-      'auswahlZwei'
-    ) as unknown) as HTMLInputElement;
-    const radio3 = (document.getElementById(
-      'auswahlDrei'
-    ) as unknown) as HTMLInputElement;
-    const radio4 = (document.getElementById(
-      'auswahlVier'
-    ) as unknown) as HTMLInputElement;
-    if (radio1.checked || radio2.checked || radio3.checked || radio4.checked)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+    //greift die Radiobuttons aus der Oberfläche ab
+    
+    if ($('input[name=vierradio]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
       {
                $('#auswahlEins').prop('checked', false);
                $('#auswahlZwei').prop('checked', false);
                $('#auswahlDrei').prop('checked', false);
-               $('#auswahlVier').prop('checked', false);
+               $('#auswahlVier').prop('checked', false)
+      }
+      if ($('input[name=zweiBild]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+      {
+        $('#auswahlBildEins').prop('checked', false);
+        $('#auswahlBildZwei').prop('checked', false);
       }
    if (this.vierradiovisible1 == false && this.vierradiovisible2 == false){ //Speichert gecheckten Radiobutton Wert von Typ "vierradio"
     this.dbpush.doc(this. docidvierradio[this.index-1]).set({
