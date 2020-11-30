@@ -125,3 +125,11 @@ h6{
     width: 35%;
     object-fit: cover;
 }
+.articleText{
+    display: block;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 20px;
+    margin-bottom: 25%;
+}
+    
