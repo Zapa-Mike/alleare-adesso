@@ -1,8 +1,8 @@
-<div>
-    <button class="questionButton" (click)="toggle = !toggle">
+<div class="form-inline">
+    <button class="bubble2 shadow bubble-bottom-right questionButton" (click)="toggle = !toggle">
       {{ question }}
     </button>
     <br />
-  </div>
-  <p *ngIf="toggle">{{ answer }}</p>
   
+  <div class="bubble shadow bubble-bottom-left" *ngIf="toggle">{{ answer }}</div>
+</div>
