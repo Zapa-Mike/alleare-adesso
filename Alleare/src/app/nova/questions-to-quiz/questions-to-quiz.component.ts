@@ -14,12 +14,19 @@ export class QuestionsToQuizComponent implements OnInit {
   questionAnswers: QuestionAnswer[] = [
     {
       question: 'Beeinflusst das Quiz meine Favoriten?',
-      answer: 'Das Quiz kannst du komplett unabhängig von den Favoriten abschließen ohne das diese beeinflusst werden.',
+      answer:
+        'Das Quiz kannst du komplett unabhängig von den Favoriten abschließen ohne das diese beeinflusst werden.',
       toggle: false,
     },
     {
       question: 'Wird die Auswertung gespeichert?',
       answer: 'Die Auswertung des Quiz wird nicht gespeichert.',
+      toggle: false,
+    },
+    {
+      question: 'WMuss ich das Quiz machen?',
+      answer:
+        'Das Quiz kannst du jederzeit freiwillig machen. Es soll dir die Möglichkeit geben deinen Wissensstand eigenständig zu überprüfen.',
       toggle: false,
     },
   ];

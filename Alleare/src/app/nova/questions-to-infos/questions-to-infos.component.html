@@ -1,0 +1,6 @@
+<info-question
+  *ngFor="let questionAnswer of questionAnswers"
+  [question]="questionAnswer.question"
+  [answer]="questionAnswer.answer"
+  [toggle]="questionAnswer.toggle"
+></info-question>
