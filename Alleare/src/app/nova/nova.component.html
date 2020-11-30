@@ -37,8 +37,14 @@
       <questions-to-quiz *ngIf="toggleQuestionsToQuiz"></questions-to-quiz>
     </div>
     <div>
-      <questions-to-questionaire *ngIf="toggleQuestionsToQuestionaire"></questions-to-questionaire>
+      <questions-to-questionaire
+        *ngIf="toggleQuestionsToQuestionaire"
+      ></questions-to-questionaire>
     </div>
+    <div>
+      <questions-to-settings *ngIf="toggleQuestionsToSettings"></questions-to-settings>
+    </div>
+  <div><questions-to-infos *ngIf="toggleQuestionsToInfos"></questions-to-infos></div>
   </div>
 
   <div class="grid-containerAntwortChat">
@@ -48,15 +54,23 @@
       (click)="toggleQuestionsToTips = !toggleQuestionsToTips"
       (click)="toggleQuestionsToQuiz = false"
       (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
+
+
     >
       Fragen zu den Tipps
     </button>
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/infos"
+      (click)="toggleQuestionsToInfos = !toggleQuestionsToInfos"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToTips = false"
     >
-      Allgemeine Infos
+      Über Infos
     </button>
     <button
       type="button"
@@ -64,6 +78,8 @@
       (click)="toggleQuestionsToQuiz = !toggleQuestionsToQuiz"
       (click)="toggleQuestionsToTips = false"
       (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
     >
       Fragen zum Quiz
     </button>
@@ -75,15 +91,22 @@
       (click)="toggleQuestionsToQuestionaire = !toggleQuestionsToQuestionaire"
       (click)="toggleQuestionsToTips = false"
       (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
+
     >
       Über den Fragenkatalog
     </button>
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/settings"
+      (click)="toggleQuestionsToSettings = !toggleQuestionsToSettings"
+      (click)="toggleQuestionsToTips = false"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToInfos = false"
     >
-      Einstellungen
+      Über die Einstellungen
     </button>
   </div>
 </body>

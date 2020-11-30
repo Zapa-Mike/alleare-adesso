@@ -15,7 +15,10 @@ export class NovaComponent implements OnInit {
   toggleQuestionsToTips = false;
   toggleQuestionsToQuiz = false;
   toggleQuestionsToQuestionaire = false;
+  toggleQuestionsToSettings = false;
+  toggleQuestionsToInfos = false;
 
+   
   constructor(
     private routerService: RoutingService,
     private routeResolver: RouteNameResolverService,
