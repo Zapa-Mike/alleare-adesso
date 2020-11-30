@@ -25,7 +25,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort1 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlEins">
                     {{ anzeigeAntwort1 }}
                   </label>
                 </div>
@@ -39,7 +39,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort2 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlZwei">
                     {{ anzeigeAntwort2 }}
                   </label>
                 </div>
@@ -56,7 +56,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort3 }}"
                   />
-                  <label class="form-check-label">{{ anzeigeAntwort3 }} </label>
+                  <label class="form-check-label" for="auswahlDrei">{{ anzeigeAntwort3 }} </label>
                 </div>
               </div>
 
@@ -69,7 +69,7 @@ import { DataService } from '../services/data.service';
                     formControlName="vierradio"
                     value="{{ anzeigeAntwort4 }}"
                   />
-                  <label class="form-check-label">
+                  <label class="form-check-label" for="auswahlVier">
                     {{ anzeigeAntwort4 }}
                   </label>
                 </div>
@@ -100,7 +100,7 @@ import { DataService } from '../services/data.service';
                   </label>
                   <div [hidden]="zweiBilderLabelvisible">
                     <p>
-                      <label class="form-check-label"> {{ label1 }} </label>
+                      <label class="form-check-label" for="auswahlBildEins" > {{ label1 }} </label>
                     </p>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ import { DataService } from '../services/data.service';
 
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
-                  <label class="labelBilder">
+                  <label class="labelBilder" >
                     <input
                       type="radio"
                       id="auswahlBildZwei"
@@ -127,7 +127,7 @@ import { DataService } from '../services/data.service';
                   </label>
                   <div [hidden]="zweiBilderLabelvisible">
                     <p>
-                      <label class="form-check-label"> {{ label2 }}</label>
+                      <label class="form-check-label" for="auswahlBildZwei"> {{ label2 }}</label>
                     </p>
                   </div>
                 </div>

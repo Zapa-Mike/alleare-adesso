@@ -32,7 +32,7 @@ import { Data } from '@angular/router';
                 value="ja"
                 id="redundant"
               />
-              <label class="form-check-label"> Ja </label>
+              <label class="form-check-label" for="redundant"> Ja </label>
             </div>
             <div id="ButtonNein" class="form-check form-check-inline">
               <input
@@ -42,7 +42,7 @@ import { Data } from '@angular/router';
                 value="nein"
                 id="redundant1"
               />
-              <label class="form-check-label"> Nein </label>
+              <label class="form-check-label" for="redundant1"> Nein </label>
             </div>
           </div>
         </div>

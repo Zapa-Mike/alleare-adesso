@@ -21,7 +21,7 @@ import { DataService } from '../services/data.service';
             aria-expanded="false"
             id="Bundestext"
           >
-            <a>Bundesland</a>
+            <a>{{ausgewaehlt}}</a>
           </button>
 
           <div class="dropdown-menu" id="drop">
@@ -70,6 +70,7 @@ import { DataService } from '../services/data.service';
 export class DropDownComponent implements OnInit, DoCheck {
   Bundesland = [];
   index1:number;
+  ausgewaehlt:string = "Bundesland"
 
   dbget = firebase.firestore().collection('Bundeslaender'); //in der Collection sind in den Docs die einzelnen Bundesländer abgespeichert
   index: number = 0; // dient zum Hochzähle und wechseln der Fragen
@@ -95,9 +96,11 @@ export class DropDownComponent implements OnInit, DoCheck {
   setLand(event) {
     const weiterButton = (document.getElementById(
       'Vbutton') as unknown) as HTMLInputElement;
+      
 
       weiterButton.disabled = false; 
     let title: string = event.target.id;
+    this.ausgewaehlt = title;
     firebase
       .firestore()
       .collection('Benutzer')
