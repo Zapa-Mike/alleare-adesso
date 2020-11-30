@@ -139,9 +139,19 @@ ngOnInit(){
     }
   
 }
+const weiterButton = (document.getElementById(
+  'Wbutton') as unknown) as HTMLInputElement;
+  weiterButton.disabled = true;  
 }
 
 ngDoCheck(){
+  const weiterButton = (document.getElementById(
+    'Wbutton'
+  ) as unknown) as HTMLInputElement;
+  if ($('input[name=stories]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+  {
+   weiterButton.disabled = false;  
+  }
   if(this.index<this.storyfrage.length){
     this.storyvisible=true;
     this.fragenanzeige=this.storyfrage[this.index];
@@ -168,7 +178,16 @@ ngDoCheck(){
 }
 
 weiter(){
+  const weiterButton = (document.getElementById(
+    'Wbutton'
+  ) as unknown) as HTMLInputElement;
+  weiterButton.disabled = true;
 
+  if ($('input[name=stories]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
+      {
+               $('#redundant').prop('checked', false);
+               $('#redundant1').prop('checked', false);
+      }
   if(this.index<this.storyfrage.length+this.radiofrage.length){
     this.index++;
     this.dataservice.addIndexTemp1(this.index);

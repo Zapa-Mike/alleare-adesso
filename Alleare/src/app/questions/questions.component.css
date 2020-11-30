@@ -161,7 +161,7 @@ input {
   cursor: pointer;
 }
 [type=radio]:checked + img {
-  outline: 2px solid #131314;
+  outline: 4px solid #f5ce00;
 }
 #BildSingle {
   border-radius: 5px;

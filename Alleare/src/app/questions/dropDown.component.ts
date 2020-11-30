@@ -93,6 +93,10 @@ export class DropDownComponent implements OnInit, DoCheck {
   // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
   // Funktion erkennt die ID der gelickten Auswahl und pusht diese in DB
   setLand(event) {
+    const weiterButton = (document.getElementById(
+      'Vbutton') as unknown) as HTMLInputElement;
+
+      weiterButton.disabled = false; 
     let title: string = event.target.id;
     firebase
       .firestore()
@@ -117,6 +121,9 @@ export class DropDownComponent implements OnInit, DoCheck {
         this.Bundesland.push(doc.data()._);
       });
     });
+    const weiterButton = (document.getElementById(
+      'Vbutton') as unknown) as HTMLInputElement;
+      weiterButton.disabled = true;  
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
