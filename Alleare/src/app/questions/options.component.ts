@@ -346,8 +346,3 @@ export class OptionsComponent implements DoCheck, OnInit {
         this.dataservice.addindexTemp2(this.index);// uebergibt dem Dataservice aktuellen Index
       }
       }  
-
-     
-
-  
-
