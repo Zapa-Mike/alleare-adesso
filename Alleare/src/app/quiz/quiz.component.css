@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 60px;
-    position: fixed;
+    
     width:100%;
     height: 100%;
   }
@@ -26,6 +26,17 @@ body {
     box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
     border-radius: 10px;
     height: 100px;
+    text-align: center;
+  }
+  .cardBehauptung {
+    position: relative;
+    background-color: #ffffff;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+    border-radius: 10px;
+    height: 200px;
+    text-align: center;
   }
   /*Frage*/
 .Fragenstellung {
@@ -47,13 +58,23 @@ body {
     margin-top: 5%;
     margin-bottom: 5%;
   }
+  .grid-containerBehauptung {
+    display: grid;
+    padding-left: 3%;
+    padding-right: 3%;
+    grid-template-columns: 50% auto;
+    grid-gap: 10px;
+    text-align: start;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 
   .antwort {
     padding: 0%;
     border: none;
     border-radius: 5px;
     background: white;
-    width: auto;
+    width: 100%;
     height: 75px;
   }
 /*Vor- und Zurück-Buttons*/
@@ -158,8 +179,6 @@ body {
     margin-right: 20%;
     float: right;
     align-content: end;
-    width: 80px;
-    height: 80px;
     align-self: end;
   }
   .tick {
