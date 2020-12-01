@@ -59,6 +59,12 @@ export class  NavbarComponent implements DoCheck {
       this.quizIcon=this.quizD;
       this.faqIcon=this.faqD;
       this.infosIcon=this.infos;
+    }else if (route.startsWith('/nova')) {
+      this.homeIcon=this.homeD;
+      this.tippsIcon=this.tippsD;
+      this.quizIcon=this.quizD;
+      this.faqIcon=this.faqD;
+      this.infosIcon=this.infosD;
     }
   }
 }
