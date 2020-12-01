@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -24,49 +24,113 @@
       integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
   </head>
 
-<body>
-  <div class="Titel text-center">
-    <h3>Quiz</h3>
-  </div>
-  <div class="card">
-    <div class="Fragenstellung">Frage ?{{ null }}</div>
-  </div>
-  <div class="grid-containerAntworten">
-    <button id="A1" class="antwort shadow">A1</button>
-    <button id="A2" class="antwort shadow">A2</button>
-    <button id="A3" class="antwort shadow">A3</button>
-    <button id="A4" class="antwort shadow">A4</button>
-  </div>
-
-  <div class="col rowVZ">
-    <button id="Vbutton" class="btn">
-      <img src="/assets/icons/icon_arrow_forward.svg" width="50" height="50" />
-    </button>
-    <button id="Zbutton" class="btn">
-      <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-    </button>
-  </div>
-  <div class="d-flex Nova justify-content-end">
-    <button class="NovaButton" routerLink="/nova">
+  <body>
+    <!--
+    <div class="WillkommenSeite">
+      <div class="Titel text-center">
+        <h3>Willkommen im Quiz</h3>
+      </div>
+      
+      img
+      <div class="WillkommenBild"> 
       <img
-        id="NovaImage"
-        src="/assets/nova/nova_home.png"
-        alt="nova"
-        width="140"
-        height="140"
+        id="Bild"
+        src="data:image/gif;base64,{{ imgArray[?] }}"
+        width="70px"
+        height="50px"
       />
-    </button>
-  </div>
-</body>
+      </div>
+    
+      <div class="col rowVZ inline">
+        <button id="V1button" class="btn">
+          <img
+            src="/assets/icons/icon_arrow_forward.svg"
+            width="50"
+            height="50"
+            (click)="weiter()"
+          />
+          einfügen (click)="datapush()"
+        </button>
+      </div>
+      Sprechblase
+      <div class="grid-containerNovaSprechblase">
+        <div
+          class="bubble shadow bubble-bottom-right"
+          contenteditable="false"
+          id="WillkommenSpB"
+        >
+          In diesem Quiz werden dir 6 Fragen aus verschiedenen Versicherungen
+          gestellt, am Ende wird eine Auswertung angezeigt.
+        </div>
+
+        <img
+          src="/assets/nova/nova_fragenkatalog.png"
+          width="100"
+          height="100"
+          id="NovaImage"
+          routerLink="/nova"
+        />
+      </div>
+    </div>
+  -->
+
+    <div class="Titel text-center">
+      <h3>Quiz</h3>
+    </div>
+    
+    <four-answers *ngIf="!switch" ></four-answers> 
+    <two-answers *ngIf="switch"></two-answers>
+    
+
+    <div class="col rowVZ">
+      <button id="Vbutton" class="btn">
+        <img
+          src="/assets/icons/icon_arrow_forward.svg"
+          width="50"
+          height="50"
+          (click)="switch=true"
+        />
+      </button>
+      <button id="Zbutton" class="btn">
+        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+      </button>
+    </div>
+    <div class="d-flex Nova justify-content-end">
+      <button class="NovaButton" routerLink="/nova">
+        <img
+          id="NovaImage"
+          src="/assets/nova/nova_home.png"
+          alt="nova"
+          width="140"
+          height="140"
+        />
+      </button>
+    </div>
+  </body>
+</html>
