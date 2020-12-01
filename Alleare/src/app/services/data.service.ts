@@ -1,5 +1,4 @@
 import { Observable, Subject } from 'rxjs';
-import { RadioComponent } from '../questions/radio.component';
 import { StoriesComponent } from '../questions/stories.component';
 import { QuestionsComponent } from '../questions/questions.component';
 import firebase from 'firebase';
@@ -15,62 +14,47 @@ export class DataService {
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
 
+    indexvonTemp2zuTemp3:number;
+    indexTemp2:number
+    indexvonTemp3zuTemp2:number;
+    indexTemp1:number;
+
     constructor() {
 
-        // this.dbget.where("type","==","vierradio").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenvierradio.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenvierradio);
-        // this.dbget.where("type","==","zweibilder").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenzweibilder.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenzweibilder);
-        // this.dbget.where("type","==","zweibilderzweiradio").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenzweibilderzweiradio.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenzweibilderzweiradio);
-        // this.dbget.where("type","==","liste").get()
-        // .then((querysnapshot)=>{
-        //     querysnapshot.forEach((doc)=>{
-        //         this.fragenliste.push(doc.data()._);
-        //     })
-        // })
-        // console.log(this.fragenliste);
-
     }
-
-    sendIndexradio(indexradio:number){
-    this.subject.next(indexradio);
-    }
-
-    getIndexradio() : Observable<any>{
-        return this.subject.asObservable();
-    }
-
-    sendIndexstory(indexstory:number){
-        this.subject1.next(indexstory);
-    }
-
-    getIndexstory(): Observable<any>{
-        return this.subject1.asObservable();
-    }
-
-    sendIndexdialog(indexdialog:number)
+    sendIndexdialog(indexdialog:number)//Intro
     {
         this.subject2.next(indexdialog);
     }
 
-    getIndexdialog(): Observable<any>{
+    getIndexdialog(): Observable<any>{//Intro
         return this.subject2.asObservable();
     }
+
+    sendIndexrouting1(indextemplate1:number){ // die Anzahl der Seiten von Temp 2 (options) wird Temp 3 (dropDown) übergeben
+        this.indexvonTemp2zuTemp3=indextemplate1;
+    }
+    getIndexrouting1(){
+        return this.indexvonTemp2zuTemp3;
+    }
+    sendIndexrouting2(indextemplate3:number){// die Anzahl der Seiten von Temp 2 (options) wird von Temp 3 (dropDown) an Temp2 übergeben
+        this.indexvonTemp3zuTemp2=indextemplate3;
+    }
+    getIndexrouting2(){
+        return this.indexvonTemp3zuTemp2;
+    }
+    addindexTemp2(index){
+        this.indexTemp2=index;
+    }
+    getIndexTemp2(){// Temp2 (options) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
+        return this.indexTemp2;
+    }
+    addIndexTemp1(index){
+        this.indexTemp1=index;
+    }
+    getIndexTemp1(){// Temp1 (stories) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
+        return this.indexTemp1;
+    }
+
 
 }

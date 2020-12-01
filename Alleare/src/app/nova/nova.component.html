@@ -17,8 +17,8 @@
   <!--Sprechblase-->
   <div class="grid-containerNovaSprechblase">
     <div class="bubble shadow bubble-bottom-left" contenteditable="false">
-      Hi {{ nameIntro }},du befindest dich im
-      {{ resolveRoute(previousRoute) }} wie kann ich dir helfen?
+      Hi {{ nameIntro }},du befindest dich im {{ resolveRoute(previousRoute) }}.
+      Wie kann ich dir helfen?
     </div>
 
     <div class="Nova">
@@ -30,7 +30,21 @@
         id="NovaImage"
       />
     </div>
-    <questions-to-tips *ngIf="toggleQuestionsToTips"></questions-to-tips>
+    <div>
+      <questions-to-tips *ngIf="toggleQuestionsToTips"></questions-to-tips>
+    </div>
+    <div>
+      <questions-to-quiz *ngIf="toggleQuestionsToQuiz"></questions-to-quiz>
+    </div>
+    <div>
+      <questions-to-questionaire
+        *ngIf="toggleQuestionsToQuestionaire"
+      ></questions-to-questionaire>
+    </div>
+    <div>
+      <questions-to-settings *ngIf="toggleQuestionsToSettings"></questions-to-settings>
+    </div>
+  <div><questions-to-infos *ngIf="toggleQuestionsToInfos"></questions-to-infos></div>
   </div>
 
   <div class="grid-containerAntwortChat">
@@ -38,41 +52,61 @@
       type="button"
       class="chatAntwort shadow rounded-pill"
       (click)="toggleQuestionsToTips = !toggleQuestionsToTips"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
+
+
     >
       Fragen zu den Tipps
     </button>
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/infos"
+      (click)="toggleQuestionsToInfos = !toggleQuestionsToInfos"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToTips = false"
     >
-      Allgemeine Infos
+      Über Infos
     </button>
-    <button type="button" class="chatAntwort shadow rounded-pill">
+    <button
+      type="button"
+      class="chatAntwort shadow rounded-pill"
+      (click)="toggleQuestionsToQuiz = !toggleQuestionsToQuiz"
+      (click)="toggleQuestionsToTips = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
+    >
       Fragen zum Quiz
     </button>
   </div>
-  <div class="grid-containerAntwortChat">
+  <div class="grid-containerAntwortChat2">
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/questions"
+      (click)="toggleQuestionsToQuestionaire = !toggleQuestionsToQuestionaire"
+      (click)="toggleQuestionsToTips = false"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToSettings = false"
+      (click)="toggleQuestionsToInfos = false"
+
     >
-      Fragenkatalog
+      Über den Fragenkatalog
     </button>
     <button
       type="button"
       class="chatAntwort shadow rounded-pill"
-      routerLink="/faq"
+      (click)="toggleQuestionsToSettings = !toggleQuestionsToSettings"
+      (click)="toggleQuestionsToTips = false"
+      (click)="toggleQuestionsToQuiz = false"
+      (click)="toggleQuestionsToQuestionaire = false"
+      (click)="toggleQuestionsToInfos = false"
     >
-      Einstellungen
-    </button>
-    <button
-      type="button"
-      class="chatAntwort shadow rounded-pill"
-      routerLink="/faq"
-    >
-      FAQ
+      Über die Einstellungen
     </button>
   </div>
 </body>

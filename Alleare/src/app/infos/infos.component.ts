@@ -16,7 +16,7 @@ let tmpfieldnames: string[] = [];
 export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
   Fieldnames: string[] = [];
-  dbget = firebase.firestore().collection('Versicherungen');
+  dbget = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
   Versicherungen: string[] = [
     'Berufsunfähigkeitsversicherung',
@@ -112,10 +112,7 @@ export class InfosComponent implements OnInit {
     this.favorisiert1 = true;
   }
   ngOnInit(): void {
-    const test = firebase
-      .firestore()
-      .collection('Flashcards')
-      .doc('Versicherungen');
+
     this.dbget
       .where('Favorisierung', '==', true)
       .get()

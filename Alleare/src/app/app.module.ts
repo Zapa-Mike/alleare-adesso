@@ -26,15 +26,29 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { StoriesComponent } from './questions/stories.component';
-import { RadioComponent } from './questions/radio.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
+import { OptionsComponent } from './questions/options.component';
+import { DropDownComponent } from './questions/dropDown.component';
+
+
+
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
 import { QuestionsToTipsComponent } from './nova/questions-to-tips/questions-to-tips.component';
 import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-question.component';
+import { QuestionsToQuizComponent } from './nova/questions-to-quiz/questions-to-quiz.component';
+import { QuizQuestionComponent } from './nova/questions-to-quiz/quiz-question/quiz-question.component';
+import { QuestionsToQuestionaireComponent } from './nova/questions-to-questionaire/questions-to-questionaire.component';
+import { QuestionaireQuestionComponent } from './nova/questions-to-questionaire/questionaire-question/questionaire-question.component';
+import { QuestionsToSettingsComponent } from './nova/questions-to-settings/questions-to-settings.component';
+import { SettingsQuestionsComponent } from './nova/questions-to-settings/settings-questions/settings-questions.component';
+import { QuestionsToInfosComponent } from './nova/questions-to-infos/questions-to-infos.component';
+import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/info-question.component';
+import { FourAnswersComponent } from './quiz/four-answers.component';
+import { TwoAnswersComponent } from './quiz/two-answers.component';
 
 @NgModule({
   declarations: [
@@ -52,12 +66,23 @@ import { TipQuestionComponent } from './nova/questions-to-tips/tip-question/tip-
     HeaderComponent,
     EvaluationComponent,
     StoriesComponent,
-    RadioComponent,
     novadialogComponent,
     insuranceComponent,
+    OptionsComponent,
+    DropDownComponent,
     categoriesComponent,
     QuestionsToTipsComponent,
-    TipQuestionComponent
+    TipQuestionComponent,
+    QuestionsToQuizComponent,
+    QuizQuestionComponent,
+    QuestionsToQuestionaireComponent,
+    QuestionaireQuestionComponent,
+    QuestionsToSettingsComponent,
+    SettingsQuestionsComponent,
+    QuestionsToInfosComponent,
+    InfoQuestionComponent,
+    FourAnswersComponent,
+    TwoAnswersComponent
   ],
   imports: [
     BrowserModule,

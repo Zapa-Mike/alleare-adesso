@@ -13,18 +13,20 @@ interface QuestionAnswer {
 export class QuestionsToTipsComponent implements OnInit {
   questionAnswers: QuestionAnswer[] = [
     {
-      question: 'first question',
-      answer: 'first answer',
+      question: 'Was wird in Tipps gezeigt?',
+      answer:
+        'Hier werden dir nützliche Tipps verschiedenster Art gezeigt, diese dir in sämtlichen Alltagssituationen das Leben erleichtern sollen.',
       toggle: false,
     },
     {
-      question: 'second question',
-      answer: 'second answer',
+      question: 'Warum werden mir dort diverse Themen vorgestellt?',
+      answer:
+        'Mit der großen Anzahl an Tipps möchten wir dir in vielen Lebenssituationen weiterhelfen können.',
       toggle: false,
     },
     {
-      question: 'third question',
-      answer: 'third answer',
+      question: 'Wofür brauche ich diese Tipps?​',
+      answer: 'Die Tipps sollen dir zusätzlich auch außerhalb der App weiter helfen, um dich in sämtlichen Lebenslagen zu unterstützen.',
       toggle: false,
     },
   ];
