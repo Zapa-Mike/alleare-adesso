@@ -9,28 +9,56 @@ body {
   background: linear-gradient(to bottom, #4ca3e1, #36d1dc);
   padding-top: 80px;
   width: 100%;
-  height: 1366px;
+  height: 100%;
   position: fixed;
 }
 
-
 .btn {
+
   font-family: 'Lato', sans-serif;
   color: black;
   background: white;
   text-align: center;
-  border: none;
   padding: 15% 15%;
   font-size: 5vw;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   border-radius:10px;
+  position:inline;
+
 }
+
+.btn:visited {
+  color: #FFC300;
+  border-color:#FFC300;
+  border-width:4px;
+
+
+}
+
+.btn:hover {
+  color: #FFC300;
+  border-color: #FFC300;
+  border-width:4px;
+
+}
+
+.btn:active {
+  color: #FFC300;
+  border-color: #FFC300;
+  border-width:4px;
+
+}
+
+
+
 
 #firstcont {
   display: grid;
   grid-template-columns: 100%;
+
+
 }
 
 .grid-container {
@@ -41,6 +69,8 @@ body {
   padding-right: 15px;
   padding-bottom: 15px;
   border-radius: 30%;
+
+
 }
 
 .grid-container.fixed-bottom {
