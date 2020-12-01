@@ -44,8 +44,7 @@
     padding: 26px;
     text-align: center;
     color: #000;
-    margin-left: 50%;
-    margin-right: 5%;
+    left: 35%;
     margin-bottom: 5%;
   }
   .bubble-bottom-right::after {
