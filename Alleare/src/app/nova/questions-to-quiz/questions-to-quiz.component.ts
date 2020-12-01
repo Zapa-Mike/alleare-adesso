@@ -24,7 +24,7 @@ export class QuestionsToQuizComponent implements OnInit {
       toggle: false,
     },
     {
-      question: 'WMuss ich das Quiz machen?',
+      question: 'Muss ich das Quiz machen?',
       answer:
         'Das Quiz kannst du jederzeit freiwillig machen. Es soll dir die Möglichkeit geben deinen Wissensstand eigenständig zu überprüfen.',
       toggle: false,

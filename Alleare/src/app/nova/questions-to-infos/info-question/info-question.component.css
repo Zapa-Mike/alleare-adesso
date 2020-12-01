@@ -20,7 +20,6 @@
     padding: 26px;
     text-align: center;
     color: #000;
-    margin-left: 10%;
   }
   .bubble-bottom-left::after {
     content: "";
