@@ -15,12 +15,12 @@ import { DataService } from '../services/data.service';
   </div>
   <!--Kategorien tags-->
  <div class="categories">
-      <button (click)="auswahl($event)" id="Gesundheit" class="topic1">Gesundheit</button>
       <button (click)="auswahl($event)" id="Sport" class="topic">Sport</button>
+      <button (click)="auswahl($event)" id="Gesundheit" class="topic1">Gesundheit</button>
       <button (click)="auswahl($event)" id="Reisen" class="topic">Reisen</button>
       <button (click)="auswahl($event)"  id="Finanzen" class="topic">Finanzen</button>
-      <button (click)="auswahl($event)"  id="Wirtschaft" class="topic">Wirtschaft</button>
       <button (click)="auswahl($event)"  id="Selbstständig" class="topic2">Selbstständigkeit</button>
+      <button (click)="auswahl($event)"  id="Wirtschaft" class="topic">Wirtschaft</button>
     </div>
   
   <!--Themenbereiche-->
@@ -29,8 +29,8 @@ import { DataService } from '../services/data.service';
 </div>
   <!--Nova-->
     <img src="/assets/nova/nova_flashcard_singing.png"
-         width="100"
-         height="100"
+         width="140"
+         height="140"
          routerLink="/nova"
          id="NovaImage"/>
 </div>
@@ -43,8 +43,8 @@ import { DataService } from '../services/data.service';
         src="/assets/icons/icon_back_arrow.svg"/>
   </div>
   <!--Schlagzeilen und Bilder-->
-  <div class="headlines" *ngFor="let topic of topics">
-    <div id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
+  <div *ngFor="let topic of topics">
+    <div class="headlines" id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
 </div>
 </div>
 <div *ngIf="articlesngif">

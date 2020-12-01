@@ -2,20 +2,29 @@ body{
     background-color: #f2f9fd;
     background-repeat: no-repeat;
     background-size: cover;
-    position: fixed;
     width:100%;
     height: 100%;
 }
 
-
 h3{
+    margin-top: 50px;
+    padding-top: 2%;
+    padding-bottom: 10px;
     color: #2A2D2F;
-    margin-top: 22%;
-   
+    margin-left: auto;
+    margin-right: auto;
+    font-family: lato;
 }
 
 .categories{
     margin-top: 7%;
+    display: grid;
+    padding-left: 5%;
+    padding-right: 5%;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    text-align: center;
+    justify-items: center;
 }
 
 .topic{
@@ -60,7 +69,7 @@ h3{
 
 .box
 {
-    margin-top: 15%;
+    margin-top: 10%;
     padding-top: 10%;
     margin-left: 3%;
     height: 6em;
@@ -82,6 +91,7 @@ p{
 #NovaImage{
     float: right;
     margin-right: 12%;
+    margin-bottom: 62px;
 }
 
 .headlines{
@@ -125,3 +135,11 @@ h6{
     width: 35%;
     object-fit: cover;
 }
+.articleText{
+    display: block;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 20px;
+    margin-bottom: 25%;
+}
+    
