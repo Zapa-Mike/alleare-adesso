@@ -51,11 +51,13 @@
   </head>
 
   <body>
+    <!--
     <div class="WillkommenSeite">
       <div class="Titel text-center">
         <h3>Willkommen im Quiz</h3>
       </div>
-      <!--img
+      
+      img
       <div class="WillkommenBild"> 
       <img
         id="Bild"
@@ -64,7 +66,7 @@
         height="50px"
       />
       </div>
-    -->
+    
       <div class="col rowVZ inline">
         <button id="V1button" class="btn">
           <img
@@ -73,10 +75,10 @@
             height="50"
             (click)="weiter()"
           />
-          <!--einfügen (click)="datapush()"-->
+          einfügen (click)="datapush()"
         </button>
       </div>
-      <!--Sprechblase-->
+      Sprechblase
       <div class="grid-containerNovaSprechblase">
         <div
           class="bubble shadow bubble-bottom-right"
@@ -96,20 +98,15 @@
         />
       </div>
     </div>
+  -->
 
     <div class="Titel text-center">
       <h3>Quiz</h3>
     </div>
-    <div class="card">
-      <div class="Fragenstellung">Frage ?{{ null }}</div>
-    </div>
-    <div class="grid-containerAntworten">
-      <p class="tick" style="position: fixed">correct</p>
-      <button id="A1" class="antwort shadow">A1</button>
-      <button id="A2" class="antwort shadow">A2</button>
-      <button id="A3" class="antwort shadow">A3</button>
-      <button id="A4" class="antwort shadow">A4</button>
-    </div>
+    
+    <four-answers *ngIf="!switch" ></four-answers> 
+    <two-answers *ngIf="switch"></two-answers>
+    
 
     <div class="col rowVZ">
       <button id="Vbutton" class="btn">
@@ -117,6 +114,7 @@
           src="/assets/icons/icon_arrow_forward.svg"
           width="50"
           height="50"
+          (click)="switch=true"
         />
       </button>
       <button id="Zbutton" class="btn">
