@@ -17,7 +17,7 @@ import { DataService } from '.././services/data.service';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
 })
-export class QuestionsComponent implements DoCheck{
+export class QuestionsComponent implements DoCheck, OnInit{
   routing1:boolean=true;
   routing2:boolean=false;
   routing3:boolean=false;
@@ -27,9 +27,18 @@ export class QuestionsComponent implements DoCheck{
   template1:number;
 
   template5:any;
+  verweis=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
   
   constructor(private dataservice:DataService) {
 
+  }
+
+  ngOnInit(){// Löscht Favorisierung bei erneutem Aufruf der Fragenkatalogs
+this.verweis.get().then((querysnapshot)=>{
+querysnapshot.forEach((doc)=>{
+  doc.ref.delete();
+  })
+})
   }
 
   ngDoCheck(){

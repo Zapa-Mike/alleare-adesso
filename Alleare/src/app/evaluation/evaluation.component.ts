@@ -11,11 +11,6 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./evaluation.component.css'],
 })
 export class EvaluationComponent implements OnInit {
-  
-  Versicherungen = ['','Haftpflichtversicherung','Hausratversicherung','Rechtsschutz','','Wohngebäudeversicherung','Kfz-Versicherung','Kfz-Versicherung',
-  '','','','Reiseversicherung','private Unfallversicherung','','Wohngebäudeversicherung','Tier-Haftpflichtversicherung','','',
-  ];
-  priorisierung = [];
   Versicherungspriorisierung = [];
   Versicherungsanzeige5=[];
   db = firebase
@@ -23,6 +18,10 @@ export class EvaluationComponent implements OnInit {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
+    db2 = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'));
   db1 = firebase.firestore();
   standardversicherungen=['Haftpflichtversicherung','Hausratversicherung']
 
@@ -44,14 +43,9 @@ ngOnInit() {
     querysnapshot.forEach((doc)=>{
       firebase.firestore().collection("Fragenkatalog").doc(doc.id).get().then((doc)=>{
         perVersicherung.push(doc.data().versicherung)
-        perVersicherung.push(doc.data().versicherung1)
         var test=doc.data().versicherung;
-        var test1=doc.data().versicherung1;
         this.db1.collection("Versicherungen").doc(test).get().then((doc)=>{
         Versicherungsprioritaet.push(doc.data().Priorisierung);
-        })
-        this.db1.collection("Versicherungen").doc(test1).get().then((doc)=>{
-          Versicherungsprioritaet.push(doc.data().Priorisierung);
         })
       })
     })
@@ -88,15 +82,15 @@ async sort() {
     if(this.Versicherungspriorisierung.length<=5){
       for(let z=0;z<this.Versicherungspriorisierung.length;z++){
         this.Versicherungsanzeige5[z]=this.Versicherungspriorisierung[z]; // Die besten 5 werden ausgegeben
-        this.db1.collection('Versicherungen').doc(this.Versicherungsanzeige5[z]).update({
+        this.db2.collection('Versicherungen').doc(this.Versicherungsanzeige5[z]).set({
           Favorisierung: true,
         })
       }
     }
     else{
-      for(let z=0;z<4;z++){
+      for(let z=0;z<=4;z++){
         this.Versicherungsanzeige5[z]=this.Versicherungspriorisierung[z]; // Die besten 5 werden ausgegeben
-        this.db1.collection('Versicherungen').doc(this.Versicherungsanzeige5[z]).update({
+        this.db2.collection('Versicherungen').doc(this.Versicherungsanzeige5[z]).set({
           Favorisierung: true,
         })
       }
