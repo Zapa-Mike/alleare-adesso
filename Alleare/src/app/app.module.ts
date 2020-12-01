@@ -47,6 +47,8 @@ import { QuestionsToSettingsComponent } from './nova/questions-to-settings/quest
 import { SettingsQuestionsComponent } from './nova/questions-to-settings/settings-questions/settings-questions.component';
 import { QuestionsToInfosComponent } from './nova/questions-to-infos/questions-to-infos.component';
 import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/info-question.component';
+import { FourAnswersComponent } from './quiz/four-answers.component';
+import { TwoAnswersComponent } from './quiz/two-answers.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/i
     QuestionsToSettingsComponent,
     SettingsQuestionsComponent,
     QuestionsToInfosComponent,
-    InfoQuestionComponent
+    InfoQuestionComponent,
+    FourAnswersComponent,
+    TwoAnswersComponent
   ],
   imports: [
     BrowserModule,
