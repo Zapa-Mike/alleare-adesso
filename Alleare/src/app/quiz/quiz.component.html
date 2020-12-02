@@ -106,10 +106,7 @@
     
     <four-answers *ngIf="anzeigevier" ></four-answers> 
     <two-answers *ngIf="anzeigezwei"></two-answers>
-
-    <div *ngIf="auswertung">
-      {{punkte}} von 8
-    </div>
+    <evaluation-quiz *ngIf="auswertung"></evaluation-quiz>
     
     <div class="d-flex Nova justify-content-end">
       <button class="NovaButton" routerLink="/nova">

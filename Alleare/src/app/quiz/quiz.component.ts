@@ -30,25 +30,11 @@ export class QuizComponent implements OnInit, DoCheck {
     this.dataservice.addindexspeichernzwei(0);
     this.dataservice.addindexspeichernvier(0);
 
-    this.dbantworten.get().then((querysnapshot)=>{
-    querysnapshot.forEach((doc)=>{
-      this.antwortenid.push(doc.id);
-      this.antworten.push(doc.data().antwort);
-    })
-  }).then(()=>{
-    this.antwortenid.forEach((value)=>{
-      this.dbrichtig.doc(value).get().then((doc)=>{
-        this.richtigeantworten.push(doc.data().richtig)
+    this.dbantworten.get().then((querysnapshot)=>{//Löscht Benutzerantworten, von davor
+      querysnapshot.forEach((doc)=>{
+        doc.ref.delete();
+        })
       })
-    })
-  }).then(()=>{
-    for(let i=0;i<this.antworten.length;i++){
-      if(this.antworten[i]==this.richtigeantworten[i]){
-        this.punkte=this.punkte+1;
-      }
-    }
-  })
-  
 
   }
 

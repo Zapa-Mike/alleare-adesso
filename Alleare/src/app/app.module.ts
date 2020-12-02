@@ -49,6 +49,7 @@ import { QuestionsToInfosComponent } from './nova/questions-to-infos/questions-t
 import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/info-question.component';
 import { FourAnswersComponent } from './quiz/four-answers.component';
 import { TwoAnswersComponent } from './quiz/two-answers.component';
+import { evaluationComponent } from './quiz/evaluation.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { TwoAnswersComponent } from './quiz/two-answers.component';
     QuestionsToInfosComponent,
     InfoQuestionComponent,
     FourAnswersComponent,
-    TwoAnswersComponent
+    TwoAnswersComponent,
+    evaluationComponent
   ],
   imports: [
     BrowserModule,
