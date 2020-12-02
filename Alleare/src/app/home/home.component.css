@@ -1,90 +1,67 @@
-
-h1 {
-  color: white;
-  font-family: 'Lato', sans-serif;
-  font-size: 8vw;
-}
+/*Hintergrund*/
 
 body {
   background: linear-gradient(to bottom, #4ca3e1, #36d1dc);
-  padding-top: 80px;
+  padding: 80px 0px 0px 0px;
   width: 100%;
   height: 100%;
   position: fixed;
 }
 
-.btn {
+/*Überschrift, Begrüßung & Name*/
 
-  font-family: 'Lato', sans-serif;
+h1 {
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-size: 8vw;
+}
+
+/*Button Fragenkatalog*/
+
+#firstcont {
+  grid-template-columns: 100%;
+}
+
+/*Alle Buttons*/
+
+.btn {
+  font-family: "Lato", sans-serif;
   color: black;
   background: white;
   text-align: center;
-  padding: 15% 15%;
+  padding: 15%;
   font-size: 5vw;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  border-radius:10px;
-  position:inline;
-
+  border-radius: 10px;
 }
 
-.btn:visited {
-  color: #FFC300;
-  border-color:#FFC300;
-  border-width:4px;
+/*Alle Buttons Farbe Text und Rahmen*/
 
-
-}
-
-.btn:hover {
-  color: #FFC300;
-  border-color: #FFC300;
-  border-width:4px;
-
-}
-
+.btn:visited,
 .btn:active {
-  color: #FFC300;
-  border-color: #FFC300;
-  border-width:4px;
-
+  color: #ffc300;
+  border-color: #ffc300;
+  border-width: 4px;
 }
 
-
-
-
-#firstcont {
-  display: grid;
-  grid-template-columns: 100%;
-
-
-}
+/*Alle Buttons Anordnung*/
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
+  padding: 0px 15px 15px 15px;
   border-radius: 30%;
-
-
 }
 
-.grid-container.fixed-bottom {
-  grid-gap: 55px;
-}
+/*Buttons footer*/
 
-#settingButton {
-  background-color: transparent;
-  border-color: transparent;
-  align-self: flex-end;
-}
-
+#settingButton,
 #novaButton {
   background-color: transparent;
   border-color: transparent;
   align-self: flex-end;
 }
+
