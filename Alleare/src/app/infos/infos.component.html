@@ -28,7 +28,10 @@
           </div>
           <div class="scrollbar col-md-12" id="scrollbar">
             <div *ngIf="allgemein1">
-              <div *ngFor="let versicherung of Versicherungen;index as i;" class="BU row">
+              <div
+                *ngFor="let versicherung of Versicherungen; index as i"
+                class="BU row"
+              >
                 <button
                   id="{{ versicherung }}"
                   type="button"
@@ -39,11 +42,11 @@
                   {{ versicherung }}
                 </button>
                 <img
-                id="{{i}}"
-                class="sternleer"
-                src="/assets/icons/icon_favorite_star_empty.svg"
-                (click)="changeImg($event)"
-              />
+                  id="{{ i }}"
+                  class="sternleer"
+                  src="/assets/icons/icon_favorite_star_empty.svg"
+                  (click)="changeImg($event)"
+                />
               </div>
             </div>
             <div *ngIf="favorisiert1">
