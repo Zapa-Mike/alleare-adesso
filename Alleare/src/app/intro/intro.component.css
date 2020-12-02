@@ -2,7 +2,7 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  position:fixed;
+  position: fixed;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -32,16 +32,20 @@ form {
   margin-top: 40%;
   margin-bottom: 40%;
 }
-.Namenseingabe{
-  padding-bottom:74%;
+.Namenseingabe {
+  padding-bottom: 74%;
 }
 .btn {
   background-color: #38cddc;
-  width: 150px;
+  width: 140px;
   color: #f2f9fd;
-  padding: 20px;
-  position: sticky;
-  box-shadow: #131314 25%;
+  padding: 10px;
+  box-shadow: #131314 50%;
+}
+
+#WeiterKnopf {
+  position: relative;
+  margin-top: 40%;
 }
 
 .col {
@@ -88,309 +92,316 @@ form {
 }
 
 /*Screen Intro Irrtümer Darstellung + Positionierung Anfang*/
-.TextHaftpflicht{
-  font-family:lato;
+.TextHaftpflicht {
+  font-family: lato;
   margin-left: 15%;
   margin-top: -16%;
 }
 
-.HaftpflichtBild{
+.HaftpflichtBild {
   margin-left: 15%;
   margin-top: 10%;
   width: 300px;
   height: 300px;
 }
 
-.TextHausrat{
+.TextHausrat {
   font-family: lato;
   margin-left: -15%;
   margin-top: -20%;
-
 }
 
-.HausratBild{
+.HausratBild {
   margin-left: -15%;
-  margin-top: 5%;
+  margin-top: 30%;
   width: 300px;
   height: 300px;
 }
 /*Screen Intro Irrtümer Darstellung + Positionierung Ende*/
 
-
-
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Anfang*/
-.PersonenbefoerderungBild{
+.PersonenbefoerderungBild {
   margin-left: 15%;
   margin-top: 10%;
   width: 300px;
   height: 300px;
 }
 
-.AutoschadenBild{
-  margin-top: 7%;
+.AutoschadenBild {
+  margin-top: 40%;
   width: 300px;
   height: 300px;
   margin-left: -15%;
 }
 
-.TextPersonenbefoerderung{
+.TextPersonenbefoerderung {
   margin-top: -25%;
   margin-left: 15%;
   font-family: lato;
-
 }
 
-.TextAutoschaden{
+.TextAutoschaden {
   font-family: lato;
-  margin-top: -17%;
+  margin-top: -18%;
   margin-left: -15%;
 }
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Ende*/
 
-
-
 /*Screen Intro Alltagssituation Private Unfallversicherung Darstellung + Positionierung Anfang*/
-.PrivateUnfallversicherungBild{
+.PrivateUnfallversicherungBild {
   width: 300px;
   height: 300px;
   margin-left: 15%;
   margin-top: 10%;
 }
 
-.HaushaltsunfallBild{
+.HaushaltsunfallBild {
   width: 300px;
   height: 300px;
   margin-left: -15%;
-  margin-top: 5%;
+  margin-top: 40%;
 }
 
-.TextPrivateUnfallversicherung{
+.TextPrivateUnfallversicherung {
   font-family: lato;
   margin-left: 15%;
   margin-top: -15%;
 }
 
-.TextHaushaltsunfall{
+.TextHaushaltsunfall {
   font-family: lato;
   margin-left: -15%;
-  margin-top: -16%;
+  margin-top: -18%;
 }
 /*Screen Intro Alltagssituation Private Unfallversicherung Darstellung + Positionierung Ende*/
 
-
-
 /*Screen Intro Irrtümer Animation Anfang*/
-#HaftpflichtEinblenden{
- animation: einblenden 1.5s;
-}
-
-@keyframes einblenden{
-  from  {opacity: 0;}
-  to    {opacity: 1;}
-}
-
-
-#HausratEinblenden{
-  
-  animation: erscheinen 3s;
-  animation-delay: 1.5s;
-  visibility:hidden;
-  
-}
-
-@keyframes erscheinen{
-  from  {opacity: 0;}
-  to    {opacity: 1;}
-}
-/*Screen Intro Irrtümer Animation Ende*/
-
-
-
-/*Screen Intro Alltagssituation Autounfall Animation Anfang*/
-#PersonenbefoerderungEinblenden{
+#HaftpflichtEinblenden {
   animation: einblenden 1.5s;
 }
 
-@keyframes einblenden{
-  from  {opacity: 0;}
-  to    {opacity: 1;}
+@keyframes einblenden {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-#AutoschadenEinblenden{
+#HausratEinblenden {
   animation: erscheinen 3s;
   animation-delay: 1.5s;
-  visibility:hidden;
+  visibility: hidden;
 }
 
-@keyframes erscheinen{
-  from  {opacity: 0;}
-  to    {opacity: 1;}
+@keyframes erscheinen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/*Screen Intro Irrtümer Animation Ende*/
+
+/*Screen Intro Alltagssituation Autounfall Animation Anfang*/
+#PersonenbefoerderungEinblenden {
+  animation: einblenden 1.5s;
+}
+
+@keyframes einblenden {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#AutoschadenEinblenden {
+  animation: erscheinen 3s;
+  animation-delay: 1.5s;
+  visibility: hidden;
+}
+
+@keyframes erscheinen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 /*Screen Intro Alltagssituation Autounfall Animation Ende*/
 
-
-
 /*Screen Intro Private Unfallversicherung Animation Anfang*/
-  #PrivateUnfallversicherungEinblenden{
-    animation: einblenden 1.5s;
-  }
+#PrivateUnfallversicherungEinblenden {
+  animation: einblenden 1.5s;
+}
 
-  @keyframes einblenden{
-    from  {opacity: 0;}
-    to    {opacity: 1;}
+@keyframes einblenden {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  #HaushaltsunfallEinblenden{
-    animation: erscheinen 3s;
-    animation-delay: 1.5s;
-    visibility:hidden;
-  }
+#HaushaltsunfallEinblenden {
+  animation: erscheinen 3s;
+  animation-delay: 1.5s;
+  visibility: hidden;
+}
 
-  @keyframes erscheinen{
-    from  {opacity: 0;}
-    to    {opacity: 1;}
+@keyframes erscheinen {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 /*Screen Intro Private Unfallversicherung Animation Ende*/
 
-
 /*Screen Nova + Springanimation + Sprechblase + Content 1/4 Anfang*/
-.Nova_Intro_Irrtuemer_Alltagssituationen1{
+.Nova_Intro_Irrtuemer_Alltagssituationen1 {
   position: relative;
   width: 100px;
   height: 100px;
-  margin-top: 140%;
+  margin-top: 120%;
   margin-left: 50%;
   animation: bounce 0.5s;
   animation-iteration-count: 2;
   animation-delay: 1s;
 }
 
+@keyframes bounce {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateY();
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
-@keyframes bounce { 
-  0%, 20%, 40%, 60%, 80%, 100% {transform: translateY();}
-  50% {transform: translateY(-20px);}
-} 
-
-
-#Sprechblase1{
+#Sprechblase1 {
   width: 200px;
   height: 150px;
-  margin-top:-100%;
+  margin-top: -100%;
   margin-left: -19%;
 }
 
-.TextIrrtuemerAlltagssituation{
+.TextIrrtuemerAlltagssituation {
   font-size: 14px;
-  margin-top: -61%;
+  margin-top: -62%;
   margin-left: -20%;
 }
+
+.TextKlickeMichAn {
+  font-size: 20px;
+  color: #f5ce00;
+  transform: rotate(-7deg);
+  margin-top: 40%;
+  margin-left: 50%;
+}
 /*Screen Nova + Springanimation + Sprechblase + Content 1/4* Ende */
- 
 
 /*Screen Nova + Springanimation + Sprechblase + Content 2/4 Anfang */
-.Nova_Intro_Irrtuemer_Alltagssituationen2{
+.Nova_Intro_Irrtuemer_Alltagssituationen2 {
   width: 100px;
   height: 100px;
-  margin-top: 140%;
+  margin-top: 120%;
   margin-left: 50%;
   animation: bounce 0.5s;
   animation-iteration-count: 2;
   animation-delay: 1s;
 }
 
-#Sprechblase2{
+#Sprechblase2 {
   width: 200px;
   height: 150px;
-  margin-top:-100%;
+  margin-top: -100%;
   margin-left: -19%;
 }
 
-.TextNovaVorstellung{ 
+.TextNovaVorstellung {
   font-size: 14px;
-  margin-top: -63.5%;
+  margin-top: -66%;
   margin-left: -20%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 2/4* Ende */
 
-
 /*Screen Nova + Springanimation + Sprechblase + Content 3/4 Anfang */
-.Nova_Intro_Irrtuemer_Alltagssituationen3{
+.Nova_Intro_Irrtuemer_Alltagssituationen3 {
   width: 100px;
   height: 100px;
-  margin-top: 200%;
+  margin-top: 120%;
   margin-left: 50%;
   animation: bounce 0.5s;
   animation-iteration-count: 2;
   animation-delay: 1s;
 }
 
-#Sprechblase3{
+#Sprechblase3 {
   width: 200px;
   height: 150px;
-  margin-top:-100%;
+  margin-top: -100%;
   margin-left: -19%;
 }
 
-.TextNovaberatung{ 
+.TextNovaberatung {
   font-size: 14px;
   margin-top: -65.5%;
   margin-left: -19.5%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 3/4* Ende */
 
-
 /*Screen Nova + Springanimation + Sprechblase + Content 4/4 Anfang */
-.Nova_Intro_Irrtuemer_Alltagssituationen3{
+.Nova_Intro_Irrtuemer_Alltagssituationen4 {
   width: 100px;
   height: 100px;
-  margin-top: 200%;
-  margin-left: 50%;
-  animation: bounce 0.5s;
-  animation-iteration-count: 2;
-  animation-delay: 1s;
-}
-
-#Sprechblase3{
-  width: 200px;
-  height: 150px;
-  margin-top:-100%;
-  margin-left: -19%;
-}
-
-.TextNovaberatung{ 
-  font-size: 14px;
-  margin-top: -65.5%;
-  margin-left: -19.5%;
-}
-/*Screen Nova + Springanimation + Sprechblase + Content 3/4* Ende */
-
-
-/*Screen Nova + Springanimation + Sprechblase + Content 4/4 Anfang */
-.Nova_Intro_Irrtuemer_Alltagssituationen4{
-  width: 100px;
-  height: 100px;
-  margin-top: 200%;
+  margin-top: 120%;
   margin-left: 50%;
   animation: schweben 2s;
   animation-delay: 1s;
+  animation-iteration-count: 2;
+  animation-timing-function: ease ease-in-out;
 }
 
-@keyframes schweben { 
-  
-  5% {transform: translateY(-20px);}
-} 
+@keyframes schweben {
+  from {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, -25px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+  /*100%{margin-top:110%;}*/
+}
 
-
-#Sprechblase4{
+#Sprechblase4 {
   width: 200px;
   height: 150px;
-  margin-top:-100%;
+  margin-top: -100%;
   margin-left: -19%;
 }
 
-.TextZukunftVersicherungen{ 
+.TextZukunftVersicherungen {
   font-size: 14px;
   margin-top: -65.2%;
   margin-left: -19.5%;
+}
+
+#Knopfpositionierung {
+  margin-top: 60%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 4/4* Ende */

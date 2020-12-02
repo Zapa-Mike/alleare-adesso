@@ -9,17 +9,17 @@ import { DataService } from '../services/data.service';
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.css'],
 })
-export class IntroComponent implements OnInit, DoCheck{
+export class IntroComponent implements OnInit, DoCheck {
   form: FormGroup;
   public Name: string;
-  
+
   //Routing
-  logo:boolean=true;
-  namenseingabe:boolean=false;
-  novaIntro:boolean=false;
-  novadialog:boolean=false;
-  indexnovadialog:number;
-  insurance:boolean=false;
+  logo: boolean = true;
+  namenseingabe: boolean = false;
+  novaIntro: boolean = false;
+  novadialog: boolean = false;
+  indexnovadialog: number;
+  insurance: boolean = false;
 
   constructor(private dataservice: DataService) {
     this.form = new FormGroup({
@@ -45,19 +45,17 @@ export class IntroComponent implements OnInit, DoCheck{
       });
   }
 
-  ngDoCheck(){
-
-if(this.indexnovadialog==1)
-{
-this.insurance=false;
-this.novadialog=true;
-}
+  ngDoCheck() {
+    if (this.indexnovadialog == 1) {
+      this.insurance = false;
+      this.novadialog = true;
+    }
   }
 
-  ngOnInit(){
-    setTimeout(() =>{
-      this.logo=false;
-      this.namenseingabe=true;  
+  ngOnInit() {
+    setTimeout(() => {
+      this.logo = false;
+      this.namenseingabe = true;
     }, 2888);
   }
 
@@ -70,12 +68,12 @@ this.novadialog=true;
       .set({
         Name: this.Name,
       });
-      this.namenseingabe=false;
-      this.novaIntro=true;
+    this.namenseingabe = false;
+    this.novaIntro = true;
   }
-//Routing
-  weiter(){
-  this.novaIntro=false;
-  this.insurance=true;
+  //Routing
+  weiter() {
+    this.novaIntro = false;
+    this.insurance = true;
   }
 }
