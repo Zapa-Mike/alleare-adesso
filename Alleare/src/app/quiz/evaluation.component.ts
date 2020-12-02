@@ -9,10 +9,63 @@ import { Data } from '@angular/router';
 @Component({
   selector: 'evaluation-quiz',
   template: `
+    <div class="Titel2 text-center">
+      <h3>Dein Ergebnis:</h3>
+    </div>
+
+    <div class="cardAuswertung">
+      <!--Auswertung Kreis anzeige-->
+      <div class="single-chart">
+        <svg viewBox="0 0 36 36" class="circular-chart blue">
+          <path
+            class="circle-bg"
+            d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path
+            class="circle"
+            stroke-dasharray="100, 100"
+            d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <text x="18" y="20.35" class="percentage">{{ punkte }} / 8</text>
+        </svg>
+        <div class="Texte">
+        <!--Text wie: Yeah! Fast alles richtig beantwortet. Basierend auf Ergebnis anderen Text anzeigen-->
+        <label class="KommentarAuswertung"
+          >Yeah! Du hast das Quiz geschafft</label
+        >
+        <button
+          type="button"
+          class="LinkMeineAntworten btn-link"
+          routerLink="/infos"
+        >
+          Meine Antworten ansehen
+        </button>
+      </div>
+      </div>
+      
+    </div>
+
+    <div class="gridButtons">
+      <button
+        type="btn"
+        class="btnAuswertung shadow rounded-pill"
+        (click)= "reload()"
+      >
+        Neues Quiz
+      </button>
+      <button
+        type="btn"
+        class="btnAuswertung shadow rounded-pill"
+        routerLink="/infos"
+      >
+        Zu Infos
+      </button>
+    </div>
     <br />
-    <br />
-    <br />
-    {{ punkte }} Punkte
   `,
   styleUrls: ['./quiz.component.css'],
 })
@@ -61,5 +114,8 @@ export class evaluationComponent implements OnInit {
         }
       }
     }, 1300); //Muss noch überarbeitet werden.
+  }
+  public reload(){
+    location.reload();
   }
 }
