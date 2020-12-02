@@ -16,7 +16,11 @@ let tmpfieldnames: string[] = [];
 export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
   Fieldnames: string[] = [];
-  dbget = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
+  dbget = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'))
+    .collection('Versicherungen');
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
   Versicherungen: string[] = [
     'Berufsunfähigkeitsversicherung',
@@ -78,7 +82,15 @@ export class InfosComponent implements OnInit {
       this.Versicherungen.indexOf(title)
     ];
   }
-
+  changeImg(event) {
+    let a: string = event.target.id;
+    let element: HTMLImageElement;
+    element = <HTMLImageElement>document.getElementById(a);
+    console.log(element.src);
+    if (element.src.endsWith('/assets/icons/icon_favorite_star_empty.svg'))
+      element.src = '/assets/icons/icon_favorite_star.svg';
+    else element.src = '/assets/icons/icon_favorite_star_empty.svg';
+  }
   //Bedingungen zum schließen des Popupfensters
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -112,7 +124,6 @@ export class InfosComponent implements OnInit {
     this.favorisiert1 = true;
   }
   ngOnInit(): void {
-
     this.dbget
       .where('Favorisierung', '==', true)
       .get()
