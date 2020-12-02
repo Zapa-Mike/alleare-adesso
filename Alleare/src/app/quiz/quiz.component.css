@@ -1,190 +1,190 @@
 body {
-    background-color: #f2f9fd;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 60px;
-    
-    width:100%;
-    height: 100%;
-  }
-  
-  .Titel {
-    margin-top: 50px;
-    padding-top: 2%;
-    padding-bottom: 10px;
-    color: #2a2d2f;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: lato;
-  }
-  /*Cards*/
-  .card {
-    position: relative;
-    background-color: #ffffff;
-    margin-left: 3%;
-    margin-right: 3%;
-    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
-    border-radius: 10px;
-    height: 105px;
-    text-align: center;
-  }
-  .cardBehauptung {
-    position: relative;
-    background-color: #ffffff;
-    margin-left: 3%;
-    margin-right: 3%;
-    box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
-    border-radius: 10px;
-    height: 250px;
-    text-align: center;
-  }
-  /*Frage*/
+  background-color: #f2f9fd;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 60px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.Titel {
+  margin-top: 50px;
+  padding-top: 2%;
+  padding-bottom: 10px;
+  color: #2a2d2f;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: lato;
+}
+/*Cards*/
+.card {
+  position: relative;
+  background-color: #ffffff;
+  margin-left: 3%;
+  margin-right: 3%;
+  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+  border-radius: 10px;
+  height: 105px;
+  text-align: center;
+}
+.cardBehauptung {
+  position: relative;
+  background-color: #ffffff;
+  margin-left: 3%;
+  margin-right: 3%;
+  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+  border-radius: 10px;
+  height: 250px;
+  text-align: center;
+}
+/*Frage*/
 .Fragenstellung {
-    padding-top: 1%;
-    padding-bottom: 1%;
-    position: static;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 90%;
-  }
+  padding-top: 1%;
+  padding-bottom: 1%;
+  position: static;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
 /*Grids*/
 .grid-containerAntworten {
-    display: grid;
-    margin-left: 3%;
-    margin-right: 3%;
-    grid-template-columns: 48% 48%;
-    grid-gap: 10px;
-    justify-content: space-evenly;
-    text-align: start;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-  .grid-containerBehauptung {
-    display: grid;
-    padding-left: 3%;
-    padding-right: 3%;
-    grid-template-columns: 48% 48%;
-    grid-gap: 10px;
-    justify-content: space-evenly;
-    text-align: start;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
+  display: grid;
+  margin-left: 3%;
+  margin-right: 3%;
+  grid-template-columns: 48% 48%;
+  grid-gap: 10px;
+  justify-content: space-evenly;
+  text-align: start;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.grid-containerBehauptung {
+  display: grid;
+  padding-left: 3%;
+  padding-right: 3%;
+  grid-template-columns: 48% 48%;
+  grid-gap: 10px;
+  justify-content: space-evenly;
+  text-align: start;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 
-  .antwort {
-    padding: 0%;
-    border: none;
-    border-radius: 5px;
-    background: white;
-    width: 100%;
-    height: 100px;
-  }
+.antwort {
+  padding: 0%;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  width: 100%;
+  height: 100px;
+}
 /*Vor- und Zurück-Buttons*/
 .rowVZ {
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    margin-bottom: 0%;
-  }
-  #Vbutton {
-    float: right;
-    padding: 0%;
-    border: none;
-  }
-  #Zbutton {
-    padding: 0%;
-    border: none;
-  }
-  #bbutton {
-    padding: 0%;
-  }
-  #Wbutton {
-    /*gleiche wie Vbutton, nur andere id für jquery*/
-    float: right;
-    padding: 0%;
-    border: none;
-  }
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 0%;
+}
+#Vbutton {
+  float: right;
+  padding: 0%;
+  border: none;
+}
+#Zbutton {
+  padding: 0%;
+  border: none;
+}
+#bbutton {
+  padding: 0%;
+}
+#Wbutton {
+  /*gleiche wie Vbutton, nur andere id für jquery*/
+  float: right;
+  padding: 0%;
+  border: none;
+}
 
-  /*Nova*/
-  .NovaButton{
-    border: none;
-    background: none;
-    margin-right: 10%;
-    float: right;
-    align-content: end;
-  }
+/*Nova*/
+.NovaButton {
+  border: none;
+  background: none;
+  margin-right: 10%;
+  float: right;
+  align-content: end;
+}
 
-  /*Willkommenseite */
-  .rowVZ {
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 2%;
-    padding-bottom: 0%;
-    margin-bottom: 0%;
-  }
-  #V1button{/*Weiterbutton der Willkommenseite*/
-    padding: 0%;
-    margin-left: 75%;
-  }
-  .grid-containerNovaSprechblase {
-    display: grid;
-    align-content: space-evenly;
-    grid-template-columns: auto auto;
-    grid-template-rows: 160px;
-    background-color: #f2f9fd;
-    padding: 10px;
-    padding-bottom: 0%;
-  }
-  .bubble {
-    position: relative;
-    font-family: lato;
-    font-size: 12px;
-    line-height: 1.3;
-    width: 200px;
-    height: 60%;
-    background: #ffffff;
-    border-radius: 50%;
-    padding: 20px;
-    text-align: center;
-    color: #000;
-    justify-self: right;
-  }
-  #WillkommenSpB {
-    position: relative;
-    font-family: lato;
-    font-size: 12px;
-    line-height: 1.3;
-    width: 200px;
-    height: 65%;
-    background: #ffffff;
-    border-radius: 50%;
-    padding: 20px;
-    text-align: center;
-    color: #000;
-    justify-self: right;
-  }
-  .bubble-bottom-right::after {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-style: solid;
-    border-width: 0 45px 25px 0;
-    border-top: 40% solid #ffffff;
-    border-color: #ffffff;
-    border-bottom: 35px solid transparent;
-    right: 15%;
-    bottom: -14px;
-  }
-  #NovaImage {
-    
-    float: right;
-    align-content: end;
-    align-self: end;
-  }
-  .tick {
-    z-index: 1;
-    margin-left: 60px;
-    margin-top: 25px; 
-  }
+/*Willkommenseite */
+.rowVZ {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 2%;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+}
+#V1button {
+  /*Weiterbutton der Willkommenseite*/
+  padding: 0%;
+  margin-left: 75%;
+}
+.grid-containerNovaSprechblase {
+  display: grid;
+  align-content: space-evenly;
+  grid-template-columns: auto auto;
+  grid-template-rows: 160px;
+  background-color: #f2f9fd;
+  padding: 10px;
+  padding-bottom: 0%;
+}
+.bubble {
+  position: relative;
+  font-family: lato;
+  font-size: 12px;
+  line-height: 1.3;
+  width: 200px;
+  height: 60%;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 20px;
+  text-align: center;
+  color: #000;
+  justify-self: right;
+}
+#WillkommenSpB {
+  position: relative;
+  font-family: lato;
+  font-size: 12px;
+  line-height: 1.3;
+  width: 200px;
+  height: 65%;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 20px;
+  text-align: center;
+  color: #000;
+  justify-self: right;
+}
+.bubble-bottom-right::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0 45px 25px 0;
+  border-top: 40% solid #ffffff;
+  border-color: #ffffff;
+  border-bottom: 35px solid transparent;
+  right: 15%;
+  bottom: -14px;
+}
+#NovaImage {
+  float: right;
+  align-content: end;
+  align-self: end;
+}
+.tick {
+  z-index: 1;
+  margin-left: 60px;
+  margin-top: 25px;
+}
