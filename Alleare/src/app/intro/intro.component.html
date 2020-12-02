@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -24,76 +24,99 @@
       integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2? family=Lato:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </head>
-<body>
-<app-novadialog *ngIf="novadialog"></app-novadialog>
-<app-insurance *ngIf="insurance"></app-insurance>
+  <body>
+    <app-novadialog *ngIf="novadialog"></app-novadialog>
+    <app-insurance *ngIf="insurance"></app-insurance>
 
-<div *ngIf="logo">
-    <!--Intro-Willkommen Logo-->
-    <div  class="IntroLogo">
-      <img
-        class="LogoGross"
-        src="/assets/icons/alleare_Logo.svg"
-        width="80"
-        height="80"
-      />
+    <div *ngIf="logo">
+      <!--Intro-Willkommen Logo-->
+      <div class="IntroLogo">
+        <img
+          class="LogoGross"
+          src="/assets/icons/alleare_Logo.svg"
+          width="80"
+          height="80"
+        />
+      </div>
+      <div class="IntroWillkommen"><h1>Willkommen</h1></div>
     </div>
-    <div class="IntroWillkommen"><h1>Willkommen</h1></div>
-</div>
 
-<div *ngIf="namenseingabe">
-    <!--Intro-Nameneingabe-->
-    <div class="Titel justify-content-center">
-    <h1>Wie heißt du?</h1>
+    <div *ngIf="namenseingabe">
+      <!--Intro-Nameneingabe-->
+      <div class="Titel justify-content-center">
+        <h1>Wie heißt du?</h1>
+      </div>
+      <form>
+        <div [formGroup]="form" rounded class="Namenseingabe">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Name"
+            id="formGroupExampleInput"
+            placeholder="Name"
+          />
+        </div>
+        <div class="col justify-content-center">
+          <button
+            type="submit"
+            class="btn rounded-pill"
+            routerLink=""
+            (click)="saveName()"
+          >
+            WEITER
+          </button>
+        </div>
+      </form>
     </div>
-    <form>
-      <div [formGroup]="form" rounded class="Namenseingabe">
-        <input
-          type="text"
-          class="form-control"
-          formControlName="Name"
-          id="formGroupExampleInput"
-          placeholder="Name"
+
+    <!--Intro-Nova vorstellung-->
+    <div *ngIf="novaIntro" class="container">
+      <div class="bubble shadow bubble-bottom-right" contenteditable="false">
+        Hi {{ Name }}, <br />
+        mein Name ist Nova dein neuer digitaler Freund. Ich bin immer da, wenn
+        du mich brauchst!
+      </div>
+      <div class="col2">
+        <img
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100"
+          height="100"
+          id="NovaImage"
         />
       </div>
       <div class="col justify-content-center">
-        <button type="submit" class="btn rounded-pill" routerLink="" (click)="saveName()">
+        <button
+          type="submit"
+          id="WeiterKnopf"
+          class="btn rounded-pill"
+          (click)="weiter()"
+        >
           WEITER
         </button>
       </div>
-    </form>
-</div>
-  <!--Intro-Nova vorstellung-->
-  <div *ngIf="novaIntro" class="container">
-    <div class="bubble shadow bubble-bottom-right" contenteditable="false">
-      Hallo {{Name}}, mein Name ist Nova - dein neuer digitaler Freund. Ich bin immer da, wenn du mich brauchst!
     </div>
-    <div class="col2">
-      <img
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-    <div class="col justify-content-center">
-      <button type="submit" class="btn rounded-pill" (click)="weiter()">
-        WEITER
-      </button>
-
-      
-    </div>
-  </div>
-
-
-  
-</body>
+  </body>
+</html>
