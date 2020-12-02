@@ -10,65 +10,89 @@ import { Data } from '@angular/router';
   selector: 'two-answers',
   template: `
   <div class="cardBehauptung">
-      <div class="Fragenstellung">Frage </div>
+      <div class="Fragenstellung">{{anzeige}}</div>
     </div>
     <div class="grid-containerBehauptung">
-      <button id="A1" class="antwort shadow"></button>
-      <button id="A2" class="antwort shadow"></button>
+      <button id={{antwort1anzeige}} class="antwort shadow" (click)="push($event)">{{antwort1anzeige}}</button>
+      <button id={{antwort2anzeige}} class="antwort shadow" (click)="push($event)">{{antwort2anzeige}}</button>
+    </div>
+    <div class="col rowVZ">
+      <button id="Vbutton" class="btn">
+        <img
+          src="/assets/icons/icon_arrow_forward.svg"
+          width="50"
+          height="50"
+          (click)="weiter()"
+        />
+      </button>
+      <button id="Zbutton" class="btn">
+        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+      </button>
     </div>
 
     `,
   styleUrls: ['./quiz.component.css'],
 })
 export class TwoAnswersComponent implements OnInit, DoCheck {
-  form: FormGroup;
-  index: number = 0;
-  antwort1 = []; 
-  antwort2 = [];
-
-  anzeigeAntwort1: string;
-  anzeigeAntwort2: string;
-  //Variablen zum speichern der Liste
-  storyfrage: string[] = [];
-  radiofrage: string[] = [];
-  story: string[] = [];
-  docidstory: any[] = [];
-  docidradio: any[] = [];
-  storyvisible: boolean = true;
-
-  storyanzeige: string;
-  fragenanzeige: string;
-  bildanzeige: any;
-  storiesausblenden: boolean = false;
-  indexstory = [];
-  jalla: boolean;
-
-  dbpush = firebase
-    .firestore()
-    .collection('Benutzer')
-    .doc(localStorage.getItem('hans'))
-    .collection('Fragenkatalog');
-  dbget = firebase.firestore().collection('Fragenkatalog');
+  get=firebase.firestore().collection('Quiz');
+  fragen=[];
+  antworten1:string[]=[];
+  antworten2:string[]=[];
+  index=0;
+  indexrouting=0;
+  fragenauswahl=[];
+  anzeige:string;
+  doclength:number=0;
+  docid=[];
+  antwort1anzeige:string;
+  antwort2anzeige:string;
+  dbpush=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Quiz');
 
   constructor(private dataservice: DataService) {
-    this.form = new FormGroup({
-      stories: new FormControl(),
-    });
+
   }
 
   ngOnInit() {
-    if (this.dataservice.getIndexTemp1() == null) {
-      console.log('anfang');
-    } else {
-      this.index = this.dataservice.getIndexTemp1() - 1;
-      if (this.index < 0) {
-        this.index = 0;
+    this.index=this.dataservice.getindexspeichernzwei();
+    this.get.where('type','==','zweiAntworten').get().then((querysnapshot)=>{
+      querysnapshot.forEach((doc)=>{
+    this.docid.push(doc.id);
+    this.doclength=this.doclength+1;
+    this.fragen.push(doc.data().Frage);
+    this.antworten1.push(doc.data().antwort1)
+    this.antworten2.push(doc.data().antwort2)
+      })
+    }).then(()=>{
+      for(let i=0;i<4;i++){
+        do{
+          this.fragenauswahl[i] = Math.floor(Math.random() * this.doclength + 0).toString();
+        }while(this.fragenauswahl.includes(i)==true);
       }
-    }
+    })
   }
 
-  ngDoCheck() {
+    ngDoCheck() 
+    {
+    this.indexrouting=this.dataservice.getquizrouting();
+    this.anzeige=this.fragen[this.fragenauswahl[this.index]]
+    this.antwort1anzeige=this.antworten1[this.fragenauswahl[this.index]]
+    this.antwort2anzeige=this.antworten2[this.fragenauswahl[this.index]]
     }
+
+    push(event){
+      this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
+        antwort:event.target.id
+      })
+    }
+
+    weiter()
+    {
+      this.index=this.index+1;
+      this.dataservice.addindexspeichernzwei(this.index);
+      this.indexrouting=this.indexrouting+1;
+      this.dataservice.addquizrouting(this.indexrouting);
+    }
+
   }
 
  
