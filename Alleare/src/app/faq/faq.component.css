@@ -1,0 +1,17 @@
+
+ body{
+     padding:70px 0px 70px 0px;
+
+ }
+ 
+ .mat-expansion-panel-header{
+      height:100px;
+  }
+  .mat-expansion-panel{
+      margin-bottom: 2%;
+      margin-left:5%;
+      margin-right:5%;
+  }
+  .abstand{
+      padding-bottom: 3%;
+  }
