@@ -19,6 +19,11 @@ export class DataService {
     indexvonTemp3zuTemp2:number;
     indexTemp1:number;
 
+    indexquizrouting:number=0;
+
+    indexvier:number=0;
+    indexzwei:number=0;
+
     constructor() {
 
     }
@@ -55,6 +60,22 @@ export class DataService {
     getIndexTemp1(){// Temp1 (stories) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
         return this.indexTemp1;
     }
-
-
+    addquizrouting(index){  //Für routing in der quizcomponent.ts
+        this.indexquizrouting=index;
+    }
+    getquizrouting(){
+        return this.indexquizrouting;
+    }
+    addindexspeichernvier(index){ //Index speicher, damit bei einem neuen aufruf der index nicht zurück gesetzt wird.
+        this.indexvier=index;
+    }
+    getindexspeichernvier(){
+        return this.indexvier;
+    }
+    addindexspeichernzwei(index){
+        this.indexzwei=index;
+    }
+    getindexspeichernzwei(){
+        return this.indexzwei;
+    }
 }

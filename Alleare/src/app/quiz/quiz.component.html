@@ -104,23 +104,13 @@
       <h3>Quiz</h3>
     </div>
     
-    <four-answers *ngIf="!switch" ></four-answers> 
-    <two-answers *ngIf="switch"></two-answers>
-    
+    <four-answers *ngIf="anzeigevier" ></four-answers> 
+    <two-answers *ngIf="anzeigezwei"></two-answers>
 
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-          (click)="switch=true"
-        />
-      </button>
-      <button id="Zbutton" class="btn">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
+    <div *ngIf="auswertung">
+      {{punkte}} von 8
     </div>
+    
     <div class="d-flex Nova justify-content-end">
       <button class="NovaButton" routerLink="/nova">
         <img
