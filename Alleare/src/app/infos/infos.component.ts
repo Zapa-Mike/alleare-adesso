@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ThrowStmt } from '@angular/compiler';
-import { ScrollBar } from '@ng-bootstrap/ng-bootstrap/util/scrollbar';
-import { eventNames } from 'process';
-
-let tmpcontent: string[] = [];
-let tmpfieldnames: string[] = [];
 
 @Component({
   selector: 'app-flashcards',
@@ -15,65 +9,27 @@ let tmpfieldnames: string[] = [];
 })
 export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
-  Fieldnames: string[] = [];
-  dbget = firebase
-    .firestore()
-    .collection('Benutzer')
-    .doc(localStorage.getItem('hans'))
-    .collection('Versicherungen');
+  Fieldnames = [];
+  dbget= firebase.firestore().collection('Flashcards');
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
-  Versicherungen: string[] = [
-    'Berufsunfähigkeitsversicherung',
-    'Hausratversicherung',
-    'Kfz-Versicherung',
-    'Rechtschutzversicherung',
-    'Reiseversicherung',
-    'Riester-Rente',
-    'Risikolebensversicherung',
-    'Tierhaftpflichtversicherung',
-    'Wohngebäudeversicherung',
-    'private Haftpflichtversicherung',
-    'private Unfallversicherung',
-  ];
+  Versicherungen = [];
   allgemein1: boolean = true;
   favorisiert1: boolean = false;
   Versicherungenfav: any[] = [];
 
   constructor(private modalService: NgbModal) {
-    var db = firebase.firestore();
-    let data: string[] = [];
 
-    //Fragen von der Datenbank abgreifen und umwandeln in ein String
-    db.collection('Flashcards')
-      .doc('Versicherungen')
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          tmpfieldnames = Object.keys(doc.data());
-          data = tmpfieldnames;
-          tmpcontent.push(doc.data().Berufsunfähigkeitsversicherung);
-          tmpcontent.push(doc.data().Hausratsversicherung);
-          tmpcontent.push(doc.data().Kfz_Versicherung);
-          tmpcontent.push(doc.data().Rechtsschutzversicherung);
-          tmpcontent.push(doc.data().Reiseversicherung);
-          tmpcontent.push(doc.data().Riester_Rente);
-          tmpcontent.push(doc.data().Risikolebensversicherung);
-          tmpcontent.push(doc.data().Tierhaftpflichtversicherung);
-          tmpcontent.push(doc.data().Wohngebäudeversicherung);
-          tmpcontent.push(doc.data().private_Haftpflichtversicherung);
-          tmpcontent.push(doc.data().private_Unfallversicherung);
-        } else {
-          console.log('No such document!');
-        }
-      })
-      .catch(function (error) {
-        console.log('Error getting document:', error);
+    this.dbget
+    .get()
+    .then((querysnapshot) => {
+      querysnapshot.forEach((doc) => {
+        this.Versicherungen.push(doc.data().name);
+        this.ContentListe.push(doc.data().info);
       });
-    this.ContentListe = tmpcontent;
-    this.Fieldnames = data;
+    });
+    console.log(this.Versicherungen)
   }
-  n;
-
+ 
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
   intendedContent(event) {
     let title: string = event.target.id;
@@ -134,3 +90,5 @@ export class InfosComponent implements OnInit {
       });
   }
 }
+
+
