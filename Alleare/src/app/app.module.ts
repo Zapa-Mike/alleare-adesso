@@ -49,10 +49,12 @@ import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/i
 import { FourAnswersComponent } from './quiz/four-answers.component';
 import { TwoAnswersComponent } from './quiz/two-answers.component';
 import { evaluationComponent } from './quiz/evaluation.component';
+import { googleformularComponent } from './home/googleformular';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
+import { QuizService } from './services/quiz.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import {MatInputModule} from '@angular/material/input';
     InfoQuestionComponent,
     FourAnswersComponent,
     TwoAnswersComponent,
-    evaluationComponent
+    evaluationComponent,
+    googleformularComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,6 +111,7 @@ import {MatInputModule} from '@angular/material/input';
   ],
   providers: [
     DataService,
+    QuizService,
     AngularFirestore,
     RoutingService,
     RouteNameResolverService,

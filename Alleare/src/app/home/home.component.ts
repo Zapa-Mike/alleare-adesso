@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   NameIntro:string;
   index=0;
+  google1=false;
+  home=true;
 
 
   constructor(private dataservice:DataService, private router : Router) {
@@ -39,6 +41,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/nova'], {
       queryParams: { name: this.nameIntro },
     });
+  }
+  google(){
+    this.home=false;
+    this.google1=true;
   }
 }
 

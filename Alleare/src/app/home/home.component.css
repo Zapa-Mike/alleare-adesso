@@ -37,6 +37,10 @@ h1 {
   border-radius: 10px;
 }
 
+.btn123{
+  display: table; margin: 0 auto;
+}
+
 /*Alle Buttons Farbe Text und Rahmen*/
 
 .btn:visited,

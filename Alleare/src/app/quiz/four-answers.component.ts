@@ -7,6 +7,7 @@ import { DataService } from '.././services/data.service';
 import { Data } from '@angular/router';
 import { query } from '@angular/animations';
 import { domainToUnicode } from 'url';
+import { QuizService } from '.././services/quiz.service';
 
 @Component({
   selector: 'four-answers',
@@ -68,7 +69,6 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   antwort2: string[] = [];
   antwort3: string[] = [];
   antwort4: string[] = [];
-  doclength: number = 0;
   docid = [];
   fragenauswahl = [];
   anzeige: string;
@@ -83,20 +83,20 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService, private quiz:QuizService) {}
 
   ngOnInit() {
     const weiterButton = (document.getElementById(
       'Vbutton'
     ) as unknown) as HTMLInputElement;
     weiterButton.disabled = true;
+    this.fragenauswahl=this.quiz.getfragenauswahl();
     this.index = this.dataservice.getindexspeichernvier();
     this.get
       .where('type', '==', 'vierAntworten')
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          this.doclength = this.doclength + 1;
           this.docid.push(doc.id);
           this.fragen.push(doc.data().Frage);
           this.antwort1.push(doc.data().antwort1);
@@ -105,15 +105,6 @@ export class FourAnswersComponent implements OnInit, DoCheck {
           this.antwort4.push(doc.data().antwort4);
         });
       })
-      .then(() => {
-        for (let i = 0; i < 4; i++) {
-          do {
-            this.fragenauswahl[i] = Math.floor(
-              Math.random() * this.doclength + 0
-            ).toString();
-          } while (this.fragenauswahl.includes(this.fragenauswahl[i]) == false);
-        }
-      });
   }
 
   ngDoCheck() {

@@ -1,4 +1,9 @@
+
 <body>
+  <googleformular *ngIf="google1">
+    test
+  </googleformular>
+<div *ngIf="home">
   <div class="containername">
     <div class="text-center">
       <h1>Hallo, {{ nameIntro }}!</h1>
@@ -29,7 +34,17 @@
         FAQ
       </button>
     </div>
+    <div class="grid-container" id="firstcont">
+      <button
+        type="button"
+        class="btn btn-default"
+        (click)="google()"
+      >
+        GoogleFormular
+      </button>
+    </div>
   </div>
+
   <div class="grid-container fixed-bottom">
     <button id="settingButton" routerLink="/settings">
       <img
@@ -52,4 +67,5 @@
       />
     </button>
   </div>
+</div>
 </body>
