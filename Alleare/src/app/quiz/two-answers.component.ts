@@ -62,10 +62,14 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-
-  constructor(private dataservice: DataService) {}
+    
+  constructor(private dataservice: DataService) {
+    
+  }
 
   ngOnInit() {
+    
+    
     this.index = this.dataservice.getindexspeichernzwei();
     this.get
       .where('type', '==', 'zweiAntworten')
@@ -88,9 +92,18 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
           } while (this.fragenauswahl.includes(i) == true);
         }
       });
+      const weiterButton = (document.getElementById(
+        'Vbutton'
+      ) as unknown) as HTMLInputElement;
+      
+      weiterButton.disabled = true;
+      if (weiterButton.disabled == true){
+        console
+      }
   }
 
   ngDoCheck() {
+   
     this.indexrouting = this.dataservice.getquizrouting();
     this.anzeige = this.fragen[this.fragenauswahl[this.index]];
     this.antwort1anzeige = this.antworten1[this.fragenauswahl[this.index]];
@@ -101,12 +114,21 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = false;
   }
 
   weiter() {
+    
     this.index = this.index + 1;
     this.dataservice.addindexspeichernzwei(this.index);
     this.indexrouting = this.indexrouting + 1;
     this.dataservice.addquizrouting(this.indexrouting);
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
   }
 }
