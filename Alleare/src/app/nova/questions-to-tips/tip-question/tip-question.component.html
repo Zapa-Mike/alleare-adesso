@@ -1,8 +1,26 @@
-<div class="form-inline">
-  <button class="bubble2 shadow bubble-bottom-right questionButton" (click)="toggle = !toggle">
-    {{ question }}
-  </button>
-  <br />
+<button
+  type="button"
+  class="chatAntwort shadow rounded-pill"
+  (click)="toggle = !toggle"
+>
+  {{ question }}
+</button>
+<br />
 
-<div class="bubble shadow bubble-bottom-left" *ngIf="toggle">{{ answer }}</div>
+<div *ngIf="toggle" class="grid-containerNovaSprechblase">
+  <div class="bubble2 shadow bubble-bottom-right questionButton">
+    {{ question }}
+  </div>
+  <div class="bubble shadow bubble-bottom-left" contenteditable="false">
+    {{ answer }}
+  </div>
+
+  <div class="Nova">
+    <img
+      src="/assets/nova/nova_intro_links.png"
+      width="80"
+      height="80"
+      id="NovaImage"
+    />
+  </div>
 </div>

@@ -20,6 +20,7 @@ div{
   padding: 26px;
   text-align: center;
   color: #000;
+  margin-left: 20%;
 }
 .bubble-bottom-left::after {
   content: "";
@@ -61,4 +62,40 @@ div{
   border-bottom: 40px solid transparent;
   right: 25%;
   bottom: -14px;
+}
+
+.chatAntwort {
+  padding: 0%;
+  margin-bottom: 10px;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 50%;
+  min-height: 48px;
+  background-color:  #fff;
+  color: black;
+  border: none;
+  float: right;
+  margin-right: 5%;
+}
+/*Nova Antwort*/
+.grid-containerNovaSprechblase {
+  display: grid;
+  height: auto;
+  width: 100%;
+  align-content: space-evenly;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  background-color: #f2f9fd;
+  margin-bottom: 10%;
+  padding: 0%;
+}
+
+.Nova {
+  padding-bottom: 1%;
+  padding: 0%;
+}
+#NovaImage {
+  margin-left: 10%;
+  float: left;
+  align-content: end;
 }
