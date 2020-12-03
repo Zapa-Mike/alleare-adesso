@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service';
 <div *ngIf="categoriesngif">
   <!--Überschrift-->
   <div class="title text-center">
-    <h3>Tipps</h3>
+    <h1>Tipps</h1>
   </div>
   <!--Kategorien tags-->
  <div class="categories">
