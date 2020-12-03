@@ -13,7 +13,24 @@ import { DatabaseReference } from '@angular/fire/database/interfaces';
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })
-export class FaqComponent {
+export class FaqComponent implements OnInit{
+  panelOpenState = false;
+  fragenantwoten=[];
+  constructor(){
+
+  }
+  ngOnInit(){
+    firebase.firestore().collection('FAQ').get().then((querysnapshot)=>{
+      querysnapshot.forEach((doc)=>{
+        this.fragenantwoten.push(
+          {
+            fragen:doc.id,
+            antworten:doc.data().antwort
+          }
+        )
+      })
+    })
+  }
 
 
 }

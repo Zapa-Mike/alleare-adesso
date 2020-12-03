@@ -1,10 +1,10 @@
 <body>
   <div class="row Novaheader form-inline">
-    <button class="zurueckButton" type="button" routerLink="/home">
+    <button class="zurueckButton" type="button" (click)="navigateBack()">
       <img id="zurueck" src="/assets/icons/icon_auswertung_arrow.svg" />
     </button>
     <div class="Titel text-center">
-      <h3>Nova</h3>
+      <h1>Nova</h1>
     </div>
     <button
       type="button"
@@ -30,6 +30,7 @@
         id="NovaImage"
       />
     </div>
+  
     <div>
       <questions-to-tips *ngIf="toggleQuestionsToTips"></questions-to-tips>
     </div>

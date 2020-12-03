@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import firebase from 'firebase';
 import { RouteNameResolverService } from '../services/route-name-resolver-service';
 import { RoutingService } from '../services/routing.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-nova',
@@ -21,7 +22,8 @@ export class NovaComponent implements OnInit {
   constructor(
     private routerService: RoutingService,
     private routeResolver: RouteNameResolverService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class NovaComponent implements OnInit {
         this.getPreviousRoute();
       }
     });
+    
   }
 
   public getPreviousRoute() {
@@ -44,5 +47,8 @@ export class NovaComponent implements OnInit {
 
   public resolveRoute(route: string) {
     return this.routeResolver.resolveRoute(route);
+  }
+  public navigateBack(){
+    this.location.back();
   }
 }

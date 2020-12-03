@@ -1,63 +1,101 @@
 .questionButton {
-    padding: 2%;
-    margin: 5px;
-    width: 100%;
-    background-color: #fff;
-    color: black;
-    border: none;
-  }
-  div{
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  .bubble {
-    position: relative;
-    font-size: 16px;
-    line-height: 1.3;
-    width: 200px;
-    background: #fff;
-    border-radius: 50%;
-    padding: 26px;
-    text-align: center;
-    color: #000;
-  }
-  .bubble-bottom-left::after {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 45px solid #fff;
-    border-right: 25px solid transparent;
-    border-top: 40% solid #fff;
-    border-bottom: 40px solid transparent;
-    left: 25%;
-    bottom: -14px;
-  }
-  .bubble2 {
-    position: relative;
-    font-family: lato;
-    font-size: 16px;
-    line-height: 1.3;
-    width: 200px;
-    background: #9cd1f0;
-    border-radius: 50%;
-    padding: 26px;
-    text-align: center;
-    color: #000;
-    left: 35%;
-    margin-bottom: 5%;
-    margin-left: 9%;
-  }
-  .bubble-bottom-right::after {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-style: solid;
-    border-width: 0 45px 25px 0;
-    border-top: 40% solid #9cd1f0;
-    border-color: #9cd1f0;
-    border-bottom: 40px solid transparent;
-    right: 25%;
-    bottom: -14px;
-  }
+  padding: 2%;
+  margin: 5px;
+  width: 100%;
+  background-color: #fff;
+  color: black;
+  border: none;
+}
+div{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.bubble {
+  position: relative;
+  font-size: 16px;
+  line-height: 1.3;
+  width: 200px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 26px;
+  text-align: center;
+  color: #000;
+  margin-left: 20%;
+}
+.bubble-bottom-left::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 45px solid #fff;
+  border-right: 25px solid transparent;
+  border-top: 40% solid #fff;
+  border-bottom: 40px solid transparent;
+  left: 25%;
+  bottom: -14px;
+}
+.bubble2 {
+  position: relative;
+  font-family: lato;
+  font-size: 16px;
+  line-height: 1.3;
+  width: 200px;
+  background: #9cd1f0;
+  border-radius: 50%;
+  padding: 26px;
+  text-align: center;
+  color: #000;
+  left: 35%;
+  margin-bottom: 5%;
+  margin-left: 9%;
+
+}
+.bubble-bottom-right::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0 45px 25px 0;
+  border-top: 40% solid #9cd1f0;
+  border-color: #9cd1f0;
+  border-bottom: 40px solid transparent;
+  right: 25%;
+  bottom: -14px;
+}
+
+.chatAntwort {
+  padding: 0%;
+  margin-bottom: 10px;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 50%;
+  min-height: 48px;
+  background-color:  #fff;
+  color: black;
+  border: none;
+  float: right;
+  margin-right: 5%;
+}
+/*Nova Antwort*/
+.grid-containerNovaSprechblase {
+  display: grid;
+  height: auto;
+  width: 100%;
+  align-content: space-evenly;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  background-color: #f2f9fd;
+  margin-bottom: 10%;
+  padding: 0%;
+}
+
+.Nova {
+  padding-bottom: 1%;
+  padding: 0%;
+}
+#NovaImage {
+  margin-left: 10%;
+  float: left;
+  align-content: end;
+}

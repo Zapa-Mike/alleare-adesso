@@ -11,21 +11,12 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements DoCheck, OnInit {
   public showNavbar = true;
   public showheader = true;
-  collections=["Fragenkatalog","_Fragenkatalog","Images_Story","Images_Fragen","Images_Radio","Flashcards"];
+  collections=["Bundeslaender","FAQ","Finanzen","Flashcards","Fragenkatalog","Gesundheit","Quiz","Reisen","Selbstständigkeit","Sport","Versicherungen","Wirtschaft"];
+  benutzercollections=["Fragenkatalog","Quiz","Versicherungen"]
   title = 'Alleare';
 
   constructor(private route: LocationStrategy) {
-    for(let i=0;i<this.collections.length;i++){
-    firebase.firestore().collection(this.collections[i]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-      snapshot.docChanges().forEach(function (change) {
-        if (change.type === 'added') {
-        }
-
-        var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-        console.log('Data came from ' + source);
-      });
-    });
-  }
+    
   }
 
   ngOnInit() {
@@ -35,7 +26,30 @@ export class AppComponent implements DoCheck, OnInit {
     } else {
       console.log(localStorage.getItem('hans'), 'Schon gegeben');
     }
-    
+    //Caching
+    // for(let i=0;i<this.collections.length;i++){
+    //   firebase.firestore().collection(this.collections[i]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+    //     snapshot.docChanges().forEach(function (change) {
+    //       if (change.type === 'added') {
+    //       }
+  
+    //       var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+    //       console.log('Data came from ' + source);
+    //     });
+    //   });
+    // }
+
+      //   for(let y=0;y<this.benutzercollections.length;y++){
+      // firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection(this.benutzercollections[y]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+      //   snapshot.docChanges().forEach(function (change) {
+      //     if (change.type === 'added') {
+      //     }
+  
+      //     var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+      //     console.log('Data came from ' + source);
+      //   });
+      //  });
+      // }
   }
 
   ngDoCheck() {

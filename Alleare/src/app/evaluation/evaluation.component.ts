@@ -39,7 +39,7 @@ export class EvaluationComponent implements OnInit {
         });
     }
     this.db
-      .where('_', 'in', [
+      .where('antwort', 'in', [
         'ja',
         'Arbeitnehmer',
         'Selbstständig',

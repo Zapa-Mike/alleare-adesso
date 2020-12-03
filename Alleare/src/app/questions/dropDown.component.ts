@@ -85,7 +85,7 @@ export class DropDownComponent implements OnInit, DoCheck {
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          this.fragenliste.push(doc.data()._);
+          this.fragenliste.push(doc.data().frage);
         });
       });
 
@@ -108,7 +108,7 @@ export class DropDownComponent implements OnInit, DoCheck {
       .collection('Fragenkatalog')
       .doc('Frage17')
       .set({
-        _: title,
+        antwort: title,
       });
   }
 
@@ -121,7 +121,7 @@ export class DropDownComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.dbget.get().then((querysnapshot) => {
       querysnapshot.forEach((doc) => {
-        this.Bundesland.push(doc.data()._);
+        this.Bundesland.push(doc.data().name);
       });
     });
     const weiterButton = (document.getElementById(

@@ -72,4 +72,12 @@ export class QuizComponent implements OnInit, DoCheck {
       this.auswertung = true;
     }
   }
+  novaclick(){
+    this.dbantworten.get().then((querysnapshot) => {
+      //Löscht Benutzerantworten, von davor
+      querysnapshot.forEach((doc) => {
+        doc.ref.delete();
+      });
+  })
+}
 }

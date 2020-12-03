@@ -33,7 +33,6 @@ import { OptionsComponent } from './questions/options.component';
 import { DropDownComponent } from './questions/dropDown.component';
 
 
-
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
@@ -50,6 +49,12 @@ import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/i
 import { FourAnswersComponent } from './quiz/four-answers.component';
 import { TwoAnswersComponent } from './quiz/two-answers.component';
 import { evaluationComponent } from './quiz/evaluation.component';
+import { googleformularComponent } from './home/googleformular';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import { QuizService } from './services/quiz.service';
 
 @NgModule({
   declarations: [
@@ -84,11 +89,15 @@ import { evaluationComponent } from './quiz/evaluation.component';
     InfoQuestionComponent,
     FourAnswersComponent,
     TwoAnswersComponent,
-    evaluationComponent
+    evaluationComponent,
+    googleformularComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    MatExpansionModule, //Materials
+    MatInputModule,     //Materials
+    BrowserAnimationsModule,  //Materials
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
@@ -102,6 +111,7 @@ import { evaluationComponent } from './quiz/evaluation.component';
   ],
   providers: [
     DataService,
+    QuizService,
     AngularFirestore,
     RoutingService,
     RouteNameResolverService,

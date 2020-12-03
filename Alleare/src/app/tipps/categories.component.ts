@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service';
 <div *ngIf="categoriesngif">
   <!--Überschrift-->
   <div class="title text-center">
-    <h3>Tipps</h3>
+    <h1>Tipps</h1>
   </div>
   <!--Kategorien tags-->
  <div class="categories">
@@ -38,6 +38,7 @@ import { DataService } from '../services/data.service';
 <div *ngIf="topicsngif">
   <div class="title text-center">
     <h3>{{collection}}</h3>
+
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtocategories()"
         src="/assets/icons/icon_back_arrow.svg"/>
@@ -45,18 +46,30 @@ import { DataService } from '../services/data.service';
   <!--Schlagzeilen und Bilder-->
   <div *ngFor="let topic of topics">
     <div class="headlines" id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
+
+  
 </div>
 </div>
 <div *ngIf="articlesngif">
 <div class="title text-center">
     <h3>{{articleueberschrift}}</h3>
+
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtotopics()"
         src="/assets/icons/icon_back_arrow.svg"/>
-  </div>
+
+</div>
+
+<!-- Bilder im Artikel-->
+<img
+      class="articleImage"
+      id="articleImage"
+      src="data:image/gif;base64,{{ bildArtikel }}"
+                    />
   <div>
     {{articletext}}
   </div>
+  
 </div>
    `,
   styleUrls: ['./tipps.component.css'],
@@ -71,6 +84,7 @@ export class categoriesComponent implements OnInit{
   docid:string;
   articleueberschrift:string;
   articletext:string;
+  bildArtikel:string;
 
   //Routing
   categoriesngif:boolean=true;
@@ -121,6 +135,7 @@ export class categoriesComponent implements OnInit{
         this.dbget.collection('Finanzen').get().then((querysnapshot)=>{
           querysnapshot.forEach((doc)=>{
             this.array1.push(doc.id);
+           
           })
         })
         this.collection='Finanzen';
@@ -159,6 +174,7 @@ empty() {
     this.dbget.collection(this.collection).doc(id).collection("article").get().then((querysnapshot)=>{
     querysnapshot.forEach((doc)=>{
       this.topics.push(doc.id);
+      
     })
     })
     this.categoriesngif=false;
@@ -172,6 +188,7 @@ empty() {
     //this.articletext
     this.dbget.collection(this.collection).doc(this.docid).collection("article").doc(topic).get().then((doc)=>{
       this.articletext=doc.data().article;
+      this.bildArtikel=doc.data().bild;
     })
   }
 

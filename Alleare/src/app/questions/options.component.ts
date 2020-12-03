@@ -212,7 +212,7 @@ export class OptionsComponent implements DoCheck, OnInit {
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          this.fragenvierradio.push(doc.data()._);
+          this.fragenvierradio.push(doc.data().frage);
           this.docidvierradio.push(doc.id);
           this.antwort1.push(doc.data().antwort1);
           this.antwort2.push(doc.data().antwort2);
@@ -226,7 +226,7 @@ export class OptionsComponent implements DoCheck, OnInit {
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          this.fragenzweibilder.push(doc.data()._);
+          this.fragenzweibilder.push(doc.data().frage);
           this.docidzweibilder.push(doc.id);
           this.zweibilder1.push(doc.data().bild);
           this.zweibilder2.push(doc.data().bild2);
@@ -325,13 +325,13 @@ export class OptionsComponent implements DoCheck, OnInit {
       }
    if (this.vierradiovisible1 == false && this.vierradiovisible2 == false){ //Speichert gecheckten Radiobutton Wert von Typ "vierradio"
     this.dbpush.doc(this. docidvierradio[this.index-1]).set({
-      _: this.form.value.vierradio
+      antwort: this.form.value.vierradio
    });
   }
 
    if(this.zweiBilderLabelvisible== false && this.zweiBildervisible == false){ // Speichert Bildantworten von Typ "zweibilder" 
  this.dbpush.doc(this. docidzweibilder[this.index-this.fragenvierradio.length-1]).set({
-  _: this.form.value.zweiBild,
+  antwort: this.form.value.zweiBild,
 });
 }
       }

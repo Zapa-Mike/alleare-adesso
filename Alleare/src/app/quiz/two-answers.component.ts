@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
+import { QuizService } from '.././services/quiz.service';
 import { Data } from '@angular/router';
 
 @Component({
@@ -53,7 +54,6 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   indexrouting = 0;
   fragenauswahl = [];
   anzeige: string;
-  doclength: number = 0;
   docid = [];
   antwort1anzeige: string;
   antwort2anzeige: string;
@@ -63,9 +63,10 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService, private quiz:QuizService) {}
 
   ngOnInit() {
+    this.fragenauswahl=this.quiz.getfragenauswahl();
     this.index = this.dataservice.getindexspeichernzwei();
     this.get
       .where('type', '==', 'zweiAntworten')
@@ -73,24 +74,15 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
           this.docid.push(doc.id);
-          this.doclength = this.doclength + 1;
           this.fragen.push(doc.data().Frage);
           this.antworten1.push(doc.data().antwort1);
           this.antworten2.push(doc.data().antwort2);
         });
       })
-      .then(() => {
-        for (let i = 0; i < 4; i++) {
-          do {
-            this.fragenauswahl[i] = Math.floor(
-              Math.random() * this.doclength + 0
-            ).toString();
-          } while (this.fragenauswahl.includes(i) == true);
-        }
-      });
   }
 
   ngDoCheck() {
+   
     this.indexrouting = this.dataservice.getquizrouting();
     this.anzeige = this.fragen[this.fragenauswahl[this.index]];
     this.antwort1anzeige = this.antworten1[this.fragenauswahl[this.index]];
@@ -101,12 +93,21 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = false;
   }
 
   weiter() {
+    
     this.index = this.index + 1;
     this.dataservice.addindexspeichernzwei(this.index);
     this.indexrouting = this.indexrouting + 1;
     this.dataservice.addquizrouting(this.indexrouting);
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
   }
 }
