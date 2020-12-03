@@ -117,7 +117,7 @@ constructor(private dataservice:DataService){
       this.dbget.where("type","==","radiostory").get()
         .then((querysnapshot)=>{
             querysnapshot.forEach((doc)=>{
-                this.storyfrage.push(doc.data()._);
+                this.storyfrage.push(doc.data().frage);
                 this.docidstory.push(doc.id);
                 this.story.push(doc.data().story);
                 this.bildstory.push(doc.data().bild);
@@ -126,7 +126,7 @@ constructor(private dataservice:DataService){
         this.dbget.where("type","==","zweiradio").get()
         .then((querysnapshot)=>{
             querysnapshot.forEach((doc)=>{
-                this.radiofrage.push(doc.data()._);
+                this.radiofrage.push(doc.data().frage);
                 this.docidradio.push(doc.id);
                 this.bildradio.push(doc.data().bild);
             })
@@ -243,12 +243,12 @@ push(){
 if(this.jalla==true)
 {
   this.dbpush.doc(this.docidstory[this.index-1]).set({
-    _: this.form.value.stories,
+    antwort: this.form.value.stories,
  });
 }
 if(this.jalla==false){
   this.dbpush.doc(this.docidradio[this.index-this.storyfrage.length-1]).set({
-    _: this.form.value.stories,
+    antwort: this.form.value.stories,
  });
 }
 }

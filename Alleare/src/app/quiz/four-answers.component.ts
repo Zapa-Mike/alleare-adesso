@@ -86,6 +86,10 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   constructor(private dataservice: DataService) {}
 
   ngOnInit() {
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
     this.index = this.dataservice.getindexspeichernvier();
     this.get
       .where('type', '==', 'vierAntworten')
@@ -125,6 +129,10 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = false;
   }
 
   weiter() {
@@ -132,5 +140,9 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     this.dataservice.addindexspeichernvier(this.index);
     this.indexrouting = this.indexrouting + 1;
     this.dataservice.addquizrouting(this.indexrouting);
+    const weiterButton = (document.getElementById(
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
   }
 }
