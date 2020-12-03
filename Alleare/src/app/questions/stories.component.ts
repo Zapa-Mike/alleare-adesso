@@ -17,7 +17,7 @@ import { Data } from '@angular/router';
             {{ storyanzeige }}
           </div>
           <!--"Anhören" Button-->
-          <div class="AnhoerenButton">
+          <div *ngIf="storyvisible" class="AnhoerenButton">
             <button class="btn" id="anhoeren" (click)="playsound()">
               <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
               Anhören

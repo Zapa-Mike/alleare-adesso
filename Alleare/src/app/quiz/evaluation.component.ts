@@ -53,19 +53,19 @@ Meine Antworten ansehen
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div *ngFor="let ergebnis of richtigfalsch;let i=index" class="modal-body">
+        <p>Frage {{i+1}} : {{ergebnis}}</p>
+        
       </div>
       </div>
       </div>
-      
     </div>
 
     <div class="gridButtons">
       <button
         type="btn"
         class="btnAuswertung shadow rounded-pill"
-        (click)= "reload()"
+        (click)="reload()"
       >
         Neues Quiz
       </button>
@@ -97,6 +97,8 @@ export class evaluationComponent implements OnInit {
   punkte: number = 0;
   antwortenid = [];
   dbrichtig = firebase.firestore().collection('Quiz');
+  richtigfalsch=[];
+  index:number=0;
 
   constructor(private dataservice: DataService) {}
 
@@ -123,9 +125,14 @@ export class evaluationComponent implements OnInit {
       for (let i = 0; i < this.antwortenid.length; i++) {
         if (this.antworten[i] == this.richtigeantworten[i]) {
           this.punkte = this.punkte + 1;
+          this.richtigfalsch[i]="Richtig"
+        }
+        else if(this.antworten[i]!=this.richtigeantworten[i]){
+          this.richtigfalsch[i]="Falsch"
         }
       }
-    }, 1300); //Muss noch überarbeitet werden.
+      console.log(this.richtigfalsch)
+    }, 2000); //Muss noch überarbeitet werden.
   }
   public reload(){
     location.reload();

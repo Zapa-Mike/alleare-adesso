@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
+import { QuizService } from '.././services/quiz.service';
 import { Data } from '@angular/router';
 
 @Component({
@@ -53,7 +54,6 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   indexrouting = 0;
   fragenauswahl = [];
   anzeige: string;
-  doclength: number = 0;
   docid = [];
   antwort1anzeige: string;
   antwort2anzeige: string;
@@ -62,14 +62,11 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-    
-  constructor(private dataservice: DataService) {
-    
-  }
+
+  constructor(private dataservice: DataService, private quiz:QuizService) {}
 
   ngOnInit() {
-    
-    
+    this.fragenauswahl=this.quiz.getfragenauswahl();
     this.index = this.dataservice.getindexspeichernzwei();
     this.get
       .where('type', '==', 'zweiAntworten')
@@ -77,29 +74,11 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
           this.docid.push(doc.id);
-          this.doclength = this.doclength + 1;
           this.fragen.push(doc.data().Frage);
           this.antworten1.push(doc.data().antwort1);
           this.antworten2.push(doc.data().antwort2);
         });
       })
-      .then(() => {
-        for (let i = 0; i < 4; i++) {
-          do {
-            this.fragenauswahl[i] = Math.floor(
-              Math.random() * this.doclength + 0
-            ).toString();
-          } while (this.fragenauswahl.includes(i) == true);
-        }
-      });
-      const weiterButton = (document.getElementById(
-        'Vbutton'
-      ) as unknown) as HTMLInputElement;
-      
-      weiterButton.disabled = true;
-      if (weiterButton.disabled == true){
-        console
-      }
   }
 
   ngDoCheck() {
