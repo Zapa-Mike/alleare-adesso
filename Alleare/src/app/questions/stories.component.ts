@@ -18,7 +18,7 @@ import { Data } from '@angular/router';
           </div>
           <!--"Anhören" Button-->
           <div class="AnhoerenButton">
-            <button *ngIf="storyvisible" class="btn" id="anhoeren">
+            <button class="btn" id="anhoeren" (click)="playsound()">
               <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
               Anhören
             </button>
@@ -97,6 +97,8 @@ export class StoriesComponent implements OnInit, DoCheck {
   indexstory=[];
   jalla:boolean;
 
+counter=2;
+
   dbpush=firebase
     .firestore()
     .collection('Benutzer')
@@ -104,6 +106,9 @@ export class StoriesComponent implements OnInit, DoCheck {
     .collection('Fragenkatalog');
     dbget=firebase.firestore().collection('Fragenkatalog');
 
+  audiofiles=["/assets/StoryAudio/Story1.mp3","/assets/StoryAudio/Story2.mp3","/assets/StoryAudio/Story3.mp3"
+  ,"/assets/StoryAudio/Story4.mp3","/assets/StoryAudio/Story5.mp3","/assets/StoryAudio/Story6.mp3"]
+  currentaudio:any;
 
 constructor(private dataservice:DataService){
       this.form = new FormGroup({
@@ -129,6 +134,7 @@ constructor(private dataservice:DataService){
 }
 
 ngOnInit(){
+  this.currentaudio= new Audio(this.audiofiles[0])
   if(this.dataservice.getIndexTemp1()==null){
     console.log("anfang")
   }
@@ -176,6 +182,20 @@ ngDoCheck(){
         }
  
 }
+playsound(){
+  if(this.counter%2==0){
+    this.currentaudio.play();
+    console.log("play")
+  }   
+  if(this.counter%2>=1){
+    this.currentaudio.pause();
+    console.log("stop")
+  }
+  this.counter=this.counter+1;
+  
+// var res = 4%2
+// console.log("Remainder:   "+res) 
+}
 
 weiter(){
   const weiterButton = (document.getElementById(
@@ -189,7 +209,8 @@ weiter(){
                $('#redundant1').prop('checked', false);
       }
   if(this.index<this.storyfrage.length+this.radiofrage.length){
-    this.index++;
+    this.index=this.index+1;
+    this.currentaudio= new Audio(this.audiofiles[this.index]);
     this.dataservice.addIndexTemp1(this.index);
     }
 
