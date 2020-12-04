@@ -45,26 +45,23 @@ export class InfosComponent implements OnInit {
     ];
   }
   changeImg(event) {
-    let a: string = event.target.id;
-    let element: HTMLImageElement;
-    element = <HTMLImageElement>document.getElementById(a);
-    console.log(a);
-    this.db2.collection('Versicherungen').doc(a).set({
+    let versicherung: string = event.target.id;
+    this.db2.collection('Versicherungen').doc(versicherung).set({
       Favorisierung: true,
     });
-    if (this.Versicherungenfav.includes(a)) {
-      this.VersicherungenOhneFav.push(a);
+    if (this.Versicherungenfav.includes(versicherung)) {
+      this.VersicherungenOhneFav.push(versicherung);
       let temp1: string[] = [];
       let temp = temp1.concat(this.Versicherungenfav);
       this.Versicherungenfav.splice(0);
-      this.db2.collection('Versicherungen').doc(a).set({
+      this.db2.collection('Versicherungen').doc(versicherung).set({
         Favorisierung: false,
       });
       for (let i = 0; i < temp.length; i++) {
-        if (temp[i] != a) this.Versicherungenfav.push(temp[i]);
+        if (temp[i] != versicherung) this.Versicherungenfav.push(temp[i]);
       }
     } else {
-      this.Versicherungenfav.push(a);
+      this.Versicherungenfav.push(versicherung);
       this.VersicherungenOhneFav.splice(0);
       for (let i = 0; i < this.Versicherungen.length; i++) {
         if (!this.Versicherungenfav.includes(this.Versicherungen[i]))
