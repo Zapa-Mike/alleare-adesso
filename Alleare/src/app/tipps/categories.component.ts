@@ -57,16 +57,14 @@ import { DataService } from '../services/data.service';
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtotopics()"
         src="/assets/icons/icon_back_arrow.svg"/>
-
 </div>
-
-<!-- Bilder im Artikel-->
-<img
+   <!-- Bilder im Artikel-->
+  <img
       class="articleImage"
       id="articleImage"
-      src="data:image/gif;base64,{{ bildArtikel }}"
-                    />
-  <div>
+      src="data:image/gif;base64,{{ bildArtikel }}"/>
+      
+  <div class="articleText">
     {{articletext}}
   </div>
   
