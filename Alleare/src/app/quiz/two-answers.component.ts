@@ -41,8 +41,10 @@ import {
   animations:[
     trigger('fade',[
       transition('true => false',[
-        animate('1s'),
-        style({backgroundColor:'#9CD1F0'})
+        animate('0.7s'),
+        style({'backgroundColor':'#9CD1F0',
+              'color':'#F2F9FD'
+              })
       ])
     ])
   ]
@@ -109,6 +111,6 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
       this.dataservice.addquizrouting(this.indexrouting);
       this.isOpen1=true;
       this.isOpen2=true;
-    }, 1000);
+    }, 700);
   }
 }

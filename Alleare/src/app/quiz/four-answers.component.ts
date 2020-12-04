@@ -57,8 +57,10 @@ import {
   animations:[
     trigger('fade',[
       transition('true => false',[
-        animate('1s'),
-        style({backgroundColor:'#9CD1F0'})
+        animate('0.7s'),
+        style({backgroundColor:'#9CD1F0',
+        'color':'#F2F9FD'
+      })
       ])
     ])
   ]
@@ -146,7 +148,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
       this.isOpen2=true;
       this.isOpen3=true;
       this.isOpen4=true;
-    }, 1000);
+    }, 700);
    
   }
 }
