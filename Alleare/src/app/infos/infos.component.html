@@ -28,18 +28,18 @@
           </div>
           <div class="scrollbar col-md-12" id="scrollbar">
             <div *ngIf="allgemein1">
-              
-              <div 
+              <div
                 *ngFor="let versicherung of Versicherungenfav; index as i"
-                class="BU row">
+                class="BU row"
+              >
                 <button
-                id="{{ versicherung }}"
-                type="button"
-                class="fcbtn btn-outline-secondary col-md-12"
-                (click)="open(content)" 
-                (click)="intendedContent($event)"
+                  id="{{ versicherung }}"
+                  type="button"
+                  class="fcbtn btn-outline-secondary col-md-12"
+                  (click)="open(content)"
+                  (click)="intendedContent($event)"
                 >
-                {{ versicherung }}
+                  {{ versicherung }}
                 </button>
                 <img
                   id="{{ versicherung }}"
@@ -49,10 +49,6 @@
                 />
               </div>
 
-              
-              
-              
-              
               <div
                 *ngFor="let versicherung of VersicherungenOhneFav; index as j"
                 class="BU row"
@@ -61,7 +57,7 @@
                   id="{{ versicherung }}"
                   type="button"
                   class="fcbtn btn-outline-secondary col-md-12"
-                  (click)="open(content)" 
+                  (click)="open(content)"
                   (click)="intendedContent($event)"
                 >
                   {{ versicherung }}
@@ -80,20 +76,20 @@
                 class="BU row"
               >
                 <button
-                  
+                  id="{{ versicherung }}"
                   type="button"
                   class="fcbtn btn-outline-secondary col-md-12"
                   (click)="open(content)"
                   (click)="intendedContent($event)"
                 >
                   {{ versicherung }}
+                </button> 
                   <img
                     id="{{ versicherung }}"
                     class="sternleer"
                     src="/assets/icons/icon_favorite_star.svg"
                     (click)="changeImg($event)"
                   />
-                </button>
               </div>
             </div>
 
