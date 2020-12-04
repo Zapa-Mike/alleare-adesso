@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ThrowStmt } from '@angular/compiler';
-import { ScrollBar } from '@ng-bootstrap/ng-bootstrap/util/scrollbar';
-import { eventNames } from 'process';
-
-let tmpcontent: string[] = [];
-let tmpfieldnames: string[] = [];
 
 @Component({
   selector: 'app-flashcards',
@@ -15,64 +9,32 @@ let tmpfieldnames: string[] = [];
 })
 export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
-  Fieldnames: string[] = [];
-  dbget = firebase
+  Fieldnames = [];
+  dbget = firebase.firestore().collection('Flashcards');
+  dbget2 = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Versicherungen');
+  db2 = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'));
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
-  Versicherungen: string[] = [
-    'Berufsunfähigkeitsversicherung',
-    'Hausratversicherung',
-    'Kfz-Versicherung',
-    'Rechtschutzversicherung',
-    'Reiseversicherung',
-    'Riester-Rente',
-    'Risikolebensversicherung',
-    'Tierhaftpflichtversicherung',
-    'Wohngebäudeversicherung',
-    'private Haftpflichtversicherung',
-    'private Unfallversicherung',
-  ];
+  Versicherungen = [];
+  VersicherungenOhneFav = [];
   allgemein1: boolean = true;
   favorisiert1: boolean = false;
-  Versicherungenfav: any[] = [];
+  Versicherungenfav: string[] = new Array();
 
   constructor(private modalService: NgbModal) {
-    var db = firebase.firestore();
-    let data: string[] = [];
-
-    //Fragen von der Datenbank abgreifen und umwandeln in ein String
-    db.collection('Flashcards')
-      .doc('Versicherungen')
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          tmpfieldnames = Object.keys(doc.data());
-          data = tmpfieldnames;
-          tmpcontent.push(doc.data().Berufsunfähigkeitsversicherung);
-          tmpcontent.push(doc.data().Hausratsversicherung);
-          tmpcontent.push(doc.data().Kfz_Versicherung);
-          tmpcontent.push(doc.data().Rechtsschutzversicherung);
-          tmpcontent.push(doc.data().Reiseversicherung);
-          tmpcontent.push(doc.data().Riester_Rente);
-          tmpcontent.push(doc.data().Risikolebensversicherung);
-          tmpcontent.push(doc.data().Tierhaftpflichtversicherung);
-          tmpcontent.push(doc.data().Wohngebäudeversicherung);
-          tmpcontent.push(doc.data().private_Haftpflichtversicherung);
-          tmpcontent.push(doc.data().private_Unfallversicherung);
-        } else {
-          console.log('No such document!');
-        }
-      })
-      .catch(function (error) {
-        console.log('Error getting document:', error);
+    this.dbget.get().then((querysnapshot) => {
+      querysnapshot.forEach((doc) => {
+        this.Versicherungen.push(doc.data().name);
+        this.ContentListe.push(doc.data().info);
       });
-    this.ContentListe = tmpcontent;
-    this.Fieldnames = data;
+    });
   }
-  n;
 
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
   intendedContent(event) {
@@ -86,10 +48,29 @@ export class InfosComponent implements OnInit {
     let a: string = event.target.id;
     let element: HTMLImageElement;
     element = <HTMLImageElement>document.getElementById(a);
-    console.log(element.src);
-    if (element.src.endsWith('/assets/icons/icon_favorite_star_empty.svg'))
-      element.src = '/assets/icons/icon_favorite_star.svg';
-    else element.src = '/assets/icons/icon_favorite_star_empty.svg';
+    console.log(a);
+    this.db2.collection('Versicherungen').doc(a).set({
+      Favorisierung: true,
+    });
+    if (this.Versicherungenfav.includes(a)) {
+      this.VersicherungenOhneFav.push(a);
+      let temp1: string[] = [];
+      let temp = temp1.concat(this.Versicherungenfav);
+      this.Versicherungenfav.splice(0);
+      this.db2.collection('Versicherungen').doc(a).set({
+        Favorisierung: false,
+      });
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i] != a) this.Versicherungenfav.push(temp[i]);
+      }
+    } else {
+      this.Versicherungenfav.push(a);
+      this.VersicherungenOhneFav.splice(0);
+      for (let i = 0; i < this.Versicherungen.length; i++) {
+        if (!this.Versicherungenfav.includes(this.Versicherungen[i]))
+          this.VersicherungenOhneFav.push(this.Versicherungen[i]);
+      }
+    }
   }
   //Bedingungen zum schließen des Popupfensters
   private getDismissReason(reason: any): string {
@@ -124,13 +105,17 @@ export class InfosComponent implements OnInit {
     this.favorisiert1 = true;
   }
   ngOnInit(): void {
-    this.dbget
+    this.dbget2
       .where('Favorisierung', '==', true)
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
           this.Versicherungenfav.push(doc.id);
         });
+        for (let i = 0; i < this.Versicherungen.length; i++) {
+          if (!this.Versicherungenfav.includes(this.Versicherungen[i]))
+            this.VersicherungenOhneFav.push(this.Versicherungen[i]);
+        }
       });
   }
 }

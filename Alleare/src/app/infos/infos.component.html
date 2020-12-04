@@ -24,25 +24,50 @@
       <div class="row-fluid">
         <div class="abody secondcontainer">
           <div class="FC row-md-12 text-center">
-            <h1>Infos</h1>
+            <h2>Infos</h2>
           </div>
           <div class="scrollbar col-md-12" id="scrollbar">
             <div *ngIf="allgemein1">
+              
+              <div 
+                *ngFor="let versicherung of Versicherungenfav; index as i"
+                class="BU row">
+                <button
+                id="{{ versicherung }}"
+                type="button"
+                class="fcbtn btn-outline-secondary col-md-12"
+                (click)="open(content)" 
+                (click)="intendedContent($event)"
+                >
+                {{ versicherung }}
+                </button>
+                <img
+                  id="{{ versicherung }}"
+                  class="sternleer"
+                  src="/assets/icons/icon_favorite_star.svg"
+                  (click)="changeImg($event)"
+                />
+              </div>
+
+              
+              
+              
+              
               <div
-                *ngFor="let versicherung of Versicherungen; index as i"
+                *ngFor="let versicherung of VersicherungenOhneFav; index as j"
                 class="BU row"
               >
                 <button
                   id="{{ versicherung }}"
                   type="button"
                   class="fcbtn btn-outline-secondary col-md-12"
-                  (click)="open(content)"
+                  (click)="open(content)" 
                   (click)="intendedContent($event)"
                 >
                   {{ versicherung }}
                 </button>
                 <img
-                  id="{{ i }}"
+                  id="{{ versicherung }}"
                   class="sternleer"
                   src="/assets/icons/icon_favorite_star_empty.svg"
                   (click)="changeImg($event)"
@@ -51,11 +76,11 @@
             </div>
             <div *ngIf="favorisiert1">
               <div
-                *ngFor="let versicherung of Versicherungenfav"
+                *ngFor="let versicherung of Versicherungenfav; index as i"
                 class="BU row"
               >
                 <button
-                  id="{{ versicherung }}"
+                  
                   type="button"
                   class="fcbtn btn-outline-secondary col-md-12"
                   (click)="open(content)"
@@ -63,8 +88,10 @@
                 >
                   {{ versicherung }}
                   <img
+                    id="{{ versicherung }}"
                     class="sternleer"
-                    src="/assets/icons/icon_favorite_star_empty.svg"
+                    src="/assets/icons/icon_favorite_star.svg"
+                    (click)="changeImg($event)"
                   />
                 </button>
               </div>

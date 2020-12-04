@@ -67,6 +67,7 @@ import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_t
         id="NovaNormal4"
         class="Nova_Intro_Irrtuemer_Alltagssituationen4"
         src="assets/Intro/Dialog4_Animiert_Nova.gif"
+        routerLink="/home"
       />
       <img id="Sprechblase4" src="assets/Sprechblase/speech bubble.png" />
       <p class="TextZukunftVersicherungen">
