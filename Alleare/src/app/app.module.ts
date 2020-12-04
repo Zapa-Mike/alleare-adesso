@@ -25,13 +25,12 @@ import {
 } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
-import { StoriesComponent } from './questions/stories.component';
+import { StoriesComponent } from './questions/stories/stories.component';
 import { DataService } from './services/data.service';
 import { novadialogComponent } from './intro/novadialog.component';
 import { insuranceComponent } from './intro/insurance.component';
-import { OptionsComponent } from './questions/options.component';
-import { DropDownComponent } from './questions/dropDown.component';
-
+import { OptionsComponent } from './questions/options/options.component';
+import { DropDownComponent } from './questions/drop-down/drop-down.component';
 
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
@@ -52,9 +51,11 @@ import { evaluationComponent } from './quiz/evaluation.component';
 import { googleformularComponent } from './home/googleformular';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatInputModule} from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
 import { QuizService } from './services/quiz.service';
+import { CommonModule } from '@angular/common';
+import { QuestionResponseMapper } from './services/question-response.mapper';
 
 @NgModule({
   declarations: [
@@ -94,10 +95,11 @@ import { QuizService } from './services/quiz.service';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     MatExpansionModule, //Materials
-    MatInputModule,     //Materials
-    BrowserAnimationsModule,  //Materials
+    MatInputModule, //Materials
+    BrowserAnimationsModule, //Materials
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
@@ -110,6 +112,7 @@ import { QuizService } from './services/quiz.service';
     }),
   ],
   providers: [
+    QuestionResponseMapper,
     DataService,
     QuizService,
     AngularFirestore,

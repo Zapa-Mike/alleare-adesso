@@ -1,76 +1,16 @@
-import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import firebase from 'firebase';
-import { DataService } from '../services/data.service';
-
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'dropDown',
-  template: `
-    <body>
-      <div class="card">
-        <div class="ImageStory">{{ anzeige }}</div>
-        <div class="btn-group bundesliste">
-          <button
-            type="button"
-            class="btn DropdownB dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="Bundestext"
-          >
-            <a>{{ausgewaehlt}}</a>
-          </button>
-
-          <div class="dropdown-menu" id="drop">
-            <!--Event fragt geklickte Id ab und setzt diese in die DB-->
-            <a
-              *ngFor="let land of Bundesland"
-              id="{{ land }}"
-              class="dropdown-item"
-              (click)="setLand($event)"
-            >
-              {{ land }}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col rowVZ">
-        <button
-          id="Vbutton"
-          class="btn"
-          routerLink="/evaluation"
-          (click)="weiter()"
-        >
-          <img
-            src="/assets/icons/icon_arrow_forward.svg"
-            width="50"
-            height="50"
-          />
-        </button>
-        <button id="Zbutton" class="btn" (click)="zurueck()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-        </button>
-      </div>
-      <div class="d-flex Nova justify-content-end fixed-bottom">
-        <img
-          src="/assets/nova/nova_intro_rechts.png"
-          width="100"
-          height="100"
-          id="NovaImage"
-        />
-      </div>
-    </body>
-  `,
-  styleUrls: ['./questions.component.css'],
+  templateUrl: './drop-down.component.html',
+  styleUrls: ['../questions.component.css'],
 })
 export class DropDownComponent implements OnInit, DoCheck {
   Bundesland = [];
-  index1:number;
-  ausgewaehlt:string = "Bundesland"
+  index1: number;
+  ausgewaehlt: string = 'Bundesland';
 
   dbget = firebase.firestore().collection('Bundeslaender'); //in der Collection sind in den Docs die einzelnen Bundesländer abgespeichert
   index: number = 0; // dient zum Hochzähle und wechseln der Fragen
@@ -88,17 +28,16 @@ export class DropDownComponent implements OnInit, DoCheck {
           this.fragenliste.push(doc.data().frage);
         });
       });
-
   }
 
   // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
   // Funktion erkennt die ID der gelickten Auswahl und pusht diese in DB
   setLand(event) {
     const weiterButton = (document.getElementById(
-      'Vbutton') as unknown) as HTMLInputElement;
-      
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
 
-      weiterButton.disabled = false; 
+    weiterButton.disabled = false;
     let title: string = event.target.id;
     this.ausgewaehlt = title;
     firebase
@@ -125,8 +64,9 @@ export class DropDownComponent implements OnInit, DoCheck {
       });
     });
     const weiterButton = (document.getElementById(
-      'Vbutton') as unknown) as HTMLInputElement;
-      weiterButton.disabled = true;  
+      'Vbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
