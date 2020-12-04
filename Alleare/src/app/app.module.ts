@@ -32,7 +32,6 @@ import { insuranceComponent } from './intro/insurance.component';
 import { OptionsComponent } from './questions/options.component';
 import { DropDownComponent } from './questions/dropDown.component';
 
-
 import { RoutingService } from '../app/services/routing.service';
 import { RouteNameResolverService } from './services/route-name-resolver-service';
 import { categoriesComponent } from './tipps/categories.component';
@@ -50,11 +49,11 @@ import { FourAnswersComponent } from './quiz/four-answers.component';
 import { TwoAnswersComponent } from './quiz/two-answers.component';
 import { evaluationComponent } from './quiz/evaluation.component';
 import { googleformularComponent } from './home/googleformular';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatInputModule} from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
 import { QuizService } from './services/quiz.service';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -96,8 +95,8 @@ import { QuizService } from './services/quiz.service';
     BrowserModule,
     FormsModule,
     MatExpansionModule, //Materials
-    MatInputModule,     //Materials
-    BrowserAnimationsModule,  //Materials
+    MatInputModule, //Materials
+    BrowserAnimationsModule, //Materials
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
@@ -108,6 +107,8 @@ import { QuizService } from './services/quiz.service';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    NgCircleProgressModule.forRoot({ 
+    })
   ],
   providers: [
     DataService,
