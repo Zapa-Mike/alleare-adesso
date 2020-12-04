@@ -6,6 +6,13 @@ import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
 import { QuizService } from '.././services/quiz.service';
 import { Data } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'two-answers',
@@ -14,14 +21,14 @@ import { Data } from '@angular/router';
       <div class="Fragenstellung">{{ anzeige }}</div>
     </div>
     <div class="grid-containerBehauptung">
-      <button
+      <button [@fade]="isOpen1 ? true : false"
         id="{{ antwort1anzeige }}"
         class="antwort shadow"
         (click)="push($event)"
       >
         {{ antwort1anzeige }}
       </button>
-      <button
+      <button [@fade]="isOpen2 ? true : false"
         id="{{ antwort2anzeige }}"
         class="antwort shadow"
         (click)="push($event)"
@@ -29,21 +36,16 @@ import { Data } from '@angular/router';
         {{ antwort2anzeige }}
       </button>
     </div>
-    <div class="col rowVZ">
-      <button id="Vbutton" class="btn">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-          (click)="weiter()"
-        />
-      </button>
-      <button id="Zbutton" class="btn">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
   `,
   styleUrls: ['./quiz.component.css'],
+  animations:[
+    trigger('fade',[
+      transition('true => false',[
+        animate('1s'),
+        style({backgroundColor:'#9CD1F0'})
+      ])
+    ])
+  ]
 })
 export class TwoAnswersComponent implements OnInit, DoCheck {
   get = firebase.firestore().collection('Quiz');
@@ -62,6 +64,8 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
+  isOpen1:boolean=true;
+  isOpen2:boolean=true;
 
   constructor(private dataservice: DataService, private quiz:QuizService) {}
 
@@ -82,7 +86,6 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-   
     this.indexrouting = this.dataservice.getquizrouting();
     this.anzeige = this.fragen[this.fragenauswahl[this.index]];
     this.antwort1anzeige = this.antworten1[this.fragenauswahl[this.index]];
@@ -90,24 +93,22 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   }
 
   push(event) {
+    if(event.target.id==this.antwort1anzeige){
+      this.isOpen1=false;
+    }
+    else if(event.target.id==this.antwort2anzeige){
+      this.isOpen2=false;
+    }
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
-    const weiterButton = (document.getElementById(
-      'Vbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = false;
-  }
-
-  weiter() {
-    
-    this.index = this.index + 1;
-    this.dataservice.addindexspeichernzwei(this.index);
-    this.indexrouting = this.indexrouting + 1;
-    this.dataservice.addquizrouting(this.indexrouting);
-    const weiterButton = (document.getElementById(
-      'Vbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
+    setTimeout(() => {
+      this.index = this.index + 1;
+      this.dataservice.addindexspeichernzwei(this.index);
+      this.indexrouting = this.indexrouting + 1;
+      this.dataservice.addquizrouting(this.indexrouting);
+      this.isOpen1=true;
+      this.isOpen2=true;
+    }, 1000);
   }
 }
