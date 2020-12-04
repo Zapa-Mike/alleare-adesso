@@ -10,26 +10,32 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class InfosComponent implements OnInit {
   ContentListe: string[] = [];
   Fieldnames = [];
-  dbget= firebase.firestore().collection('Flashcards');
+  dbget = firebase.firestore().collection('Flashcards');
+  dbget2 = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'))
+    .collection('Versicherungen');
+  db2 = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'));
   closeResult = ''; // Damit bei einem Click außerhalb des Popups, das Fenster geschlossen wird.
   Versicherungen = [];
+  VersicherungenOhneFav = [];
   allgemein1: boolean = true;
   favorisiert1: boolean = false;
-  Versicherungenfav: any[] = [];
+  Versicherungenfav: string[] = new Array();
 
   constructor(private modalService: NgbModal) {
-
-    this.dbget
-    .get()
-    .then((querysnapshot) => {
+    this.dbget.get().then((querysnapshot) => {
       querysnapshot.forEach((doc) => {
         this.Versicherungen.push(doc.data().name);
         this.ContentListe.push(doc.data().info);
       });
     });
-    console.log(this.Versicherungen)
   }
- 
+
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
   intendedContent(event) {
     let title: string = event.target.id;
@@ -42,10 +48,29 @@ export class InfosComponent implements OnInit {
     let a: string = event.target.id;
     let element: HTMLImageElement;
     element = <HTMLImageElement>document.getElementById(a);
-    console.log(element.src);
-    if (element.src.endsWith('/assets/icons/icon_favorite_star_empty.svg'))
-      element.src = '/assets/icons/icon_favorite_star.svg';
-    else element.src = '/assets/icons/icon_favorite_star_empty.svg';
+    console.log(a);
+    this.db2.collection('Versicherungen').doc(a).set({
+      Favorisierung: true,
+    });
+    if (this.Versicherungenfav.includes(a)) {
+      this.VersicherungenOhneFav.push(a);
+      let temp1: string[] = [];
+      let temp = temp1.concat(this.Versicherungenfav);
+      this.Versicherungenfav.splice(0);
+      this.db2.collection('Versicherungen').doc(a).set({
+        Favorisierung: false,
+      });
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i] != a) this.Versicherungenfav.push(temp[i]);
+      }
+    } else {
+      this.Versicherungenfav.push(a);
+      this.VersicherungenOhneFav.splice(0);
+      for (let i = 0; i < this.Versicherungen.length; i++) {
+        if (!this.Versicherungenfav.includes(this.Versicherungen[i]))
+          this.VersicherungenOhneFav.push(this.Versicherungen[i]);
+      }
+    }
   }
   //Bedingungen zum schließen des Popupfensters
   private getDismissReason(reason: any): string {
@@ -80,15 +105,17 @@ export class InfosComponent implements OnInit {
     this.favorisiert1 = true;
   }
   ngOnInit(): void {
-    this.dbget
+    this.dbget2
       .where('Favorisierung', '==', true)
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
           this.Versicherungenfav.push(doc.id);
         });
+        for (let i = 0; i < this.Versicherungen.length; i++) {
+          if (!this.Versicherungenfav.includes(this.Versicherungen[i]))
+            this.VersicherungenOhneFav.push(this.Versicherungen[i]);
+        }
       });
   }
 }
-
-
