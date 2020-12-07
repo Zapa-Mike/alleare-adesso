@@ -23,6 +23,9 @@ h1{
     margin-right: auto;
     font-family: lato;
 }
+.title{
+    margin-top: 50px;
+}
 
 .categories{
     margin-top: 7%;
