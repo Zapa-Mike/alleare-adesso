@@ -192,12 +192,11 @@ playsound(){
     console.log("stop")
   }
   this.counter=this.counter+1;
-  
-// var res = 4%2
-// console.log("Remainder:   "+res) 
 }
 
 weiter(){
+  this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
+  this.counter=2;//Damit eim ersten mal klicken die funktion wieder play ausführt.
   const weiterButton = (document.getElementById(
     'Wbutton'
   ) as unknown) as HTMLInputElement;
@@ -254,7 +253,10 @@ if(this.jalla==false){
 }
 zurueck()
 {
+this.currentaudio.pause();//Pausiert audio beim zurück gehen
 this.index=this.index-1;
+this.counter=2 //Setzt play pause counter zurück
+this.currentaudio= new Audio(this.audiofiles[this.index]);//Setzt currentaudio zu der jeweiligen Seite
 const zurueck1 = (document.getElementById(
         'bbutton'
       ) as unknown) as HTMLInputElement;
