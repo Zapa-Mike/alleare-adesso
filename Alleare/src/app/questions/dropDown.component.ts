@@ -10,12 +10,12 @@ import { DataService } from '../services/data.service';
   selector: 'dropDown',
   template: `
     <body>
-      <div class="card">
+      <div class="card2">
         <div class="ImageStory">{{ anzeige }}</div>
         <div class="btn-group bundesliste">
           <button
             type="button"
-            class="btn DropdownB dropdown-toggle"
+            class="DropdownB dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
