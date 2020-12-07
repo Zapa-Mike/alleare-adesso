@@ -265,8 +265,14 @@ p {
 
 .DropdownB {
   background-color: #f5ce00;
+  border: none;
+  width: 94%;
+  margin: auto;
+  border-radius: 10px;
 }
-
+.bundesliste{
+  width: 100%;
+}
 /*Auswertung*/
 .Auswertung {
   align-content: center;

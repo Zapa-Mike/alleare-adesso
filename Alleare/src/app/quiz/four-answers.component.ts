@@ -19,24 +19,36 @@ import {
 @Component({
   selector: 'four-answers',
   template: `
+   <div class="container">
+     <div class="row">
     <div class="card">
       <div class="Fragenstellung">{{ anzeige }}</div>
+</div>
     </div>
-    <div class="grid-containerAntworten">
-      <button [@fade]="isOpen1 ? true : false"
-        id="{{ antwort1anzeige }}"
-        class="antwort shadow"
-        (click)="push($event)"
-      >
-        {{ antwort1anzeige }}
-      </button>
-      <button [@fade]="isOpen2 ? true : false"
-        id="{{ antwort2anzeige }}"
-        class="antwort shadow"
-        (click)="push($event)"
-      >
-        {{ antwort2anzeige }}
-      </button>
+   
+    <div class="row">
+      <div class="col-6" >
+        <button [@fade]="isOpen1 ? true : false"
+          id="{{ antwort1anzeige }}"
+          class="antwort shadow"
+          (click)="push($event)"
+        >
+          {{ antwort1anzeige }}
+        </button>
+      </div>
+      <div class="col-6" > 
+        <button [@fade]="isOpen2 ? true : false"
+          id="{{ antwort2anzeige }}"
+          class="antwort shadow"
+          (click)="push($event)"
+        >
+          {{ antwort2anzeige }}
+        </button>
+      </div>
+    </div>
+
+<div class="row">
+      <div class="col-6" >
       <button [@fade]="isOpen3 ? true : false"
         id="{{ antwort3anzeige }}"
         class="antwort shadow"
@@ -44,6 +56,8 @@ import {
       >
         {{ antwort3anzeige }}
       </button>
+</div>
+<div class="col-6">
       <button [@fade]="isOpen4 ? true : false"
         id="{{ antwort4anzeige }}"
         class="antwort shadow"
@@ -51,7 +65,10 @@ import {
       >
         {{ antwort4anzeige }}
       </button>
-    </div>
+</div>
+</div>
+</div>
+
   `,
   styleUrls: ['./quiz.component.css'],
   animations:[
