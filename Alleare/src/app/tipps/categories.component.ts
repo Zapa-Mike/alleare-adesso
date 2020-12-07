@@ -36,8 +36,8 @@ import { DataService } from '../services/data.service';
 </div>
 <!--Articles-->
 <div *ngIf="topicsngif">
-  <div class="title text-center">
-    <h3>{{collection}}</h3>
+  <div class="title text-center form-inline">
+    <h1>{{collection}}</h1>
 
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtocategories()"
@@ -51,8 +51,8 @@ import { DataService } from '../services/data.service';
 </div>
 </div>
 <div *ngIf="articlesngif">
-<div class="title text-center">
-    <h3>{{articleueberschrift}}</h3>
+<div class="title text-center form-inline">
+    <h1>{{articleueberschrift}}</h1>
 
     <!--Zurück Pfeil-->
   <img class="backArrow" (click)="backtotopics()"
