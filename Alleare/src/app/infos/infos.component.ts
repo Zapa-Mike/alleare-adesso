@@ -8,6 +8,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./infos.component.css'],
 })
 export class InfosComponent implements OnInit {
+  allgemeinToggle = true;
+  favorisiertToggle = true;
   ContentListe: string[] = [];
   Fieldnames = [];
   dbget = firebase.firestore().collection('Flashcards');
@@ -114,5 +116,11 @@ export class InfosComponent implements OnInit {
             this.VersicherungenOhneFav.push(this.Versicherungen[i]);
         }
       });
+  }
+  toggleAllgemein(){
+    this.allgemeinToggle = !this.allgemeinToggle;
+  }
+  toggleFavorisiert(){
+    this.favorisiertToggle = !this.favorisiertToggle;
   }
 }
