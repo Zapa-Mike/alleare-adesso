@@ -149,6 +149,5 @@ export class FourAnswersComponent implements OnInit, DoCheck {
       this.isOpen3=true;
       this.isOpen4=true;
     }, 700);
-   
   }
 }
