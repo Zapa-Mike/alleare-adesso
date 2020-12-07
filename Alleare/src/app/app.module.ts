@@ -107,8 +107,18 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-    NgCircleProgressModule.forRoot({ 
-    })
+    NgCircleProgressModule.forRoot({
+      radius: 55,
+      outerStrokeGradient: true,
+      outerStrokeWidth: 7,
+      innerStrokeWidth: 2,
+      animation: true,
+      responsive: true,
+      startFromZero: true,
+      animationDuration: 750,
+      titleFontSize: '20',
+      subtitleFontSize: '18',
+    }),
   ],
   providers: [
     DataService,
