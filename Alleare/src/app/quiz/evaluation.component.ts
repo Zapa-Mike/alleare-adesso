@@ -17,6 +17,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
         [outerStrokeGradientStopColor]="'#36d1dc'"
         [outerStrokeColor]="'#4ca3e1'"
         [innerStrokeColor]="'#36d1dc'"
+        [showTitle]="false"
+        [showUnits]="false"
         subtitle="{{ punkte }}/{{ antworten.length }}"
       ></circle-progress>
     </div>
