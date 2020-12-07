@@ -17,10 +17,14 @@ import {
 @Component({
   selector: 'two-answers',
   template: `
-    <div class="cardBehauptung">
+  <div class="container">
+  <div class="row">
+    <div class="card">
       <div class="Fragenstellung">{{ anzeige }}</div>
     </div>
-    <div class="grid-containerBehauptung">
+</div>
+<div class="row">
+      <div class="col-6" >
       <button [@fade]="isOpen1 ? true : false"
         id="{{ antwort1anzeige }}"
         class="antwort shadow"
@@ -28,6 +32,8 @@ import {
       >
         {{ antwort1anzeige }}
       </button>
+</div>
+      <div class="col-6" >
       <button [@fade]="isOpen2 ? true : false"
         id="{{ antwort2anzeige }}"
         class="antwort shadow"
@@ -35,7 +41,9 @@ import {
       >
         {{ antwort2anzeige }}
       </button>
-    </div>
+</div>
+</div>
+</div>
   `,
   styleUrls: ['./quiz.component.css'],
   animations:[
