@@ -6,6 +6,11 @@ import { query } from '@angular/animations';
 
 
 export class DataService {
+    homeintro= true;
+    docRef = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'));
 
     private subject = new Subject<any>();
     currentIndex=this.subject.asObservable();
@@ -24,8 +29,20 @@ export class DataService {
     indexvier:number=0;
     indexzwei:number=0;
 
-    constructor() {
+    headervisible:boolean = true;
 
+    constructor() {
+        console.log("Geht rein");
+        this.docRef.get().then((doc) => {
+            if (doc.exists) {
+              this.homeintro  = doc.data().homeintro
+            }
+            console.log("test"+this.homeintro)
+            if(this.homeintro == false){
+                this.headervisible=false;
+            }
+          });
+     
     }
     sendIndexdialog(indexdialog:number)//Intro
     {
@@ -77,5 +94,11 @@ export class DataService {
     }
     getindexspeichernzwei(){
         return this.indexzwei;
+    }
+    sendHeader(grau){
+        this.headervisible= grau;
+    }
+    getHeader(){
+        return this.headervisible;
     }
 }

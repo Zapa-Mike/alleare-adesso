@@ -1,71 +1,92 @@
-
 <body>
-  <googleformular *ngIf="google1">
-    test
-  </googleformular>
-<div *ngIf="home">
+  <div id="HomeIntro" *ngIf="homeintro">
+    <div class="arrow img-fluid">
+      <img src="/assets/Intro/arrow.png" width="150px" height="325px" />
+    </div>
+
+    <div class="NovaHomeIntro">
+      <img
+        (click)="weitermachen()"
+        src="/assets/nova/nova_intro_rechts.png"
+        width="100px"
+        height="100px"
+      />
+    </div>
+
+    <div class="TextKlickMich">
+      <p>Klicke mich</p>
+    </div>
+
+    <div class="Homespeechbubble img-fluid">
+      <img src="/assets/Intro/Speechbubble.png" />
+      <div class="TextIntroHome">
+        <p>
+          Du erfärhst mehr<br />passende Ratschläge für<br />dich, wenn du
+          durch<br />unserenFragekatalog gehst.
+        </p>
+      </div>
+    </div>
+
+    <div id="graueflaeche"></div>
+  </div>
   <div class="containername">
     <div class="text-center">
       <h1>Hallo, {{ nameIntro }}!</h1>
     </div>
   </div>
-  <div class="container_main">
-    <div class="grid-container" id="firstcont">
-      <button
-        type="button"
-        class="btn btn-default"
-        routerLink="/questions"
-        (click)="fragebogen()"
-      >
-        Fragenkatalog
-      </button>
+  <div>
+    <div class="container_main">
+      <div class="grid-container" id="firstcont">
+        <button
+          type="button"
+          class="btnFragekatalog"
+          routerLink="/questions"
+          (click)="fragebogen()"
+        >
+          Fragenkatalog
+        </button>
+      </div>
+
+      <div class="grid-container" id="secondcont">
+        <button type="button" class="btn btn-default" routerLink="/infos">
+          Infos
+        </button>
+        <button type="button" class="btn btn-default" routerLink="/quiz">
+          Quiz
+        </button>
+        <button type="button" class="btn btn-default" routerLink="/tipps">
+          Tipps
+        </button>
+        <button type="button" class="btn btn-default" routerLink="/faq">
+          FAQ
+        </button>
+      </div>
+      <div class="grid-container" id="firstcont">
+        <button type="button" class="btn btn-default" (click)="google()">
+          Zur Umfrage
+        </button>
+      </div>
     </div>
-    <div class="grid-container" id="secondcont">
-      <button type="button" class="btn btn-default" routerLink="/infos">
-        Infos
+
+    <div class="grid-container fixed-bottom">
+      <button id="settingButton" routerLink="/settings">
+        <img
+          src="/assets/icons/icon_setting.svg"
+          alt="icon_setting"
+          width="40"
+          height="40"
+        />
       </button>
-      <button type="button" class="btn btn-default" routerLink="/quiz">
-        Quiz
-      </button>
-      <button type="button" class="btn btn-default" routerLink="/tipps">
-        Tipps
-      </button>
-      <button type="button" class="btn btn-default" routerLink="/faq">
-        FAQ
-      </button>
-    </div>
-    <div class="grid-container" id="firstcont">
-      <button
-        type="button"
-        class="btn btn-default"
-        (click)="google()"
-      >
-        Zur Umfrage
+
+      <button id="novaButton" (click)="navigate()">
+        <img
+          *ngIf="home"
+          src="/assets/nova/nova_home.png"
+          alt="nova_home"
+          width="120"
+          height="120"
+        />
       </button>
     </div>
   </div>
-
-  <div class="grid-container fixed-bottom">
-    <button id="settingButton" routerLink="/settings">
-      <img
-        src="/assets/icons/icon_setting.svg"
-        alt="icon_setting"
-        width="40"
-        height="40"
-      />
-    </button>
-
-    <button
-      id="novaButton"
-      (click)="navigate()"
-    >
-      <img
-        src="/assets/nova/nova_home.png"
-        alt="nova_home"
-        width="120"
-        height="120"
-      />
-    </button>
-  </div>
-</div>
 </body>

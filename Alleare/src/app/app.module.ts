@@ -129,6 +129,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AngularFirestore,
     RoutingService,
     RouteNameResolverService,
+    HomeComponent,
   ],
   bootstrap: [AppComponent],
 })
