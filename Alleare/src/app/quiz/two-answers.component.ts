@@ -24,11 +24,36 @@ import {
       <div class="Fragenstellung">{{ anzeige }}</div>
     </div>
 </div>
+<!-- The Modal -->
+<div [hidden]="showModelBox" class="modal" data-backdrop=false id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Begründung</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          {{begruendunganzeige}}
+        </div>
+
+      </div>
+    </div>
+    <button id="Wbutton" class="btn" (click)="weiter()">
+        <!--Andere id als bei radio.component-->
+        <img src="/assets/icons/icon_arrow_forward.svg" width="50" height="50"/>
+      </button>
+    </div>
+</div>
 <div class="row">
       <div class="col-6" >
       <button [@fade]="isOpen1 ? true : false"
       [@falsch]="falsch1 ? true : false"
       [@richtig]="richtig1 ? true: false"
+      data-toggle="modal" data-target="#myModal"
         id="{{ antwort1anzeige }}"
         class="antwort shadow"
         (click)="push($event,1)"
@@ -40,13 +65,13 @@ import {
       <button [@fade]="isOpen2 ? true : false"
       [@falsch]="falsch2 ? true : false"
       [@richtig]="richtig2 ? true: false"
+      data-toggle="modal" data-target="#myModal"
         id="{{ antwort2anzeige }}"
         class="antwort shadow"
         (click)="push($event,2)"
       >
         {{ antwort2anzeige }}
       </button>
-</div>
 </div>
 </div>
   `,
@@ -77,9 +102,12 @@ import {
 })
 export class TwoAnswersComponent implements OnInit, DoCheck {
   get = firebase.firestore().collection('Quiz');
+  showModelBox=true;
   fragen = [];
   antworten1: string[] = [];
   antworten2: string[] = [];
+  richtigeantwort=[];
+  begruendung=[];
   index = 0;
   indexrouting = 0;
   fragenauswahl = [];
@@ -87,7 +115,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   docid = [];
   antwort1anzeige: string;
   antwort2anzeige: string;
-  richtigeantwort=[];
+  begruendunganzeige:string;
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
@@ -115,6 +143,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
           this.antworten1.push(doc.data().antwort1);
           this.antworten2.push(doc.data().antwort2);
           this.richtigeantwort.push(doc.data().richtig);
+          this.begruendung.push(doc.data().begründung);
         });
       })
   }
@@ -124,6 +153,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.anzeige = this.fragen[this.fragenauswahl[this.index]];
     this.antwort1anzeige = this.antworten1[this.fragenauswahl[this.index]];
     this.antwort2anzeige = this.antworten2[this.fragenauswahl[this.index]];
+    this.begruendunganzeige = this.begruendung[this.fragenauswahl[this.index]];
   }
 
   push(event,whichbtn:number) {
@@ -136,7 +166,6 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
-
     setTimeout(()=>{
       if(whichbtn==1){
         if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
@@ -162,9 +191,14 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
         }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]) { this.richtig2=false;}
       }
     },1050)
+    setTimeout(()=>{
+      this.showModelBox=false;
+    },3050)
     
-    setTimeout(() => {
-      this.index = this.index + 1;
+  }
+  weiter(){
+    this.showModelBox=true;
+    this.index = this.index + 1;
       this.dataservice.addindexspeichernzwei(this.index);
       this.indexrouting = this.indexrouting + 1;
       this.dataservice.addquizrouting(this.indexrouting);
@@ -174,6 +208,5 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
       this.richtig2=true;
       this.falsch1=true;
       this.falsch2=true;
-    }, 3050);
   }
 }

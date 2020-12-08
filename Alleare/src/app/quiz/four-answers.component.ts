@@ -23,9 +23,31 @@ import {
      <div class="row">
     <div class="card">
       <div class="Fragenstellung">{{ anzeige }}</div>
-</div>
     </div>
-   
+    </div>
+    <div [hidden]="showModelBox" class="modal" data-backdrop=false id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Begründung</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          {{begruendunganzeige}}
+        </div>
+
+      </div>
+    </div>
+    <button id="Wbutton" class="btn" (click)="weiter()">
+        <!--Andere id als bei radio.component-->
+        <img src="/assets/icons/icon_arrow_forward.svg" width="50" height="50"/>
+      </button>
+    </div>
+</div>
     <div class="row">
       <div class="col-6">
         <button [@fade]="isOpen1 ? true : false"
@@ -34,6 +56,7 @@ import {
           id="{{ antwort1anzeige }}"
           class="antwort shadow"
           (click)="push($event,1)"
+          data-toggle="modal" data-target="#myModal"
         >
           {{ antwort1anzeige }}
         </button>
@@ -45,6 +68,7 @@ import {
           id="{{ antwort2anzeige }}"
           class="antwort shadow"
           (click)="push($event,2)"
+          data-toggle="modal" data-target="#myModal"
         >
           {{ antwort2anzeige }}
         </button>
@@ -60,11 +84,12 @@ import {
         class="antwort shadow"
         name="btn3"
         (click)="push($event,3)"
+        data-toggle="modal" data-target="#myModal"
       >
         {{ antwort3anzeige }}
       </button>
-</div>
-<div class="col-6">
+  </div>
+  <div class="col-6">
       <button [@fade]="isOpen4 ? true : false"
       [@falsch]="falsch4 ? true : false"
       [@richtig]="richtig4 ? true: false"
@@ -72,11 +97,11 @@ import {
         class="antwort shadow"
         name="btn4"
         (click)="push($event,4)"
+        data-toggle="modal" data-target="#myModal"
       >
         {{ antwort4anzeige }}
       </button>
-</div>
-</div>
+  </div>
 </div>
 
   `,
@@ -107,12 +132,14 @@ import {
 })
 export class FourAnswersComponent implements OnInit, DoCheck {
   get = firebase.firestore().collection('Quiz');
+  showModelBox=true;
   index = 0;
   fragen = [];
   antwort1: string[] = [];
   antwort2: string[] = [];
   antwort3: string[] = [];
   antwort4: string[] = [];
+  begruendung=[];
   richtigeantwort: string[]=[];
   docid = [];
   fragenauswahl = [];
@@ -121,6 +148,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   antwort2anzeige: string;
   antwort3anzeige: string;
   antwort4anzeige: string;
+  begruendunganzeige:string;
   indexrouting: number = 0;
   dbpush = firebase
     .firestore()
@@ -159,9 +187,9 @@ export class FourAnswersComponent implements OnInit, DoCheck {
           this.antwort3.push(doc.data().antwort3);
           this.antwort4.push(doc.data().antwort4);
           this.richtigeantwort.push(doc.data().richtig)
+          this.begruendung.push(doc.data().begründung);
         });
       })
-
   }
 
   ngDoCheck() {
@@ -171,6 +199,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     this.antwort2anzeige = this.antwort2[this.fragenauswahl[this.index]];
     this.antwort3anzeige = this.antwort3[this.fragenauswahl[this.index]];
     this.antwort4anzeige = this.antwort4[this.fragenauswahl[this.index]];
+    this.begruendunganzeige=this.begruendung[this.fragenauswahl[this.index]];
   }
 
   push(event,whichbtn:number) {
@@ -237,24 +266,28 @@ export class FourAnswersComponent implements OnInit, DoCheck {
         }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){ this.richtig4=false;}
       }
     }, 1050);
-   
-    setTimeout(() => {
-      this.index = this.index + 1;
-      this.dataservice.addindexspeichernvier(this.index);
-      this.indexrouting = this.indexrouting + 1;
-      this.dataservice.addquizrouting(this.indexrouting);
-      this.isOpen1=true;
-      this.isOpen2=true;
-      this.isOpen3=true;
-      this.isOpen4=true;
-      this.falsch1=true;
-      this.falsch2=true;
-      this.falsch3=true;
-      this.falsch4=true;
-      this.richtig1=true;
-      this.richtig2=true;
-      this.richtig3=true;
-      this.richtig4=true;
-    }, 3050);
+
+    setTimeout(()=>{
+      this.showModelBox=false;
+    },3050)
+  }
+  weiter(){
+    this.showModelBox=true;
+    this.index = this.index + 1;
+    this.dataservice.addindexspeichernvier(this.index);
+    this.indexrouting = this.indexrouting + 1;
+    this.dataservice.addquizrouting(this.indexrouting);
+    this.isOpen1=true;
+    this.isOpen2=true;
+    this.isOpen3=true;
+    this.isOpen4=true;
+    this.falsch1=true;
+    this.falsch2=true;
+    this.falsch3=true;
+    this.falsch4=true;
+    this.richtig1=true;
+    this.richtig2=true;
+    this.richtig3=true;
+    this.richtig4=true;
   }
 }
