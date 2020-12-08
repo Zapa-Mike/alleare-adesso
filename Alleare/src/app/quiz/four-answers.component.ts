@@ -27,7 +27,7 @@ import {
     </div>
    
     <div class="row">
-      <div class="col-6" >
+      <div class="col-6">
         <button [@fade]="isOpen1 ? true : false"
         [@falsch]="falsch1 ? true : false"
         [@richtig]="richtig1 ? true: false"
@@ -38,7 +38,7 @@ import {
           {{ antwort1anzeige }}
         </button>
       </div>
-      <div class="col-6" > 
+      <div class="col-6"> 
         <button [@fade]="isOpen2 ? true : false"
         [@falsch]="falsch2 ? true : false"
         [@richtig]="richtig2 ? true: false"
