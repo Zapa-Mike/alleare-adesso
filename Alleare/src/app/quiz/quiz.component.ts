@@ -18,10 +18,10 @@ export class QuizComponent implements OnInit, DoCheck {
   anzeige: string;
   reihenfolge = [
     'vier',
-    'vier',
     'zwei',
     'vier',
     'zwei',
+    'vier',
     'zwei',
     'vier',
     'zwei',
