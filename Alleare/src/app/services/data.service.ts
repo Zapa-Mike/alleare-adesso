@@ -32,12 +32,10 @@ export class DataService {
     headervisible:boolean = true;
 
     constructor() {
-        console.log("Geht rein");
         this.docRef.get().then((doc) => {
             if (doc.exists) {
               this.homeintro  = doc.data().homeintro
             }
-            console.log("test"+this.homeintro)
             if(this.homeintro == false){
                 this.headervisible=false;
             }

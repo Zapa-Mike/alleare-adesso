@@ -36,20 +36,6 @@ export class IntroComponent implements OnInit, DoCheck {
     this.dataservice.currentIndex2.subscribe(
       (currentIndex2) => (this.indexnovadialog = currentIndex2)
     );
-
-    firebase
-      .firestore()
-      .collection('Benutzer')
-      .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-        snapshot.docChanges().forEach(function (change) {
-          if (change.type === 'added') {
-            //console.log("Name: ", change.doc.data());
-          }
-
-          var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-          console.log('Data came from ' + source);
-        });
-      });
   }
 
   ngDoCheck() {
@@ -68,18 +54,19 @@ export class IntroComponent implements OnInit, DoCheck {
     this.docRef.get().then((doc) => {
       if (doc.exists) {
         this.homeintro  = doc.data().homeintro;
-       if(this.homeintro!=false){
+        if(this.homeintro!=false){
           this.docRef.update({homeintro:true})
+          this.homeintro=true
         }
-        
+  
+       
+       
       }
-    });
-
+    })
     setTimeout(() => {
       this.logo = false;
       
       if(this.homeintro==true){
-        console.log("in timeout")
         this.namenseingabe = true;
 
       }else if (this.homeintro==false){
