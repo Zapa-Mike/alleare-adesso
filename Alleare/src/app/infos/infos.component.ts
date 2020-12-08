@@ -117,10 +117,10 @@ export class InfosComponent implements OnInit {
         }
       });
   }
-  toggleAllgemein(){
+  toggleAllgemein() {
     this.allgemeinToggle = !this.allgemeinToggle;
   }
-  toggleFavorisiert(){
+  toggleFavorisiert() {
     this.favorisiertToggle = !this.favorisiertToggle;
   }
 }

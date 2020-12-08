@@ -43,7 +43,7 @@ body {
 .activeAllgemein {
   color: rgb(255, 255, 255);
   font-family: lato;
-  background:#9cd1f0;
+  background: #9cd1f0;
   display: table-cell;
   padding: 3%;
   position: relative;
@@ -63,7 +63,7 @@ body {
 .activeFavorisiert {
   color: rgb(255, 255, 255);
   font-family: lato;
-  background:#9cd1f0;
+  background: #9cd1f0;
   display: table-cell;
   padding: 3%;
   position: relative;
