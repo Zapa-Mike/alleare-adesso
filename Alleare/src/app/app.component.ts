@@ -15,6 +15,11 @@ export class AppComponent implements DoCheck, OnInit {
   benutzercollections=["Fragenkatalog","Quiz","Versicherungen"]
   title = 'Alleare';
 
+  docRef = firebase
+  .firestore()
+  .collection('Benutzer')
+  .doc(localStorage.getItem('hans'));
+
   constructor(private route: LocationStrategy) {
     
   }
@@ -50,6 +55,7 @@ export class AppComponent implements DoCheck, OnInit {
       //   });
       //  });
       // }
+    
   }
 
   ngDoCheck() {

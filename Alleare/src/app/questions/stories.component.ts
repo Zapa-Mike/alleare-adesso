@@ -9,11 +9,14 @@ import { Data } from '@angular/router';
 @Component({
   selector: 'app-stories',
   template: `
-       <div class="Frage">
+    <div class="Frage">
       <div [formGroup]="form" class="card">
         <div>
-        <img src="data:image/gif;base64,{{bildanzeige}}" class="img-responsive"/>
-          <div *ngIf="storyvisible"class="ImageStory">
+          <img
+            src="data:image/gif;base64,{{ bildanzeige }}"
+            class="img-responsive"
+          />
+          <div *ngIf="storyvisible" class="ImageStory">
             {{ storyanzeige }}
           </div>
           <!--"Anhören" Button-->
@@ -76,194 +79,198 @@ import { Data } from '@angular/router';
   styleUrls: ['./questions.component.css'],
 })
 export class StoriesComponent implements OnInit, DoCheck {
-  
   form: FormGroup;
-  index:number=0;
+  index: number = 0;
 
   //Variablen zum speichern der Liste
-  bildstory:any[]=[];
-  bildradio:any[]=[];
-  storyfrage:string[]=[];
-  radiofrage:string[]=[];
-  story:string[]=[];
-  docidstory:any[]=[];
-  docidradio:any[]=[];
-  storyvisible:boolean=true;
+  bildstory: any[] = [];
+  bildradio: any[] = [];
+  storyfrage: string[] = [];
+  radiofrage: string[] = [];
+  story: string[] = [];
+  docidstory: any[] = [];
+  docidradio: any[] = [];
+  storyvisible: boolean = true;
 
-  storyanzeige:string;
-  fragenanzeige:string;
-  bildanzeige:any;
-  storiesausblenden:boolean=false;
-  indexstory=[];
-  jalla:boolean;
+  storyanzeige: string;
+  fragenanzeige: string;
+  bildanzeige: any;
+  storiesausblenden: boolean = false;
+  indexstory = [];
+  jalla: boolean;
 
-counter=2;
+  counter = 2;
 
-  dbpush=firebase
+  dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
-    dbget=firebase.firestore().collection('Fragenkatalog');
+  dbget = firebase.firestore().collection('Fragenkatalog');
 
-  audiofiles=["/assets/StoryAudio/Story1.mp3","/assets/StoryAudio/Story2.mp3","/assets/StoryAudio/Story3.mp3"
-  ,"/assets/StoryAudio/Story4.mp3","/assets/StoryAudio/Story5.mp3","/assets/StoryAudio/Story6.mp3"]
-  currentaudio:any;
+  audiofiles = [
+    '/assets/StoryAudio/Story1.mp3',
+    '/assets/StoryAudio/Story2.mp3',
+    '/assets/StoryAudio/Story3.mp3',
+    '/assets/StoryAudio/Story4.mp3',
+    '/assets/StoryAudio/Story5.mp3',
+    '/assets/StoryAudio/Story6.mp3',
+  ];
+  currentaudio: any;
 
-constructor(private dataservice:DataService){
-      this.form = new FormGroup({
-          stories: new FormControl(),
+  constructor(private dataservice: DataService) {
+    this.form = new FormGroup({
+      stories: new FormControl(),
+    });
+    this.dbget
+      .where('type', '==', 'radiostory')
+      .get()
+      .then((querysnapshot) => {
+        querysnapshot.forEach((doc) => {
+          this.storyfrage.push(doc.data().frage);
+          this.docidstory.push(doc.id);
+          this.story.push(doc.data().story);
+          this.bildstory.push(doc.data().bild);
+        });
       });
-      this.dbget.where("type","==","radiostory").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.storyfrage.push(doc.data().frage);
-                this.docidstory.push(doc.id);
-                this.story.push(doc.data().story);
-                this.bildstory.push(doc.data().bild);
-            })
-        })
-        this.dbget.where("type","==","zweiradio").get()
-        .then((querysnapshot)=>{
-            querysnapshot.forEach((doc)=>{
-                this.radiofrage.push(doc.data().frage);
-                this.docidradio.push(doc.id);
-                this.bildradio.push(doc.data().bild);
-            })
-        })
-}
-
-ngOnInit(){
-  this.currentaudio= new Audio(this.audiofiles[0])
-  if(this.dataservice.getIndexTemp1()==null){
-    console.log("anfang")
+    this.dbget
+      .where('type', '==', 'zweiradio')
+      .get()
+      .then((querysnapshot) => {
+        querysnapshot.forEach((doc) => {
+          this.radiofrage.push(doc.data().frage);
+          this.docidradio.push(doc.id);
+          this.bildradio.push(doc.data().bild);
+        });
+      });
   }
-  else{
-    this.index=this.dataservice.getIndexTemp1()-1;
-    if(this.index<0){
-      this.index=0;
+
+  ngOnInit() {
+    this.currentaudio = new Audio(this.audiofiles[0]);
+    if (this.dataservice.getIndexTemp1() == null) {
+      console.log('anfang');
+    } else {
+      this.index = this.dataservice.getIndexTemp1() - 1;
+      if (this.index < 0) {
+        this.index = 0;
+      }
     }
-  
-}
-const weiterButton = (document.getElementById(
-  'Wbutton') as unknown) as HTMLInputElement;
-  weiterButton.disabled = true;  
-}
+    const weiterButton = (document.getElementById(
+      'Wbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
+  }
 
-ngDoCheck(){
-  const weiterButton = (document.getElementById(
-    'Wbutton'
-  ) as unknown) as HTMLInputElement;
-  if ($('input[name=stories]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
-  {
-   weiterButton.disabled = false;  
+  ngDoCheck() {
+    const weiterButton = (document.getElementById(
+      'Wbutton'
+    ) as unknown) as HTMLInputElement;
+    if ($('input[name=stories]:checked').length > 0) {
+      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
+      weiterButton.disabled = false;
+    }
+    if (this.index < this.storyfrage.length) {
+      this.storyvisible = true;
+      this.fragenanzeige = this.storyfrage[this.index];
+      this.storyanzeige = this.story[this.index];
+      this.bildanzeige = this.bildstory[this.index];
+      this.jalla = true;
+    }
+    if (this.index > this.storyfrage.length - 1) {
+      this.storyvisible = false;
+      this.fragenanzeige = this.radiofrage[this.index - this.storyfrage.length];
+      this.bildanzeige = this.bildradio[this.index - this.storyfrage.length];
+      this.jalla = false;
+    }
+    //Pfeil bei Frage1 wird ausgeblendet
+    const zurueck1 = (document.getElementById(
+      'bbutton'
+    ) as unknown) as HTMLInputElement;
+    if (this.index < 1) {
+      zurueck1.disabled = true;
+    } else if (this.index >= 1) {
+      zurueck1.disabled = false;
+    }
   }
-  if(this.index<this.storyfrage.length){
-    this.storyvisible=true;
-    this.fragenanzeige=this.storyfrage[this.index];
-    this.storyanzeige=this.story[this.index];
-    this.bildanzeige=this.bildstory[this.index];
-    this.jalla=true;
+  playsound() {
+    if (this.counter % 2 == 0) {
+      this.currentaudio.play();
+      console.log('play');
+    }
+    if (this.counter % 2 >= 1) {
+      this.currentaudio.pause();
+      console.log('stop');
+    }
+    this.counter = this.counter + 1;
   }
-  if(this.index>this.storyfrage.length-1){
-    this.storyvisible=false;
-    this.fragenanzeige=this.radiofrage[this.index-this.storyfrage.length];
-    this.bildanzeige=this.bildradio[this.index-this.storyfrage.length];
-    this.jalla=false;
+
+  weiter() {
+    this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
+    this.counter = 2; //Damit eim ersten mal klicken die funktion wieder play ausführt.
+    const weiterButton = (document.getElementById(
+      'Wbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
+
+    if ($('input[name=stories]:checked').length > 0) {
+      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
+      $('#redundant').prop('checked', false);
+      $('#redundant1').prop('checked', false);
+    }
+    if (this.index < this.storyfrage.length + this.radiofrage.length) {
+      this.index = this.index + 1;
+      this.currentaudio = new Audio(this.audiofiles[this.index]);
+      this.dataservice.addIndexTemp1(this.index);
+    }
+
+    if (this.index >= this.storyfrage.length + this.radiofrage.length) {
+      this.dataservice.sendIndexrouting1(2); //Weiter
+      this.push();
+    } else {
+      this.push();
+    }
   }
-  //Pfeil bei Frage1 wird ausgeblendet
-  const zurueck1 = (document.getElementById(
-    'bbutton'
-  ) as unknown) as HTMLInputElement;
-  if (this.index < 1) {
-          zurueck1.disabled = true;
-         } else if (this.index >= 1) {
-           zurueck1.disabled = false;
+  push() {
+    const radio1 = (document.getElementById(
+      'redundant'
+    ) as unknown) as HTMLInputElement;
+    const radio2 = (document.getElementById(
+      'redundant1'
+    ) as unknown) as HTMLInputElement;
+
+    if (radio1.checked || radio2.checked) {
+      if (this.radiofrage.length + this.storyfrage.length > this.index) {
+        $('#redundant').prop('checked', false);
+        $('#redundant1').prop('checked', false);
+        if (this.index <= 0) {
         }
- 
-}
-playsound(){
-  if(this.counter%2==0){
-    this.currentaudio.play();
-    console.log("play")
-  }   
-  if(this.counter%2>=1){
-    this.currentaudio.pause();
-    console.log("stop")
+      }
+    }
+    if (this.jalla == true) {
+      this.dbpush.doc(this.docidstory[this.index - 1]).set({
+        antwort: this.form.value.stories,
+      });
+    }
+    if (this.jalla == false) {
+      this.dbpush
+        .doc(this.docidradio[this.index - this.storyfrage.length - 1])
+        .set({
+          antwort: this.form.value.stories,
+        });
+    }
   }
-  this.counter=this.counter+1;
-}
-
-weiter(){
-  this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
-  this.counter=2;//Damit eim ersten mal klicken die funktion wieder play ausführt.
-  const weiterButton = (document.getElementById(
-    'Wbutton'
-  ) as unknown) as HTMLInputElement;
-  weiterButton.disabled = true;
-
-  if ($('input[name=stories]:checked').length > 0)  // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird 
-      {
-               $('#redundant').prop('checked', false);
-               $('#redundant1').prop('checked', false);
-      }
-  if(this.index<this.storyfrage.length+this.radiofrage.length){
-    this.index=this.index+1;
-    this.currentaudio= new Audio(this.audiofiles[this.index]);
-    this.dataservice.addIndexTemp1(this.index);
+  zurueck() {
+    this.currentaudio.pause(); //Pausiert audio beim zurück gehen
+    this.index = this.index - 1;
+    this.counter = 2; //Setzt play pause counter zurück
+    this.currentaudio = new Audio(this.audiofiles[this.index]); //Setzt currentaudio zu der jeweiligen Seite
+    const zurueck1 = (document.getElementById(
+      'bbutton'
+    ) as unknown) as HTMLInputElement;
+    if (this.index < 1) {
+      zurueck1.disabled = true;
+    } else if (this.index >= 1) {
+      zurueck1.disabled = false;
     }
-
-  if (this.index >=this.storyfrage.length+this.radiofrage.length) {
-    this.dataservice.sendIndexrouting1(2); //Weiter
-    this.push();
-           }
-           else{
-            this.push();
-           }
-  
-}
-push(){
-  const radio1 = (document.getElementById(
-    'redundant'
-  ) as unknown) as HTMLInputElement;
-  const radio2 = (document.getElementById(
-    'redundant1'
-  ) as unknown) as HTMLInputElement;
-
-  if (radio1.checked || radio2.checked) 
-    {
-          if (this.radiofrage.length+this.storyfrage.length > this.index) {
-             $('#redundant').prop('checked', false);
-             $('#redundant1').prop('checked', false);
-             if (this.index <= 0) {
-             }
-           }
-    }
-if(this.jalla==true)
-{
-  this.dbpush.doc(this.docidstory[this.index-1]).set({
-    antwort: this.form.value.stories,
- });
-}
-if(this.jalla==false){
-  this.dbpush.doc(this.docidradio[this.index-this.storyfrage.length-1]).set({
-    antwort: this.form.value.stories,
- });
-}
-}
-zurueck()
-{
-this.currentaudio.pause();//Pausiert audio beim zurück gehen
-this.index=this.index-1;
-this.counter=2 //Setzt play pause counter zurück
-this.currentaudio= new Audio(this.audiofiles[this.index]);//Setzt currentaudio zu der jeweiligen Seite
-const zurueck1 = (document.getElementById(
-        'bbutton'
-      ) as unknown) as HTMLInputElement;
-      if (this.index < 1) {
-        zurueck1.disabled = true;
-      } else if (this.index >= 1) {
-        zurueck1.disabled = false;
-      }
-}
+  }
 }

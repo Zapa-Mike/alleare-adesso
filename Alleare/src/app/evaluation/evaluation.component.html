@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -52,6 +52,7 @@
       <div class="Titel text-center">
         <h1>Deine Auswertung</h1>
       </div>
+      <mat-progress-spinner class="loading" *ngIf="spinneranzeige" mode="indeterminate"></mat-progress-spinner>
       <div
         *ngFor="let versicherung of Versicherungsanzeige5"
         class="col AuswertungVersicherungen"
@@ -84,8 +85,8 @@
       </div>
       <div class="grid-containerNovaSprechblase">
         <div class="bubble shadow bubble-bottom-right" contenteditable="false">
-          Versicherungen in der Auswertung findest du unter den Favoriten in den
-          Flashcards wieder.
+          Hier siehst du Versicherungen, die für dich interessant sein können.
+          Mehr Details erfährst du unter Favorisiert bei Infos.
         </div>
         <button class="NovaLink" routerLink="/nova">
           <img src="/assets/nova/nova_fragenkatalog.png" id="NovaImage" />

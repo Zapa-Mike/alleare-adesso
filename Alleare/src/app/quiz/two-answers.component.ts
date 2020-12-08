@@ -12,6 +12,7 @@ import {
   style,
   animate,
   transition,
+  keyframes,
 } from '@angular/animations';
 
 @Component({
@@ -26,18 +27,22 @@ import {
 <div class="row">
       <div class="col-6" >
       <button [@fade]="isOpen1 ? true : false"
+      [@falsch]="falsch1 ? true : false"
+      [@richtig]="richtig1 ? true: false"
         id="{{ antwort1anzeige }}"
         class="antwort shadow"
-        (click)="push($event)"
+        (click)="push($event,1)"
       >
         {{ antwort1anzeige }}
       </button>
 </div>
       <div class="col-6" >
       <button [@fade]="isOpen2 ? true : false"
+      [@falsch]="falsch2 ? true : false"
+      [@richtig]="richtig2 ? true: false"
         id="{{ antwort2anzeige }}"
         class="antwort shadow"
-        (click)="push($event)"
+        (click)="push($event,2)"
       >
         {{ antwort2anzeige }}
       </button>
@@ -49,10 +54,23 @@ import {
   animations:[
     trigger('fade',[
       transition('true => false',[
-        animate('0.7s'),
-        style({'backgroundColor':'#9CD1F0',
-              'color':'#F2F9FD'
-              })
+        animate('0.8s'),
+        style({backgroundColor:'#9CD1F0',
+        'color':'#F2F9FD'
+      })
+      ])
+    ]),
+    trigger('falsch',[
+      transition('true => false',[
+        animate("2s", keyframes([
+          style({ backgroundColor: "red", offset: 1 }),
+        ]))
+      ])
+    ]),trigger('richtig',[
+      transition('true => false',[
+        animate("2s", keyframes([
+          style({ backgroundColor: "green", offset: 1 }),
+        ]))
       ])
     ])
   ]
@@ -69,6 +87,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
   docid = [];
   antwort1anzeige: string;
   antwort2anzeige: string;
+  richtigeantwort=[];
   dbpush = firebase
     .firestore()
     .collection('Benutzer')
@@ -76,6 +95,10 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     .collection('Quiz');
   isOpen1:boolean=true;
   isOpen2:boolean=true;
+  falsch1:boolean=true;
+  falsch2:boolean=true;
+  richtig1:boolean=true;
+  richtig2:boolean=true;
 
   constructor(private dataservice: DataService, private quiz:QuizService) {}
 
@@ -91,6 +114,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
           this.fragen.push(doc.data().Frage);
           this.antworten1.push(doc.data().antwort1);
           this.antworten2.push(doc.data().antwort2);
+          this.richtigeantwort.push(doc.data().richtig);
         });
       })
   }
@@ -102,7 +126,7 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.antwort2anzeige = this.antworten2[this.fragenauswahl[this.index]];
   }
 
-  push(event) {
+  push(event,whichbtn:number) {
     if(event.target.id==this.antwort1anzeige){
       this.isOpen1=false;
     }
@@ -112,6 +136,33 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
       antwort: event.target.id,
     });
+
+    setTimeout(()=>{
+      if(whichbtn==1){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch1=false;
+        }
+      }
+      if(whichbtn==2){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch2=false;
+        }
+      }
+      if(this.antwort1anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort1anzeige){
+          this.richtig1=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]])
+        {
+           this.richtig1=false; //Button der geklickt wurde muss rot blinken
+      }
+    }
+      if(this.antwort2anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort2anzeige){
+          this.richtig2=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]) { this.richtig2=false;}
+      }
+    },1050)
+    
     setTimeout(() => {
       this.index = this.index + 1;
       this.dataservice.addindexspeichernzwei(this.index);
@@ -119,6 +170,10 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
       this.dataservice.addquizrouting(this.indexrouting);
       this.isOpen1=true;
       this.isOpen2=true;
-    }, 700);
+      this.richtig1=true;
+      this.richtig2=true;
+      this.falsch1=true;
+      this.falsch2=true;
+    }, 3050);
   }
 }

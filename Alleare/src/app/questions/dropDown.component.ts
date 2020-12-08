@@ -10,12 +10,12 @@ import { DataService } from '../services/data.service';
   selector: 'dropDown',
   template: `
     <body>
-      <div class="card">
+      <div class="card2">
         <div class="ImageStory">{{ anzeige }}</div>
         <div class="btn-group bundesliste">
           <button
             type="button"
-            class="btn DropdownB dropdown-toggle"
+            class="DropdownB dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -88,7 +88,6 @@ export class DropDownComponent implements OnInit, DoCheck {
           this.fragenliste.push(doc.data().frage);
         });
       });
-
   }
 
   // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
@@ -106,7 +105,7 @@ export class DropDownComponent implements OnInit, DoCheck {
       .collection('Benutzer')
       .doc(localStorage.getItem('hans'))
       .collection('Fragenkatalog')
-      .doc('Frage17')
+      .doc('Frage7')
       .set({
         antwort: title,
       });

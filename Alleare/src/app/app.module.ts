@@ -55,6 +55,8 @@ import { MatInputModule } from '@angular/material/input';
 import { QuizService } from './services/quiz.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +99,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     MatExpansionModule, //Materials
     MatInputModule, //Materials
     BrowserAnimationsModule, //Materials
+    MatProgressSpinnerModule, //Materials
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
@@ -126,6 +129,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     AngularFirestore,
     RoutingService,
     RouteNameResolverService,
+    HomeComponent,
   ],
   bootstrap: [AppComponent],
 })

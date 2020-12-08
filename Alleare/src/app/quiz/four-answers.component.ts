@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
 import { Data } from '@angular/router';
-import { query } from '@angular/animations';
+import { keyframes, query } from '@angular/animations';
 import { domainToUnicode } from 'url';
 import { QuizService } from '.././services/quiz.service';
 import {
@@ -27,20 +27,24 @@ import {
     </div>
    
     <div class="row">
-      <div class="col-6" >
+      <div class="col-6">
         <button [@fade]="isOpen1 ? true : false"
+        [@falsch]="falsch1 ? true : false"
+        [@richtig]="richtig1 ? true: false"
           id="{{ antwort1anzeige }}"
           class="antwort shadow"
-          (click)="push($event)"
+          (click)="push($event,1)"
         >
           {{ antwort1anzeige }}
         </button>
       </div>
-      <div class="col-6" > 
+      <div class="col-6"> 
         <button [@fade]="isOpen2 ? true : false"
+        [@falsch]="falsch2 ? true : false"
+        [@richtig]="richtig2 ? true: false"
           id="{{ antwort2anzeige }}"
           class="antwort shadow"
-          (click)="push($event)"
+          (click)="push($event,2)"
         >
           {{ antwort2anzeige }}
         </button>
@@ -50,18 +54,24 @@ import {
 <div class="row">
       <div class="col-6" >
       <button [@fade]="isOpen3 ? true : false"
+      [@falsch]="falsch3 ? true : false"
+      [@richtig]="richtig3 ? true: false"
         id="{{ antwort3anzeige }}"
         class="antwort shadow"
-        (click)="push($event)"
+        name="btn3"
+        (click)="push($event,3)"
       >
         {{ antwort3anzeige }}
       </button>
 </div>
 <div class="col-6">
       <button [@fade]="isOpen4 ? true : false"
+      [@falsch]="falsch4 ? true : false"
+      [@richtig]="richtig4 ? true: false"
         id="{{ antwort4anzeige }}"
         class="antwort shadow"
-        (click)="push($event)"
+        name="btn4"
+        (click)="push($event,4)"
       >
         {{ antwort4anzeige }}
       </button>
@@ -74,10 +84,23 @@ import {
   animations:[
     trigger('fade',[
       transition('true => false',[
-        animate('0.7s'),
+        animate('0.8s'),
         style({backgroundColor:'#9CD1F0',
         'color':'#F2F9FD'
       })
+      ])
+    ]),
+    trigger('falsch',[
+      transition('true => false',[
+        animate("2s", keyframes([
+          style({ backgroundColor: "red", offset: 1 }),
+        ]))
+      ])
+    ]),trigger('richtig',[
+      transition('true => false',[
+        animate("2s", keyframes([
+          style({ backgroundColor: "green", offset: 1 }),
+        ]))
       ])
     ])
   ]
@@ -90,6 +113,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   antwort2: string[] = [];
   antwort3: string[] = [];
   antwort4: string[] = [];
+  richtigeantwort: string[]=[];
   docid = [];
   fragenauswahl = [];
   anzeige: string;
@@ -107,11 +131,20 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   isOpen2:boolean=true;
   isOpen3:boolean=true;
   isOpen4:boolean=true;
+  falsch1:boolean=true;
+  falsch2:boolean=true;
+  falsch3:boolean=true;
+  falsch4:boolean=true;
+  richtig1:boolean=true;
+  richtig2:boolean=true;
+  richtig3:boolean=true;
+  richtig4:boolean=true;
 
-  constructor(private dataservice: DataService, private quiz:QuizService) {}
+  constructor(private dataservice: DataService, private quiz:QuizService) {    
+  }
 
   ngOnInit() {
-
+  
     this.fragenauswahl=this.quiz.getfragenauswahl();
     this.index = this.dataservice.getindexspeichernvier();
     this.get
@@ -125,8 +158,10 @@ export class FourAnswersComponent implements OnInit, DoCheck {
           this.antwort2.push(doc.data().antwort2);
           this.antwort3.push(doc.data().antwort3);
           this.antwort4.push(doc.data().antwort4);
+          this.richtigeantwort.push(doc.data().richtig)
         });
       })
+
   }
 
   ngDoCheck() {
@@ -138,7 +173,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     this.antwort4anzeige = this.antwort4[this.fragenauswahl[this.index]];
   }
 
-  push(event) {
+  push(event,whichbtn:number) {
     if(event.target.id==this.antwort1anzeige){
       this.isOpen1=false;
     }
@@ -157,6 +192,53 @@ export class FourAnswersComponent implements OnInit, DoCheck {
     });
 
     setTimeout(() => {
+      if(whichbtn==1){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch1=false;
+        }
+      }
+      if(whichbtn==2){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch2=false;
+        }
+      }
+      if(whichbtn==3){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch3=false;
+        }
+      }
+      if(whichbtn==4){
+        if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){
+          this.falsch4=false;
+        }
+      }
+
+      if(this.antwort1anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort1anzeige){
+          this.richtig1=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]])
+        {
+           this.richtig1=false; //Button der geklickt wurde muss rot blinken
+      }
+    }
+      if(this.antwort2anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort2anzeige){
+          this.richtig2=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]) { this.richtig2=false;}
+      }
+      if(this.antwort3anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort3anzeige){
+          this.richtig3=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){ this.richtig3=false;}
+      }
+      if(this.antwort4anzeige==this.richtigeantwort[this.fragenauswahl[this.index]]){
+        if(event.target.id==this.antwort4anzeige){
+          this.richtig4=false;
+        }else if(event.target.id!=this.richtigeantwort[this.fragenauswahl[this.index]]){ this.richtig4=false;}
+      }
+    }, 1050);
+   
+    setTimeout(() => {
       this.index = this.index + 1;
       this.dataservice.addindexspeichernvier(this.index);
       this.indexrouting = this.indexrouting + 1;
@@ -165,6 +247,14 @@ export class FourAnswersComponent implements OnInit, DoCheck {
       this.isOpen2=true;
       this.isOpen3=true;
       this.isOpen4=true;
-    }, 700);
+      this.falsch1=true;
+      this.falsch2=true;
+      this.falsch3=true;
+      this.falsch4=true;
+      this.richtig1=true;
+      this.richtig2=true;
+      this.richtig3=true;
+      this.richtig4=true;
+    }, 3050);
   }
 }
