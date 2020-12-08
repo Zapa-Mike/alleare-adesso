@@ -23,12 +23,7 @@ export class HomeComponent implements OnInit {
   headerGrau = false;
   homeintro = false;
   constructor(private dataservice: DataService, private router: Router) {
-    setTimeout(() => {
-      this.headerGrau=true;
-      this.homeintro=true;
-      this.home=false;
-    }, 30);
-
+   
   }
 
   ngOnInit() {
