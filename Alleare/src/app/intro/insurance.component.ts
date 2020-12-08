@@ -1,18 +1,5 @@
-import {
-  Component,
-  DoCheck,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import firebase from 'firebase';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-insurance',

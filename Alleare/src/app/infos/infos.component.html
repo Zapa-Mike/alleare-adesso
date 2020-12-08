@@ -6,15 +6,27 @@
       <div class="zwbuttons row">
         <button
           type="button"
-          class="zwsbtn btn-outline-secondary col"
+          class="activeAllgemein col"
           (click)="allgemein()"
+          (click)="toggleAllgemein()"
+          (click)="favorisiertToggle = true"
+          [ngClass]="{
+            inactiveAllgemein: this.allgemeinToggle,
+            activeAllgemein: !this.allgemeinToggle
+          }"
         >
           Allgemein
         </button>
         <button
           type="button"
-          class="zwsbtn btn-outline-secondary col"
+          class="inactiveFavorisiert col"
           (click)="favorisiert()"
+          (click)="toggleFavorisiert()"
+          (click)="allgemeinToggle = true"
+          [ngClass]="{
+            inactiveFavorisiert: this.favorisiertToggle,
+            activeFavorisiert: !this.favorisiertToggle
+          }"
         >
           Favorisiert
         </button>
@@ -83,13 +95,13 @@
                   (click)="intendedContent($event)"
                 >
                   {{ versicherung }}
-                </button> 
-                  <img
-                    id="{{ versicherung }}"
-                    class="sternleer"
-                    src="/assets/icons/icon_favorite_star.svg"
-                    (click)="changeImg($event)"
-                  />
+                </button>
+                <img
+                  id="{{ versicherung }}"
+                  class="sternleer"
+                  src="/assets/icons/icon_favorite_star.svg"
+                  (click)="changeImg($event)"
+                />
               </div>
             </div>
 
