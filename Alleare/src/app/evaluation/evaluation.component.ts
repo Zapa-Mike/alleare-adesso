@@ -24,6 +24,7 @@ export class EvaluationComponent implements OnInit {
     .doc(localStorage.getItem('hans'));
   db1 = firebase.firestore();
   standardversicherungen = ['Haftpflichtversicherung', 'Hausratversicherung'];
+  spinneranzeige:boolean=true;
 
   constructor() {}
 
@@ -57,10 +58,10 @@ export class EvaluationComponent implements OnInit {
             .get()
             .then((doc) => {
               perVersicherung.push(doc.data().versicherung);
-              var test = doc.data().versicherung;
+              var versicherung = doc.data().versicherung;
               this.db1
                 .collection('Versicherungen')
-                .doc(test)
+                .doc(versicherung)
                 .get()
                 .then((doc) => {
                   Versicherungsprioritaet.push(doc.data().Priorisierung);
@@ -70,6 +71,7 @@ export class EvaluationComponent implements OnInit {
       });
     setTimeout(() => {
       this.sort(); //Bessere Methode mit asnyc await promise später machen!
+      this.spinneranzeige=false;
     }, 2500);
   }
 

@@ -22,6 +22,13 @@ body {
   margin-right: auto;
   font-family: lato;
 }
+.loading{
+  margin-left: auto;
+  margin-right: auto;
+}
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #9CD1F0;
+}
 
 .Auswertung {
   align-content: center;

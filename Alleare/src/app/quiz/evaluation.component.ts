@@ -142,7 +142,6 @@ export class evaluationComponent implements OnInit {
         }
       }
       this.percent = this.percentageCalculator();
-      console.log(this.richtigfalsch);
     }, 1000);
     //Muss noch überarbeitet werden.
   }
@@ -151,7 +150,6 @@ export class evaluationComponent implements OnInit {
   }
   public percentageCalculator() {
     const p = (100 / this.antworten.length) * this.punkte;
-    console.log('prozent is' + p);
     return p;
   }
 }

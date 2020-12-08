@@ -88,7 +88,6 @@ export class DropDownComponent implements OnInit, DoCheck {
           this.fragenliste.push(doc.data().frage);
         });
       });
-
   }
 
   // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
@@ -106,7 +105,7 @@ export class DropDownComponent implements OnInit, DoCheck {
       .collection('Benutzer')
       .doc(localStorage.getItem('hans'))
       .collection('Fragenkatalog')
-      .doc('Frage17')
+      .doc('Frage7')
       .set({
         antwort: title,
       });
