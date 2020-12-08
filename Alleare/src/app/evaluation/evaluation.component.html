@@ -52,6 +52,7 @@
       <div class="Titel text-center">
         <h1>Deine Auswertung</h1>
       </div>
+      <mat-progress-spinner class="loading" *ngIf="spinneranzeige" mode="indeterminate"></mat-progress-spinner>
       <div
         *ngFor="let versicherung of Versicherungsanzeige5"
         class="col AuswertungVersicherungen"
