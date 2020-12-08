@@ -24,8 +24,8 @@ body {
 
 /*Card*/
 .card {
-  height: 433.95px;
-  position: relative;
+  height: auto;
+  position: inherit;
   background-color: #ffffff;
   margin-left: 3%;
   margin-right: 3%;
@@ -42,12 +42,11 @@ body {
   border-radius: 10px;
 }
 
-
 /*ImageS*/
 .img-responsive {
   display: block;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 90%;
   margin-top: 3%;
   border-radius: 5px;
@@ -73,7 +72,6 @@ body {
   border: none;
   border-color: black;
   margin-left: 5%;
-  margin-bottom: 3%;
 }
 .anhoerenIcon {
   width: 20px;
@@ -85,6 +83,7 @@ body {
   padding-left: 15%;
   padding-right: 15%;
   margin-bottom: 3%;
+  margin-top: 3%;
 }
 #ButtonJa {
   padding-left: 6%;
@@ -101,7 +100,7 @@ input {
 }
 
 /*Bilder in RadioB Frage*/
-.BildVorRadio{
+.BildVorRadio {
   border-radius: 5px;
   margin-right: 5px;
 }
@@ -139,7 +138,6 @@ input {
   align-content: center;
   align-self: center;
   justify-self: center;
-  
 }
 
 /*Form-check*/
@@ -159,10 +157,10 @@ input {
   width: 115px;
   height: 65px;
 }
-[type=radio] + img {
+[type="radio"] + img {
   cursor: pointer;
 }
-[type=radio]:checked + img {
+[type="radio"]:checked + img {
   outline: 4px solid #f5ce00;
 }
 p {
@@ -200,7 +198,8 @@ p {
   padding: 0%;
   border: none;
 }
-#V1button{/*Weiterbutton der Willkommenseite*/
+#V1button {
+  /*Weiterbutton der Willkommenseite*/
   padding: 0%;
   margin-left: 75%;
 }
@@ -219,7 +218,7 @@ p {
   text-align: center;
   color: #000;
   margin-left: 15%;
-  
+
   word-wrap: break-word;
 }
 .bubble-bottom-right::after {
@@ -251,7 +250,7 @@ p {
 }
 
 /*Nova Image*/
-.Nova{
+.Nova {
   padding-top: 4%;
 }
 #NovaImage {
@@ -270,7 +269,7 @@ p {
   margin: auto;
   border-radius: 10px;
 }
-.bundesliste{
+.bundesliste {
   width: 100%;
 }
 /*Auswertung*/
