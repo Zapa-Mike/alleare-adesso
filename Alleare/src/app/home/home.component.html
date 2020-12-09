@@ -1,4 +1,7 @@
 <body>
+  <googleformular *ngIf="google1">
+    test
+  </googleformular>
   <div id="HomeIntro" *ngIf="homeintro">
     <div class="arrow img-fluid">
       <img src="/assets/Intro/arrow.png" width="150px" height="325px" />
@@ -29,6 +32,7 @@
 
     <div id="graueflaeche"></div>
   </div>
+  <div *ngIf="home">
   <div class="containername">
     <div class="text-center">
       <h1>Hallo, {{ nameIntro }}!</h1>
@@ -40,7 +44,6 @@
         <button
           type="button"
           class="btnFragekatalog"
-          routerLink="/questions"
           (click)="fragebogen()"
         >
           Fragenkatalog
@@ -89,4 +92,5 @@
       </button>
     </div>
   </div>
+</div>
 </body>

@@ -28,7 +28,7 @@ export class IntroComponent implements OnInit, DoCheck {
   .collection('Benutzer')
   .doc(localStorage.getItem('hans'));
 
-  constructor(private router:Router, private dataservice: DataService, private route: LocationStrategy) {
+  constructor(private router:Router, private dataservice: DataService) {
     this.form = new FormGroup({
       Name: new FormControl(),
     });
