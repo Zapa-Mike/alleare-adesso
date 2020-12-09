@@ -93,6 +93,7 @@ h1 {
   .btnFragekatalog {
     font-family: "Lato", sans-serif;
     color: black;
+    border: none;
     background: white;
     text-align: center;
     padding: 15%;
