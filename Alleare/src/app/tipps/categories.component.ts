@@ -8,194 +8,260 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'tipps-categories',
   template: `
-<div *ngIf="categoriesngif">
-  <!--Überschrift-->
-  <div class="title text-center">
-    <h1>Tipps</h1>
-  </div>
-  <!--Kategorien tags-->
- <div class="categories">
-      <button (click)="auswahl($event)" id="Sport" class="topic">Sport</button>
-      <button (click)="auswahl($event)" id="Gesundheit" class="topic1">Gesundheit</button>
-      <button (click)="auswahl($event)" id="Reisen" class="topic">Reisen</button>
-      <button (click)="auswahl($event)"  id="Finanzen" class="topic">Finanzen</button>
-      <button (click)="auswahl($event)"  id="Selbstständig" class="topic2">Selbstständigkeit</button>
-      <button (click)="auswahl($event)"  id="Wirtschaft" class="topic">Wirtschaft</button>
+    <div *ngIf="categoriesngif">
+      <!--Überschrift-->
+      <div class="title text-center">
+        <h1>Tipps</h1>
+      </div>
+      <!--Kategorien tags-->
+      <div class="categories">
+        <button (click)="auswahl($event)" id="Sport" class="topic">
+          Sport
+        </button>
+        <button (click)="auswahl($event)" id="Gesundheit" class="topic1">
+          Gesundheit
+        </button>
+        <button (click)="auswahl($event)" id="Reisen" class="topic">
+          Reisen
+        </button>
+        <button (click)="auswahl($event)" id="Finanzen" class="topic">
+          Finanzen
+        </button>
+        <button (click)="auswahl($event)" id="Selbstständig" class="topic2">
+          Selbstständigkeit
+        </button>
+        <button (click)="auswahl($event)" id="Wirtschaft" class="topic">
+          Wirtschaft
+        </button>
+      </div>
+
+      <!--Themenbereiche-->
+      <div *ngFor="let array of array1">
+        <div id="{{ array }}" class="box" (click)="weitergabe(array)">
+          <p>{{ array }}</p>
+        </div>
+      </div>
+      <!--Nova-->
+      <img
+        src="/assets/nova/nova_flashcard_singing.png"
+        width="140"
+        height="140"
+        routerLink="/nova"
+        id="NovaImage"
+      />
     </div>
-  
-  <!--Themenbereiche-->
-<div *ngFor="let array of array1">
-    <div id="{{array}}" class="box" (click)="weitergabe(array)"><p>{{array}}</p></div>
-</div>
-  <!--Nova-->
-    <img src="/assets/nova/nova_flashcard_singing.png"
-         width="140"
-         height="140"
-         routerLink="/nova"
-         id="NovaImage"/>
-</div>
-<!--Articles-->
-<div *ngIf="topicsngif">
-  <div class="title text-center form-inline">
-    <h1>{{collection}}</h1>
+    <!--Articles-->
+    <div *ngIf="topicsngif">
+      <div class="title text-center form-inline">
+        <h1>{{ collection }}</h1>
 
-    <!--Zurück Pfeil-->
-  <img class="backArrow" (click)="backtocategories()"
-        src="/assets/icons/icon_back_arrow.svg"/>
-  </div>
-  <!--Schlagzeilen und Bilder-->
-  <div *ngFor="let topic of topics">
-    <div class="headlines" id="{{topic}}" (click)="article(topic)"><p>{{topic}}</p></div>
+        <!--Zurück Pfeil-->
+        <img
+          class="backArrow"
+          (click)="backtocategories()"
+          src="/assets/icons/icon_back_arrow.svg"
+        />
+      </div>
+      <!--Schlagzeilen und Bilder-->
+      <div *ngFor="let topic of topics">
+        <div class="headlines" id="{{ topic }}" (click)="article(topic)">
+          <p>{{ topic }}</p>
+          <img
+            src="data:image/gif;base64,{{ bilder }}"
+            class="img-responsive"
+          />
+        </div>
+      </div>
+    </div>
+    <div *ngIf="articlesngif">
+      <div class="title text-center form-inline">
+        <h1>{{ articleueberschrift }}</h1>
 
-  
-</div>
-</div>
-<div *ngIf="articlesngif">
-<div class="title text-center form-inline">
-    <h1>{{articleueberschrift}}</h1>
+        <!--Zurück Pfeil-->
+        <img
+          class="backArrow"
+          (click)="backtotopics()"
+          src="/assets/icons/icon_back_arrow.svg"
+        />
+      </div>
+      <!-- Bilder im Artikel-->
+      <img
+        class="articleImage"
+        id="articleImage"
+        src="data:image/gif;base64,{{ bilder }}"
+      />
 
-    <!--Zurück Pfeil-->
-  <img class="backArrow" (click)="backtotopics()"
-        src="/assets/icons/icon_back_arrow.svg"/>
-</div>
-   <!-- Bilder im Artikel-->
-  <img
-      class="articleImage"
-      id="articleImage"
-      src="data:image/gif;base64,{{ bildArtikel }}"/>
-      
-  <div class="articleText">
-    {{articletext}}
-  </div>
-  
-</div>
-   `,
+      <div class="articleText">
+        {{ articletext }}
+      </div>
+    </div>
+  `,
   styleUrls: ['./tipps.component.css'],
 })
-export class categoriesComponent implements OnInit{
+export class categoriesComponent implements OnInit {
   index: number = 0;
-  categories=["Gesundheit","Sport","Reisen","Finanzen","Wirtschaft","Selbstständigkeit"]
-  dbget=firebase.firestore();
-  array1=[];
-  topics=[];
-  collection:string;
-  docid:string;
-  articleueberschrift:string;
-  articletext:string;
-  bildArtikel:string;
+  categories = [
+    'Gesundheit',
+    'Sport',
+    'Reisen',
+    'Finanzen',
+    'Wirtschaft',
+    'Selbstständigkeit',
+  ];
+  dbget = firebase.firestore();
+  array1 = [];
+  topics = [];
+  collection: string;
+  docid: string;
+  articleueberschrift: string;
+  articletext: string;
+  bildArtikel: string;
 
   //Routing
-  categoriesngif:boolean=true;
-  topicsngif:boolean=false;
-  articlesngif:boolean=false;
+  categoriesngif: boolean = true;
+  topicsngif: boolean = false;
+  articlesngif: boolean = false;
 
-    constructor(private dataservice : DataService){
+  //Bilder
+  bilder: string;
+  bildanzeige: any;
 
-  }
+  constructor(private dataservice: DataService) {}
 
-  ngOnInit(){
+  ngOnInit() {}
 
-  }
-  auswahl(event:any){
-    switch(event.target.id){
-      case 'Gesundheit':{
+  auswahl(event: any) {
+    switch (event.target.id) {
+      case 'Gesundheit': {
         this.empty();
-        this.dbget.collection('Gesundheit').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-          })
-        })
-        this.collection='Gesundheit';
+        this.dbget
+          .collection('Gesundheit')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Gesundheit';
         break;
       }
-      case 'Sport':{
+      case 'Sport': {
         this.empty();
-        this.dbget.collection('Sport').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-          })
-        })
-        this.collection='Sport';
+        this.dbget
+          .collection('Sport')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Sport';
         break;
       }
-      case 'Reisen':{
+      case 'Reisen': {
         this.empty();
-        this.dbget.collection('Reisen').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-          })
-        })
-        this.collection='Reisen';
+        this.dbget
+          .collection('Reisen')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Reisen';
         break;
       }
-      case 'Finanzen':{
+      case 'Finanzen': {
         this.empty();
-        this.dbget.collection('Finanzen').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-           
-          })
-        })
-        this.collection='Finanzen';
+        this.dbget
+          .collection('Finanzen')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Finanzen';
         break;
       }
-      case 'Wirtschaft':{
+      case 'Wirtschaft': {
         this.empty();
-        this.dbget.collection('Wirtschaft').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-          })
-        })
-        this.collection='Wirtschaft';
+        this.dbget
+          .collection('Wirtschaft')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Wirtschaft';
         break;
       }
-      case 'Selbstständig':{
+      case 'Selbstständig': {
         this.empty();
-        this.dbget.collection('Selbstständigkeit').get().then((querysnapshot)=>{
-          querysnapshot.forEach((doc)=>{
-            this.array1.push(doc.id);
-          })
-        })
-        this.collection='Selbstständigkeit';
+        this.dbget
+          .collection('Selbstständigkeit')
+          .get()
+          .then((querysnapshot) => {
+            querysnapshot.forEach((doc) => {
+              this.array1.push(doc.id);
+            });
+          });
+        this.collection = 'Selbstständigkeit';
         break;
       }
-      }
-      
     }
-empty() {
-      this.array1 = [];
-      return this.array1;
   }
-  weitergabe(id:any){
-    this.topics=[];
-    this.docid=id;
-    this.dbget.collection(this.collection).doc(id).collection("article").get().then((querysnapshot)=>{
-    querysnapshot.forEach((doc)=>{
-      this.topics.push(doc.id);
-      
-    })
-    })
-    this.categoriesngif=false;
-    this.topicsngif=true;
+  empty() {
+    this.array1 = [];
+    return this.array1;
   }
-  article(topic:string)
-  {
-    this.topicsngif=false;
-    this.articlesngif=true;
-    this.articleueberschrift=topic;
+  weitergabe(id: any) {
+    this.topics = [];
+    this.docid = id;
+    this.dbget
+      .collection(this.collection)
+      .doc(id)
+      .collection('article')
+      .get()
+      .then((querysnapshot) => {
+        querysnapshot.forEach((doc) => {
+          this.topics.push(doc.id);
+        });
+      });
+    this.dbget
+      .collection(this.collection)
+      .doc(id)
+      .get()
+      .then((doc) => {
+        this.bilder = doc.data().bild;
+      });
+    this.categoriesngif = false;
+    this.topicsngif = true;
+  }
+  article(topic: string) {
+    this.topicsngif = false;
+    this.articlesngif = true;
+    this.articleueberschrift = topic;
     //this.articletext
-    this.dbget.collection(this.collection).doc(this.docid).collection("article").doc(topic).get().then((doc)=>{
-      this.articletext=doc.data().article;
-      this.bildArtikel=doc.data().bild;
-    })
+    this.dbget
+      .collection(this.collection)
+      .doc(this.docid)
+      .collection('article')
+      .doc(topic)
+      .get()
+      .then((doc) => {
+        this.articletext = doc.data().article;
+        this.bildArtikel = doc.data().bild;
+      });
   }
 
-  backtocategories(){
-    this.topicsngif=false;
-    this.categoriesngif=true;
+  backtocategories() {
+    this.topicsngif = false;
+    this.categoriesngif = true;
   }
-  backtotopics(){
-    this.articlesngif=false;
-    this.topicsngif=true;
+  backtotopics() {
+    this.articlesngif = false;
+    this.topicsngif = true;
   }
 }

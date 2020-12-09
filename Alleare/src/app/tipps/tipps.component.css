@@ -157,3 +157,10 @@ h6{
     width: 100%;
     height: auto;
 }
+
+.img-responsive{
+    float: right;
+    width: 7em;
+    height: auto;
+    object-fit: cover;
+}

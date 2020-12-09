@@ -93,14 +93,14 @@ import {
     trigger('fade', [
       transition('true => false', [
         animate('0.8s'),
-        style({ backgroundColor: '#9CD1F0', color: '#F2F9FD' }),
+        style({ backgroundColor: '#9CD1F0'}),
       ]),
     ]),
     trigger('falsch', [
       transition('true => false', [
         animate(
           '2s',
-          keyframes([style({ backgroundColor: 'red', offset: 1 })])
+          keyframes([style({ backgroundColor: '#E57776', offset: 1,})])
         ),
       ]),
     ]),
@@ -108,7 +108,7 @@ import {
       transition('true => false', [
         animate(
           '2s',
-          keyframes([style({ backgroundColor: 'green', offset: 1 })])
+          keyframes([style({ backgroundColor: '#91DCB0', offset: 1,})])
         ),
       ]),
     ]),
