@@ -35,23 +35,24 @@ import {
           <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Begründung</h4>         
+              <h4 class="modal-title"><strong>Begründung</strong></h4>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
               {{ begruendunganzeige }}
             </div>
+            <div class="ButtonNextF">
+              <button id="Wbutton" class="btn" (click)="weiter()">
+                <img
+                  src="/assets/icons/icon_arrow_forward.svg"
+                  width="50"
+                  height="50"
+                />
+              </button>
+            </div>
           </div>
         </div>
-        <button id="Wbutton" class="btn" (click)="weiter()">
-          <!--Andere id als bei radio.component-->
-          <img
-            src="/assets/icons/icon_arrow_forward.svg"
-            width="50"
-            height="50"
-          />
-        </button>
       </div>
 
       <div class="row">
