@@ -43,9 +43,15 @@ export class HomeComponent implements OnInit {
     
   }
   fragebogen() {
-    var index = (0).toString();
-    localStorage.setItem('storyIndex', index);
-    localStorage.setItem('radioIndex', index);
+  
+    if(this.homeintro==false){
+      var index = (0).toString();
+      localStorage.setItem('storyIndex', index);
+      localStorage.setItem('radioIndex', index);
+      this.router.navigate(['/questions'])
+    }
+    
+
   }
   weitermachen() {
     this.docRef.update({homeintro:false})
