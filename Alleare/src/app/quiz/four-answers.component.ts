@@ -35,10 +35,7 @@ import {
           <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Begründung</h4>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
+              <h4 class="modal-title">Begründung</h4>         
             </div>
 
             <!-- Modal body -->

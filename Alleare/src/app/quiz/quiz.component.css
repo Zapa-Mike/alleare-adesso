@@ -157,3 +157,12 @@ body {
 .circle {
   margin-bottom: auto;
 }
+.modal{
+  background-color: rgba(0, 0, 0, 0.5);;
+}
+.modal-dialog{
+  margin-top: 30%;
+}
+#Wbutton{
+  background-color: white;
+}
