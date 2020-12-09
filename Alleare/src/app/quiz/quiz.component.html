@@ -51,22 +51,14 @@
   </head>
 
   <body>
-    <!--
-    <div class="WillkommenSeite">
+    <div class="WillkommenSeite" [hidden]="start">
       <div class="Titel text-center">
         <h3>Willkommen im Quiz</h3>
       </div>
-      
-      img
-      <div class="WillkommenBild"> 
-      <img
-        id="Bild"
-        src="data:image/gif;base64,{{ imgArray[?] }}"
-        width="70px"
-        height="50px"
-      />
+      <div class="WillkommenBild">
+        <img id="Bild" src="/assets/quiz/Quiz_willkommen_grafik.png" width="70px" height="50px" />
       </div>
-    
+
       <div class="col rowVZ inline">
         <button id="V1button" class="btn">
           <img
@@ -75,7 +67,6 @@
             height="50"
             (click)="weiter()"
           />
-          einfügen (click)="datapush()"
         </button>
       </div>
       Sprechblase
@@ -85,7 +76,7 @@
           contenteditable="false"
           id="WillkommenSpB"
         >
-          In diesem Quiz werden dir 6 Fragen aus verschiedenen Versicherungen
+          In diesem Quiz werden dir 8 Fragen aus verschiedenen Versicherungen
           gestellt, am Ende wird eine Auswertung angezeigt.
         </div>
 
@@ -98,8 +89,8 @@
         />
       </div>
     </div>
-  -->
 
+    <div [hidden]="quiz">
     <div class="Titel text-center" *ngIf="anzeigevier || anzeigezwei">
       <h1>Quiz</h1>
     </div>
@@ -119,5 +110,6 @@
         />
       </button>
     </div>
+  </div>
   </body>
 </html>
