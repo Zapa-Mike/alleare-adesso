@@ -72,10 +72,18 @@ h1 {
 
 /*Buttons footer*/
 
-#settingButton,
+
 #novaButton {
-  background-color: transparent;
-  border-color: transparent;
+ 
+  align-self: flex-end;
+  margin-left: 100%;
+  margin-right: auto;
+  
+ 
+}
+
+#settingButton{
+  margin-top: 5%;
   align-self: flex-end;
 }
 
@@ -93,6 +101,7 @@ h1 {
   .btnFragekatalog {
     font-family: "Lato", sans-serif;
     color: black;
+    border: none;
     background: white;
     text-align: center;
     padding: 15%;
@@ -140,4 +149,23 @@ h1 {
     z-index: 1033;
     margin-left: -1%;
     margin-top: 35%;
+  }
+
+  .row{
+    margin-top: -5%;
+  }
+
+  .btn1 {
+    border: none;
+    font-family: "Lato", sans-serif;
+    color: black;
+    background: white;
+    text-align: center;
+    padding: 9%;
+    font-size: 5vw;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    
   }
