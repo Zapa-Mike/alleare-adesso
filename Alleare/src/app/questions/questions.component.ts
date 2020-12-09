@@ -28,6 +28,8 @@ export class QuestionsComponent implements DoCheck, OnInit{
 
   template5:any;
   verweis=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
+  fragenkatalog = true;
+  start = false; 
   
   constructor(private dataservice:DataService) {
 
@@ -39,6 +41,10 @@ querysnapshot.forEach((doc)=>{
   doc.ref.delete();
   })
 })
+  }
+  weiter(){
+    this.fragenkatalog= false;
+    this.start= true; 
   }
 
   ngDoCheck(){

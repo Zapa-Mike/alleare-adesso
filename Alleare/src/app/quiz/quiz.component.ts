@@ -40,8 +40,11 @@ export class QuizComponent implements OnInit, DoCheck {
   antwortenid = [];
   jalla = true;
   dbrichtig = firebase.firestore().collection('Quiz');
+  start =false ;
+  quiz = true;
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService) {
+  }
 
   ngOnInit() {
     this.dataservice.addquizrouting(0);
@@ -54,6 +57,10 @@ export class QuizComponent implements OnInit, DoCheck {
         doc.ref.delete();
       });
     });
+  }
+  weiter(){
+    this.start = true; 
+    this.quiz = false; 
   }
 
   ngDoCheck() {
