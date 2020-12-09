@@ -114,3 +114,6 @@ body {
   background-color: #9cd1f0;
   color: #ffffff;
 }
+.modal-title{
+  font-weight: bold;
+}
