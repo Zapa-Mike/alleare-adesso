@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { RouteNameResolverService } from '../services/route-name-resolver-service';
 import { RoutingService } from '../services/routing.service';
 import {Location} from '@angular/common';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-nova',
@@ -30,12 +31,12 @@ docRef = firebase
     private routeResolver: RouteNameResolverService,
     private route: ActivatedRoute,
     private location: Location,
-    private router:Router
+    private router:Router,
+    private dataservice: DataService
   ) {}
 
   ngOnInit(): void {
     
-
     this.docRef.get().then((doc) => {
       if (doc.exists) {
         this.nameIntro = doc.data().Name;
@@ -47,6 +48,7 @@ docRef = firebase
 intro(){
   this.docRef.update({homeintro:true})
   this.router.navigate(['/intro'])
+  this.dataservice.sendHeader(true);
   
 }
   public getPreviousRoute() {
