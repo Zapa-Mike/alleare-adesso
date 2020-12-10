@@ -51,7 +51,7 @@ import { DataService } from '../services/data.service';
       />
     </div>
     <!--Articles-->
-    <div *ngIf="topicsngif">
+    <div class="ArticlesList" *ngIf="topicsngif">
       <div class="title text-center form-inline">
         <h1>{{ collection }}</h1>
 
@@ -65,11 +65,12 @@ import { DataService } from '../services/data.service';
       <!--Schlagzeilen und Bilder-->
       <div *ngFor="let topic of topics">
         <div class="headlines" id="{{ topic }}" (click)="article(topic)">
-          <p>{{ topic }}</p>
-          <img
+          <div class="row articelBox">
+            <div class="artTitle">{{ topic }}</div>
+            <div class="artBild"><img
             src="data:image/gif;base64,{{ bilder }}"
             class="img-responsive"
-          />
+          /></div></div>
         </div>
       </div>
     </div>
