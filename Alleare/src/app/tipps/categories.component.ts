@@ -55,11 +55,15 @@ import { DataService } from '../services/data.service';
       <!--Schlagzeilen und Bilder-->
       <div *ngFor="let topic of topics">
         <div class="headlines" id="{{ topic }}" (click)="article(topic)">
-          <p>{{ topic }}</p>
-          <img
-            src="data:image/gif;base64,{{ bilder }}"
-            class="img-responsive"
-          />
+          <div class="row articelBox">
+            <div class="artTitle">{{ topic }}</div>
+            <div class="artBild">
+              <img
+                src="data:image/gif;base64,{{ bilder }}"
+                class="img-responsive"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
