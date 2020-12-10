@@ -1,7 +1,6 @@
-import { Component, OnInit,} from '@angular/core';
-import { Data, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import firebase from 'firebase';
-import { IntroComponent } from '../intro/intro.component';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -11,28 +10,54 @@ import { DataService } from '../services/data.service';
 })
 export class HomeComponent implements OnInit {
   nameIntro: string;
+  NameIntro: string;
+  index = 0;
+  google1=false;
+  home=true;
 
-  NameIntro:string;
-  index=0;
+   docRef = firebase
+  .firestore()
+  .collection('Benutzer')
+  .doc(localStorage.getItem('hans'));
 
-
-  constructor(private dataservice:DataService, private router : Router) {
+  headerGrau = false;
+  homeintro = false;
+  constructor(private dataservice: DataService, private router: Router) {
+   
   }
 
-  ngOnInit(){
-    this.dataservice.addIndexTemp1(this.index);// Damit wir aus dem Fragenkatalog raus und rein können
-    var docRef = firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans'));
-
-    docRef.get().then((doc) => {
+  ngOnInit() {
+    this.dataservice.addIndexTemp1(this.index); // Damit wir aus dem Fragenkatalog raus und rein können
+   
+    this.docRef.get().then((doc) => {
       if (doc.exists) {
         this.nameIntro = doc.data().Name;
+        this.homeintro  = doc.data().homeintro;
+        if(this.homeintro==false){
+          this.home= true;
+        }
+        
       }
     });
+  
+    
   }
   fragebogen() {
-    var index = (0).toString();
-    localStorage.setItem('storyIndex', index);
-    localStorage.setItem('radioIndex', index);
+  
+    if(this.homeintro==false){
+      var index = (0).toString();
+      localStorage.setItem('storyIndex', index);
+      localStorage.setItem('radioIndex', index);
+      this.router.navigate(['/questions'])
+    }
+    
+
+  }
+  weitermachen() {
+    this.docRef.update({homeintro:false})
+    this.home= true;
+    this.homeintro = false;
+    this.dataservice.sendHeader(false);
   }
 
   navigate() {
@@ -40,5 +65,8 @@ export class HomeComponent implements OnInit {
       queryParams: { name: this.nameIntro },
     });
   }
+  google(){
+    this.home=false;
+    this.google1=true;
+  }
 }
-

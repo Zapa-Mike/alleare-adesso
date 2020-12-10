@@ -11,14 +11,24 @@ import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_t
 @Component({
   selector: 'app-novadialog',
   template: `
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  </head>
+  
     <div id="dialog1" *ngIf="dialog">
       <img
         (click)="weiter()"
         id="NovaNormal1"
         class="Nova_Intro_Irrtuemer_Alltagssituationen1"
-        src="assets/Intro/Dialog1_Nova_Animiert.gif"
+        src="assets/Intro/Dialog1_Animert.gif"
       />
-      <img id="Sprechblase1" src="assets/Sprechblase/speech bubble.png" />
+      <img class="Sprechblase1 img-fluid" src="assets/Sprechblase/speech bubble.png" />
       <p class="TextIrrtuemerAlltagssituation">
         Das war ein Teil von <br />
         vielen Irrtümer und <br />
@@ -34,9 +44,9 @@ import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_t
         (click)="weiter2()"
         id="NovaNormal2"
         class="Nova_Intro_Irrtuemer_Alltagssituationen2"
-        src="assets/Intro/Dialog2_Novaanimation.gif"
+        src="assets/Intro/Dialog2_Animiert.gif"
       />
-      <img id="Sprechblase2" src="assets/Sprechblase/speech bubble.png" />
+      <img class="Sprechblase2 img-fluid" src="assets/Sprechblase/speech bubble.png"/>
       <p class="TextNovaVorstellung">
         Ich bin hier und <br />
         werde dich vor <br />
@@ -51,9 +61,9 @@ import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_t
         (click)="weiter3()"
         id="NovaNormal3"
         class="Nova_Intro_Irrtuemer_Alltagssituationen3"
-        src="assets/Intro/Dialog3_Nova_Animiert.gif"
+        src="assets/Intro/Dialog3_Animiert.gif"
       />
-      <img id="Sprechblase3" src="assets/Sprechblase/speech bubble.png" />
+      <img class="Sprechblase2 img-fluid" src="assets/Sprechblase/speech bubble.png" />
       <p class="TextNovaberatung">
         Mit meiner Hilfe <br />
         und der App alleare <br />
@@ -66,9 +76,10 @@ import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_t
       <img
         id="NovaNormal4"
         class="Nova_Intro_Irrtuemer_Alltagssituationen4"
-        src="assets/Intro/Dialog4_Animiert_Nova.gif"
+        src="assets/Intro/Dialog4_Animiert.gif"
+        routerLink="/home"
       />
-      <img id="Sprechblase4" src="assets/Sprechblase/speech bubble.png" />
+      <img class="Sprechblase2 img-fluid" src="assets/Sprechblase/speech bubble.png" />
       <p class="TextZukunftVersicherungen">
         Damit du dich <br />
         in Zukunft mit <br />

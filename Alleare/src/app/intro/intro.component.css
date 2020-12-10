@@ -2,11 +2,16 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
-  height: 100%;
-  width: 100%;
   text-align: center;
   font-family: lato;
+  margin-bottom: 0%;
+  padding: 0%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  display: block;
+  position: fixed;
 }
 
 /*Intro-Willkommen Logo*/
@@ -45,7 +50,9 @@ form {
 
 #WeiterKnopf {
   position: relative;
-  margin-top: 40%;
+  margin-top: auto;
+  
+  
 }
 
 .col {
@@ -93,85 +100,69 @@ form {
 
 /*Screen Intro Irrtümer Darstellung + Positionierung Anfang*/
 .TextHaftpflicht {
-  font-family: lato;
-  margin-left: 15%;
-  margin-top: -16%;
+  font-size: 4.5vw;
+  margin-top: -17.5%;
+ 
 }
 
 .HaftpflichtBild {
-  margin-left: 15%;
-  margin-top: 10%;
-  width: 300px;
-  height: 300px;
+ 
 }
 
 .TextHausrat {
-  font-family: lato;
-  margin-left: -15%;
-  margin-top: -20%;
+  font-size: 4.5vw;
+  margin-top: -25%;
 }
 
 .HausratBild {
-  margin-left: -15%;
-  margin-top: 30%;
-  width: 300px;
-  height: 300px;
+  margin-top:-5%;
 }
 /*Screen Intro Irrtümer Darstellung + Positionierung Ende*/
 
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Anfang*/
 .PersonenbefoerderungBild {
-  margin-left: 15%;
-  margin-top: 10%;
-  width: 300px;
-  height: 300px;
+ 
 }
 
 .AutoschadenBild {
-  margin-top: 40%;
-  width: 300px;
-  height: 300px;
-  margin-left: -15%;
+  
 }
 
 .TextPersonenbefoerderung {
-  margin-top: -25%;
-  margin-left: 15%;
-  font-family: lato;
+  margin-top: -26%;
+  font-size: 4.5vw;
+  
 }
 
 .TextAutoschaden {
-  font-family: lato;
-  margin-top: -18%;
-  margin-left: -15%;
+  font-size: 4.5vw;
+  margin-top: -22%;
+  
 }
+
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Ende*/
 
 /*Screen Intro Alltagssituation Private Unfallversicherung Darstellung + Positionierung Anfang*/
 .PrivateUnfallversicherungBild {
-  width: 300px;
-  height: 300px;
-  margin-left: 15%;
-  margin-top: 10%;
+  
+
 }
 
 .HaushaltsunfallBild {
-  width: 300px;
-  height: 300px;
-  margin-left: -15%;
-  margin-top: 40%;
+  margin-top: -10%;
+  
 }
 
 .TextPrivateUnfallversicherung {
-  font-family: lato;
-  margin-left: 15%;
+ 
+  font-size: 4.5vw;
   margin-top: -15%;
 }
 
 .TextHaushaltsunfall {
-  font-family: lato;
-  margin-left: -15%;
-  margin-top: -18%;
+  
+  font-size: 4.5vw;
+  margin-top: -22.5%;
 }
 /*Screen Intro Alltagssituation Private Unfallversicherung Darstellung + Positionierung Ende*/
 
@@ -291,16 +282,14 @@ form {
   }
 }
 
-#Sprechblase1 {
-  width: 200px;
-  height: 150px;
-  margin-top: -100%;
+.Sprechblase1 {
+  margin-top: -130%;
   margin-left: -19%;
 }
 
 .TextIrrtuemerAlltagssituation {
-  font-size: 14px;
-  margin-top: -62%;
+  font-size: 4.5vw;
+  margin-top: -79%;
   margin-left: -20%;
 }
 
@@ -308,7 +297,7 @@ form {
   font-size: 20px;
   color: #f5ce00;
   transform: rotate(-7deg);
-  margin-top: 40%;
+  margin-top: 50%;
   margin-left: 50%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 1/4* Ende */
@@ -324,16 +313,14 @@ form {
   animation-delay: 1s;
 }
 
-#Sprechblase2 {
-  width: 200px;
-  height: 150px;
-  margin-top: -100%;
+.Sprechblase2 {
+  margin-top: -130%;
   margin-left: -19%;
 }
 
 .TextNovaVorstellung {
-  font-size: 14px;
-  margin-top: -66%;
+  font-size: 4.5vw;
+  margin-top: -85%;
   margin-left: -20%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 2/4* Ende */
@@ -349,16 +336,9 @@ form {
   animation-delay: 1s;
 }
 
-#Sprechblase3 {
-  width: 200px;
-  height: 150px;
-  margin-top: -100%;
-  margin-left: -19%;
-}
-
 .TextNovaberatung {
-  font-size: 14px;
-  margin-top: -65.5%;
+  font-size: 4.5vw;
+  margin-top: -83%;
   margin-left: -19.5%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 3/4* Ende */
@@ -388,20 +368,13 @@ form {
   /*100%{margin-top:110%;}*/
 }
 
-#Sprechblase4 {
-  width: 200px;
-  height: 150px;
-  margin-top: -100%;
-  margin-left: -19%;
-}
-
 .TextZukunftVersicherungen {
-  font-size: 14px;
-  margin-top: -65.2%;
+  font-size: 4.5vw;
+  margin-top: -83%;
   margin-left: -19.5%;
 }
 
 #Knopfpositionierung {
-  margin-top: 60%;
+  margin-top: 50%;
 }
 /*Screen Nova + Springanimation + Sprechblase + Content 4/4* Ende */

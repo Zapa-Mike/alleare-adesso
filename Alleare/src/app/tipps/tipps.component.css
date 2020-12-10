@@ -1,12 +1,20 @@
-body{
+body {
     background-color: #f2f9fd;
     background-repeat: no-repeat;
     background-size: cover;
-    width:100%;
+    text-align: center;
+    font-family: lato;
+    margin-bottom: 0%;
+    padding: 0%;
+    width: 100%;
     height: 100%;
-}
+    overflow: auto;
+    overflow-x: hidden;
+    display: block;
+    position: fixed;
+  }
 
-h3{
+h1{
     margin-top: 50px;
     padding-top: 2%;
     padding-bottom: 10px;
@@ -15,6 +23,7 @@ h3{
     margin-right: auto;
     font-family: lato;
 }
+
 
 .categories{
     margin-top: 7%;
@@ -138,8 +147,20 @@ h6{
 .articleText{
     display: block;
     text-align: left;
-    padding-left: 25px;
+    padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 25%;
+    margin-bottom: 30%;
 }
-    
+
+.articleImage{
+    margin-top: 20%;
+    width: 100%;
+    height: auto;
+}
+
+.img-responsive{
+    float: right;
+    width: 7em;
+    height: auto;
+    object-fit: cover;
+}

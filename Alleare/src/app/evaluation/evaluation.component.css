@@ -2,10 +2,16 @@ body {
   background-color: #f2f9fd;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: 60px;
-  position: fixed;
+  text-align: center;
+  font-family: lato;
+  margin-bottom: 0%;
+  padding: 0%;
   width: 100%;
   height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  display: block;
+  position: fixed;
 }
 .Titel {
   margin-top: 50px;
@@ -15,9 +21,17 @@ body {
   margin-left: auto;
   margin-right: auto;
   font-family: lato;
+  text-align: center;
+}
+.loading{
+  margin-left: auto;
+  margin-right: auto;
+}
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #9CD1F0;
 }
 
-.Auswertung {
+.AuswertungContainer {
   align-content: center;
 }
 .AuswertungVersicherungen {
@@ -75,10 +89,10 @@ body {
 .bubble {
   position: relative;
   font-family: lato;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.3;
   width: 200px;
-  height: 60%;
+  height: 80%;
   background: #ffffff;
   border-radius: 50%;
   padding: 20px;
@@ -96,24 +110,34 @@ body {
   border-top: 40% solid #ffffff;
   border-color: #ffffff;
   border-bottom: 30px solid transparent;
-  right: 15%;
-  bottom: -14px;
+  right: 10%;
+  left: 60%;
+  bottom: -10px;
 }
 
 /*Nova*/
+
+
 .NovaLink {
-  padding: 0%;
+  
   border: none;
   background-color: inherit;
   align-self: end;
   align-content: end;
   width: 80px;
   height: auto;
+  padding-right: 35%;
+  float:right;
+  
 }
-.Nova {
-  margin-right: 10%;
-}
+
+
 #NovaImage {
   width: 80px;
   height: 80px;
+  text-align: right;
+
+  
 }
+
+
