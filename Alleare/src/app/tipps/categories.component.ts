@@ -41,15 +41,6 @@ import { DataService } from '../services/data.service';
           <p>{{ array }}</p>
         </div>
       </div>
-      <!--Nova-->
-      <img
-        src="/assets/nova/nova_flashcard_singing.png"
-        width="140"
-        height="140"
-        routerLink="/nova"
-        id="NovaImage"
-      />
-    </div>
     <!--Articles-->
     <div class="ArticlesList" *ngIf="topicsngif">
       <div class="title text-center form-inline">
