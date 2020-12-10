@@ -98,18 +98,7 @@
     <four-answers *ngIf="anzeigevier"></four-answers>
     <two-answers *ngIf="anzeigezwei"></two-answers>
     <evaluation-quiz *ngIf="auswertung"></evaluation-quiz>
-
-    <div class="d-flex Nova justify-content-end">
-      <button class="NovaButton" routerLink="/nova" (click)="novaclick()">
-        <img
-          id="NovaImage"
-          src="/assets/nova/nova_home.png"
-          alt="nova"
-          width="140"
-          height="140"
-        />
-      </button>
-    </div>
+    <novafav-btn *ngIf="fabvisible"></novafav-btn>
   </div>
   </body>
 </html>

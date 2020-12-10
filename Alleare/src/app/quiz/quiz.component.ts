@@ -42,6 +42,7 @@ export class QuizComponent implements OnInit, DoCheck {
   dbrichtig = firebase.firestore().collection('Quiz');
   start =false ;
   quiz = true;
+  fabvisible:boolean=false;
 
   constructor(private dataservice: DataService) {
   }
@@ -59,6 +60,7 @@ export class QuizComponent implements OnInit, DoCheck {
     });
   }
   weiter(){
+    this.fabvisible=true;
     this.start = true; 
     this.quiz = false; 
   }
