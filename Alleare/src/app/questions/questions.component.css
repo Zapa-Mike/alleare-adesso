@@ -82,6 +82,10 @@ body {
   width: 20px;
   height: 20px;
 }
+/**/
+.progress{
+
+}
 
 /*RadioButtonsJaNein*/
 .RadioButtonsJaNein {
@@ -311,6 +315,10 @@ p {
   margin: auto;
   border-radius: 10px;
 }
+#drop{
+  position:fixed;
+}
+
 .bundesliste {
   width: 100%;
 }

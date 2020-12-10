@@ -34,18 +34,17 @@ import { DataService } from '../services/data.service';
           Wirtschaft
         </button>
       </div>
-
       <!--Themenbereiche-->
       <div *ngFor="let array of array1">
         <div id="{{ array }}" class="box" (click)="weitergabe(array)">
           <p>{{ array }}</p>
         </div>
       </div>
+    </div>
     <!--Articles-->
-    <div class="ArticlesList" *ngIf="topicsngif">
+    <div *ngIf="topicsngif">
       <div class="title text-center form-inline">
         <h1>{{ collection }}</h1>
-
         <!--Zurück Pfeil-->
         <img
           class="backArrow"
@@ -58,17 +57,19 @@ import { DataService } from '../services/data.service';
         <div class="headlines" id="{{ topic }}" (click)="article(topic)">
           <div class="row articelBox">
             <div class="artTitle">{{ topic }}</div>
-            <div class="artBild"><img
-            src="data:image/gif;base64,{{ bilder }}"
-            class="img-responsive"
-          /></div></div>
+            <div class="artBild">
+              <img
+                src="data:image/gif;base64,{{ bilder }}"
+                class="img-responsive"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div *ngIf="articlesngif">
       <div class="title text-center form-inline">
         <h1>{{ articleueberschrift }}</h1>
-
         <!--Zurück Pfeil-->
         <img
           class="backArrow"
@@ -82,7 +83,6 @@ import { DataService } from '../services/data.service';
         id="articleImage"
         src="data:image/gif;base64,{{ bilder }}"
       />
-
       <div class="articleText">
         {{ articletext }}
       </div>
