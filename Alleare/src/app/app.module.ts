@@ -56,9 +56,8 @@ import { QuizService } from './services/quiz.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
 import { novafabComponent } from './novafab.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -104,8 +103,7 @@ import { novafabComponent } from './novafab.component';
     MatInputModule, //Materials
     BrowserAnimationsModule, //Materials
     MatProgressSpinnerModule, //Materials
-    MatIconModule,
-    MatButtonModule,
+    MatProgressBarModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
