@@ -10,17 +10,35 @@ export class SettingsComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
   openImpressum() {
-    const textRef = this.dialog.open(Impressum);
+  this.dialog.open(Impressum);
 
-    textRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  }
+  openDatenschutz() {
+  this.dialog.open(Datenschutzerklaerung);
+
+  }
+  openNutzungsbedingungen(){
+    this.dialog.open(Nutzungsbedingungen);
   }
   ngOnInit(): void {
   }
 }
 @Component({
-  selector: 'dialog-content-example-dialog',
+  selector: 'impressum',
   templateUrl: 'impressum.html',
 })
 export class Impressum {}
+
+@Component({
+  selector: 'datenschutzerklaerung',
+  templateUrl: 'Datenschutzerklaerung.html',
+})
+export class Datenschutzerklaerung {}
+
+@Component({
+  selector: 'nutzungsbedingungen',
+  templateUrl: 'Nutzungsbedingungen.html',
+})
+export class Nutzungsbedingungen {}
+
+

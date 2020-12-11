@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
-import { Impressum, SettingsComponent } from './settings/settings.component';
+import { Datenschutzerklaerung, Impressum, Nutzungsbedingungen, SettingsComponent } from './settings/settings.component';
 import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
@@ -101,6 +101,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     googleformularComponent,
     novafabComponent,
     Impressum,
+    Datenschutzerklaerung,
+    Nutzungsbedingungen
   ],
   imports: [
     MatDialogModule,
