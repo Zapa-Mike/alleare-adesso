@@ -12,7 +12,9 @@ body {
   display: block;
   position: fixed;
 }
-
+.Titelintro{
+  margin-top: 55px;
+}
 .Titel {
   padding-top: 2%;
   color: #2a2d2f;
@@ -32,7 +34,7 @@ body {
   border-radius: 10px;
 }
 .card2 {
-  height: 230px;
+  height: 60vw;
   position: relative;
   background-color: #ffffff;
   margin-left: 3%;
@@ -197,6 +199,11 @@ p {
   padding-bottom: 0%;
   margin-bottom: 0%;
 }
+#Vorbutton {
+  float: right;
+  padding: 0%;
+  border: none;
+}
 #Vbutton {
   float: right;
   padding: 0%;
@@ -316,6 +323,8 @@ p {
 }
 #drop{
   position:fixed;
+  max-height:40vw;
+  overflow:scroll; 
 }
 
 .bundesliste {

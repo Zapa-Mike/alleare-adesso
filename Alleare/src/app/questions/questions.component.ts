@@ -48,6 +48,8 @@ export class QuestionsComponent implements DoCheck, OnInit{
   ngOnInit(){
   }
   weiter(){
+    this.dataservice.resetquestionprogress();
+    this.dataservice.addquestionprogress(0);
     this.verweis.get().then((querysnapshot)=>{// Löscht Favorisierung bei erneutem Aufruf der Fragenkatalogs
       querysnapshot.forEach((doc)=>{
         doc.ref.delete();
