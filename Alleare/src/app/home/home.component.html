@@ -19,32 +19,29 @@
   <googleformular *ngIf="google1"> test </googleformular>
   <div id="HomeIntro" *ngIf="homeintro">
     <div class="arrow img-fluid">
-      <img src="/assets/Intro/arrow.png" width="150px" height="325px" />
+      <img id="arrow" src="/assets/Intro/arrow.png" />
     </div>
 
     <div class="NovaHomeIntro">
-      <img
-        (click)="weitermachen()"
-        src="/assets/nova/nova_intro_rechts.png"
-        width="100px"
-        height="100px"
-      />
-    </div>
-
-    <div class="TextKlickMich">
-      <p>Klicke mich</p>
-    </div>
-
-    <div class="Homespeechbubble img-fluid">
-      <img src="/assets/Intro/Speechbubble.png" />
-      <div class="TextIntroHome">
-      <p>
-      Willst du mehr passende Ratschläge <br />für dich erfahren,
-      gehe zu unserem <strong> Fragenkatalog</strong>.
-      </p>
+      <div class="form-inline" width="100vw">
+        <img
+          (click)="weitermachen()"
+          src="/assets/nova/nova_intro_rechts.png"
+          width="100px"
+          height="100px"
+        />
+        <p class="TextKlickMich">Klicke mich</p>
       </div>
-      
+      <div class="IntroHome">
+        <div class="TextIntroHome">
+          <label>
+            Willst du mehr passende Ratschläge für dich erfahren, gehe zu
+            unserem
+            <strong> Fragenkatalog</strong>.</label
+          >
+        </div>
       </div>
+    </div>
 
     <div id="graueflaeche"></div>
   </div>
@@ -84,25 +81,24 @@
         </div>
       </div>
 
-      <div class="grid-container ">
+      <div class="grid-container">
         <div class="row">
           <div class="col col-6">
             <img
               id="settingButton"
               routerLink="/settings"
-              class= "img-fluid"
+              class="img-fluid"
               src="/assets/icons/icon_setting.svg"
               alt="icon_setting"
               width="50vw"
               height="50vw"
-              
             />
           </div>
           <div class="col col-6">
             <img
               id="novaButton"
               (click)="navigate()"
-              class= "img-fluid"
+              class="img-fluid"
               *ngIf="home"
               src="/assets/nova/nova_intro_rechts.png"
               alt="nova_home"

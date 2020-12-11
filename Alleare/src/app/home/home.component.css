@@ -1,5 +1,5 @@
 /*Hintergrund*/
- 
+
 body {
   background: linear-gradient(to bottom, #4ca3e1, #36d1dc);
   padding: 80px 0px 0px 0px;
@@ -14,25 +14,25 @@ body {
   overflow-x: hidden;
   display: block;
   position: fixed;
- }
-  
- /*Überschrift, Begrüßung & Name*/
-  
- h1 {
+}
+
+/*Überschrift, Begrüßung & Name*/
+
+h1 {
   color: white;
   font-family: "Lato", sans-serif;
   font-size: 8vw;
- }
-  
- /*Button Fragenkatalog*/
-  
- #firstcont {
+}
+
+/*Button Fragenkatalog*/
+
+#firstcont {
   grid-template-columns: 100%;
- }
-  
- /*Alle Buttons*/
-  
- .btn {
+}
+
+/*Alle Buttons*/
+
+.btn {
   font-family: "Lato", sans-serif;
   color: black;
   background: white;
@@ -43,62 +43,56 @@ body {
   display: inline-block;
   cursor: pointer;
   border-radius: 10px;
-  
- }
-  
- .btn123{
-  display: table; margin: 0 auto;
- }
-  
- /*Alle Buttons Farbe Text und Rahmen*/
-  
- .btn:visited,
- .btn:active {
+}
+
+.btn123 {
+  display: table;
+  margin: 0 auto;
+}
+
+/*Alle Buttons Farbe Text und Rahmen*/
+
+.btn:visited,
+.btn:active {
   color: #ffc300;
   border-color: #ffc300;
   border-width: 4px;
- }
-  
- /*Alle Buttons Anordnung*/
-  
- .grid-container {
+}
+
+/*Alle Buttons Anordnung*/
+
+.grid-container {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 20px;
   padding: 0px 15px 15px 15px;
   border-radius: 30%;
- }
-  
- /*Buttons footer*/
- 
- 
-  
- #novaButton {
-  
+}
+
+/*Buttons footer*/
+
+#novaButton {
   align-self: flex-end;
   margin-left: 100%;
   margin-right: auto;
-  
-  
- }
-  
- #settingButton{
+}
+
+#settingButton {
   margin-top: 5%;
   align-self: flex-end;
- }
-  
- #graueflaeche{
-  position:fixed;
+}
+
+#graueflaeche {
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: #A4A6AA;
-  opacity: 0.6; 
+  background: #a4a6aa;
+  opacity: 0.6;
   margin-top: 0%;
   z-index: 1031;
-  
-  }
-  
-  .btnFragekatalog {
+}
+
+.btnFragekatalog {
   font-family: "Lato", sans-serif;
   color: black;
   border: none;
@@ -111,56 +105,69 @@ body {
   cursor: pointer;
   border-radius: 10px;
   z-index: 1032;
-  }
-  
-  .Homespeechbubble{
+}
+.IntroHome{
   position: absolute;
-  margin-left: 20%;
-  margin-top: 102%;
   z-index: 1032;
-  }
-  
-  /*Text in der Box*/
-  
- .TextIntroHome{
+  width: 70vw;
+  height: 30vw;
+  background: white;
+  border-radius: 10px;
+  border: 5px solid #F5CE00;
+}
+.SpeechboxIntroHome {
+  position: absolute;
+  margin-left: 22vw;
+  margin-top: 50vh;
+  z-index: 1032;
+  width: 70vw;
+  height: 30vw;
+  background: white;
+  border-radius: 10px;
+  border: 5px solid #F5CE00;
+}
+/*Text in der Box*/
+
+.TextIntroHome {
   font-size: 4vw;
-  margin-left: 5%;
-  margin-top: -30%;
-  hyphens: auto;
+  hyphens: manual;
   position: relative;
-  word-wrap: break-word;
-  
- }
-  
-  .TextKlickMich{
+}
+
+.TextKlickMich {
   font-size: 5.2vw;
-  position:absolute;
-  color:#ffc300;
+  position: absolute;
+  color: #F5CE00;
+  text-shadow: 2px 2px 4px #ffffff, 0 0 5px #000;
   transform: rotate(-5deg);
-  margin-left: 32%;
-  margin-top: 106%;
+  margin-left: 100px;
+  width: 30vw;
   z-index: 1033;
-  }
-  
-  .NovaHomeIntro{
-  position: fixed;
+}
+
+.NovaHomeIntro {
+  position: absolute;
   z-index: 1033;
-  margin-left: 23%;
-  margin-top: 75.5%;
-  }
-  
-  .arrow{
-  position:absolute;
+  margin-left: 20vw;
+  margin-top: 35vh;
+}
+
+.arrow {
+  position: absolute;
   z-index: 1033;
-  margin-left: -1%;
-  margin-top: 35%;
-  }
-  
-  .row{
+  margin-left: 0vw;
+  margin-top: 19vh;
+}
+#arrow{
+  width: 40vw;
+  height: 40vh;
+}
+
+.row {
   margin-top: -5%;
-  }
-  
-  .btn1 {
+}
+
+.btn1 {
   border: none;
   font-family: "Lato", sans-serif;
   color: black;
@@ -172,5 +179,4 @@ body {
   display: inline-block;
   cursor: pointer;
   border-radius: 10px;
-  
-  }
+}
