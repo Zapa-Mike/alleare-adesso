@@ -10,12 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
-import { SettingsComponent } from './settings/settings.component';
+import { Impressum, SettingsComponent } from './settings/settings.component';
 import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
 import { IntroComponent } from './intro/intro.component';
 import { HeaderComponent } from './header/header.component';
+
+
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
@@ -59,6 +63,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { novafabComponent } from './novafab.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,8 +100,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     evaluationComponent,
     googleformularComponent,
     novafabComponent,
+    Impressum,
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     FormsModule,
     MatExpansionModule, //Materials

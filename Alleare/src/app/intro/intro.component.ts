@@ -12,7 +12,87 @@ import { DataService } from '../services/data.service';
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.css'],
 })
-export class IntroComponent implements DoCheck, OnInit {
+/*export class IntroComponent implements DoCheck, OnInit {
+  form: FormGroup;
+  public Name: string;
+  homeintro = true;
+  //Routing
+  logo: boolean = true;
+  namenseingabe: boolean = false;
+  novaIntro: boolean = false;
+  novadialog: boolean = false;
+  indexnovadialog: number;
+  insurance: boolean = false;
+  docRef = firebase
+  .firestore()
+  .collection('Benutzer')
+  .doc(localStorage.getItem('hans'));
+
+  constructor(private router:Router, private dataservice: DataService) {
+    setTimeout(() => {
+      this.docRef.get().then((doc) => {
+        this.homeintro  = doc.data().homeintro;
+        if(this.homeintro!=false){
+          this.docRef.update({homeintro:true})
+          this.homeintro=true
+        }})
+
+      this.logo = false;
+      console.log(this.homeintro);
+      if(this.homeintro==true){
+        this.namenseingabe = true;
+
+      }else if (this.homeintro==false){
+this.router.navigate(['/home'])
+      }
+      
+    }, 2888);
+    this.form = new FormGroup({
+      Name: new FormControl(),
+    });
+
+    this.dataservice.getIndexdialog();
+    this.dataservice.currentIndex2.subscribe(
+      (currentIndex2) => (this.indexnovadialog = currentIndex2)
+    );
+
+    this.novadialog= false;
+    this.insurance= false;
+    this.namenseingabe=false;
+    this.novaIntro=false;
+  }
+  ngOnInit() {
+    
+     
+  }
+
+  ngDoCheck() {
+    if (this.indexnovadialog == 1 && this.homeintro == true) {
+      this.insurance = false;
+      this.novadialog = true;
+    }
+  }
+
+  saveName() {
+    this.Name = this.form.value.Name;
+    firebase
+      .firestore()
+      .collection('Benutzer')
+      .doc(localStorage.getItem('hans'))
+      .set({
+        Name: this.Name,
+        homeintro: true,
+      });
+    this.namenseingabe = false;
+    this.novaIntro = true;
+  }
+  //Routing
+  weiter() {
+    this.novaIntro = false;
+    this.insurance = true;
+  }
+}*/
+export class IntroComponent implements OnInit, DoCheck {
   form: FormGroup;
   public Name: string;
   homeintro = true;
@@ -32,28 +112,39 @@ export class IntroComponent implements DoCheck, OnInit {
     this.form = new FormGroup({
       Name: new FormControl(),
     });
-
     this.dataservice.getIndexdialog();
     this.dataservice.currentIndex2.subscribe(
       (currentIndex2) => (this.indexnovadialog = currentIndex2)
     );
+  }
 
+  ngDoCheck() {
+    if (this.indexnovadialog == 1 && this.homeintro == true) {
+      this.insurance = false;
+      this.novadialog = true;
+    }
+  }
+
+  ngOnInit() {
+    this.logo = true;
     this.novadialog= false;
     this.insurance= false;
     this.namenseingabe=false;
     this.novaIntro=false;
-  }
-  ngOnInit() {
-    
+   
+    this.docRef.get().then((doc) => {
+     
+      if (doc.exists) {
+        this.homeintro  = doc.data().homeintro;
+        if(this.homeintro!=false){
+          this.docRef.update({homeintro:true})
+          this.homeintro=true
+        }
+      }
+      console.log(this.homeintro)
       setTimeout(() => {
-        this.docRef.get().then((doc) => {
-          this.homeintro  = doc.data().homeintro;
-          if(this.homeintro!=false){
-            this.docRef.update({homeintro:true})
-            this.homeintro=true
-          }})
-
         this.logo = false;
+        
         if(this.homeintro==true){
           this.namenseingabe = true;
   
@@ -62,13 +153,8 @@ export class IntroComponent implements DoCheck, OnInit {
         }
         
       }, 2888);
-  }
-
-  ngDoCheck() {
-    if (this.indexnovadialog == 1 && this.homeintro == true) {
-      this.insurance = false;
-      this.novadialog = true;
-    }
+    })
+    
   }
 
   saveName() {
