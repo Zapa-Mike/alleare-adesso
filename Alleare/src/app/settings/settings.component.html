@@ -73,8 +73,8 @@
           <a>on</a>
         </div>
       </button>
-      <button class="EBPfeil form-check-inline">
-        Datenschutzrichtlinien<img
+      <button class="EBPfeil form-check-inline" (click)="openDatenschutz()">
+        Datenschutzerklärung<img
           id="pfeil"
           src="/assets/icons/icon_auswertung_arrow.svg"
         />
@@ -91,8 +91,8 @@
           src="/assets/icons/icon_auswertung_arrow.svg"
         />
       </button>
-      <button class="EBPfeil form-check-inline">
-        AGB<img id="pfeil" src="/assets/icons/icon_auswertung_arrow.svg" />
+      <button (click)="openNutzungsbedingungen()" class="EBPfeil form-check-inline">
+        Nutzungsbedingungen<img id="pfeil" src="/assets/icons/icon_auswertung_arrow.svg" />
       </button>
     </div>
   </div>
