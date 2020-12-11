@@ -99,7 +99,7 @@ body {
 }
 /*Auswertung Kreis anzeige*/
 .single-chart {
-  height: 50vw;
+  height: 45vw;
   justify-self: center;
 }
 /**/
@@ -124,7 +124,6 @@ body {
 }
 .btnAuswertung {
   background-color: #38cddc;
-  width: 100%;
   color: #f2f9fd;
   padding: 10px;
   border: none;

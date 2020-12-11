@@ -31,6 +31,16 @@ export class AppComponent implements DoCheck, OnInit {
     } else {
       console.log(localStorage.getItem('hans'), 'Schon gegeben');
     }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+          .register('/sw.js', { scope: '/' })
+          .then(function(reg) {
+              console.log('Registration succeeded. Scope is ' + reg.scope);
+          })
+          .catch(function(error) {
+              console.log('Registration failed with ' + error);
+          });
+  }
     //Caching
     // for(let i=0;i<this.collections.length;i++){
     //   firebase.firestore().collection(this.collections[i]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
@@ -57,7 +67,7 @@ export class AppComponent implements DoCheck, OnInit {
       // }
     
   }
-
+  
   ngDoCheck() {
     // Controls Navbar and Header on all screens
     const route = this.route.path();

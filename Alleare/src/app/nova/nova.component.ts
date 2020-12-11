@@ -47,10 +47,11 @@ docRef = firebase
   }
 intro(){
   this.docRef.update({homeintro:true})
-  this.router.navigate(['/intro'])
   this.dataservice.sendHeader(true);
-  
+  this.router.navigate(['/intro'])
+    
 }
+
   public getPreviousRoute() {
     this.previousRoute = this.routerService.getPreviousUrl();
   }
