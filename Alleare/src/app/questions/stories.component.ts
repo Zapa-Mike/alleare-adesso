@@ -146,6 +146,8 @@ export class StoriesComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+    this.dataservice.resetquestionprogress();
+    this.dataservice.addquestionprogress(0);
     this.currentaudio = new Audio(this.audiofiles[0]);
     if (this.dataservice.getIndexTemp1() == null) {
       console.log('anfang');
@@ -205,6 +207,7 @@ export class StoriesComponent implements OnInit, DoCheck {
   }
 
   weiter() {
+    this.dataservice.addquestionprogress(1);//ProgressBar
     this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
     this.counter = 2; //Damit eim ersten mal klicken die funktion wieder play ausführt.
     const weiterButton = (document.getElementById(
@@ -260,6 +263,7 @@ export class StoriesComponent implements OnInit, DoCheck {
     }
   }
   zurueck() {
+    this.dataservice.addquestionprogress(-1);//ProgressBar
     this.currentaudio.pause(); //Pausiert audio beim zurück gehen
     this.index = this.index - 1;
     this.counter = 2; //Setzt play pause counter zurück

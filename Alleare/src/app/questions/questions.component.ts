@@ -30,9 +30,19 @@ export class QuestionsComponent implements DoCheck, OnInit{
   verweis=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
   fragenkatalog = true;
   start = false; 
+
+  progressquestions:number=0;
+  progressquestionprozent:number=0;
+  fragenlaenge:number;
   
   constructor(private dataservice:DataService) {
-
+    this.dataservice.getquestionprogress();
+    this.dataservice.questionprogress.subscribe(questionprogress=>{
+      this.progressquestions=questionprogress;
+    })
+    firebase.firestore().collection('Progressbar').doc('Fragenlänge').get().then((doc)=>{
+      this.fragenlaenge=doc.data().länge
+    })
   }
 
   ngOnInit(){
@@ -44,10 +54,12 @@ export class QuestionsComponent implements DoCheck, OnInit{
         })
       })
     this.fragenkatalog= false;
-    this.start= true; 
+    this.start= true;
   }
 
   ngDoCheck(){
+    this.progressquestionprozent=100*this.progressquestions/this.fragenlaenge;
+
     this.template=this.dataservice.getIndexrouting1();
     this.template1=this.dataservice.getIndexrouting2();
     if(this.template==1){

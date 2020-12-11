@@ -129,10 +129,12 @@ export class DropDownComponent implements OnInit, DoCheck {
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
+    this.dataservice.addquestionprogress(1);//ProgressBar
     this.index++;
   }
   // index wird runtergesetzt beim zurueck klicken -> vorherige Frage wird aufgerufen
   zurueck() {
+    this.dataservice.addquestionprogress(-1);//ProgressBar
     this.index--;
     this.dataservice.sendIndexrouting2(1);
   }

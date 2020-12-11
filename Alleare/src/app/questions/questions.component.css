@@ -14,7 +14,6 @@ body {
 }
 
 .Titel {
-  margin-top: 50px;
   padding-top: 2%;
   color: #2a2d2f;
   margin-left: auto;
@@ -84,7 +83,7 @@ body {
 }
 /**/
 .progress{
-
+  margin-top: 50px;
 }
 
 /*RadioButtonsJaNein*/
