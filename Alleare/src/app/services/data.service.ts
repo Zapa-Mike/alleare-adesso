@@ -19,6 +19,10 @@ export class DataService {
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
 
+    private progress = new Subject<any>();
+    questionprogress=this.progress.asObservable();
+    saveprogress:number=0;
+
     indexvonTemp2zuTemp3:number;
     indexTemp2:number
     indexvonTemp3zuTemp2:number;
@@ -98,5 +102,16 @@ export class DataService {
     }
     getHeader(){
         return this.headervisible;
+    }
+    addquestionprogress(progress){
+        this.saveprogress=this.saveprogress+progress
+        this.progress.next(this.saveprogress)
+    }
+    getquestionprogress():Observable<number>{
+        return this.progress.asObservable();
+    }
+    resetquestionprogress(){
+        this.saveprogress=0
+        this.progress.next(this.saveprogress);
     }
 }

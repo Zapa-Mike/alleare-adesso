@@ -298,6 +298,7 @@ export class OptionsComponent implements DoCheck, OnInit {
     
   }
   weiter(){
+    this.dataservice.addquestionprogress(1);//ProgressBar
     const weiterButton = (document.getElementById(
       'Vbutton'
     ) as unknown) as HTMLInputElement;
@@ -336,6 +337,7 @@ export class OptionsComponent implements DoCheck, OnInit {
 }
       }
       zurueck(){
+        this.dataservice.addquestionprogress(-1);//ProgressBar
         if(this.index>=0){
           this.index--; // setzt Index eins runter 
           
