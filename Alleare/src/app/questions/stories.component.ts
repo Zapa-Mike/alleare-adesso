@@ -146,8 +146,7 @@ export class StoriesComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.dataservice.resetquestionprogress();
-    this.dataservice.addquestionprogress(0);
+   
     this.currentaudio = new Audio(this.audiofiles[0]);
     if (this.dataservice.getIndexTemp1() == null) {
       console.log('anfang');

@@ -40,7 +40,7 @@ import { DataService } from '../services/data.service';
 
       <div class="col rowVZ">
         <button
-          id="Vbutton"
+          id="Vorbutton"
           class="btn"
           routerLink="/evaluation"
           (click)="weiter()"
@@ -94,7 +94,7 @@ export class DropDownComponent implements OnInit, DoCheck {
   // Funktion erkennt die ID der gelickten Auswahl und pusht diese in DB
   setLand(event) {
     const weiterButton = (document.getElementById(
-      'Vbutton') as unknown) as HTMLInputElement;
+      'Vorbutton') as unknown) as HTMLInputElement;
       
 
       weiterButton.disabled = false; 
@@ -118,14 +118,17 @@ export class DropDownComponent implements OnInit, DoCheck {
   // beim Aufruf werden alle Bundeslaender in das "Bundesland" Array gespeichert
   // dient später für die Befüllung des DropDowns
   ngOnInit() {
+    const weiterButton = (document.getElementById(
+      'Vorbutton') as unknown) as HTMLInputElement;
+      weiterButton.disabled = true;  
     this.dbget.get().then((querysnapshot) => {
       querysnapshot.forEach((doc) => {
         this.Bundesland.push(doc.data().name);
       });
     });
-    const weiterButton = (document.getElementById(
-      'Vbutton') as unknown) as HTMLInputElement;
-      weiterButton.disabled = true;  
+  
+
+      console.log( weiterButton.disabled)
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
