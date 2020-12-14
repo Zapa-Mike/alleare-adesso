@@ -209,3 +209,31 @@ body {
   height: 80px;
   align-self: end;
 }
+
+.ausrichtung{
+font-size: 5vw;
+margin-left: 34%;
+margin-right: auto;
+color: #38CDDC;
+}
+
+#richtig{
+  color: green;
+}
+
+.contentimheader{
+  margin-top: 5%;
+  
+}
+
+#buttonverschieben{
+  margin-right:2.5%;
+  color:black;
+}
+
+#richtig{
+  color: green;
+}
+#falsch{
+  color: red;
+}
