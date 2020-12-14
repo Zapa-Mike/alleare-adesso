@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-flashcards',
   templateUrl: './infos.component.html',
   styleUrls: ['./infos.component.css'],
 })
-export class InfosComponent implements OnInit {
+export class InfosComponent implements OnInit{
   allgemeinToggle = true;
   favorisiertToggle = true;
   ContentListe: string[] = [];
@@ -28,14 +29,16 @@ export class InfosComponent implements OnInit {
   allgemein1: boolean = true;
   favorisiert1: boolean = false;
   Versicherungenfav: string[] = new Array();
+  evaluationfav:any;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private dataservice:DataService ,private modalService: NgbModal) {
     this.dbget.get().then((querysnapshot) => {
       querysnapshot.forEach((doc) => {
         this.Versicherungen.push(doc.data().name);
         this.ContentListe.push(doc.data().info);
       });
     });
+    this.evaluationfav=this.dataservice.getfav();
   }
 
   //Hiermit stelle ich fest auf welches Button geklickt wurde und passe entsprechend den Inhalt des Popups an.
@@ -103,7 +106,7 @@ export class InfosComponent implements OnInit {
     this.allgemein1 = false;
     this.favorisiert1 = true;
   }
-  ngOnInit(): void {
+  ngOnInit() {
     this.dbget2
       .where('Favorisierung', '==', true)
       .get()
@@ -116,6 +119,10 @@ export class InfosComponent implements OnInit {
             this.VersicherungenOhneFav.push(this.Versicherungen[i]);
         }
       });
+      if(this.evaluationfav==true){// Wenn man von der Evaluation zum Favorisierten Bereich kommen möchte
+        this.favorisiert();
+        this.dataservice.setfav(false);
+      }
   }
   toggleAllgemein() {
     this.allgemeinToggle = !this.allgemeinToggle;
