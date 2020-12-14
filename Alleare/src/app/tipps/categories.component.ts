@@ -8,7 +8,7 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'tipps-categories',
   template: `
-    <div *ngIf="categoriesngif">
+    <div class="ArticlesList" *ngIf="categoriesngif">
       <!--Überschrift-->
       <div class="title text-center">
         <h1>Tipps</h1>
@@ -42,7 +42,7 @@ import { DataService } from '../services/data.service';
       </div>
     </div>
     <!--Articles-->
-    <div *ngIf="topicsngif">
+    <div class="ArticlesList" *ngIf="topicsngif">
       <div class="title text-center form-inline">
         <h1>{{ collection }}</h1>
         <!--Zurück Pfeil-->
@@ -67,7 +67,7 @@ import { DataService } from '../services/data.service';
         </div>
       </div>
     </div>
-    <div *ngIf="articlesngif">
+    <div class="ArticlesList" *ngIf="articlesngif">
       <div class="title text-center form-inline">
         <h1>{{ articleueberschrift }}</h1>
         <!--Zurück Pfeil-->

@@ -14,7 +14,7 @@ import { DataService } from '../services/data.service';
         <div class="ImageStory">{{ anzeige }}</div>
         <div class="CheckboxAbfrage ">
           <div class="grid-containerRadioBAntwort">
-            <div [hidden]="vierradiovisible1">
+            <div class="Spalten" [hidden]="vierradiovisible1">
               <!--div lässt keinen platz zwischen-->
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
@@ -46,7 +46,7 @@ import { DataService } from '../services/data.service';
               </div>
             </div>
             <!---->
-            <div [hidden]="vierradiovisible2">
+            <div class="Spalten" [hidden]="vierradiovisible2">
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
                   <input
