@@ -26,7 +26,7 @@ export class EvaluationComponent implements OnInit {
   standardversicherungen = ['Haftpflichtversicherung', 'Hausratversicherung'];
   spinneranzeige:boolean=true;
 
-  constructor() {}
+  constructor(private dataservice:DataService) {}
 
  ngOnInit() {
       for (let i = 0; i < this.standardversicherungen.length; i++) {
@@ -73,7 +73,9 @@ export class EvaluationComponent implements OnInit {
           });
         });
   }
-
+  infofav(){
+    this.dataservice.setfav(true);
+  }
 
   sort() {
     var temp;

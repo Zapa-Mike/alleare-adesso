@@ -23,6 +23,11 @@ export class DataService {
     questionprogress=this.progress.asObservable();
     saveprogress:number=0;
 
+    //Evaluation zu fav in Infos
+    displayfav:boolean;
+
+    //Quiz Auswertung
+
     indexvonTemp2zuTemp3:number;
     indexTemp2:number
     indexvonTemp3zuTemp2:number;
@@ -113,5 +118,11 @@ export class DataService {
     resetquestionprogress(){
         this.saveprogress=0
         this.progress.next(this.saveprogress);
+    }
+    setfav(boolean){ //Von Evaluation routing zum favorisierten Infobereich
+        this.displayfav=boolean;
+    }
+    getfav(){
+        return this.displayfav
     }
 }
