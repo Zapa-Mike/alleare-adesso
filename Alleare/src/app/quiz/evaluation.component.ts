@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { element } from 'protractor';
+import { QuizService } from '.././services/quiz.service';
 
 @Component({
   selector: 'evaluation-quiz',
@@ -123,18 +124,16 @@ export class evaluationComponent implements OnInit {
   percent: number = 0;
   checktruth : boolean[]=[];
 
-  constructor() {}
+  constructor(private quiz:QuizService) {
+this.antwortenid=this.quiz.getdocid();
+  }
 
   ngOnInit() {
-    this.dbantworten
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.antwortenid.push(doc.id);
-          this.antworten.push(doc.data().antwort);
-        });
+    for(let i=0;i<this.antwortenid.length;i++){
+      this.dbantworten.doc(this.antwortenid[i]).get().then((doc)=>{
+        this.antworten.push(doc.data().antwort)
       })
-      .then(() => {
+    }
         for (let y = 0; y < this.antwortenid.length; y++) {
           this.dbrichtig
             .doc(this.antwortenid[y])
@@ -143,13 +142,7 @@ export class evaluationComponent implements OnInit {
               this.richtigeantworten.push(doc.data().richtig);
             });
         }
-      });
     setTimeout(() => {
-      //const gruen = (document.getElementById('richtig')
-       // .innerText as unknown) as HTMLInputElement;
-      // gruen.setAttribute("style", "color:green;");
-      //document.getElementById('richtig').innerText;
-
       for (let i = 0; i < this.antwortenid.length; i++) {
         if (this.antworten[i] == this.richtigeantworten[i]) {
           this.punkte = this.punkte + 1;
@@ -167,6 +160,7 @@ export class evaluationComponent implements OnInit {
     //Muss noch überarbeitet werden.
   }
   public reload() {
+    this.quiz.deletedocid();
     location.reload();
   }
   public percentageCalculator() {

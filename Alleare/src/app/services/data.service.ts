@@ -125,4 +125,5 @@ export class DataService {
     getfav(){
         return this.displayfav
     }
+    
 }
