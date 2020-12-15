@@ -68,7 +68,6 @@ export class IntroComponent implements OnInit, DoCheck {
           this.homeintro = true;
         }
       }
-      console.log(this.homeintro);
       setTimeout(() => {
         this.logo = false;
 
