@@ -124,8 +124,8 @@ input {
 /*Grids*/
 .grid-containerBilderAntwort {
   display: grid;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
   padding-bottom: 2vh;
@@ -157,7 +157,7 @@ input {
 }
 
 .Spalten{
-  padding-left: 10vw;
+  padding-left: 8vw;
 }
 
 .grid-containerNovaSprechblaseWillkommen {
