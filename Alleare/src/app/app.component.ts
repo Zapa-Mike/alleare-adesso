@@ -14,12 +14,7 @@ export class AppComponent implements DoCheck, OnInit {
   collections=["Bundeslaender","FAQ","Finanzen","Flashcards","Fragenkatalog","Gesundheit","Quiz","Reisen","Selbstständigkeit","Sport","Versicherungen","Wirtschaft"];
   benutzercollections=["Fragenkatalog","Quiz","Versicherungen"]
   title = 'Alleare';
-
-  docRef = firebase
-  .firestore()
-  .collection('Benutzer')
-  .doc(localStorage.getItem('hans'));
-
+  
   constructor(private route: LocationStrategy) {
     
   }

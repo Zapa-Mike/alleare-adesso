@@ -1,4 +1,7 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   FormBuilder,
   Validators,
