@@ -217,6 +217,7 @@ export class FourAnswersComponent implements OnInit, DoCheck {
   }
 
   push(event, whichbtn: number) {
+    this.quiz.adddocid(this.docid[this.fragenauswahl[this.index]]); //Push docid in dataservice
     if (event.target.id == this.antwort1anzeige) {
       this.isOpen1 = false;
     } else if (event.target.id == this.antwort2anzeige) {

@@ -1,5 +1,7 @@
+import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable, OnInit } from '@angular/core';
 import firebase from 'firebase';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ export class QuizService {
   doclength=0;
   arr=[];
   get = firebase.firestore().collection('Quiz');
-  
+  docid=[];
+
   constructor() {
     this.get.where('type', '==', 'vierAntworten').get().then((querysnapshot)=>{
       querysnapshot.forEach(()=>{
@@ -31,5 +34,14 @@ export class QuizService {
 
   getfragenauswahl(){
     return this.fragenauswahl;
+  }
+  adddocid(docid1){
+   this.docid.push(docid1);  
+  }
+  getdocid(){
+    return this.docid
+  }
+  deletedocid(){
+    this.docid=[];
   }
 }
