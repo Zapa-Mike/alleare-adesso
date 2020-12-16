@@ -17,7 +17,7 @@ export class IntroComponent implements OnInit, DoCheck {
     Name: [
       '',
       {
-        validators: [Validators.maxLength(20)],
+        validators: [Validators.maxLength(20), Validators.required],
       },
     ],
   });

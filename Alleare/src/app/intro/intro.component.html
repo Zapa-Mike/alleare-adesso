@@ -29,7 +29,9 @@
           id="formGroupExampleInput"
           placeholder="Name"
         />
-        <span style="color: red" *ngIf="form.controls.Name.invalid"
+        <span
+          style="color: red"
+          *ngIf="form.controls.Name.invalid && form.controls.Name.touched"
           >Es dürfen maximal nur 20 Zeichen eingeben werden</span
         >
       </div>
