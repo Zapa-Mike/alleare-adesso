@@ -18,9 +18,9 @@ export const environment = {
     measurementId: "G-8QG9PZE7B4"
 }
 };
-firebase.initializeApp({
-  projectId:"hshl20"
-})
+// firebase.initializeApp({
+//   projectId:"hshl20"
+// })
 
 /*
  * For easier debugging in development mode, you can import the following file
