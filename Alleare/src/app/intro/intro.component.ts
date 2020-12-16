@@ -2,10 +2,7 @@ import { LocationStrategy } from '@angular/common';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
@@ -21,8 +18,10 @@ export class IntroComponent implements OnInit, DoCheck {
       '',
       {
         validators: [Validators.maxLength(20), Validators.required],
+        updateOn: 'change',
       },
     ],
+    updateOn: 'change'
   });
   public Name: string;
   homeintro = true;
@@ -47,6 +46,14 @@ export class IntroComponent implements OnInit, DoCheck {
     this.dataservice.currentIndex2.subscribe(
       (currentIndex2) => (this.indexnovadialog = currentIndex2)
     );
+  }
+
+  public get showRequiredError() {
+    return this.form.get('Name').errors?.required;
+  }
+
+  public get showCharLimitError() {
+    return this.form.get('Name').errors?.maxlength;
   }
 
   ngDoCheck() {
