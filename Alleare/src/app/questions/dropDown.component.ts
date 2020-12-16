@@ -126,9 +126,7 @@ export class DropDownComponent implements OnInit, DoCheck {
         this.Bundesland.push(doc.data().name);
       });
     });
-  
-
-      console.log( weiterButton.disabled)
+      console.log(weiterButton.disabled)
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
