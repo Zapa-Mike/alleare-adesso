@@ -12,6 +12,7 @@ import { QuestionService } from '../services/question.service';
 @Component({
   selector: 'app-stories',
   template: `
+    <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <div *ngIf="!isLoading">
       <div class="Frage">
         <div [formGroup]="form" class="card">

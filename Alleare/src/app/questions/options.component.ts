@@ -11,6 +11,7 @@ import { VierRadio, ZweiBilder } from '../model/stories';
 @Component({
   selector: 'options',
   template: `
+  <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <div *ngIf="!isLoading" [formGroup]="form">
       <div class="card2">
         <div *ngIf="vierradiovisible" class="ImageStory">{{activevierradio.frage}}</div>
