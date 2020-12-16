@@ -20,7 +20,7 @@ export class IntroComponent implements OnInit, DoCheck {
     Name: [
       '',
       {
-        validators: [Validators.maxLength(20)],
+        validators: [Validators.maxLength(20), Validators.required],
       },
     ],
   });
@@ -71,7 +71,6 @@ export class IntroComponent implements OnInit, DoCheck {
           this.homeintro = true;
         }
       }
-      console.log(this.homeintro);
       setTimeout(() => {
         this.logo = false;
 
