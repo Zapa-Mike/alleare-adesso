@@ -200,31 +200,29 @@ public zweiBildervisible: boolean = false;
   private setInitialData(){
     this.activevierradio=this.Vierradio[0];
     this.activezweibilder=this.Zweibilder[0];
-    const docIds = [].concat(
-      this.Zweibilder.map((o) => o.docid),
-      this.Vierradio.map((o) => o.docid)
+    const docIds = [].concat
+    (this.Zweibilder.map((o) => o.docid),
+    this.Vierradio.map((o) => o.docid)
     );
-    docIds.map((id) => {
+    docIds.map((id) => {//Pusht die docid Reihenfolge in das result
       this.result.push({
         docid: id,
         antwort: '',
       });
     });
   }
-  private async loadvierradio():Promise<void>
+  private async loadvierradio()
   {
-    this.Vierradio=await this.questionService.getvierradio();
+    this.Vierradio=await this.questionService.getvierradio();//Wartet auf die Funktion, bevor Variable gefüllt wird
   }
-  private async loadbild():Promise<void>{
+  private async loadbild(){
     this.Zweibilder=await this.questionService.getzweibilder();
   }
 
   public async ngOnInit() {
-    await this.loadvierradio();
+    await this.loadvierradio(); //Wartet auf die Funktion
     await this.loadbild();
     this.setInitialData();
-    console.log(this.activevierradio)
-    console.log(this.activezweibilder)
     this.isLoading=false;
   }
 
@@ -255,7 +253,7 @@ public zweiBildervisible: boolean = false;
     this.activezweibilder= this.Zweibilder[index];
   }
 
-  private pushData():void{
+  private pushData():void{ //Parameter entnimmt einzelne docid und pusht die antwort dieser ID
     this.result.map((o)=>{
       this.dbpush.doc(o.docid).set({
         antwort: o.antwort,
