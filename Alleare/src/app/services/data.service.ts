@@ -19,6 +19,15 @@ export class DataService {
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
 
+    private progress = new Subject<any>();
+    questionprogress=this.progress.asObservable();
+    saveprogress:number=0;
+
+    //Evaluation zu fav in Infos
+    displayfav:boolean;
+
+    //Quiz Auswertung
+
     indexvonTemp2zuTemp3:number;
     indexTemp2:number
     indexvonTemp3zuTemp2:number;
@@ -32,12 +41,10 @@ export class DataService {
     headervisible:boolean = true;
 
     constructor() {
-        console.log("Geht rein");
         this.docRef.get().then((doc) => {
             if (doc.exists) {
               this.homeintro  = doc.data().homeintro
             }
-            console.log("test"+this.homeintro)
             if(this.homeintro == false){
                 this.headervisible=false;
             }
@@ -101,4 +108,22 @@ export class DataService {
     getHeader(){
         return this.headervisible;
     }
+    addquestionprogress(progress){
+        this.saveprogress=this.saveprogress+progress
+        this.progress.next(this.saveprogress)
+    }
+    getquestionprogress():Observable<number>{
+        return this.progress.asObservable();
+    }
+    resetquestionprogress(){
+        this.saveprogress=0
+        this.progress.next(this.saveprogress);
+    }
+    setfav(boolean){ //Von Evaluation routing zum favorisierten Infobereich
+        this.displayfav=boolean;
+    }
+    getfav(){
+        return this.displayfav
+    }
+    
 }

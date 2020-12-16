@@ -18,10 +18,10 @@ export class QuizComponent implements OnInit, DoCheck {
   anzeige: string;
   reihenfolge = [
     'vier',
-    'vier',
     'zwei',
     'vier',
     'zwei',
+    'vier',
     'zwei',
     'vier',
     'zwei',
@@ -40,8 +40,12 @@ export class QuizComponent implements OnInit, DoCheck {
   antwortenid = [];
   jalla = true;
   dbrichtig = firebase.firestore().collection('Quiz');
+  start =false ;
+  quiz = true;
+  fabvisible:boolean=false;
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService) {
+  }
 
   ngOnInit() {
     this.dataservice.addquizrouting(0);
@@ -54,6 +58,11 @@ export class QuizComponent implements OnInit, DoCheck {
         doc.ref.delete();
       });
     });
+  }
+  weiter(){
+    this.fabvisible=true;
+    this.start = true; 
+    this.quiz = false; 
   }
 
   ngDoCheck() {

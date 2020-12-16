@@ -10,6 +10,7 @@
       type="button"
       class="LinkEinfuehrungApp btn-link"
       routerLink="/intro"
+      (click)="intro()"
     >
       Einführung der App
     </button>
@@ -17,7 +18,7 @@
   <!--Sprechblase-->
   <div class="grid-containerNovaSprechblase">
     <div class="bubble shadow bubble-bottom-left" contenteditable="false">
-      Hi {{ nameIntro }},du befindest dich im {{ resolveRoute(previousRoute) }}.
+      Hi {{ nameIntro }},du befindest dich im Bereich {{ resolveRoute(previousRoute) }}.
       Wie kann ich dir helfen?
     </div>
 

@@ -26,56 +26,58 @@ export class EvaluationComponent implements OnInit {
   standardversicherungen = ['Haftpflichtversicherung', 'Hausratversicherung'];
   spinneranzeige:boolean=true;
 
-  constructor() {}
+  constructor(private dataservice:DataService) {}
 
-  ngOnInit() {
-    for (let i = 0; i < this.standardversicherungen.length; i++) {
-      this.db1
-        .collection('Versicherungen')
-        .doc(this.standardversicherungen[i])
+ ngOnInit() {
+      for (let i = 0; i < this.standardversicherungen.length; i++) {
+        this.db1
+          .collection('Versicherungen')
+          .doc(this.standardversicherungen[i])
+          .get()
+          .then(function (doc) {
+            perVersicherung.push(doc.id);
+            Versicherungsprioritaet.push(doc.data().Priorisierung);
+          });
+      }
+      this.db
+        .where('antwort', 'in', [
+          'ja',
+          'Arbeitnehmer',
+          'Selbstständig',
+          'Pferd',
+          'Hund',
+          'andere',
+        ])
         .get()
-        .then(function (doc) {
-          perVersicherung.push(doc.id);
-          Versicherungsprioritaet.push(doc.data().Priorisierung);
+        .then((querysnapshot) => {
+          querysnapshot.forEach((doc) => {
+            firebase
+              .firestore()
+              .collection('Fragenkatalog')
+              .doc(doc.id)
+              .get()
+              .then((doc) => {
+                perVersicherung.push(doc.data().versicherung);
+                var versicherung = doc.data().versicherung;
+                this.db1
+                  .collection('Versicherungen')
+                  .doc(versicherung)
+                  .get()
+                  .then((doc) => {
+                    Versicherungsprioritaet.push(doc.data().Priorisierung);
+                  }).then(()=>{
+                    this.sort();
+                    this.spinneranzeige=false;
+                  });
+              });
+          });
         });
-    }
-    this.db
-      .where('antwort', 'in', [
-        'ja',
-        'Arbeitnehmer',
-        'Selbstständig',
-        'Pferd',
-        'Hund',
-        'andere',
-      ])
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          firebase
-            .firestore()
-            .collection('Fragenkatalog')
-            .doc(doc.id)
-            .get()
-            .then((doc) => {
-              perVersicherung.push(doc.data().versicherung);
-              var versicherung = doc.data().versicherung;
-              this.db1
-                .collection('Versicherungen')
-                .doc(versicherung)
-                .get()
-                .then((doc) => {
-                  Versicherungsprioritaet.push(doc.data().Priorisierung);
-                });
-            });
-        });
-      });
-    setTimeout(() => {
-      this.sort(); //Bessere Methode mit asnyc await promise später machen!
-      this.spinneranzeige=false;
-    }, 2500);
+  }
+  infofav(){
+    this.dataservice.setfav(true);
   }
 
-  async sort() {
+  sort() {
     var temp;
     var temp2;
     var array = [];

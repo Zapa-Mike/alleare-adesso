@@ -23,12 +23,7 @@ export class HomeComponent implements OnInit {
   headerGrau = false;
   homeintro = false;
   constructor(private dataservice: DataService, private router: Router) {
-    setTimeout(() => {
-      this.headerGrau=true;
-      this.homeintro=true;
-      this.home=false;
-    }, 30);
-
+   
   }
 
   ngOnInit() {
@@ -48,9 +43,15 @@ export class HomeComponent implements OnInit {
     
   }
   fragebogen() {
-    var index = (0).toString();
-    localStorage.setItem('storyIndex', index);
-    localStorage.setItem('radioIndex', index);
+  
+    if(this.homeintro==false){
+      var index = (0).toString();
+      localStorage.setItem('storyIndex', index);
+      localStorage.setItem('radioIndex', index);
+      this.router.navigate(['/questions'])
+    }
+    
+
   }
   weitermachen() {
     this.docRef.update({homeintro:false})

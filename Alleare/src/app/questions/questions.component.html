@@ -2,46 +2,59 @@
   <head>
     <link rel="stylesheet" href="questions.component.css" />
   </head>
-  <!--<div class="WillkommenSeite">
-    <div class="Titel text-center">
-      <h3>Willkommen im Fragenkatalog</h3>
-    </div>
-
-    <div class="col rowVZ inline">
-      <button id="V1button" class="btn">
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-          (click)="weiter()"
-        />
-      </button>
-    </div>
-    <div class="grid-containerNovaSprechblase">
-      <div
-        class="bubble shadow bubble-bottom-right"
-        contenteditable="false"
-        id="WillkommenSpB"
-      >
-        In diesem Fragekatalog stellen wir dir 15 Fragen und geben dir
-        anschließend eine auf dich zugeschnittene Beratung
-      </div>
-
-      <img
-        src="/assets/nova/nova_fragenkatalog.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
-    </div>
-  </div>-->
   <body>
-    <div class="Titel text-center">
-      <h1>Fragenkatalog</h1>
-    </div>
+    <div [hidden]="start">
+      <div class="WillkommenSeite">
+        <div class="Titelintro text-center">
+          <h1>Willkommen im Fragenkatalog</h1>
+        </div>
+        <div class="WillkommenBild">
+          <img
+            id="WillkommenBild"
+            src="/assets/Bilder_Fragenkatalog/Fragenkatalog_willkommen_grafik.png"
+          />
+        </div>
 
-  <app-stories *ngIf="routing1"></app-stories> 
-  <options *ngIf="routing2"></options>
-  <dropDown *ngIf="routing3"></dropDown>
+        <div class="col rowVZ inline">
+          <button id="V1button" class="btn">
+            <img
+              src="/assets/icons/icon_arrow_forward.svg"
+              width="50"
+              height="50"
+              (click)="weiter()"
+            />
+          </button>
+        </div>
+        <div class="grid-containerNovaSprechblaseWillkommen">
+          <div
+            class="shadow bubble-bottom-right"
+            contenteditable="false"
+            id="WillkommenSpB"
+          >
+            Beantworte die folgenden Fragen und erhalte im Anschluss auf dich
+            zugeschnittene Empfehlungen.
+          </div>
+
+          <img
+            src="/assets/nova/nova_fragenkatalog.png"
+            width="100"
+            height="100"
+            id="WillkommenNovaImage"
+          />
+        </div>
+      </div>
+    </div>
+    <mat-progress-bar
+      *ngIf="start"
+      mode="determinate"
+      value="{{ progressquestionprozent }}"
+      class="progress"
+    ></mat-progress-bar>
+    <div [hidden]="fragenkatalog">
+      <div class="Titel text-center">
+        <h1>Fragenkatalog</h1>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   </body>
 </html>

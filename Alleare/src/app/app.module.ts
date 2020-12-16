@@ -10,12 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FaqComponent } from './faq/faq.component';
-import { SettingsComponent } from './settings/settings.component';
+import { Datenschutzerklaerung, Impressum, Nutzungsbedingungen, SettingsComponent } from './settings/settings.component';
 import { InfosComponent } from './infos/infos.component';
 import { TippsComponent } from './tipps/tipps.component';
 import { NovaComponent } from './nova/nova.component';
 import { IntroComponent } from './intro/intro.component';
 import { HeaderComponent } from './header/header.component';
+
+
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
@@ -56,6 +60,10 @@ import { QuizService } from './services/quiz.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { novafabComponent } from './novafab.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { QuestionService } from './services/question.service';
+
 
 @NgModule({
   declarations: [
@@ -92,14 +100,20 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     TwoAnswersComponent,
     evaluationComponent,
     googleformularComponent,
+    novafabComponent,
+    Impressum,
+    Datenschutzerklaerung,
+    Nutzungsbedingungen
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     FormsModule,
     MatExpansionModule, //Materials
     MatInputModule, //Materials
     BrowserAnimationsModule, //Materials
     MatProgressSpinnerModule, //Materials
+    MatProgressBarModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
@@ -130,6 +144,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     RoutingService,
     RouteNameResolverService,
     HomeComponent,
+    QuestionService
   ],
   bootstrap: [AppComponent],
 })
