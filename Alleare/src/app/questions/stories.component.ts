@@ -161,7 +161,7 @@ export class StoriesComponent implements OnInit {
     );
     this.Stories = this.Stories.map((o, index) => {
       // o ist die jeweilige Story und index ist der jeweilige Index
-      return { ...o, audio: audios[index] }; //spread operator
+      return { ...o, audio: audios[index] }; //Fügt jedem Feld eine Audio hinzu
     });
   }
 
