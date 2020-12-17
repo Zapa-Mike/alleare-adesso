@@ -11,151 +11,143 @@ import { VierRadio, ZweiBilder } from '../model/stories';
 @Component({
   selector: 'options',
   template: `
-  <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+    <mat-progress-spinner
+      class="loading"
+      *ngIf="isLoading"
+      mode="indeterminate"
+    ></mat-progress-spinner>
     <div *ngIf="!isLoading" [formGroup]="form">
       <div class="card2">
-        <div *ngIf="vierradiovisible" class="ImageStory">{{activevierradio.frage}}</div>
-        <div *ngIf="!vierradiovisible" class="ImageStory">{{activezweibilder.frage}}</div>
-          <div *ngIf="vierradiovisible" class="grid-containerRadioBAntwort CheckboxAbfrage">
-              <!--div lässt keinen platz zwischen-->
-              <div
-                class="grid-element form-check form-check-inline"
-                id="ORadio"
-              >
-              <input
-                    type="radio"
-                    id="auswahlEins"
-                    name="vierradio"
-                    [formControl]="form.controls.antwort"
-                    value="{{activevierradio.antwort1}}"
-                  />
-                  <label class="form-check-label" for="auswahlEins">
-                    {{ activevierradio.antwort1 }}
-                  </label>
-              </div>
+        <div *ngIf="vierradiovisible" class="ImageStory">
+          {{ activevierradio.frage }}
+        </div>
+        <div *ngIf="!vierradiovisible" class="ImageStory">
+          {{ activezweibilder.frage }}
+        </div>
+        <div
+          *ngIf="vierradiovisible"
+          class="grid-containerRadioBAntwort CheckboxAbfrage"
+        >
+          <!--div lässt keinen platz zwischen-->
+          <div class="grid-element form-check form-check-inline ORadio">
+            <input
+              type="radio"
+              id="auswahlEins"
+              name="vierradio"
+              [formControl]="form.controls.antwort"
+              value="{{ activevierradio.antwort1 }}"
+            />
+            <label class="form-check-label" for="auswahlEins">
+              {{ activevierradio.antwort1 }}
+            </label>
+          </div>
 
-              <div
-                class="grid-element form-check form-check-inline"
-                id="ORadio"
-              >
-              <input
-                    type="radio"
-                    id="auswahlZwei"
-                    name="vierradio"
-                    [formControl]="form.controls.antwort"
-                    value="{{activevierradio.antwort2}}"
-                  />
-                  <label class="form-check-label" for="auswahlZwei">
-                    {{ activevierradio.antwort2 }}
-                  </label>
-              </div>
+          <div class="grid-element form-check form-check-inline ORadio">
+            <input
+              type="radio"
+              id="auswahlZwei"
+              name="vierradio"
+              [formControl]="form.controls.antwort"
+              value="{{ activevierradio.antwort2 }}"
+            />
+            <label class="form-check-label" for="auswahlZwei">
+              {{ activevierradio.antwort2 }}
+            </label>
+          </div>
 
-            <!---->
-            <div>
-              <div
-                class="grid-element form-check form-check-inline"
-                id="ORadio"
-              >
-              <input
-                    type="radio"
-                    id="auswahlDrei"
-                    name="vierradio"
-                    [formControl]="form.controls.antwort"
-                    value="{{activevierradio.antwort3}}"
-                  />
-                  <label class="form-check-label" for="auswahlDrei"
-                    >{{ activevierradio.antwort3 }}
-                  </label>
-              </div>
+          <div class="grid-element form-check form-check-inline ORadio">
+            <input
+              type="radio"
+              id="auswahlDrei"
+              name="vierradio"
+              [formControl]="form.controls.antwort"
+              value="{{ activevierradio.antwort3 }}"
+            />
+            <label class="form-check-label" for="auswahlDrei"
+              >{{ activevierradio.antwort3 }}
+            </label>
+          </div>
 
-              <div
-                class="grid-element form-check form-check-inline"
-                id="ORadio"
-              >
-              <input
-                    type="radio"
-                    id="auswahlVier"
-                    name="vierradio"
-                    [formControl]="form.controls.antwort"
-                    value="{{activevierradio.antwort4}}"
-                  />
-                  <label class="form-check-label" for="auswahlVier">
-                    {{ activevierradio.antwort4 }}
+          <div class="grid-element form-check form-check-inline ORadio">
+            <input
+              type="radio"
+              id="auswahlVier"
+              name="vierradio"
+              [formControl]="form.controls.antwort"
+              value="{{ activevierradio.antwort4 }}"
+            />
+            <label class="form-check-label" for="auswahlVier">
+              {{ activevierradio.antwort4 }}
+            </label>
+          </div>
+        </div>
+
+        <!--AB HIER BEGINNT BILDERTEMPLATE-->
+
+        <div *ngIf="zweiBildervisible">
+          <div class="grid-containerBilderAntwort">
+            <div class="grid-element radio-bild">
+              <label class="labelBilder">
+                <input
+                  type="radio"
+                  id="auswahlBildEins"
+                  class="BildButtons"
+                  name="zweiBild"
+                  [formControl]="form.controls.antwort"
+                  value="{{ activezweibilder.label1 }}"
+                />
+                <img
+                  class="BildVorRadio"
+                  id="auswahlEins"
+                  src="data:image/gif;base64,{{ activezweibilder.bild1 }}"
+                />
+              </label>
+              <div>
+                <p class="bild-text">
+                  <label class="form-check-label" for="auswahlBildEins">
+                    {{ activezweibilder.label1 }}
                   </label>
+                </p>
+              </div>
+            </div>
+
+            <div class="grid-element radio-bild">
+              <label class="labelBilder">
+                <input
+                  type="radio"
+                  id="auswahlBildZwei"
+                  class="BildButtons"
+                  name="zweiBild"
+                  [formControl]="form.controls.antwort"
+                  value="{{ activezweibilder.label2 }}"
+                />
+                <img
+                  class="BildVorRadio"
+                  id="auswahlZwei"
+                  src="data:image/gif;base64,{{ activezweibilder.bild2 }}"
+                />
+              </label>
+              <div>
+                <p class="bild-text">
+                  <label class="form-check-label" for="auswahlBildZwei">
+                    {{ activezweibilder.label2 }}</label
+                  >
+                </p>
               </div>
             </div>
           </div>
-
-          <!--AB HIER BEGINNT BILDERTEMPLATE-->
-
-          <div *ngIf="zweiBildervisible">
-            <div class="grid-containerBilderAntwort">
-              <div class="grid-element form-check-inline">
-                <div class="form-check form-check-inline">
-                  <label class="labelBilder">
-                    <input
-                      type="radio"
-                      id="auswahlBildEins"
-                      class="BildButtons"
-                      name="zweiBild"
-                      [formControl]="form.controls.antwort"
-                      value="{{ activezweibilder.label1 }}"
-                    />
-                    <img
-                      class="BildVorRadio"
-                      id="auswahlEins"
-                      src="data:image/gif;base64,{{ activezweibilder.bild1 }}"
-                      width="70px"
-                      height="50px"
-                    />
-                  </label>
-                  <div>
-                    <p>
-                      <label class="form-check-label" for="auswahlBildEins">
-                        {{ activezweibilder.label1 }}
-                      </label>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="grid-element form-check-inline">
-                <div class="form-check form-check-inline">
-                  <label class="labelBilder">
-                    <input
-                      type="radio"
-                      id="auswahlBildZwei"
-                      class="BildButtons"
-                      name="zweiBild"
-                      [formControl]="form.controls.antwort"
-                      value="{{ activezweibilder.label2 }}"
-                    />
-                    <img
-                      class="BildVorRadio"
-                      id="auswahlZwei"
-                      src="data:image/gif;base64,{{ activezweibilder.bild2 }}"
-                      width="70px"
-                      height="50px"
-                    />
-                  </label>
-                  <div>
-                    <p>
-                      <label class="form-check-label" for="auswahlBildZwei">
-                        {{ activezweibilder.label2 }}</label
-                      >
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        </div>
       </div>
       <div class="col rowVZ">
         <button id="Zbutton" class="btn" (click)="zurueck()">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
-        <button id="Vbutton" class="btn" (click)="weiter()" [disabled]="form.controls.antwort.value.length < 1">
+        <button
+          id="Vbutton"
+          class="btn"
+          (click)="weiter()"
+          [disabled]="form.controls.antwort.value.length < 1"
+        >
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
@@ -196,18 +188,21 @@ export class OptionsComponent implements OnInit {
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
 
-
-  constructor(private dataservice: DataService, private questionService: QuestionService,
-    private fb: FormBuilder, private router: Router) {
-  }
+  constructor(
+    private dataservice: DataService,
+    private questionService: QuestionService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
   private setInitialData() {
     this.activevierradio = this.Vierradio[this.index];
     this.activezweibilder = this.Zweibilder[this.index];
-    const docIds = [].concat
-      (this.Zweibilder.map((o) => o.docid),
-        this.Vierradio.map((o) => o.docid)
-      );
-    docIds.map((id) => {//Pusht die docid Reihenfolge in das result
+    const docIds = [].concat(
+      this.Zweibilder.map((o) => o.docid),
+      this.Vierradio.map((o) => o.docid)
+    );
+    docIds.map((id) => {
+      //Pusht die docid Reihenfolge in das result
       this.result.push({
         docid: id,
         antwort: '',
@@ -215,7 +210,7 @@ export class OptionsComponent implements OnInit {
     });
   }
   private async loadvierradio() {
-    this.Vierradio = await this.questionService.getvierradio();//Wartet auf die Funktion, bevor Variable gefüllt wird
+    this.Vierradio = await this.questionService.getvierradio(); //Wartet auf die Funktion, bevor Variable gefüllt wird
   }
   private async loadbild() {
     this.Zweibilder = await this.questionService.getzweibilder();
@@ -258,7 +253,7 @@ export class OptionsComponent implements OnInit {
     }
     if (this.index >= this.Vierradio.length + this.Zweibilder.length) {
       this.pushData();
-      this.router.navigate(['questions/dropdown'])
+      this.router.navigate(['questions/dropdown']);
     }
   }
   private setActiveVierradio(index: number) {
@@ -269,12 +264,13 @@ export class OptionsComponent implements OnInit {
     this.activezweibilder = this.Zweibilder[index];
   }
 
-  private pushData(): void { //Parameter entnimmt einzelne docid und pusht die antwort dieser ID
+  private pushData(): void {
+    //Parameter entnimmt einzelne docid und pusht die antwort dieser ID
     this.result.map((o) => {
       this.dbpush.doc(o.docid).set({
         antwort: o.antwort,
-      })
-    })
+      });
+    });
   }
 
   zurueck() {
@@ -283,7 +279,7 @@ export class OptionsComponent implements OnInit {
     if (this.index < this.Vierradio.length) {
       this.zweiBildervisible = false;
       this.vierradiovisible = true;
-      this.setActiveVierradio(this.index)
+      this.setActiveVierradio(this.index);
     }
     if (this.index >= this.Vierradio.length) {
       this.vierradiovisible = false;
@@ -292,7 +288,7 @@ export class OptionsComponent implements OnInit {
     }
     if (this.index < 0) {
       this.dataservice.deleteindexoption();
-      this.router.navigate(["/questions"])
+      this.router.navigate(['/questions']);
     }
   }
 }

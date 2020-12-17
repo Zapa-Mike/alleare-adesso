@@ -11,15 +11,14 @@ import { QuestionService } from '../services/question.service';
 @Component({
   selector: 'dropDown',
   template: `
-    <body>
     <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <div *ngIf="!isLoading">
       <div class="card2">
         <div class="ImageStory">{{ activequestion.frage }}</div>
-        <div class="btn-group bundesliste">
+        <div class="bundesliste">
           <button
             type="button"
-            class="DropdownB dropdown-toggle"
+            class="DropdownB dropdown-toggle rounded-pill"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -63,13 +62,12 @@ import { QuestionService } from '../services/question.service';
       <div class="d-flex Nova justify-content-end fixed-bottom">
         <img
           src="/assets/nova/nova_intro_rechts.png"
-          width="100"
-          height="100"
-          id="NovaImage"
+          width="auto"
+          height="auto"
+          id="NovaImageOptions"
         />
       </div>
     </div>
-    </body>
   `,
   styleUrls: ['./questions.component.css'],
 })
