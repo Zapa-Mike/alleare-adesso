@@ -12,6 +12,7 @@ import { QuestionService } from '../services/question.service';
 @Component({
   selector: 'app-stories',
   template: `
+    <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <div *ngIf="!isLoading">
       <div class="Frage">
         <div [formGroup]="form" class="card">
@@ -161,7 +162,7 @@ export class StoriesComponent implements OnInit {
     );
     this.Stories = this.Stories.map((o, index) => {
       // o ist die jeweilige Story und index ist der jeweilige Index
-      return { ...o, audio: audios[index] }; //spread operator
+      return { ...o, audio: audios[index] }; //Fügt jedem Feld eine Audio hinzu
     });
   }
 
