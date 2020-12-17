@@ -41,7 +41,7 @@ export class QuizComponent implements OnInit, DoCheck {
       });
     });
   }
-  weiter(){
+  forward(){
     this.fabvisible=true;
     this.start = true; 
     this.quiz = false; 
