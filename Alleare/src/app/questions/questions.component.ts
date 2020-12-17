@@ -17,69 +17,49 @@ import { DataService } from '.././services/data.service';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
 })
-export class QuestionsComponent implements DoCheck, OnInit{
-  routing1:boolean=true;
-  routing2:boolean=false;
-  routing3:boolean=false;
-
-  //Routing dataservice
-  template:number;
-  template1:number;
-
-  template5:any;
-  verweis=firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection('Versicherungen');
+export class QuestionsComponent implements DoCheck {
+  verweis = firebase
+    .firestore()
+    .collection('Benutzer')
+    .doc(localStorage.getItem('hans'))
+    .collection('Versicherungen');
   fragenkatalog = true;
-  start = false; 
+  start = false;
 
-  progressquestions:number=0;
-  progressquestionprozent:number=0;
-  fragenlaenge:number;
-  
-  constructor(private dataservice:DataService) {
+  progressquestions: number = 0;
+  progressquestionprozent: number = 0;
+  fragenlaenge: number;
+
+  constructor(private dataservice: DataService) {
     this.dataservice.getquestionprogress();
-    this.dataservice.questionprogress.subscribe(questionprogress=>{
-      this.progressquestions=questionprogress;
-    })
-    firebase.firestore().collection('Progressbar').doc('Fragenlänge').get().then((doc)=>{
-      this.fragenlaenge=doc.data().länge
-    })
+    this.dataservice.questionprogress.subscribe((questionprogress) => {
+      this.progressquestions = questionprogress;
+    });
+    firebase
+      .firestore()
+      .collection('Progressbar')
+      .doc('Fragenlänge')
+      .get()
+      .then((doc) => {
+        this.fragenlaenge = doc.data().länge;
+      });
   }
 
-  ngOnInit(){
-  }
-  weiter(){
+  weiter() {
     this.dataservice.resetquestionprogress();
     this.dataservice.addquestionprogress(0);
-    this.verweis.get().then((querysnapshot)=>{// Löscht Favorisierung bei erneutem Aufruf der Fragenkatalogs
-      querysnapshot.forEach((doc)=>{
+    this.verweis.get().then((querysnapshot) => {
+      // Löscht Favorisierung bei erneutem Aufruf der Fragenkatalogs
+      querysnapshot.forEach((doc) => {
         doc.ref.delete();
-        })
-      })
-    this.fragenkatalog= false;
-    this.start= true;
+      });
+    });
+    this.fragenkatalog = false;
+    this.start = true;
   }
 
-  ngDoCheck(){
-    this.progressquestionprozent=100*this.progressquestions/this.fragenlaenge;
-
-    this.template=this.dataservice.getIndexrouting1();
-    this.template1=this.dataservice.getIndexrouting2();
-    if(this.template==1){
-      this.routing2=false;
-      this.routing1=true;
-    }
-    if(this.template==2){
-      this.routing1=false;
-      this.routing2=true;
-    }
-    if(this.template==3 && this.routing1==false){
-      this.routing2=false;
-      this.routing3=true;
-    }
-    if(this.template1==1){
-      this.routing3=false;
-      this.routing2=true;
-    }
+  ngDoCheck() {
+    this.progressquestionprozent =
+      (100 * this.progressquestions) / this.fragenlaenge;
   }
-  
 }

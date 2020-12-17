@@ -1,30 +1,48 @@
 import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
-import { Data } from '@angular/router';
+import { Data, Router } from '@angular/router';
+import { Story } from '../model/stories';
+import { Radio } from '../model/stories';
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-stories',
   template: `
-    <div class="grid-container Frage">
+    <mat-progress-spinner
+      class="loading"
+      *ngIf="isLoading"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+    <div class="grid-container Frage" *ngIf="!isLoading">
       <div [formGroup]="form" class="hintergrund fixed-center">
         <div class="TEST">
           <img
+            *ngIf="storyvisible"
             class="row"
-            src="data:image/gif;base64,{{ bildanzeige }}"
+            src="data:image/gif;base64,{{ activeStory.bildstory }}"
             alt="BILDANZEIGE"
             class="img"
             width="auto"
             height="auto"
           />
+          <img
+            *ngIf="!storyvisible"
+            alt="BILDANZEIGE"
+            class="img"
+            width="auto"
+            height="auto"
+            src="data:image/gif;base64,{{ activeRadio.bildradio }}"
+            class="row"
+          />
           <div *ngIf="storyvisible" class="row ImageStory">
-            {{ storyanzeige }}
+            {{ activeStory.story }}
           </div>
-
           <!--"Anhören" Button-->
+
           <div
             *ngIf="storyvisible"
             class="row AnhoerenButton"
@@ -45,7 +63,7 @@ import { Data } from '@angular/router';
               <input
                 type="radio"
                 name="stories"
-                formControlName="stories"
+                [formControl]="form.controls.antwort"
                 value="ja"
                 id="redundant"
               />
@@ -56,7 +74,7 @@ import { Data } from '@angular/router';
               <input
                 type="radio"
                 name="stories"
-                formControlName="stories"
+                [formControl]="form.controls.antwort"
                 value="nein"
                 id="redundant1"
               />
@@ -67,7 +85,12 @@ import { Data } from '@angular/router';
       </div>
 
       <div class="row rowVZ form-group">
-        <button id="bbutton" class="btn form-check-inline" (click)="zurueck()">
+        <button
+          id="bbutton"
+          class="btn form-check-inline"
+          (click)="zurueck()"
+          [disabled]="this.index == 0"
+        >
           <img
             src="/assets/icons/icon_arrow_back.svg"
             alt="Button_BACKWARD"
@@ -76,7 +99,12 @@ import { Data } from '@angular/router';
           />
         </button>
 
-        <button id="Wbutton" class="btn form-check-inline" (click)="weiter()">
+        <button
+          id="Wbutton"
+          class="btn form-check-inline"
+          (click)="weiter()"
+          [disabled]="form.controls.antwort.value.length < 1"
+        >
           <!--Andere id als bei radio.component-->
           <img
             src="/assets/icons/icon_arrow_forward.svg"
@@ -86,7 +114,9 @@ import { Data } from '@angular/router';
           />
         </button>
       </div>
-      <div class="row grid-containera nova_and_question form-group fixed-bottom">
+      <div
+        class="row grid-containera nova_and_question form-group fixed-bottom"
+      >
         <div class="grid-itema tbq">
           <img
             src="/assets/Sprechblase/speech_bubble_one.png"
@@ -94,7 +124,14 @@ import { Data } from '@angular/router';
             height="auto"
             id="TalkBubble"
           />
-          <div class="grid-itema questions">{{ fragenanzeige }}</div>
+
+          <div class="grid-itema questions" *ngIf="storyvisible">
+            {{ activeStory.storyfrage }}
+          </div>
+
+          <div class="grid-itema questions" *ngIf="!storyvisible">
+            {{ activeRadio.radiofrage }}
+          </div>
         </div>
         <div class="grid-itema nova_img">
           <img
@@ -110,200 +147,150 @@ import { Data } from '@angular/router';
 
   styleUrls: ['./questions.component.css'],
 })
-export class StoriesComponent implements OnInit, DoCheck {
-  form: FormGroup;
-  index: number = 0;
+export class StoriesComponent implements OnInit {
+  private result: Result[] = [];
+  public isLoading = true;
+  public form = this.fb.group({
+    antwort: [''],
+  });
+  public Stories: Story[] = [];
+  public Radio: Radio[] = [];
+  public activeStory: Story;
+  public activeRadio: Radio;
+  public storyvisible: boolean = true;
+  public index: number = 0;
 
-  //Variablen zum speichern der Liste
-  bildstory: any[] = [];
-  bildradio: any[] = [];
-  storyfrage: string[] = [];
-  radiofrage: string[] = [];
-  story: string[] = [];
-  docidstory: any[] = [];
-  docidradio: any[] = [];
-  storyvisible: boolean = true;
-
-  storyanzeige: string;
-  fragenanzeige: string;
-  bildanzeige: any;
-  storiesausblenden: boolean = false;
-  indexstory = [];
-  jalla: boolean;
-
-  counter = 2;
-
-  dbpush = firebase
+  dbpushData = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
-  dbget = firebase.firestore().collection('Fragenkatalog');
 
-  audiofiles = [
-    '/assets/StoryAudio/Story1.mp3',
-    '/assets/StoryAudio/Story2.mp3',
-    '/assets/StoryAudio/Story3.mp3',
-    '/assets/StoryAudio/Story4.mp3',
-    '/assets/StoryAudio/Story5.mp3',
-    '/assets/StoryAudio/Story6.mp3',
-  ];
-  currentaudio: any;
+  constructor(
+    private dataservice: DataService,
+    private questionService: QuestionService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
-  constructor(private dataservice: DataService) {
-    this.form = new FormGroup({
-      stories: new FormControl(),
+  private setInitialData() {
+    this.activeStory = this.Stories[this.index];
+    this.activeRadio = this.Radio[this.index];
+    const docIds = [].concat(
+      this.Stories.map((o) => o.docidstory),
+      this.Radio.map((o) => o.docidradio)
+    );
+    docIds.map((id) => {
+      this.result.push({
+        docid: id,
+        antwort: '',
+      });
     });
-    this.dbget
-      .where('type', '==', 'radiostory')
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.storyfrage.push(doc.data().frage);
-          this.docidstory.push(doc.id);
-          this.story.push(doc.data().story);
-          this.bildstory.push(doc.data().bild);
-        });
-      });
-    this.dbget
-      .where('type', '==', 'zweiradio')
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.radiofrage.push(doc.data().frage);
-          this.docidradio.push(doc.id);
-          this.bildradio.push(doc.data().bild);
-        });
-      });
   }
 
-  ngOnInit() {
-
-    this.currentaudio = new Audio(this.audiofiles[0]);
-    if (this.dataservice.getIndexTemp1() == null) {
-      console.log('anfang');
-    } else {
-      this.index = this.dataservice.getIndexTemp1() - 1;
-      if (this.index < 0) {
-        this.index = 0;
-      }
-    }
-    const weiterButton = (document.getElementById(
-      'Wbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
+  private async loadStories() {
+    this.Stories = await this.questionService.getStories();
+    const audios: HTMLAudioElement[] = this.questionService.audiofiles.map(
+      (file) => new Audio(file)
+    );
+    this.Stories = this.Stories.map((o, index) => {
+      // o ist die jeweilige Story und index ist der jeweilige Index
+      return { ...o, audio: audios[index] }; //Fügt jedem Feld eine Audio hinzu
+    });
   }
 
-  ngDoCheck() {
-    const weiterButton = (document.getElementById(
-      'Wbutton'
-    ) as unknown) as HTMLInputElement;
-    if ($('input[name=stories]:checked').length > 0) {
-      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-      weiterButton.disabled = false;
+  private async loadRadio() {
+    this.Radio = await this.questionService.getradiostories();
+  }
+
+  private async loadData(): Promise<void> {
+    await this.loadStories();
+    await this.loadRadio();
+
+    this.isLoading = false;
+  }
+
+  public async ngOnInit() {
+    this.index = this.dataservice.getquestionstoryindex();
+    if (this.index == 0) {
+      await this.loadData();
+      this.setInitialData();
     }
-    if (this.index < this.storyfrage.length) {
-      this.storyvisible = true;
-      this.fragenanzeige = this.storyfrage[this.index];
-      this.storyanzeige = this.story[this.index];
-      this.bildanzeige = this.bildstory[this.index];
-      this.jalla = true;
-    }
-    if (this.index > this.storyfrage.length - 1) {
+    if (this.index > 0) {
       this.storyvisible = false;
-      this.fragenanzeige = this.radiofrage[this.index - this.storyfrage.length];
-      this.bildanzeige = this.bildradio[this.index - this.storyfrage.length];
-      this.jalla = false;
-    }
-    //Pfeil bei Frage1 wird ausgeblendet
-    const zurueck1 = (document.getElementById(
-      'bbutton'
-    ) as unknown) as HTMLInputElement;
-    if (this.index < 1) {
-      zurueck1.disabled = true;
-    } else if (this.index >= 1) {
-      zurueck1.disabled = false;
+      await this.loadData();
+      this.setInitialData();
+      this.index = this.index - 1;
+      this.setActiveRadio(this.index - this.Stories.length);
     }
   }
-  playsound() {
-    if (this.counter % 2 == 0) {
-      this.currentaudio.play();
-      console.log('play');
-    }
-    if (this.counter % 2 >= 1) {
-      this.currentaudio.pause();
-      console.log('stop');
-    }
-    this.counter = this.counter + 1;
-  }
 
-  weiter() {
-    this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
-    this.counter = 2; //Damit eim ersten mal klicken die funktion wieder play ausführt.
-    const weiterButton = (document.getElementById(
-      'Wbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
-
-    if ($('input[name=stories]:checked').length > 0) {
-      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-      $('#redundant').prop('checked', false);
-      $('#redundant1').prop('checked', false);
-    }
-    if (this.index < this.storyfrage.length + this.radiofrage.length) {
-      this.index = this.index + 1;
-      this.currentaudio = new Audio(this.audiofiles[this.index]);
-      this.dataservice.addIndexTemp1(this.index);
-    }
-
-    if (this.index >= this.storyfrage.length + this.radiofrage.length) {
-      this.dataservice.sendIndexrouting1(2); //Weiter
-      this.push();
+  public playsound(): void {
+    if (this.activeStory.audio.paused) {
+      this.activeStory.audio.play();
     } else {
-      this.push();
+      this.activeStory.audio.pause();
     }
   }
-  push() {
-    const radio1 = (document.getElementById(
-      'redundant'
-    ) as unknown) as HTMLInputElement;
-    const radio2 = (document.getElementById(
-      'redundant1'
-    ) as unknown) as HTMLInputElement;
 
-    if (radio1.checked || radio2.checked) {
-      if (this.radiofrage.length + this.storyfrage.length > this.index) {
-        $('#redundant').prop('checked', false);
-        $('#redundant1').prop('checked', false);
-        if (this.index <= 0) {
-        }
+  public weiter() {
+    this.dataservice.addquestionprogress(1); //ProgressBar
+    if (this.index < this.Stories.length) {
+      this.activeStory.audio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen
+    }
+    if (this.index < this.Stories.length + this.Radio.length) {
+      this.result[this.index].antwort = this.form.get('antwort').value;
+      this.form.get('antwort').setValue('');
+      this.index = this.index + 1;
+      this.dataservice.addquestionindex(this.index);
+      if (this.index < this.Stories.length) {
+        this.setActiveStory(this.index);
+      } else {
+        this.storyvisible = false;
+        this.setActiveRadio(this.index - this.Stories.length);
       }
     }
-    if (this.jalla == true) {
-      this.dbpush.doc(this.docidstory[this.index - 1]).set({
-        antwort: this.form.value.stories,
+
+    if (this.index >= this.Stories.length + this.Radio.length) {
+      this.pushData();
+      this.router.navigate(['questions/options']);
+    }
+  }
+
+  private setActiveRadio(index: number) {
+    this.activeRadio = this.Radio[index];
+  }
+
+  private setActiveStory(index: number): void {
+    this.activeStory = this.Stories[index];
+  }
+
+  private pushData(): void {
+    this.result.map((o) => {
+      this.dbpushData.doc(o.docid).set({
+        antwort: o.antwort,
       });
-    }
-    if (this.jalla == false) {
-      this.dbpush
-        .doc(this.docidradio[this.index - this.storyfrage.length - 1])
-        .set({
-          antwort: this.form.value.stories,
-        });
-    }
+    });
   }
-  zurueck() {
-    this.currentaudio.pause(); //Pausiert audio beim zurück gehen
+
+  public zurueck() {
+    this.dataservice.addquestionprogress(-1); //ProgressBar
+    if (this.index < this.Stories.length) {
+      this.activeStory.audio.pause(); //Pausiert audio beim zurück gehen
+    }
     this.index = this.index - 1;
-    this.counter = 2; //Setzt play pause counter zurück
-    this.currentaudio = new Audio(this.audiofiles[this.index]); //Setzt currentaudio zu der jeweiligen Seite
-    const zurueck1 = (document.getElementById(
-      'bbutton'
-    ) as unknown) as HTMLInputElement;
-    if (this.index < 1) {
-      zurueck1.disabled = true;
-    } else if (this.index >= 1) {
-      zurueck1.disabled = false;
+    if (this.index < this.Stories.length) {
+      this.storyvisible = true;
+    }
+    if (this.storyvisible) {
+      this.setActiveStory(this.index);
+    } else {
+      this.setActiveRadio(this.index - this.Stories.length);
     }
   }
+}
+
+interface Result {
+  docid: string;
+  antwort: string;
 }

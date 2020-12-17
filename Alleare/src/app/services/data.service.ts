@@ -18,27 +18,22 @@ export class DataService {
     currentIndex1=this.subject1.asObservable();
     private subject2 =new Subject<any>();
     currentIndex2=this.subject2.asObservable();
-
+    //Progressbar
     private progress = new Subject<any>();
     questionprogress=this.progress.asObservable();
     saveprogress:number=0;
 
     //Evaluation zu fav in Infos
     displayfav:boolean;
-
-    //Quiz Auswertung
-
-    indexvonTemp2zuTemp3:number;
-    indexTemp2:number
-    indexvonTemp3zuTemp2:number;
-    indexTemp1:number;
-
+    //Quiz
     indexquizrouting:number=0;
-
     indexvier:number=0;
     indexzwei:number=0;
-
+    //Home
     headervisible:boolean = true;
+    //QuestionsIndex
+    indexstory:number=0;
+    indexoptions:number=0;
 
     constructor() {
         this.docRef.get().then((doc) => {
@@ -60,37 +55,34 @@ export class DataService {
         return this.subject2.asObservable();
     }
 
-    sendIndexrouting1(indextemplate1:number){ // die Anzahl der Seiten von Temp 2 (options) wird Temp 3 (dropDown) übergeben
-        this.indexvonTemp2zuTemp3=indextemplate1;
+    //Fragenkatalog(Speichern der Indizes)
+    addquestionindex(indexstory:number){
+        this.indexstory=indexstory;
     }
-    getIndexrouting1(){
-        return this.indexvonTemp2zuTemp3;
+    addquestionindex2(indexoptions){
+        this.indexoptions=indexoptions;
     }
-    sendIndexrouting2(indextemplate3:number){// die Anzahl der Seiten von Temp 2 (options) wird von Temp 3 (dropDown) an Temp2 übergeben
-        this.indexvonTemp3zuTemp2=indextemplate3;
+    getquestionstoryindex(){
+        return this.indexstory;
     }
-    getIndexrouting2(){
-        return this.indexvonTemp3zuTemp2;
+    getquestionoptionsindex(){
+        return this.indexoptions;
     }
-    addindexTemp2(index){
-        this.indexTemp2=index;
+    deleteindexoption(){
+        this.indexoptions=0;
     }
-    getIndexTemp2(){// Temp2 (options) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
-        return this.indexTemp2;
+    deleteindexstory(){
+        this.indexstory=0;
     }
-    addIndexTemp1(index){
-        this.indexTemp1=index;
-    }
-    getIndexTemp1(){// Temp1 (stories) fängt übergebenen Index ab und kann dadurch beim zurueckgehen die letzte Seite anzeigen 
-        return this.indexTemp1;
-    }
+    //Ende Fragenkatalog
+
     addquizrouting(index){  //Für routing in der quizcomponent.ts
         this.indexquizrouting=index;
     }
     getquizrouting(){
         return this.indexquizrouting;
     }
-    addindexspeichernvier(index){ //Index speicher, damit bei einem neuen aufruf der index nicht zurück gesetzt wird.
+    addindexspeichernvier(index){ //Index speichern, damit bei einem neuen aufruf der index nicht zurück gesetzt wird.
         this.indexvier=index;
     }
     getindexspeichernvier(){
@@ -102,7 +94,7 @@ export class DataService {
     getindexspeichernzwei(){
         return this.indexzwei;
     }
-    sendHeader(grau){
+    sendHeader(grau){//Graue Balken wird aus dem Header entnommen
         this.headervisible= grau;
     }
     getHeader(){

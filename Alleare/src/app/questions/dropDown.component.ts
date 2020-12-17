@@ -4,13 +4,18 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
+import { Dropdown } from '../model/stories';
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'dropDown',
   template: `
     <body>
+    <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+    <div *ngIf="!isLoading">
       <div class="card2">
-        <div class="ImageStory">{{ anzeige }}</div>
+        <div class="ImageStory">{{ activequestion.frage }}</div>
         <div class="btn-group bundesliste">
           <button
             type="button"
@@ -20,13 +25,13 @@ import { DataService } from '../services/data.service';
             aria-expanded="false"
             id="Bundestext"
           >
-            <a>{{ ausgewaehlt }}</a>
+            <a>{{pickedstate}}</a>
           </button>
 
           <div class="dropdown-menu" id="drop">
             <!--Event fragt geklickte Id ab und setzt diese in die DB-->
             <a
-              *ngFor="let land of Bundesland"
+              *ngFor="let land of activestate"
               id="{{ land }}"
               class="dropdown-item"
               (click)="setLand($event)"
@@ -44,6 +49,7 @@ import { DataService } from '../services/data.service';
         <button
           id="Vorbutton"
           class="btn"
+          [disabled]="index==0"
           routerLink="/evaluation"
           (click)="weiter()"
         >
@@ -62,43 +68,30 @@ import { DataService } from '../services/data.service';
           id="NovaImage"
         />
       </div>
+    </div>
     </body>
   `,
   styleUrls: ['./questions.component.css'],
 })
-export class DropDownComponent implements OnInit, DoCheck {
-  Bundesland = [];
-  index1: number;
-  ausgewaehlt: string = 'Bundesland';
+export class DropDownComponent implements OnInit {
+  public Frage: Dropdown[] = [];
+  public Bundesland: Dropdown[] = [];
+  public activequestion: Dropdown;
+  public activestate = [];
+  public isLoading = true;
+  public pickedstate: string = "Bundesland"
+  public index: number = 0;
 
-  dbget = firebase.firestore().collection('Bundeslaender'); //in der Collection sind in den Docs die einzelnen Bundesländer abgespeichert
-  index: number = 0; // dient zum Hochzähle und wechseln der Fragen
-  anzeige: string; // Zeigt Frage auf der Oberfläche an
-  fragenliste = []; // hier werden alle Fragen mit dem Typ Liste abgespeichert
-  dbgetFrage = firebase.firestore().collection('Fragenkatalog'); // Fragt alle Fragen in unserem Fragenkatalog ab, damit spaeter die Fragen mit dem Type "liste" abgefangen werden können
-
-  constructor(private dataservice: DataService) {
-    // es werden alle Dokumente durchgeschaut und die welche den typen "liste" besitzen werden in ein das Array "fragenliste" gespeichert
-    this.dbgetFrage
-      .where('type', '==', 'liste')
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.fragenliste.push(doc.data().frage);
-        });
-      });
+  constructor(private dataservice: DataService, private router: Router, private questionService: QuestionService) {
   }
 
-  // sobald auf ein Bundesland geklickt wird, wird diese Funktion aufgerufen.
-  // Funktion erkennt die ID der gelickten Auswahl und pusht diese in DB
   setLand(event) {
     const weiterButton = (document.getElementById(
-      'Vorbutton'
-    ) as unknown) as HTMLInputElement;
+      'Vorbutton') as unknown) as HTMLInputElement;
 
     weiterButton.disabled = false;
     let title: string = event.target.id;
-    this.ausgewaehlt = title;
+    this.pickedstate = title;
     firebase
       .firestore()
       .collection('Benutzer')
@@ -109,35 +102,38 @@ export class DropDownComponent implements OnInit, DoCheck {
         antwort: title,
       });
   }
-
-  // dient zum Anzeigen der aktuellen Frage auf der Oberfläche
-  ngDoCheck() {
-    this.anzeige = this.fragenliste[this.index];
+  private setInitialData() {
+    this.activequestion = this.Frage[0];
   }
-  // beim Aufruf werden alle Bundeslaender in das "Bundesland" Array gespeichert
-  // dient später für die Befüllung des DropDowns
-  ngOnInit() {
-    const weiterButton = (document.getElementById(
-      'Vorbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
-    this.dbget.get().then((querysnapshot) => {
-      querysnapshot.forEach((doc) => {
-        this.Bundesland.push(doc.data().name);
-      });
-    });
 
-    console.log(weiterButton.disabled);
+  public async ngOnInit() {
+    await this.loadquestion();
+    await this.loadstate();
+    this.setInitialData();
+    this.isLoading = false;//Dom wird geladen
   }
-  // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
+  public async loadquestion() {
+    this.Frage = await this.questionService.getdropdownfrage();
+  }
+  public async loadstate() {
+    this.Bundesland = await this.questionService.getdropdown();
+    this.Bundesland.map((o, index) => {
+      this.activestate[index] = o.bundesland
+    })
+  }
   weiter() {
     this.dataservice.addquestionprogress(1); //ProgressBar
     this.index++;
+    if (this.index >= this.activequestion.frage.length) {
+      this.router.navigate(["/evaluation"])
+    }
   }
-  // index wird runtergesetzt beim zurueck klicken -> vorherige Frage wird aufgerufen
   zurueck() {
-    this.dataservice.addquestionprogress(-1); //ProgressBar
-    this.index--;
-    this.dataservice.sendIndexrouting2(1);
+    this.dataservice.addquestionprogress(-1);//ProgressBar
+    if (this.index == 0) {
+      this.router.navigate(["/questions/options"])
+    } else {
+      this.index--;
+    }
   }
 }

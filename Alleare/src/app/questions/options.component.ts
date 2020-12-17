@@ -1,88 +1,94 @@
 import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
+import { QuestionService } from '../services/question.service';
+import { VierRadio, ZweiBilder } from '../model/stories';
 
 @Component({
   selector: 'options',
   template: `
-    <div [formGroup]="form">
+  <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+    <div *ngIf="!isLoading" [formGroup]="form">
       <div class="card2">
-        <div class="ImageStory">{{ anzeige }}</div>
-          <div class="grid-containerRadioBAntwort CheckboxAbfrage">
-            <div [hidden]="vierradiovisible1">
+        <div *ngIf="vierradiovisible" class="ImageStory">{{activevierradio.frage}}</div>
+        <div *ngIf="!vierradiovisible" class="ImageStory">{{activezweibilder.frage}}</div>
+          <div *ngIf="vierradiovisible" class="grid-containerRadioBAntwort CheckboxAbfrage">
               <!--div lässt keinen platz zwischen-->
               <div
                 class="grid-element form-check form-check-inline"
                 id="ORadio"
               >
-                <input
-                  type="radio"
-                  id="auswahlEins"
-                  name="vierradio"
-                  formControlName="vierradio"
-                  value="{{ anzeigeAntwort1 }}"
-                />
-                <label class="form-check-label" for="auswahlEins">
-                  {{ anzeigeAntwort1 }}
-                </label>
+              <input
+                    type="radio"
+                    id="auswahlEins"
+                    name="vierradio"
+                    [formControl]="form.controls.antwort"
+                    value="{{activevierradio.antwort1}}"
+                  />
+                  <label class="form-check-label" for="auswahlEins">
+                    {{ activevierradio.antwort1 }}
+                  </label>
               </div>
 
               <div
                 class="grid-element form-check form-check-inline"
                 id="ORadio"
               >
-                <input
-                  type="radio"
-                  id="auswahlZwei"
-                  name="vierradio"
-                  formControlName="vierradio"
-                  value="{{ anzeigeAntwort2 }}"
-                />
-                <label class="form-check-label" for="auswahlZwei">
-                  {{ anzeigeAntwort2 }}
-                </label>
+              <input
+                    type="radio"
+                    id="auswahlZwei"
+                    name="vierradio"
+                    [formControl]="form.controls.antwort"
+                    value="{{activevierradio.antwort2}}"
+                  />
+                  <label class="form-check-label" for="auswahlZwei">
+                    {{ activevierradio.antwort2 }}
+                  </label>
               </div>
-            </div>
+
             <!---->
-            <div [hidden]="vierradiovisible2">
+            <div>
               <div
                 class="grid-element form-check form-check-inline"
                 id="ORadio"
               >
-                <input
-                  type="radio"
-                  id="auswahlDrei"
-                  name="vierradio"
-                  formControlName="vierradio"
-                  value="{{ anzeigeAntwort3 }}"
-                />
-                <label class="form-check-label" for="auswahlDrei"
-                  >{{ anzeigeAntwort3 }}
-                </label>
+              <input
+                    type="radio"
+                    id="auswahlDrei"
+                    name="vierradio"
+                    [formControl]="form.controls.antwort"
+                    value="{{activevierradio.antwort3}}"
+                  />
+                  <label class="form-check-label" for="auswahlDrei"
+                    >{{ activevierradio.antwort3 }}
+                  </label>
               </div>
 
               <div
                 class="grid-element form-check form-check-inline"
                 id="ORadio"
               >
-                <input
-                  type="radio"
-                  id="auswahlVier"
-                  name="vierradio"
-                  formControlName="vierradio"
-                  value="{{ anzeigeAntwort4 }}"
-                />
-                <label class="form-check-label" for="auswahlVier">
-                  {{ anzeigeAntwort4 }}
-                </label>
+              <input
+                    type="radio"
+                    id="auswahlVier"
+                    name="vierradio"
+                    [formControl]="form.controls.antwort"
+                    value="{{activevierradio.antwort4}}"
+                  />
+                  <label class="form-check-label" for="auswahlVier">
+                    {{ activevierradio.antwort4 }}
+                  </label>
               </div>
             </div>
           </div>
 
-          <div [hidden]="zweiBildervisible">
+          <!--AB HIER BEGINNT BILDERTEMPLATE-->
+
+          <div *ngIf="zweiBildervisible">
             <div class="grid-containerBilderAntwort">
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
@@ -92,21 +98,21 @@ import { DataService } from '../services/data.service';
                       id="auswahlBildEins"
                       class="BildButtons"
                       name="zweiBild"
-                      formControlName="zweiBild"
-                      value="{{ label1 }}"
+                      [formControl]="form.controls.antwort"
+                      value="{{ activezweibilder.label1 }}"
                     />
                     <img
                       class="BildVorRadio"
                       id="auswahlEins"
-                      src="data:image/gif;base64,{{ zweibildAntwort1 }}"
+                      src="data:image/gif;base64,{{ activezweibilder.bild1 }}"
                       width="70px"
                       height="50px"
                     />
                   </label>
-                  <div [hidden]="zweiBilderLabelvisible">
+                  <div>
                     <p>
                       <label class="form-check-label" for="auswahlBildEins">
-                        {{ label1 }}
+                        {{ activezweibilder.label1 }}
                       </label>
                     </p>
                   </div>
@@ -121,21 +127,21 @@ import { DataService } from '../services/data.service';
                       id="auswahlBildZwei"
                       class="BildButtons"
                       name="zweiBild"
-                      formControlName="zweiBild"
-                      value="{{ label2 }}"
+                      [formControl]="form.controls.antwort"
+                      value="{{ activezweibilder.label2 }}"
                     />
                     <img
                       class="BildVorRadio"
                       id="auswahlZwei"
-                      src="data:image/gif;base64,{{ zweibildAntwort2 }}"
+                      src="data:image/gif;base64,{{ activezweibilder.bild2 }}"
                       width="70px"
                       height="50px"
                     />
                   </label>
-                  <div [hidden]="zweiBilderLabelvisible">
+                  <div>
                     <p>
                       <label class="form-check-label" for="auswahlBildZwei">
-                        {{ label2 }}</label
+                        {{ activezweibilder.label2 }}</label
                       >
                     </p>
                   </div>
@@ -149,7 +155,7 @@ import { DataService } from '../services/data.service';
         <button id="Zbutton" class="btn" (click)="zurueck()">
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
-        <button id="Vbutton" class="btn" (click)="weiter()">
+        <button id="Vbutton" class="btn" (click)="weiter()" [disabled]="form.controls.antwort.value.length < 1">
           <img
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
@@ -169,216 +175,128 @@ import { DataService } from '../services/data.service';
   `,
   styleUrls: ['./questions.component.css'],
 })
-export class OptionsComponent implements DoCheck, OnInit {
-  form: FormGroup;
-  dbget = firebase.firestore().collection('Fragenkatalog'); // Abgreifen der Fragen aus DB
+export class OptionsComponent implements OnInit {
+  public form = this.fb.group({
+    antwort: [''],
+  });
+  public Vierradio: VierRadio[] = [];
+  public Zweibilder: ZweiBilder[] = [];
+  public activevierradio: VierRadio;
+  public activezweibilder: ZweiBilder;
+  public index: number = 0;
+  private result: Result[] = [];
+  public isLoading = true;
+
+  public vierradiovisible: boolean = true;
+  public zweiBildervisible: boolean = false;
+
   dbpush = firebase // pushen der Antworten in die DB
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Fragenkatalog');
-  index: any = 0; // routet alle Seiten des Templates
-  anzeige: string; //Zeigt Frage in der Oberfläche an
-  fragenvierradio = []; // Speichert alle Fragen von Typ "vierradio"
-  docidvierradio = []; // Speichert die IDs der Fragen von Typ "vierradio" --> antworten des Nutzers werden richtig abgespeichert
-  vierradiovisible1: boolean = false; // an und aus boolean für die oberen zwei Radios
-  vierradiovisible2: boolean = false; // an und aus boolean für die unteren zwei Radios
-  //Radiobuttonantworten
-  antwort1 = [];
-  antwort2 = [];
-  antwort3 = [];
-  antwort4 = [];
-  // Anzeige der Antwortmöglichkeiten audf der Oberfläche
-  anzeigeAntwort1: string;
-  anzeigeAntwort2: string;
-  anzeigeAntwort3: string;
-  anzeigeAntwort4: string;
-  // Bilder für die Bilderantworten
-  zweibilder1 = [];
-  zweibilder2 = [];
-  //Geben den codierten String des Bildes, in die zum decodierenden src
-  zweibildAntwort1: string;
-  zweibildAntwort2: string;
-  //Speicheren die Labels für die Bilderantworten ab
-  zweibilderlabel1 = [];
-  zweibilderlabel2 = [];
-  //Geben Label aus dem Array in die Oberfläche
-  label1: string;
-  label2: string;
-  // Schaltet die Bilder und Labels an und aus
-  zweiBildervisible: boolean = true;
-  zweiBilderLabelvisible: boolean = true;
-  fragenzweibilder = []; // Fragen aus der DB mit dem Typ "zweibilder"
-  docidzweibilder = []; // Speichert die IDs der Fragen von Typ "zweibilder" --> antworten des Nutzers werden richtig abgespeichert
 
-  constructor(private dataservice: DataService) {
-    this.form = new FormGroup({
-      vierradio: new FormControl(),
-      zweiBild: new FormControl(),
+
+  constructor(private dataservice: DataService, private questionService: QuestionService,
+    private fb: FormBuilder, private router: Router) {
+  }
+  private setInitialData() {
+    this.activevierradio = this.Vierradio[this.index];
+    this.activezweibilder = this.Zweibilder[this.index];
+    const docIds = [].concat
+      (this.Zweibilder.map((o) => o.docid),
+        this.Vierradio.map((o) => o.docid)
+      );
+    docIds.map((id) => {//Pusht die docid Reihenfolge in das result
+      this.result.push({
+        docid: id,
+        antwort: '',
+      });
     });
-    this.dbget //Abspeicherung aller "vierradio" Fragen und Antworten
-      .where('type', '==', 'vierradio')
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.fragenvierradio.push(doc.data().frage);
-          this.docidvierradio.push(doc.id);
-          this.antwort1.push(doc.data().antwort1);
-          this.antwort2.push(doc.data().antwort2);
-          this.antwort3.push(doc.data().antwort3);
-          this.antwort4.push(doc.data().antwort4);
-        });
-      });
-
-    this.dbget //Abspeicherung aller "zweibilder" Fragen und Antworten
-      .where('type', '==', 'zweibilder')
-      .get()
-      .then((querysnapshot) => {
-        querysnapshot.forEach((doc) => {
-          this.fragenzweibilder.push(doc.data().frage);
-          this.docidzweibilder.push(doc.id);
-          this.zweibilder1.push(doc.data().bild);
-          this.zweibilder2.push(doc.data().bild2);
-          this.zweibilderlabel1.push(doc.data().antwort1);
-          this.zweibilderlabel2.push(doc.data().antwort2);
-        });
-      });
   }
-  ngOnInit() {
-    const weiterButton = (document.getElementById(
-      'Vbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
-    this.dataservice.sendIndexrouting2(2); //damit die Temps einzelnd und nicht zusammen angezeigt werden
-    if (this.dataservice.getIndexTemp2() == null) {
-      console.log('anfang');
-    } else {
-      this.index = this.dataservice.getIndexTemp2() - 1; // wird einen runtergesetzt, damit das Temp die richtige letzte Seite anzeigt
-      if (this.index < 0) {
-        this.index = 0;
-      }
-      console.log(this.index);
-      console.log('zurueck');
-      this.dataservice.sendIndexrouting1(30); // damit Temp 3 nicht dauerhaft aufgerufen wird
+  private async loadvierradio() {
+    this.Vierradio = await this.questionService.getvierradio();//Wartet auf die Funktion, bevor Variable gefüllt wird
+  }
+  private async loadbild() {
+    this.Zweibilder = await this.questionService.getzweibilder();
+  }
+
+  public async ngOnInit() {
+    this.index = this.dataservice.getquestionoptionsindex();
+    if (this.index == 0) {
+      await this.loadvierradio(); //Wartet auf die Funktion
+      await this.loadbild();
+      this.setInitialData();
     }
+    if (this.index > 0) {
+      this.vierradiovisible = false;
+      this.zweiBildervisible = true;
+      await this.loadvierradio();
+      await this.loadbild();
+      this.setInitialData();
+      this.index = this.index - 1;
+      this.setActiveZweibilder(this.index - this.Vierradio.length);
+    }
+
+    this.isLoading = false;
   }
 
-  ngDoCheck() {
-    const weiterButton = (document.getElementById(
-      'Vbutton'
-    ) as unknown) as HTMLInputElement;
-
-    if (this.index < this.fragenvierradio.length) {
-      // schaut ob die vierradiobuttons angezeigt werden sollen
-      this.anzeige = this.fragenvierradio[this.index]; // richtige Frage soll angezeigt werden
-      this.vierradiovisible1 = this.vierradiovisible2 = false; // vierradiobuttons werden angezeit
-      this.zweiBilderLabelvisible, (this.zweiBildervisible = true); // Bilder und labels werden nicht angezeigt
-      // Die Antworten auf der Oberfläche entsprechen der Antwortmöglichkeiten aus der DB
-      this.anzeigeAntwort1 = this.antwort1[this.index];
-      this.anzeigeAntwort2 = this.antwort2[this.index];
-      this.anzeigeAntwort3 = this.antwort3[this.index];
-      this.anzeigeAntwort4 = this.antwort4[this.index];
-
-      if ($('input[name=vierradio]:checked').length > 0) {
-        // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-        weiterButton.disabled = false;
+  weiter() {
+    this.dataservice.addquestionprogress(1); //ProgressBar
+    if (this.index < this.Vierradio.length + this.Zweibilder.length) {
+      this.result[this.index].antwort = this.form.get('antwort').value;
+      this.form.get('antwort').setValue('');
+      this.index = this.index + 1;
+      this.dataservice.addquestionindex2(this.index);
+      if (this.index < this.Vierradio.length) {
+        this.setActiveVierradio(this.index);
+      } else {
+        this.vierradiovisible = false;
+        this.zweiBildervisible = true;
+        this.setActiveZweibilder(this.index - this.Vierradio.length);
       }
     }
-    // Schaut ob Bilderantworten angezeigt werden solle
-    if (
-      this.index >= this.fragenvierradio.length &&
-      this.index < this.fragenzweibilder.length + this.fragenvierradio.length
-    ) {
-      //Index der alle Seien zählt,muss größer sein als die Anzahl der vorherigen Fragen && Index der alle Seien zählt, muss kleiner sein als alle aktuell aufgerufenen Fragen und alle vorherige Fragen
-      this.anzeige = this.fragenzweibilder[
-        this.index - this.fragenvierradio.length
-      ]; // richtige Frage soll angezeigt werden
-      this.zweiBilderLabelvisible = this.zweiBildervisible = false; // Bilder und Labels sollen angezeigt werden
-      this.vierradiovisible1 = this.vierradiovisible2 = true; // Radiobuttons werden ausgeschaltet
-      // Antwortmöglichkeiten werden in die Oberfläche gebracht
-      this.zweibildAntwort1 = this.zweibilder1[
-        this.index - this.fragenvierradio.length
-      ];
-      this.zweibildAntwort2 = this.zweibilder2[
-        this.index - this.fragenvierradio.length
-      ];
-      // Label (Text unter den Bildern) wird in der Oberfläche angezeigt
-      this.label1 = this.zweibilderlabel1[
-        this.index - this.fragenvierradio.length
-      ];
-      this.label2 = this.zweibilderlabel2[
-        this.index - this.fragenvierradio.length
-      ];
-
-      if ($('input[name=zweiBild]:checked').length > 0) {
-        // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-        weiterButton.disabled = false;
-      }
+    if (this.index >= this.Vierradio.length + this.Zweibilder.length) {
+      this.pushData();
+      this.router.navigate(['questions/dropdown'])
     }
   }
-  weiter(){
-    this.dataservice.addquestionprogress(1);//ProgressBar
-    const weiterButton = (document.getElementById(
-      'Vbutton'
-    ) as unknown) as HTMLInputElement;
-    weiterButton.disabled = true;
-    if (
-      this.index <
-      this.fragenzweibilder.length + this.fragenvierradio.length
-    ) {
-      // zählt bis zu der maximalen Anzahl der Seiten hoch
-      this.index++; // index wird hochgesetzt
-      this.dataservice.addindexTemp2(this.index); // Index wird Dataservice übergeben, damit später zurueck geroutet werden kann
-    }
-    if (
-      this.index >=
-        this.fragenzweibilder.length + this.fragenvierradio.length &&
-      this.index != 0
-    ) {
-      this.dataservice.sendIndexrouting1(3); //weiterrotten zu Temp3 wird Dataservice übergeben
-    }
-    //greift die Radiobuttons aus der Oberfläche ab
-
-    if ($('input[name=vierradio]:checked').length > 0) {
-      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-      $('#auswahlEins').prop('checked', false);
-      $('#auswahlZwei').prop('checked', false);
-      $('#auswahlDrei').prop('checked', false);
-      $('#auswahlVier').prop('checked', false);
-    }
-    if ($('input[name=zweiBild]:checked').length > 0) {
-      // setzt alle gecheckten Radiobuttons zurück, wenn nächste Seite aufgerufen wird
-      $('#auswahlBildEins').prop('checked', false);
-      $('#auswahlBildZwei').prop('checked', false);
-    }
-    if (this.vierradiovisible1 == false && this.vierradiovisible2 == false) {
-      //Speichert gecheckten Radiobutton Wert von Typ "vierradio"
-      this.dbpush.doc(this.docidvierradio[this.index - 1]).set({
-        antwort: this.form.value.vierradio,
-      });
-    }
-
-    if (
-      this.zweiBilderLabelvisible == false &&
-      this.zweiBildervisible == false
-    ) {
-      // Speichert Bildantworten von Typ "zweibilder"
-      this.dbpush
-        .doc(this.docidzweibilder[this.index - this.fragenvierradio.length - 1])
-        .set({
-          antwort: this.form.value.zweiBild,
-        });
-    }
+  private setActiveVierradio(index: number) {
+    this.activevierradio = this.Vierradio[index];
   }
+
+  private setActiveZweibilder(index: number) {
+    this.activezweibilder = this.Zweibilder[index];
+  }
+
+  private pushData(): void { //Parameter entnimmt einzelne docid und pusht die antwort dieser ID
+    this.result.map((o) => {
+      this.dbpush.doc(o.docid).set({
+        antwort: o.antwort,
+      })
+    })
+  }
+
   zurueck() {
-    this.dataservice.addquestionprogress(-1);//ProgressBar
-        if(this.index>=0){
-          this.index--; // setzt Index eins runter
-
-        }
-        if(this.index<0){
-          this.dataservice.sendIndexrouting1(1); // uebergibt dem Dataservice die Anweisung Temp1 zu öffnen
-        }
-        this.dataservice.addindexTemp2(this.index);// uebergibt dem Dataservice aktuellen Index
+    this.dataservice.addquestionprogress(-1); //ProgressBar
+    this.index = this.index - 1; // setzt Index eins runter
+    if (this.index < this.Vierradio.length) {
+      this.zweiBildervisible = false;
+      this.vierradiovisible = true;
+      this.setActiveVierradio(this.index)
+    }
+    if (this.index >= this.Vierradio.length) {
+      this.vierradiovisible = false;
+      this.zweiBildervisible = true;
+      this.setActiveZweibilder(this.index - this.Vierradio.length);
+    }
+    if (this.index < 0) {
+      this.dataservice.deleteindexoption();
+      this.router.navigate(["/questions"])
+    }
   }
+}
+interface Result {
+  docid: string;
+  antwort: string;
 }

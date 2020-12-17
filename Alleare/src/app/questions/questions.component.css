@@ -295,6 +295,15 @@ margin: auto;
   padding-left: 5%;
   padding-right: 5%;
 }
+
+.loading{
+  margin-left: auto;
+  margin-right: auto;
+}
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #9CD1F0;
+}
+
 .ButtonVersicherung {
   padding: 5%;
   width: 100%;
