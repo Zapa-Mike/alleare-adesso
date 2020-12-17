@@ -61,8 +61,7 @@ export class EvaluationComponent implements OnInit {
               .then((doc) => {
                 perVersicherung.push(doc.data().versicherung);
                 var versicherung = doc.data().versicherung;
-                if(versicherung!=undefined)
-                {
+                if(versicherung!= undefined){
                   this.db1
                   .collection('Versicherungen')
                   .doc(versicherung)
@@ -74,6 +73,7 @@ export class EvaluationComponent implements OnInit {
                     this.spinneranzeige=false;
                   });
                 }
+               
               });
           });
         });
