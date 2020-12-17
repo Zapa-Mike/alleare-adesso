@@ -27,8 +27,10 @@ export class AppComponent implements DoCheck, OnInit {
   ];
   benutzercollections = ['Fragenkatalog', 'Quiz', 'Versicherungen'];
   title = 'Alleare';
-
-  constructor(private route: LocationStrategy) {}
+  
+  constructor(private route: LocationStrategy) {
+    
+  }
 
   ngOnInit() {
     if (localStorage.getItem('hans') == null) {
