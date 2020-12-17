@@ -70,7 +70,6 @@ export class EvaluationComponent implements OnInit {
                     this.spinneranzeige=false;
                   });
                 }
-               
               });
           });
         });

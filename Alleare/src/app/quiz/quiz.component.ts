@@ -12,19 +12,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit, DoCheck {
-  switch: boolean = false;
   routingindex; // muss von den templates hochgesetzt werden.
-  anzeige: string;
-  reihenfolge = [
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-  ];
+  reihenfolge = ['vier','zwei','vier','zwei','vier','zwei','vier','zwei'];
   anzeigevier: boolean = false;
   anzeigezwei: boolean = false;
   auswertung = false;
@@ -33,12 +22,6 @@ export class QuizComponent implements OnInit, DoCheck {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-  antworten = [];
-  richtigeantworten = [];
-  punkte: number = 0;
-  antwortenid = [];
-  jalla = true;
-  dbrichtig = firebase.firestore().collection('Quiz');
   start =false ;
   quiz = true;
   fabvisible:boolean=false;

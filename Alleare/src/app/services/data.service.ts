@@ -25,7 +25,6 @@ export class DataService {
     //QuestionsIndex
     indexstory:number=0;
     indexoptions:number=0;
-    
     constructor() {
         this.docRef.get().then((doc) => {
             if (doc.exists) {

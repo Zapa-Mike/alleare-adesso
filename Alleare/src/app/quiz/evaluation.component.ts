@@ -19,7 +19,7 @@ import { QuizService } from '.././services/quiz.service';
         [innerStrokeColor]="'#36d1dc'"
         [showTitle]="false"
         [showUnits]="false"
-        subtitle="{{ punkte }}/{{ antworten.length }}"
+        subtitle="{{ points }}/{{ answers.length }}"
       ></circle-progress>
     </div>
     <div class="cardAuswertung Texte">
@@ -107,47 +107,47 @@ export class evaluationComponent implements OnInit {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-  dbantworten = firebase
+  dbanswers = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-  antworten = [];
-  richtigeantworten = [];
-  punkte: number = 0;
+  answers = [];
+  rightanswers = [];
+  points: number = 0;
   antwortenid = [];
-  dbrichtig = firebase.firestore().collection('Quiz');
+  dbrightanswers = firebase.firestore().collection('Quiz');
   richtigfalsch = [];
   index: number = 0;
   percent: number = 0;
   checktruth : boolean[]=[];
 
   constructor(private quiz:QuizService) {
-this.antwortenid=this.quiz.getdocid();
+    this.antwortenid=this.quiz.getdocid();
   }
 
   ngOnInit() {
     for(let i=0;i<this.antwortenid.length;i++){
-      this.dbantworten.doc(this.antwortenid[i]).get().then((doc)=>{
-        this.antworten.push(doc.data().antwort)
+      this.dbanswers.doc(this.antwortenid[i]).get().then((doc)=>{
+        this.answers.push(doc.data().antwort)
       })
     }
         for (let y = 0; y < this.antwortenid.length; y++) {
-          this.dbrichtig
+          this.dbrightanswers
             .doc(this.antwortenid[y])
             .get()
             .then((doc) => {
-              this.richtigeantworten.push(doc.data().richtig);
+              this.rightanswers.push(doc.data().richtig);
             });
         }
     setTimeout(() => {
       for (let i = 0; i < this.antwortenid.length; i++) {
-        if (this.antworten[i] == this.richtigeantworten[i]) {
-          this.punkte = this.punkte + 1;
+        if (this.answers[i] == this.rightanswers[i]) {
+          this.points = this.points + 1;
           this.richtigfalsch[i] = 'Richtig';
           this.checktruth[i]= true;
 
-        } else if (this.antworten[i] != this.richtigeantworten[i]) {
+        } else if (this.answers[i] != this.rightanswers[i]) {
           this.richtigfalsch[i] = 'Falsch';
           this.checktruth[i] = false;
         }
@@ -162,7 +162,7 @@ this.antwortenid=this.quiz.getdocid();
     location.reload();
   }
   public percentageCalculator() {
-    const p = (100 / this.antworten.length) * this.punkte;
+    const p = (100 / this.answers.length) * this.points;
     return p;
   }
 }
