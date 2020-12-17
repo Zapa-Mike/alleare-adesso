@@ -20,7 +20,8 @@ import {
           <div class="Fragenstellung">{{ anzeige }}</div>
         </div>
       </div>
-      <!-- The Modal -->
+
+      <!--Popup Fenster-->
       <div
         [hidden]="showModelBox"
         class="modal"
@@ -52,6 +53,7 @@ import {
         </div>
       </div>
 
+      <!--Antwort Buttons-->
       <div class="row">
         <div class="col-6">
           <button
