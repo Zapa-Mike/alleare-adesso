@@ -10,14 +10,15 @@ import {
   transition,
   keyframes,
 } from '@angular/animations';
+import { promise } from 'protractor';
 
 @Component({
   selector: 'two-answers',
   template: `
-    <div class="container">
+    <div *ngIf="!isLoading" class="container">
       <div class="row">
         <div class="card">
-          <div class="Fragenstellung">{{ anzeige }}</div>
+          <div class="Fragenstellung">{{ active.fragen }}</div>
         </div>
       </div>
 
@@ -37,10 +38,10 @@ import {
 
             <!-- Modal body -->
             <div class="modal-body">
-              {{ begruendunganzeige }}
+              {{ active.begruendung }}
             </div>
             <div class="ButtonNextF">
-              <button id="Wbutton" class="btn" (click)="weiter()">
+              <button id="Wbutton" class="btn" (click)="forward()">
                 <!--Andere id als bei radio.component-->
                 <img
                   src="/assets/icons/icon_arrow_forward.svg"
@@ -58,29 +59,29 @@ import {
         <div class="col-6">
           <button
             [@fade]="isOpen1 ? true : false"
-            [@falsch]="falsch1 ? true : false"
-            [@richtig]="richtig1 ? true : false"
+            [@falsch]="wrong1 ? true : false"
+            [@richtig]="right1 ? true : false"
             data-toggle="modal"
             data-target="#myModal"
-            id="{{ antwort1anzeige }}"
+            id="{{ active.antworten1 }}"
             class="antwort shadow"
             (click)="push($event, 1)"
           >
-            {{ antwort1anzeige }}
+            {{ active.antworten1 }}
           </button>
         </div>
         <div class="col-6">
           <button
             [@fade]="isOpen2 ? true : false"
-            [@falsch]="falsch2 ? true : false"
-            [@richtig]="richtig2 ? true : false"
+            [@falsch]="wrong2 ? true : false"
+            [@richtig]="right2 ? true : false"
             data-toggle="modal"
             data-target="#myModal"
-            id="{{ antwort2anzeige }}"
+            id="{{ active.antworten2 }}"
             class="antwort shadow"
             (click)="push($event, 2)"
           >
-            {{ antwort2anzeige }}
+            {{ active.antworten2 }}
           </button>
         </div>
       </div>
@@ -112,127 +113,118 @@ import {
     ]),
   ],
 })
-export class TwoAnswersComponent implements OnInit, DoCheck {
-  get = firebase.firestore().collection('Quiz');
-  showModelBox = true;
-  fragen = [];
-  antworten1: string[] = [];
-  antworten2: string[] = [];
-  richtigeantwort = [];
-  begruendung = [];
-  index = 0;
-  indexrouting = 0;
-  fragenauswahl = [];
-  anzeige: string;
-  docid = [];
-  antwort1anzeige: string;
-  antwort2anzeige: string;
-  begruendunganzeige: string;
-  dbpush = firebase
+export class TwoAnswersComponent implements OnInit{
+ private get = firebase.firestore().collection('Quiz');
+ public showModelBox = true;
+ private index = 0;
+ private indexrouting = 0;
+ private generatedquestions = [];
+ private dbpush = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-  isOpen1: boolean = true;
-  isOpen2: boolean = true;
-  falsch1: boolean = true;
-  falsch2: boolean = true;
-  richtig1: boolean = true;
-  richtig2: boolean = true;
+ public isOpen1: boolean = true;
+ public isOpen2: boolean = true;
+ public wrong1: boolean = true;
+ public wrong2: boolean = true;
+ public right1: boolean = true;
+ public right2: boolean = true;
+
+ public Data:Quiz[]=[];
+ public active:Quiz;
+ public isLoading=true;
+ private clickonce=true;
 
   constructor(private dataservice: DataService, private quiz: QuizService) {}
 
-  ngOnInit() {
-    this.fragenauswahl = this.quiz.getfragenauswahl();
+  async ngOnInit() {
+    this.Data=await this.dbrequest();
+    this.isLoading=false;
+    this.generatedquestions = this.quiz.getfragenauswahl();
+    this.indexrouting = this.dataservice.getquizrouting();
     this.index = this.dataservice.getindexspeichernzwei();
-    this.get
+    await this.currentquestion();
+  }
+ private currentquestion(){
+  this.active=this.Data[this.generatedquestions[this.index]]
+  }
+
+ public async dbrequest():Promise<Quiz[]>{
+    let data:Quiz[]=[];
+    await this.get
       .where('type', '==', 'zweiAntworten')
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          this.docid.push(doc.id);
-          this.fragen.push(doc.data().Frage);
-          this.antworten1.push(doc.data().antwort1);
-          this.antworten2.push(doc.data().antwort2);
-          this.richtigeantwort.push(doc.data().richtig);
-          this.begruendung.push(doc.data().begründung);
+          data.push({
+            docid: doc.id,
+            fragen: doc.data().Frage,
+            antworten1: doc.data().antwort1,
+            antworten2: doc.data().antwort2,
+            richtigeantwort:doc.data().richtig,
+            begruendung:doc.data().begründung
+          })  
         });
       });
+      return data
   }
 
-  ngDoCheck() {
-    this.indexrouting = this.dataservice.getquizrouting();
-    this.anzeige = this.fragen[this.fragenauswahl[this.index]];
-    this.antwort1anzeige = this.antworten1[this.fragenauswahl[this.index]];
-    this.antwort2anzeige = this.antworten2[this.fragenauswahl[this.index]];
-    this.begruendunganzeige = this.begruendung[this.fragenauswahl[this.index]];
-  }
-
-  push(event, whichbtn: number) {
-    this.quiz.adddocid(this.docid[this.fragenauswahl[this.index]]); //Push docid in dataservice
-    if (event.target.id == this.antwort1anzeige) {
+ public push(event, whichbtn: number) {
+   if(this.clickonce==true){
+    this.quiz.adddocid(this.active.docid); //Push docid in dataservice
+    if (event.target.id == this.active.antworten1) {
       this.isOpen1 = false;
-    } else if (event.target.id == this.antwort2anzeige) {
+    } else if (event.target.id == this.active.antworten2) {
       this.isOpen2 = false;
     }
-    this.dbpush.doc(this.docid[this.fragenauswahl[this.index]]).set({
+    this.dbpush.doc(this.active.docid).set({
       antwort: event.target.id,
     });
     setTimeout(() => {
       if (whichbtn == 1) {
-        if (
-          event.target.id !=
-          this.richtigeantwort[this.fragenauswahl[this.index]]
-        ) {
-          this.falsch1 = false;
+        if (event.target.id !=this.active.richtigeantwort) {
+          this.wrong1 = false;
         }
       }
       if (whichbtn == 2) {
-        if (
-          event.target.id !=
-          this.richtigeantwort[this.fragenauswahl[this.index]]
+        if (event.target.id !=this.active.richtigeantwort
         ) {
-          this.falsch2 = false;
+          this.wrong2 = false;
         }
       }
-      if (
-        this.antwort1anzeige ==
-        this.richtigeantwort[this.fragenauswahl[this.index]]
+      if (this.active.antworten1 ==this.active.richtigeantwort
       ) {
-        if (event.target.id == this.antwort1anzeige) {
-          this.richtig1 = false;
-        } else if (
-          event.target.id !=
-          this.richtigeantwort[this.fragenauswahl[this.index]]
+        if (event.target.id == this.active.antworten1) {
+          this.right1 = false;
+        } else if (event.target.id !=this.active.richtigeantwort
         ) {
-          this.richtig1 = false; //Button der geklickt wurde muss rot blinken
+          this.right1 = false; //Button der geklickt wurde muss rot blinken
         }
       }
-      if (
-        this.antwort2anzeige ==
-        this.richtigeantwort[this.fragenauswahl[this.index]]
+      if (this.active.antworten2 ==this.active.richtigeantwort
       ) {
-        if (event.target.id == this.antwort2anzeige) {
-          this.richtig2 = false;
-        } else if (
-          event.target.id !=
-          this.richtigeantwort[this.fragenauswahl[this.index]]
+        if (event.target.id == this.active.antworten2) {
+          this.right2 = false;
+        } else if (event.target.id !=this.active.richtigeantwort
         ) {
-          this.richtig2 = false;
+          this.right2 = false;
         }
       }
     }, 1050);
     setTimeout(() => {
       if (
-        event.target.id != this.richtigeantwort[this.fragenauswahl[this.index]]
+        event.target.id != this.active.richtigeantwort
       ) {
         this.showModelBox = false;
       } else {
-        this.weiter();
+        this.forward();
       }
     }, 3050);
   }
-  weiter() {
+  this.clickonce=false;
+  }
+ public forward() {
     this.showModelBox = true;
     this.index = this.index + 1;
     this.dataservice.addindexspeichernzwei(this.index);
@@ -240,9 +232,17 @@ export class TwoAnswersComponent implements OnInit, DoCheck {
     this.dataservice.addquizrouting(this.indexrouting);
     this.isOpen1 = true;
     this.isOpen2 = true;
-    this.richtig1 = true;
-    this.richtig2 = true;
-    this.falsch1 = true;
-    this.falsch2 = true;
+    this.right1 = true;
+    this.right2 = true;
+    this.wrong1 = true;
+    this.wrong2 = true;
   }
+}
+interface Quiz{
+    docid:string;
+    fragen:string;
+    antworten1:string;
+    antworten2:string;
+    richtigeantwort:string;
+    begruendung:string;
 }

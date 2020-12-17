@@ -12,33 +12,16 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit, DoCheck {
-  switch: boolean = false;
   routingindex; // muss von den templates hochgesetzt werden.
-  anzeige: string;
-  reihenfolge = [
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-    'vier',
-    'zwei',
-  ];
-  anzeigevier: boolean = false;
-  anzeigezwei: boolean = false;
-  auswertung = false;
+  reihenfolge = ['vier','zwei','vier','zwei','vier','zwei','vier','zwei'];
+  showfour: boolean = false;
+  showtwo: boolean = false;
+  evaluation = false;
   dbantworten = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Quiz');
-  antworten = [];
-  richtigeantworten = [];
-  punkte: number = 0;
-  antwortenid = [];
-  jalla = true;
-  dbrichtig = firebase.firestore().collection('Quiz');
   start =false ;
   quiz = true;
   fabvisible:boolean=false;
@@ -67,17 +50,17 @@ export class QuizComponent implements OnInit, DoCheck {
   ngDoCheck() {
     this.routingindex = this.dataservice.getquizrouting();
     if (this.reihenfolge[this.routingindex] == 'vier') {
-      this.anzeigezwei = false;
-      this.anzeigevier = true;
+      this.showtwo = false;
+      this.showfour = true;
     }
     if (this.reihenfolge[this.routingindex] == 'zwei') {
-      this.anzeigezwei = true;
-      this.anzeigevier = false;
+      this.showtwo = true;
+      this.showfour = false;
     }
     if (this.routingindex >= this.reihenfolge.length) {
-      this.anzeigezwei = false;
-      this.anzeigevier = false;
-      this.auswertung = true;
+      this.showtwo = false;
+      this.showfour = false;
+      this.evaluation = true;
     }
   }
   novaclick(){
