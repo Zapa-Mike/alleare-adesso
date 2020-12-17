@@ -1,5 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { Component, DoCheck} from '@angular/core';
 import { DataService } from '../services/data.service';
 
 

@@ -1,11 +1,7 @@
-import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DoCheck,  OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
 import { QuizService } from '.././services/quiz.service';
-import { Data } from '@angular/router';
 import {
   trigger,
   state,

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
-import { Observable } from 'rxjs';
 import { Dropdown, Story, VierRadio, ZweiBilder } from '../model/stories';
 import { Radio } from '../model/stories';
 

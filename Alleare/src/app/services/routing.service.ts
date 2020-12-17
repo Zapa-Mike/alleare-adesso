@@ -1,5 +1,5 @@
-import { DoCheck, Injectable } from '@angular/core';
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Injectable()
 export class RoutingService {

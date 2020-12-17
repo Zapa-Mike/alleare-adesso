@@ -1,7 +1,5 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
-import firebase from 'firebase';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',

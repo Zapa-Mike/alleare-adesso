@@ -1,111 +1,85 @@
-import { LocationStrategy } from '@angular/common';
-import { isGeneratedFile } from '@angular/compiler/src/aot/util';
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
-import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.css'],
 })
-export class IntroComponent implements OnInit, DoCheck {
+export class IntroComponent implements OnInit {
   public form = this.fb.group({
     Name: [
       '',
       {
-        validators: [Validators.maxLength(20), Validators.required],
+        validators: [Validators.maxLength(20), Validators.required], // Festlegung auf maximal 20 Eingabezeichen im Namensfeld
         updateOn: 'change',
       },
     ],
-    updateOn: 'change'
+    updateOn: 'change',
   });
-  public Name: string;
-  homeintro = true;
-  //Routing
-  logo: boolean = true;
-  namenseingabe: boolean = false;
-  novaIntro: boolean = false;
-  novadialog: boolean = false;
-  indexnovadialog: number;
-  insurance: boolean = false;
-  docRef = firebase
+  public name: string;
+  public homeintro = true;
+  public logo: boolean = true;
+  public nameInput: boolean = false;
+  public novaIntro: boolean = false;
+  public docRef = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'));
 
-  constructor(
-    private router: Router,
-    private dataservice: DataService,
-    private fb: FormBuilder
-  ) {
-    this.dataservice.getIndexdialog();
-    this.dataservice.currentIndex2.subscribe(
-      (currentIndex2) => (this.indexnovadialog = currentIndex2)
-    );
-  }
-
+  constructor(private router: Router, private fb: FormBuilder) {}
   public get showRequiredError() {
+    // Name muss gesetzt sein
     return this.form.get('Name').errors?.required;
   }
 
   public get showCharLimitError() {
+    // Name darf nur maximal 20 Eingabezeichen lang sein
     return this.form.get('Name').errors?.maxlength;
   }
-
-  ngDoCheck() {
-    if (this.indexnovadialog == 1 && this.homeintro == true) {
-      this.insurance = false;
-      this.novadialog = true;
-    }
-  }
-
-  ngOnInit() {
-    this.logo = true;
-    this.novadialog = false;
-    this.insurance = false;
-    this.namenseingabe = false;
-    this.novaIntro = false;
-
+  public ngOnInit() {
     this.docRef.get().then((doc) => {
+      // schaut nach gesetztem Boolean für das Intro in der DB, innerhalb des Benutezrdokuments
       if (doc.exists) {
         this.homeintro = doc.data().homeintro;
         if (this.homeintro != false) {
+          // wenn Wert true oder undefined ist update den Wert auf true
           this.docRef.update({ homeintro: true });
           this.homeintro = true;
         }
       }
       setTimeout(() => {
+        // lässt das Logo beim  starten 2888 ms anzeigen
         this.logo = false;
-
         if (this.homeintro == true) {
-          this.namenseingabe = true;
+          // seigt die Namenseingabe -> Intro wird abgespielt
+          this.nameInput = true;
         } else if (this.homeintro == false) {
+          // Intro wird nicht abgespielt & direkter rout zu home
           this.router.navigate(['/home']);
         }
       }, 2888);
     });
   }
 
-  saveName() {
-    this.Name = this.form.get('Name').value;
-    firebase
+  public saveName() {
+    this.name = this.form.get('Name').value;
+    firebase // eingegebener Name wir in DB in dem Benuter gespeichert
       .firestore()
       .collection('Benutzer')
       .doc(localStorage.getItem('hans'))
       .set({
-        Name: this.Name,
+        Name: this.name,
         homeintro: true,
       });
-    this.namenseingabe = false;
-    this.novaIntro = true;
+    this.nameInput = false; // Seite für die Namenseingabe wird ausgeschaltet
+    this.novaIntro = true; // Seite mit Nova wird angezeigt
   }
-  //Routing
-  weiter() {
-    this.novaIntro = false;
-    this.insurance = true;
+
+  public continue() {
+    this.router.navigate(['intro/insurance']); // routet zu insurance.component.ts
+    this.novaIntro = false; // blendet Seite mit Nova aus
   }
 }
