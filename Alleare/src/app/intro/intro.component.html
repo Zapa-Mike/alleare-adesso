@@ -29,8 +29,19 @@
           id="formGroupExampleInput"
           placeholder="Name"
         />
-        <span style="color: red" *ngIf="form.controls.Name.invalid"
+        <span
+          style="color: red"
+          *ngIf="form.controls.Name.errors && this.showCharLimitError"
           >Es dürfen maximal nur 20 Zeichen eingeben werden</span
+        >
+        <span
+          style="color: red"
+          *ngIf="
+            form.controls.Name.errors &&
+            form.controls.Name.touched &&
+            this.showRequiredError
+          "
+          >Dieses Feld ist erforderlich</span
         >
       </div>
       <div class="col justify-content-center">
