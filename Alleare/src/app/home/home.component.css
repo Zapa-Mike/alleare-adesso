@@ -190,3 +190,14 @@ h1 {
   width: 15vw;
   height: 15vw;
 }
+
+#firstcont {
+  padding: 0vw 2vw 2vw 2vw;
+}
+#secondcont {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 2vw;
+  padding: 0vw 2vw 2vw 2vw;
+  border-radius: 30%;
+}
