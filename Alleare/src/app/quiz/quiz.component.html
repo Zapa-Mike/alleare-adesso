@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
   </head>
 
-  <body>
+  <body><!--Willkommen-Seite vom Quiz-->
     <div class="WillkommenSeite" [hidden]="start">
       <div class="Titel text-center">
         <h1>Willkommen im Quiz</h1>
@@ -90,6 +90,7 @@
       </div>
     </div>
 
+    <!--Quiz-Seiten mit Fragen und Antworten-->
     <div [hidden]="quiz">
     <div class="Titel text-center" *ngIf="anzeigevier || anzeigezwei">
       <h1>Quiz</h1>
