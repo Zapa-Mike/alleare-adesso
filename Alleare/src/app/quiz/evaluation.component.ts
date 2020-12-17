@@ -132,15 +132,15 @@ export class evaluationComponent implements OnInit {
         this.answers.push(doc.data().antwort)
       })
     }
-        for (let y = 0; y < this.antwortenid.length; y++) {
-          this.dbrightanswers
-            .doc(this.antwortenid[y])
-            .get()
-            .then((doc) => {
-              this.rightanswers.push(doc.data().richtig);
-            });
-        }
-    setTimeout(() => {
+    for (let y = 0; y < this.antwortenid.length; y++) {
+      this.dbrightanswers
+        .doc(this.antwortenid[y])
+        .get()
+        .then((doc) => {
+          this.rightanswers.push(doc.data().richtig);
+      });
+    }
+    setTimeout(() => { //Antworten werden mit den richtigen Antworten aus der Db verglichen
       for (let i = 0; i < this.antwortenid.length; i++) {
         if (this.answers[i] == this.rightanswers[i]) {
           this.points = this.points + 1;
@@ -155,13 +155,12 @@ export class evaluationComponent implements OnInit {
 
       this.percent = this.percentageCalculator();
     }, 1000);
-    //Muss noch überarbeitet werden.
   }
-  public reload() {
+  public reload() { //löschen der angezeigten FragenIds und reload der Page
     this.quiz.deletedocid();
     location.reload();
   }
-  public percentageCalculator() {
+  public percentageCalculator() { //Spinner Prozentuale Berechnung
     const p = (100 / this.answers.length) * this.points;
     return p;
   }

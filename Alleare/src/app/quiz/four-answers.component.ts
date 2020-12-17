@@ -169,22 +169,22 @@ export class FourAnswersComponent implements OnInit{
   constructor(private dataservice: DataService, private quiz: QuizService) {}
 
  async ngOnInit() {
-    this.Daten=await this.dbrequest();
+    this.Daten=await this.dbrequest(); //Wartet auf die Db anfrage der Daten
     this.isLoading=false;
-    this.fragenauswahl = this.quiz.getfragenauswahl();
-    this.indexrouting = this.dataservice.getquizrouting();
-    this.index = this.dataservice.getindexspeichernvier();
+    this.fragenauswahl = this.quiz.getfragenauswahl();  //Random Fragenauswahl aus dem QuizService
+    this.indexrouting = this.dataservice.getquizrouting();  //Index übergabe für das Routing in quizcomponent.ts
+    this.index = this.dataservice.getindexspeichernvier();  //Übergabe des Fortschritts
     this.currentquestion();
   }
 
  private currentquestion(){
-    this.active=this.Daten[this.fragenauswahl[this.index]]
+    this.active=this.Daten[this.fragenauswahl[this.index]] //Aktive Anzeige der Frage
   }
 
  public async dbrequest():Promise<Quiz[]>{
     let data:Quiz[]=[];
     await this.get
-      .where('type', '==', 'vierAntworten')
+      .where('type', '==', 'vierAntworten') //Nur Daten des typs vierAntworten
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
@@ -204,24 +204,24 @@ export class FourAnswersComponent implements OnInit{
     }
 
  public push(event, whichbtn: number) {
-   if(this.clickonce==true){
+   if(this.clickonce==true){ //Button kann nur einmal geklickt werden
      this.quiz.adddocid(this.active.docid); //Push docid in dataservice
-     if (event.target.id == this.active.antworten1) {
+     if (event.target.id == this.active.antworten1) { //Animation
        this.isOpen1 = false;
-     } else if (event.target.id == this.active.antworten2) {
+     } else if (event.target.id == this.active.antworten2) { 
        this.isOpen2 = false;
      } else if (event.target.id == this.active.antworten3) {
        this.isOpen3 = false;
      } else if (event.target.id == this.active.antworten4) {
        this.isOpen4 = false;
      }
-     this.dbpush.doc(this.active.docid).set({
+     this.dbpush.doc(this.active.docid).set({ //Antwort wird in die Db geschrieben
        antwort: event.target.id,
      });
  
      setTimeout(() => {
        if (whichbtn == 1) {
-         if (event.target.id !=this.active.richtigeantwort) {
+         if (event.target.id !=this.active.richtigeantwort) { //Animation:Richtig/Falsch
            this.wrong1 = false;
          }
        }
@@ -276,12 +276,12 @@ export class FourAnswersComponent implements OnInit{
      }, 1050);
  
      setTimeout(() => {
-       if (event.target.id != this.active.richtigeantwort) {
+       if (event.target.id != this.active.richtigeantwort) { //Wenn Frage falsch ist, popt eine Begründung auf
          this.showModelBox = false;
        } else {
          this.forward();
        }
-     }, 3050);
+     }, 3050); //Timeout, damit die Animationen durchlaufen können
    }
    this.clickonce=false;
   }
@@ -291,7 +291,7 @@ export class FourAnswersComponent implements OnInit{
     this.dataservice.addindexspeichernvier(this.index);
     this.indexrouting = this.indexrouting + 1;
     this.dataservice.addquizrouting(this.indexrouting);
-    this.isOpen1 = true;
+    this.isOpen1 = true; 
     this.isOpen2 = true;
     this.isOpen3 = true;
     this.isOpen4 = true;
@@ -306,7 +306,7 @@ export class FourAnswersComponent implements OnInit{
   }
 }
 
-interface Quiz{
+interface Quiz{ //Interface für die Datenabfrage
   docid:string;
   fragen:string;
   antworten1:string;

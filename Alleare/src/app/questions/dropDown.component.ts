@@ -85,11 +85,11 @@ export class DropDownComponent implements OnInit{
 
   setLand(event) {
     const weiterButton = (document.getElementById(
-      'Vorbutton') as unknown) as HTMLInputElement;  
+      'Vorbutton') as unknown) as HTMLInputElement;  //Button ist disabled, wenn man kein Bundesland gesetzt hat
 
     weiterButton.disabled = false; 
     let title: string = event.target.id;
-    this.pickedstate = title;
+    this.pickedstate = title; //Anzeige in der Dropdown liste
     firebase
       .firestore()
       .collection('Benutzer')
@@ -97,25 +97,25 @@ export class DropDownComponent implements OnInit{
       .collection('Fragenkatalog')
       .doc('Frage7')
       .set({
-        antwort: title,
+        antwort: title, //Push in die Db
       });
   }
   private setInitialData(){
-    this.activequestion=this.Frage[0];
+    this.activequestion=this.Frage[0]; //Aktive Interface Variablen für die Anzeige
   }
 
   public async ngOnInit() {
-      await this.loadquestion();
-      await this.loadstate();
-      this.setInitialData();
+      await this.loadquestion(); //Frage Daten werden geladen
+      await this.loadstate();    //Bundesländer werden geladen
+      this.setInitialData();      //activeInterfaces werden gesetzt
       this.isLoading=false;//Dom wird geladen
   }
   public async loadquestion(){
-    this.Frage= await this.questionService.getdropdownfrage();
+    this.Frage= await this.questionService.getdropdownfrage(); //Fragedaten kommen aus dem Service
   }
   public async loadstate(){
-    this.Bundesland= await this.questionService.getdropdown();
-    this.Bundesland.map((o,index)=>{
+    this.Bundesland= await this.questionService.getdropdown(); //Auswahlmöglichkeiten kommen aus dem Service
+    this.Bundesland.map((o,index)=>{ //Jedes Bundesland wird einzeln in activestate[] gesetzt
       this.activestate[index]=o.bundesland
     })
   }
@@ -123,13 +123,13 @@ export class DropDownComponent implements OnInit{
     this.dataservice.addquestionprogress(1);//ProgressBar
     this.index++;
     if(this.index>=this.activequestion.frage.length){
-      this.router.navigate(["/evaluation"])
+      this.router.navigate(["/evaluation"])//Ist Index größer als die Anzahl der Fragen, navigate zu Evaluation
     }
   }
   zurueck() {
     this.dataservice.addquestionprogress(-1);//ProgressBar
     if(this.index==0){
-      this.router.navigate(["/questions/options"])
+      this.router.navigate(["/questions/options"]) //Zurück zum optionstemplate
     }else{
       this.index--;
     }

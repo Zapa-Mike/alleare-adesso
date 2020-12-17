@@ -8,14 +8,12 @@ import * as firebase from 'firebase';
 })
 export class FaqComponent implements OnInit{
   panelOpenState = false;
-  fragenantwoten=[];
-  constructor(){
-
-  }
+  faq=[];
+  constructor(){}
   ngOnInit(){
     firebase.firestore().collection('FAQ').get().then((querysnapshot)=>{
       querysnapshot.forEach((doc)=>{
-        this.fragenantwoten.push(
+        this.faq.push(
           {
             fragen:doc.id,
             antworten:doc.data().antwort
@@ -24,6 +22,4 @@ export class FaqComponent implements OnInit{
       })
     })
   }
-
-
 }

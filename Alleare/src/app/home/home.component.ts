@@ -10,19 +10,14 @@ import { DataService } from '../services/data.service';
 })
 export class HomeComponent implements OnInit {
   nameIntro: string;
-  NameIntro: string;
-  index = 0;
   home=true;
-
    docRef = firebase
   .firestore()
   .collection('Benutzer')
   .doc(localStorage.getItem('hans'));
 
-  headerGrau = false;
   homeintro = false;
   constructor(private dataservice: DataService, private router: Router) {
-   
   }
 
   ngOnInit() {
@@ -35,31 +30,22 @@ export class HomeComponent implements OnInit {
         if(this.homeintro==false){
           this.home= true;
         }
-        
       }
     });
-  
-    
   }
   fragebogen() {
-  
     if(this.homeintro==false){
-      var index = (0).toString();
-      localStorage.setItem('storyIndex', index);
-      localStorage.setItem('radioIndex', index);
       this.router.navigate(['/questions'])
     }
-    
-
   }
   weitermachen() {
-    this.docRef.update({homeintro:false})
-    this.home= true;
-    this.homeintro = false;
-    this.dataservice.sendHeader(false);
+    this.docRef.update({homeintro:false}) //HomeIntro wird nicht mehr angezeigt, wenn es von der DB abgefragt wird
+    this.home= true; //Wird angezeigt
+    this.homeintro = false; //Wird aus dem DOM entfernt
+    this.dataservice.sendHeader(false); //Dataservice, speichert ab das Header nicht mehr grau angezeigt werden soll
   }
 
-  navigate() {
+  navigate() { //Navigiert zu Nova und gibt den eingetragenenNamen mit
     this.router.navigate(['/nova'], {
       queryParams: { name: this.nameIntro },
     });

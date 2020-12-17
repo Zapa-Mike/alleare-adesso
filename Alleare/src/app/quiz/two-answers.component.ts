@@ -139,21 +139,21 @@ export class TwoAnswersComponent implements OnInit{
   constructor(private dataservice: DataService, private quiz: QuizService) {}
 
   async ngOnInit() {
-    this.Data=await this.dbrequest();
+    this.Data=await this.dbrequest(); //Wartet auf die Db anfrage der Daten
     this.isLoading=false;
-    this.generatedquestions = this.quiz.getfragenauswahl();
-    this.indexrouting = this.dataservice.getquizrouting();
-    this.index = this.dataservice.getindexspeichernzwei();
+    this.generatedquestions = this.quiz.getfragenauswahl();//Random Fragenauswahl aus dem QuizService
+    this.indexrouting = this.dataservice.getquizrouting(); //Index übergabe für das Routing in quizcomponent.ts
+    this.index = this.dataservice.getindexspeichernzwei(); //Übergabe des Fortschritts
     await this.currentquestion();
   }
  private currentquestion(){
-  this.active=this.Data[this.generatedquestions[this.index]]
+  this.active=this.Data[this.generatedquestions[this.index]] //Aktive Anzeige der Frage
   }
 
  public async dbrequest():Promise<Quiz[]>{
     let data:Quiz[]=[];
     await this.get
-      .where('type', '==', 'zweiAntworten')
+      .where('type', '==', 'zweiAntworten') //Nur Daten des typs zweiAntworten
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
@@ -171,7 +171,7 @@ export class TwoAnswersComponent implements OnInit{
   }
 
  public push(event, whichbtn: number) {
-   if(this.clickonce==true){
+   if(this.clickonce==true){//Button kann nur einmal geklickt werden
     this.quiz.adddocid(this.active.docid); //Push docid in dataservice
     if (event.target.id == this.active.antworten1) {
       this.isOpen1 = false;
@@ -213,14 +213,12 @@ export class TwoAnswersComponent implements OnInit{
       }
     }, 1050);
     setTimeout(() => {
-      if (
-        event.target.id != this.active.richtigeantwort
-      ) {
+      if (event.target.id != this.active.richtigeantwort) { //Wenn Frage falsch ist, popt eine Begründung auf
         this.showModelBox = false;
       } else {
         this.forward();
       }
-    }, 3050);
+    }, 3050); //Timeout, damit die Animationen durchlaufen können
   }
   this.clickonce=false;
   }
@@ -238,7 +236,7 @@ export class TwoAnswersComponent implements OnInit{
     this.wrong2 = true;
   }
 }
-interface Quiz{
+interface Quiz{ //Interface für die Datenabfrage
     docid:string;
     fragen:string;
     antworten1:string;

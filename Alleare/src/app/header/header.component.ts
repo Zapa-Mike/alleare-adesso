@@ -8,15 +8,12 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements DoCheck {
-  grau = true;
+  grey = true;
 
   constructor(private DataService: DataService) {}
 
   ngDoCheck(){
-    if(this.grau == true){
-      
-    }
-    this.grau = this.DataService.getHeader();
+    this.grey = this.DataService.getHeader();
   }
   
 }
