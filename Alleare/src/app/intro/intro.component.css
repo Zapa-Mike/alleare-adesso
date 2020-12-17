@@ -105,9 +105,6 @@ form {
  
 }
 
-.HaftpflichtBild {
- 
-}
 
 .TextHausrat {
   font-size: 4.5vw;
@@ -120,13 +117,7 @@ form {
 /*Screen Intro Irrtümer Darstellung + Positionierung Ende*/
 
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Anfang*/
-.PersonenbefoerderungBild {
- 
-}
 
-.AutoschadenBild {
-  
-}
 
 .TextPersonenbefoerderung {
   margin-top: -26%;
@@ -143,10 +134,7 @@ form {
 /*Screen Intro Alltagssituation Autounfall Darstellung + Positionierung Ende*/
 
 /*Screen Intro Alltagssituation Private Unfallversicherung Darstellung + Positionierung Anfang*/
-.PrivateUnfallversicherungBild {
-  
 
-}
 
 .HaushaltsunfallBild {
   margin-top: -10%;

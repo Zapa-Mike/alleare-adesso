@@ -1,8 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { StoriesComponent } from '../questions/stories.component';
-import { QuestionsComponent } from '../questions/questions.component';
 import firebase from 'firebase';
-import { query } from '@angular/animations';
 
 
 export class DataService {
@@ -12,12 +9,6 @@ export class DataService {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'));
 
-    private subject = new Subject<any>();
-    currentIndex=this.subject.asObservable();
-    private subject1 =new Subject<any>();
-    currentIndex1=this.subject1.asObservable();
-    private subject2 =new Subject<any>();
-    currentIndex2=this.subject2.asObservable();
     //Progressbar
     private progress = new Subject<any>();
     questionprogress=this.progress.asObservable();
@@ -34,7 +25,6 @@ export class DataService {
     //QuestionsIndex
     indexstory:number=0;
     indexoptions:number=0;
-
     constructor() {
         this.docRef.get().then((doc) => {
             if (doc.exists) {
@@ -45,15 +35,7 @@ export class DataService {
             }
           });
      
-    }
-    sendIndexdialog(indexdialog:number)//Intro
-    {
-        this.subject2.next(indexdialog);
-    }
-
-    getIndexdialog(): Observable<any>{//Intro
-        return this.subject2.asObservable();
-    }
+        }
 
     //Fragenkatalog(Speichern der Indizes)
     addquestionindex(indexstory:number){

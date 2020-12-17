@@ -1,14 +1,12 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
-import firebase from 'firebase';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements DoCheck {
+export class NavbarComponent implements DoCheck{
   homeIcon: string;
   tippsIcon: string;
   quizIcon: string;
@@ -37,38 +35,31 @@ export class NavbarComponent implements DoCheck {
   constructor(private route: LocationStrategy) {}
 
   ngDoCheck() {
-    // Controls Navbar and Header on all screens
-    const route = this.route.path();
-
-    if (route.startsWith('/quiz')) {
-      this.homeIcon = this.homeD;
+    this.homeIcon = this.homeD;
       this.tippsIcon = this.tippsD;
       this.quizIcon = this.quiz;
       this.faqIcon = this.faqD;
       this.infosIcon = this.infosD;
-    } else if (route.startsWith('/tipps')) {
-      this.homeIcon = this.homeD;
+
+    const route = this.route.path();
+    if(route.startsWith('/quiz')){
+      this.quizIcon = this.quiz;
+    }else if(!route.startsWith('/quiz')){
+      this.quizIcon = this.quizD;
+    }
+    if(route.startsWith('/tipps')){
       this.tippsIcon = this.tipps;
-      this.quizIcon = this.quizD;
-      this.faqIcon = this.faqD;
-      this.infosIcon = this.infosD;
-    } else if (route.startsWith('/faq')) {
-      this.homeIcon = this.homeD;
+    }else if(!route.startsWith('/tipps')){
       this.tippsIcon = this.tippsD;
-      this.quizIcon = this.quizD;
+    }
+    if(route.startsWith('/faq')){
       this.faqIcon = this.faq;
-      this.infosIcon = this.infosD;
-    } else if (route.startsWith('/infos')) {
-      this.homeIcon = this.homeD;
-      this.tippsIcon = this.tippsD;
-      this.quizIcon = this.quizD;
+    }else if(!route.startsWith('/faq')){
       this.faqIcon = this.faqD;
+    }
+    if(route.startsWith('/infos')){
       this.infosIcon = this.infos;
-    } else if (route.startsWith('/nova') || route.startsWith('/settings')) {
-      this.homeIcon = this.homeD;
-      this.tippsIcon = this.tippsD;
-      this.quizIcon = this.quizD;
-      this.faqIcon = this.faqD;
+    }else if(!route.startsWith('/infos')){
       this.infosIcon = this.infosD;
     }
   }

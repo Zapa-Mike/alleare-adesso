@@ -1,7 +1,5 @@
-import { ObserversModule } from '@angular/cdk/observers';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import firebase from 'firebase';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

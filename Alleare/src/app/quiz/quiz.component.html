@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
   </head>
 
-  <body>
+  <body><!--Willkommen-Seite vom Quiz-->
     <div class="WillkommenSeite" [hidden]="start">
       <div class="Titel text-center">
         <h1>Willkommen im Quiz</h1>
@@ -65,7 +65,7 @@
             src="/assets/icons/icon_arrow_forward.svg"
             width="50"
             height="50"
-            (click)="weiter()"
+            (click)="forward()"
           />
         </button>
       </div>
@@ -90,14 +90,15 @@
       </div>
     </div>
 
+    <!--Quiz-Seiten mit Fragen und Antworten-->
     <div [hidden]="quiz">
-    <div class="Titel text-center" *ngIf="anzeigevier || anzeigezwei">
+    <div class="Titel text-center" *ngIf="showfour || showtwo">
       <h1>Quiz</h1>
     </div>
 
-    <four-answers *ngIf="anzeigevier"></four-answers>
-    <two-answers *ngIf="anzeigezwei"></two-answers>
-    <evaluation-quiz *ngIf="auswertung"></evaluation-quiz>
+    <four-answers *ngIf="showfour"></four-answers>
+    <two-answers *ngIf="showtwo"></two-answers>
+    <evaluation-quiz *ngIf="evaluation"></evaluation-quiz>
     <novafav-btn *ngIf="fabvisible"></novafav-btn>
   </div>
   </body>

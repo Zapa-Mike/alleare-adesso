@@ -1,8 +1,5 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { snapshotChanges } from '@angular/fire/database';
 import firebase from 'firebase';
-import { of } from 'rxjs';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -61,8 +58,7 @@ export class EvaluationComponent implements OnInit {
               .then((doc) => {
                 perVersicherung.push(doc.data().versicherung);
                 var versicherung = doc.data().versicherung;
-                if(versicherung!=undefined)
-                {
+                if(versicherung!= undefined){
                   this.db1
                   .collection('Versicherungen')
                   .doc(versicherung)
