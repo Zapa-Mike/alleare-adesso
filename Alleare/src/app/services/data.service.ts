@@ -68,8 +68,10 @@ export class DataService {
     getquestionoptionsindex(){
         return this.indexoptions;
     }
-    deleteindex(){
+    deleteindexoption(){
         this.indexoptions=0;
+    }
+    deleteindexstory(){
         this.indexstory=0;
     }
     //Ende Fragenkatalog

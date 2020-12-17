@@ -291,6 +291,7 @@ public zweiBildervisible: boolean = false;
       this.setActiveZweibilder(this.index-this.Vierradio.length);
     }
     if (this.index < 0) {
+      this.dataservice.deleteindexoption();
       this.router.navigate(["/questions"])
     }
   }
