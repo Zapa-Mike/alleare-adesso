@@ -62,6 +62,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { novafabComponent } from './novafab.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { QuestionService } from './services/question.service';
 
 
 @NgModule({
@@ -143,6 +144,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     RoutingService,
     RouteNameResolverService,
     HomeComponent,
+    QuestionService
   ],
   bootstrap: [AppComponent],
 })
