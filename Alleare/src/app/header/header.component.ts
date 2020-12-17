@@ -1,7 +1,5 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { Component, DoCheck } from '@angular/core';
 import { DataService } from '../services/data.service';
-
 
 @Component({
   selector: 'app-header',
@@ -13,11 +11,9 @@ export class HeaderComponent implements DoCheck {
 
   constructor(private DataService: DataService) {}
 
-  ngDoCheck(){
-    if(this.grau == true){
-      
+  ngDoCheck() {
+    if (this.grau == true) {
     }
     this.grau = this.DataService.getHeader();
   }
-  
 }

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';
 
-
 @Component({
   selector: 'dropDown',
   template: `
@@ -21,7 +20,7 @@ import { DataService } from '../services/data.service';
             aria-expanded="false"
             id="Bundestext"
           >
-            <a>{{ausgewaehlt}}</a>
+            <a>{{ ausgewaehlt }}</a>
           </button>
 
           <div class="dropdown-menu" id="drop">
@@ -38,7 +37,10 @@ import { DataService } from '../services/data.service';
         </div>
       </div>
 
-      <div class="col rowVZ">
+      <div class="col rowVZ form-group">
+        <button id="Zbutton" class="btn" (click)="zurueck()">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
         <button
           id="Vorbutton"
           class="btn"
@@ -50,9 +52,6 @@ import { DataService } from '../services/data.service';
             width="50"
             height="50"
           />
-        </button>
-        <button id="Zbutton" class="btn" (click)="zurueck()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
       <div class="d-flex Nova justify-content-end fixed-bottom">
@@ -69,8 +68,8 @@ import { DataService } from '../services/data.service';
 })
 export class DropDownComponent implements OnInit, DoCheck {
   Bundesland = [];
-  index1:number;
-  ausgewaehlt:string = "Bundesland"
+  index1: number;
+  ausgewaehlt: string = 'Bundesland';
 
   dbget = firebase.firestore().collection('Bundeslaender'); //in der Collection sind in den Docs die einzelnen Bundesländer abgespeichert
   index: number = 0; // dient zum Hochzähle und wechseln der Fragen
@@ -94,10 +93,10 @@ export class DropDownComponent implements OnInit, DoCheck {
   // Funktion erkennt die ID der gelickten Auswahl und pusht diese in DB
   setLand(event) {
     const weiterButton = (document.getElementById(
-      'Vorbutton') as unknown) as HTMLInputElement;
-      
+      'Vorbutton'
+    ) as unknown) as HTMLInputElement;
 
-      weiterButton.disabled = false; 
+    weiterButton.disabled = false;
     let title: string = event.target.id;
     this.ausgewaehlt = title;
     firebase
@@ -119,25 +118,25 @@ export class DropDownComponent implements OnInit, DoCheck {
   // dient später für die Befüllung des DropDowns
   ngOnInit() {
     const weiterButton = (document.getElementById(
-      'Vorbutton') as unknown) as HTMLInputElement;
-      weiterButton.disabled = true;  
+      'Vorbutton'
+    ) as unknown) as HTMLInputElement;
+    weiterButton.disabled = true;
     this.dbget.get().then((querysnapshot) => {
       querysnapshot.forEach((doc) => {
         this.Bundesland.push(doc.data().name);
       });
     });
-  
 
-      console.log( weiterButton.disabled)
+    console.log(weiterButton.disabled);
   }
   // index wird hochgezählt beim weiter klicken -> nächste Frage wird aufgerufen
   weiter() {
-    this.dataservice.addquestionprogress(1);//ProgressBar
+    this.dataservice.addquestionprogress(1); //ProgressBar
     this.index++;
   }
   // index wird runtergesetzt beim zurueck klicken -> vorherige Frage wird aufgerufen
   zurueck() {
-    this.dataservice.addquestionprogress(-1);//ProgressBar
+    this.dataservice.addquestionprogress(-1); //ProgressBar
     this.index--;
     this.dataservice.sendIndexrouting2(1);
   }

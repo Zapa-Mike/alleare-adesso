@@ -9,24 +9,38 @@ import { Data } from '@angular/router';
 @Component({
   selector: 'app-stories',
   template: `
-    <div class="Frage">
-      <div [formGroup]="form" class="card">
-        <div>
+    <div class="grid-container Frage">
+      <div [formGroup]="form" class="hintergrund fixed-center">
+        <div class="TEST">
           <img
+            class="row"
             src="data:image/gif;base64,{{ bildanzeige }}"
-            class="img-responsive"
+            alt="BILDANZEIGE"
+            class="img"
+            width="auto"
+            height="auto"
           />
-          <div *ngIf="storyvisible" class="ImageStory">
+          <div *ngIf="storyvisible" class="row ImageStory">
             {{ storyanzeige }}
           </div>
+
           <!--"Anhören" Button-->
-          <div *ngIf="storyvisible" class="AnhoerenButton">
-            <button class="btn" id="anhoeren" (click)="playsound()">
-              <img class="anhoerenIcon" src="/assets/icons/icon_anhoeren.svg" />
-              Anhören
-            </button>
+          <div
+            *ngIf="storyvisible"
+            class="row AnhoerenButton"
+            class="btn"
+            id="anhoeren"
+            (click)="playsound()"
+          >
+            <img
+              class="anhoerenIcon"
+              src="/assets/icons/icon_anhoeren.svg"
+              alt="ANHÖREN_BUTTON"
+            />
+            <p>Vorlesen</p>
           </div>
-          <div class="RadioButtonsJaNein form-group">
+
+          <div class="row RadioButtonsJaNein">
             <div id="ButtonJa" class="form-check form-check-inline">
               <input
                 type="radio"
@@ -37,6 +51,7 @@ import { Data } from '@angular/router';
               />
               <label class="form-check-label" for="redundant"> Ja </label>
             </div>
+
             <div id="ButtonNein" class="form-check form-check-inline">
               <input
                 type="radio"
@@ -50,32 +65,49 @@ import { Data } from '@angular/router';
           </div>
         </div>
       </div>
-    </div>
-    <div class="col rowVZ form-group">
-      <button id="Wbutton" class="btn" (click)="weiter()">
-        <!--Andere id als bei radio.component-->
-        <img
-          src="/assets/icons/icon_arrow_forward.svg"
-          width="50"
-          height="50"
-        />
-      </button>
-      <button id="bbutton" class="btn" (click)="zurueck()">
-        <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-      </button>
-    </div>
-    <div class="grid-containerNovaSprechblase">
-      <div class="bubble shadow bubble-bottom-right" contenteditable="false">
-        {{ fragenanzeige }}
+
+      <div class="row rowVZ form-group">
+        <button id="bbutton" class="btn form-check-inline" (click)="zurueck()">
+          <img
+            src="/assets/icons/icon_arrow_back.svg"
+            alt="Button_BACKWARD"
+            width="auto"
+            height="auto"
+          />
+        </button>
+
+        <button id="Wbutton" class="btn form-check-inline" (click)="weiter()">
+          <!--Andere id als bei radio.component-->
+          <img
+            src="/assets/icons/icon_arrow_forward.svg"
+            alt="Button_FORWARD"
+            width="auto"
+            height="auto"
+          />
+        </button>
       </div>
-      <img
-        src="/assets/nova/nova_fragenkatalog.png"
-        width="100"
-        height="100"
-        id="NovaImage"
-      />
+      <div class="row grid-containera nova_and_question form-group fixed-bottom">
+        <div class="grid-itema tbq">
+          <img
+            src="/assets/Sprechblase/speech_bubble_one.png"
+            width="auto"
+            height="auto"
+            id="TalkBubble"
+          />
+          <div class="grid-itema questions">{{ fragenanzeige }}</div>
+        </div>
+        <div class="grid-itema nova_img">
+          <img
+            src="/assets/nova/nova_fragenkatalog.png"
+            width="auto"
+            height="auto"
+            id="NovaImage"
+          />
+        </div>
+      </div>
     </div>
   `,
+
   styleUrls: ['./questions.component.css'],
 })
 export class StoriesComponent implements OnInit, DoCheck {
@@ -146,7 +178,7 @@ export class StoriesComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-   
+
     this.currentaudio = new Audio(this.audiofiles[0]);
     if (this.dataservice.getIndexTemp1() == null) {
       console.log('anfang');
@@ -206,7 +238,6 @@ export class StoriesComponent implements OnInit, DoCheck {
   }
 
   weiter() {
-    this.dataservice.addquestionprogress(1);//ProgressBar
     this.currentaudio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen.
     this.counter = 2; //Damit eim ersten mal klicken die funktion wieder play ausführt.
     const weiterButton = (document.getElementById(
@@ -262,7 +293,6 @@ export class StoriesComponent implements OnInit, DoCheck {
     }
   }
   zurueck() {
-    this.dataservice.addquestionprogress(-1);//ProgressBar
     this.currentaudio.pause(); //Pausiert audio beim zurück gehen
     this.index = this.index - 1;
     this.counter = 2; //Setzt play pause counter zurück
