@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import { Observable } from 'rxjs';
-import { Story, VierRadio, ZweiBilder } from '../model/stories';
+import { Dropdown, Story, VierRadio, ZweiBilder } from '../model/stories';
 import { Radio } from '../model/stories';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Radio } from '../model/stories';
 })
 export class QuestionService {
   dbget = firebase.firestore().collection('Fragenkatalog');
+  dbget1 = firebase.firestore().collection('Bundeslaender');
 
   public audiofiles = [
     '/assets/StoryAudio/Story1.mp3',
@@ -92,5 +93,32 @@ export class QuestionService {
         });
       });
     return data;
+  }
+  public async getdropdown():Promise<Dropdown[]>{
+    let data:Dropdown[]=[];
+    await this.dbget1
+      .get()
+      .then((querysnapshot) => {
+        querysnapshot.forEach((doc) => {
+          data.push({
+            bundesland:doc.data().name,
+          })
+        });
+      });
+      return data
+  }
+  public async getdropdownfrage():Promise<Dropdown[]>{
+    let data:Dropdown[]=[];
+    await this.dbget
+      .where('type', '==', 'liste')
+      .get()
+      .then((querysnapshot) => {
+        querysnapshot.forEach((doc) => {
+          data.push({
+            frage:doc.data().frage,
+          })
+        });
+      });
+      return data
   }
 }

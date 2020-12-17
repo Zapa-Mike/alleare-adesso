@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataservice.addIndexTemp1(this.index); // Damit wir aus dem Fragenkatalog raus und rein können
-   
+    this.dataservice.deleteindexoption();//Löscht Index des Fragenkatalogs
+    this.dataservice.deleteindexstory();
     this.docRef.get().then((doc) => {
       if (doc.exists) {
         this.nameIntro = doc.data().Name;

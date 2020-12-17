@@ -29,3 +29,8 @@ export interface ZweiBilder{
     label1:string;
     label2:string;
 }
+
+export interface Dropdown{
+    frage?:string;
+    bundesland?:string;
+}

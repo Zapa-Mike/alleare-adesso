@@ -199,8 +199,8 @@ public zweiBildervisible: boolean = false;
   private fb: FormBuilder, private router: Router) {
   }
   private setInitialData(){
-    this.activevierradio=this.Vierradio[0];
-    this.activezweibilder=this.Zweibilder[0];
+    this.activevierradio=this.Vierradio[this.index];
+    this.activezweibilder=this.Zweibilder[this.index];
     const docIds = [].concat
     (this.Zweibilder.map((o) => o.docid),
     this.Vierradio.map((o) => o.docid)
@@ -221,9 +221,22 @@ public zweiBildervisible: boolean = false;
   }
 
   public async ngOnInit() {
-    await this.loadvierradio(); //Wartet auf die Funktion
-    await this.loadbild();
-    this.setInitialData();
+    this.index=this.dataservice.getquestionoptionsindex();
+    if(this.index==0){
+      await this.loadvierradio(); //Wartet auf die Funktion
+      await this.loadbild();
+      this.setInitialData();
+    }
+    if(this.index>0){
+      this.vierradiovisible=false;
+      this.zweiBildervisible=true;
+      await this.loadvierradio();
+      await this.loadbild();
+      this.setInitialData();
+      this.index=this.index-1;
+      this.setActiveZweibilder(this.index-this.Vierradio.length);
+    }
+    
     this.isLoading=false;
   }
 
@@ -233,6 +246,7 @@ public zweiBildervisible: boolean = false;
       this.result[this.index].antwort = this.form.get('antwort').value;
       this.form.get('antwort').setValue('');
       this.index=this.index+1;
+      this.dataservice.addquestionindex2(this.index);
       if(this.index<this.Vierradio.length){
         this.setActiveVierradio(this.index);
       }else{
@@ -264,13 +278,22 @@ public zweiBildervisible: boolean = false;
 
   zurueck() {
     this.dataservice.addquestionprogress(-1); //ProgressBar
-    if (this.index >= 0) {
-      this.index--; // setzt Index eins runter
+    this.index=this.index-1; // setzt Index eins runter
+    if(this.index<this.Vierradio.length)
+      {
+        this.zweiBildervisible=false;
+        this.vierradiovisible=true;
+        this.setActiveVierradio(this.index)
+      }
+    if(this.index>=this.Vierradio.length){
+      this.vierradiovisible=false;
+      this.zweiBildervisible=true;
+      this.setActiveZweibilder(this.index-this.Vierradio.length);
     }
     if (this.index < 0) {
-      this.dataservice.sendIndexrouting1(1); // uebergibt dem Dataservice die Anweisung Temp1 zu öffnen
+      this.dataservice.deleteindexoption();
+      this.router.navigate(["/questions"])
     }
-    this.dataservice.addindexTemp2(this.index); // uebergibt dem Dataservice aktuellen Index
   }
 }
 interface Result {

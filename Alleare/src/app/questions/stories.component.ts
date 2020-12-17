@@ -141,8 +141,8 @@ export class StoriesComponent implements OnInit {
   ) {}
 
   private setInitialData() {
-    this.activeStory = this.Stories[0];
-    this.activeRadio = this.Radio[0];
+    this.activeStory = this.Stories[this.index];
+    this.activeRadio = this.Radio[this.index];
     const docIds = [].concat(
       this.Stories.map((o) => o.docidstory),
       this.Radio.map((o) => o.docidradio)
@@ -158,8 +158,7 @@ export class StoriesComponent implements OnInit {
   private async loadStories() {
     this.Stories = await this.questionService.getStories();
     const audios: HTMLAudioElement[] = this.questionService.audiofiles.map(
-      (file) => new Audio(file)
-    );
+      (file) => new Audio(file));
     this.Stories = this.Stories.map((o, index) => {
       // o ist die jeweilige Story und index ist der jeweilige Index
       return { ...o, audio: audios[index] }; //Fügt jedem Feld eine Audio hinzu
@@ -178,8 +177,18 @@ export class StoriesComponent implements OnInit {
   }
 
   public async ngOnInit() {
-    await this.loadData();
-    this.setInitialData();
+    this.index=this.dataservice.getquestionstoryindex();
+    if(this.index==0){
+      await this.loadData();
+      this.setInitialData();
+    }
+    if(this.index>0){
+      this.storyvisible = false; 
+      await this.loadData();
+      this.setInitialData();
+      this.index=this.index-1;
+      this.setActiveRadio(this.index - this.Stories.length);
+    }
   }
 
   public playsound(): void {
@@ -192,19 +201,20 @@ export class StoriesComponent implements OnInit {
 
   public weiter() {
     this.dataservice.addquestionprogress(1); //ProgressBar
-    this.activeStory.audio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen
-
+    if(this.index<this.Stories.length){
+      this.activeStory.audio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen
+    }
     if (this.index < this.Stories.length + this.Radio.length) {
       this.result[this.index].antwort = this.form.get('antwort').value;
       this.form.get('antwort').setValue('');
       this.index = this.index + 1;
+      this.dataservice.addquestionindex(this.index)
       if (this.index < this.Stories.length) {
         this.setActiveStory(this.index);
       } else {
         this.storyvisible = false;
         this.setActiveRadio(this.index - this.Stories.length);
       }
-      this.dataservice.addIndexTemp1(this.index);
     }
 
     if (this.index >= this.Stories.length + this.Radio.length) {
@@ -231,7 +241,9 @@ export class StoriesComponent implements OnInit {
 
   public zurueck() {
     this.dataservice.addquestionprogress(-1); //ProgressBar
-    this.activeStory.audio.pause(); //Pausiert audio beim zurück gehen
+    if(this.index<this.Stories.length){
+      this.activeStory.audio.pause(); //Pausiert audio beim zurück gehen
+    }
     this.index = this.index - 1;
     if (this.index < this.Stories.length) {
       this.storyvisible = true;

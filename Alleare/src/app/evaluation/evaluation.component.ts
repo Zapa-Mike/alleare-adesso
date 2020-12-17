@@ -29,6 +29,8 @@ export class EvaluationComponent implements OnInit {
   constructor(private dataservice:DataService) {}
 
  ngOnInit() {
+   this.dataservice.deleteindexoption();//Löscht Index des Fragenkatalogs
+   this.dataservice.deleteindexstory();//Löscht Index des Fragenkatalogs
       for (let i = 0; i < this.standardversicherungen.length; i++) {
         this.db1
           .collection('Versicherungen')
