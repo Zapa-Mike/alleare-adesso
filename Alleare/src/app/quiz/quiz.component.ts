@@ -2,7 +2,6 @@ import {
   Component,
   DoCheck,
   OnInit,
-  ɵallowSanitizationBypassAndThrow,
 } from '@angular/core';
 import firebase from 'firebase';
 import { DataService } from '../services/data.service';

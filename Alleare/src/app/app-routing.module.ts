@@ -13,6 +13,8 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import { StoriesComponent } from './questions/stories.component';
 import { OptionsComponent } from './questions/options.component';
 import { DropDownComponent } from './questions/dropDown.component';
+import { InsuranceComponent } from './intro/insurance.component';
+import { NovadialogComponent } from './intro/novadialog.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,7 +25,14 @@ const routes: Routes = [
   { path: 'infos', component: InfosComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'nova', component: NovaComponent },
-  { path: 'intro', component: IntroComponent },
+  { path: 'intro', 
+  component: IntroComponent, 
+  children:[
+    {path: 'insurance', component: InsuranceComponent},
+    {path: 'novadialog', component: NovadialogComponent}
+  ]
+},
+ 
   {
     path: 'questions',
     component: QuestionsComponent,

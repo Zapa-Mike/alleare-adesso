@@ -1,8 +1,5 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { snapshotChanges } from '@angular/fire/database';
 import firebase from 'firebase';
-import { of } from 'rxjs';
 import { DataService } from '../services/data.service';
 
 @Component({

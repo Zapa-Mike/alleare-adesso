@@ -1,7 +1,6 @@
 <body>
-  <app-novadialog *ngIf="novadialog"></app-novadialog>
-  <app-insurance *ngIf="insurance"></app-insurance>
-
+  
+  <router-outlet *ngIf="!nameInput && !novaIntro"></router-outlet>
   <div *ngIf="logo">
     <!--Intro-Willkommen Logo-->
     <div class="IntroLogo">
@@ -15,7 +14,7 @@
     <div class="IntroWillkommen"><h1>Willkommen</h1></div>
   </div>
 
-  <div *ngIf="namenseingabe">
+  <div *ngIf="nameInput">
     <!--Intro-Nameneingabe-->
     <div class="Titel justify-content-center">
       <h1>Wie heißt du?</h1>
@@ -61,7 +60,7 @@
   <!--Intro-Nova vorstellung-->
   <div *ngIf="novaIntro" class="container">
     <div class="bubble shadow bubble-bottom-right" contenteditable="false">
-      Hi {{ Name }}, <br />
+      Hi {{ name }}, <br />
       mein Name ist Nova dein neuer digitaler Freund. Ich bin immer da, wenn du
       mich brauchst!
     </div>
@@ -78,10 +77,11 @@
         type="submit"
         id="WeiterKnopf"
         class="btn rounded-pill"
-        (click)="weiter()"
+        (click)="continue()"
       >
         WEITER
       </button>
     </div>
   </div>
+  
 </body>

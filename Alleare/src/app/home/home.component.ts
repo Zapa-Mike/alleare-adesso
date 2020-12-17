@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   nameIntro: string;
   NameIntro: string;
   index = 0;
-  google1=false;
   home=true;
 
    docRef = firebase
@@ -64,9 +63,5 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/nova'], {
       queryParams: { name: this.nameIntro },
     });
-  }
-  google(){
-    this.home=false;
-    this.google1=true;
   }
 }

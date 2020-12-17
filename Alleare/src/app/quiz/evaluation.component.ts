@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
-import { NgCircleProgressModule } from 'ng-circle-progress';
-import { element } from 'protractor';
 import { QuizService } from '.././services/quiz.service';
 
 @Component({

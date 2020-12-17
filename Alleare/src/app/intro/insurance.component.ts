@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-insurance',
@@ -23,7 +23,8 @@ import { DataService } from '../services/data.service';
 
     <body>
       <!--Screen Intro Irrtümer Anfang-->
-      <div [hidden]="eins">
+      <div [hidden]="firstPictures">
+        <!--Erste Bilderanzeige-->
         <div class="dialog1 container">
           <div class="row">
             <div class="col col-12">
@@ -60,7 +61,8 @@ import { DataService } from '../services/data.service';
       </div>
       <!--Screen Intro Irrtümer Ende-->
 
-      <div [hidden]="zwei">
+      <div [hidden]="secondPictures">
+        <!--Zweite Bilderanzeige-->
         <!--Screen Intro Altagssituation Autounfall Anfang-->
 
         <div class="dialog2 container">
@@ -96,7 +98,8 @@ import { DataService } from '../services/data.service';
         </div>
       </div>
       <!--Screen Intro Altagssituation Autounfall Ende-->
-      <div [hidden]="drei">
+      <div [hidden]="thirdPictures">
+        <!--Dritte Bilderanzeige-->
         <!-- Screen Intro Altagssituation Private Unfallversicherung Anfang-->
 
         <div class="dialog3 Container">
@@ -139,80 +142,65 @@ import { DataService } from '../services/data.service';
   `,
   styleUrls: ['./intro.component.css'],
 })
-export class insuranceComponent implements OnInit {
-  drei: boolean = true;
-  eins: boolean = false;
-  zwei: boolean = true;
+export class InsuranceComponent implements OnInit {
+  public thirdPictures: boolean = true; // ngIf für die Bilder fünf und sechs
+  public firstPictures: boolean = false; // ngIf für die ersten zwei Bilder
+  public secondPictures: boolean = true; // ngIf für die Bilder drei und vier
 
-  julia: boolean = true;
-  julia1: boolean = true;
-  julia2: boolean = true;
+  constructor(public router: Router) {}
 
-  Anzeige = [
-    'HausratEinblenden',
-    'AutoschadenEinblenden',
-    'HaushaltsunfallEinblenden',
-  ];
-
-  i: number = 1;
-  constructor(private dataservice: DataService) {}
-  ngOnInit() {
-    this.HausratObjektAusblenden();
+  public ngOnInit() {
+    this.showHausratObjekt(); // ruft die Funktion, welche die Bilder anzeigt auf
     setTimeout(() => {
-      this.eins = true;
-      this.zwei = false;
-      this.AutoschadenObjektAusblenden();
+      this.firstPictures = true; // blendet die ersten Bilder aus
+      this.secondPictures = false; // blendet Seite mit Bild drei und vier ein
+      this.showAutoschadenObjekt(); //ruft Funktion für die Animation auf
     }, 4000);
     setTimeout(() => {
-      this.zwei = true;
-      this.drei = false;
-      this.HaushaltsunfallObjektAusblenden();
+      this.secondPictures = true; // blendet Bild drei und vier aus
+      this.thirdPictures = false; // blendet Seite mit Bild fünf und sechs ein
+      this.showHaushaltsunfallObjekt(); //ruft Funktion für die Animation auf
     }, 8000);
-    setTimeout(() => {
-      this.sendIndexdialog();
-    }, 12000);
-
-    /*Initialisiere Hidden */
-    /*Initialisiere Hidden */
-    /*Initialisiere Hidden */
   }
 
   /*Bildanimation Hausrat Anfang*/
-  HausratObjektAusblenden() {
-    const HausratEinblenden = (document.getElementById(
+  private showHausratObjekt() {
+    const showHausratImage = (document.getElementById(
       'HausratEinblenden'
     ) as unknown) as HTMLInputElement;
 
     setTimeout(function () {
-      HausratEinblenden.style.visibility = 'visible';
+      showHausratImage.style.visibility = 'visible'; // zeigt erst nach zwei Secunden zweites Bild der Seite an
     }, 2000);
   }
   /*Bildanimation Hausrat Ende*/
 
   /*Bildanimation Autoschaden Anfang*/
-  AutoschadenObjektAusblenden() {
-    const AutoschadenEinblenden = (document.getElementById(
+  private showAutoschadenObjekt() {
+    const showAutoschadenImage = (document.getElementById(
       'AutoschadenEinblenden'
     ) as unknown) as HTMLInputElement;
 
     setTimeout(function () {
-      AutoschadenEinblenden.style.visibility = 'visible';
+      showAutoschadenImage.style.visibility = 'visible'; // zeigt erst nach zwei Secunden zweites Bild der Seite an
     }, 2000);
   }
   /*Bildanimation Autoschaden Ende*/
 
   /*Bildanimation Hauhaltsunfall Anfang*/
-  HaushaltsunfallObjektAusblenden() {
-    const HaushaltsunfallEinblenden = (document.getElementById(
+  private showHaushaltsunfallObjekt() {
+    const showHaushaltsunfallImage = (document.getElementById(
       'HaushaltsunfallEinblenden'
     ) as unknown) as HTMLInputElement;
 
-    setTimeout(function () {
-      HaushaltsunfallEinblenden.style.visibility = 'visible';
+    setTimeout(() => {
+      showHaushaltsunfallImage.style.visibility = 'visible'; // zeigt erst nach zwei Secunden zweites Bild der Seite an
     }, 2000);
+    setTimeout(() => {
+      this.showNovaDialog(); // zwei Sekunden nach dem zweiten Bild wird zu der novadialog.component.ts geroutet
+    }, 4000);
   }
-
-  sendIndexdialog() {
-    this.dataservice.sendIndexdialog(this.i);
+  private showNovaDialog() {
+    this.router.navigate(['intro/novadialog']); // rout zu  novadialog.component.ts
   }
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,8 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { StoriesComponent } from './questions/stories.component';
 import { DataService } from './services/data.service';
-import { novadialogComponent } from './intro/novadialog.component';
-import { insuranceComponent } from './intro/insurance.component';
+import { NovadialogComponent } from './intro/novadialog.component';
+import { InsuranceComponent } from './intro/insurance.component';
 import { OptionsComponent } from './questions/options.component';
 import { DropDownComponent } from './questions/dropDown.component';
 
@@ -52,7 +52,6 @@ import { InfoQuestionComponent } from './nova/questions-to-infos/info-question/i
 import { FourAnswersComponent } from './quiz/four-answers.component';
 import { TwoAnswersComponent } from './quiz/two-answers.component';
 import { evaluationComponent } from './quiz/evaluation.component';
-import { googleformularComponent } from './home/googleformular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
@@ -81,8 +80,8 @@ import { QuestionService } from './services/question.service';
     HeaderComponent,
     EvaluationComponent,
     StoriesComponent,
-    novadialogComponent,
-    insuranceComponent,
+    NovadialogComponent,
+    InsuranceComponent,
     OptionsComponent,
     DropDownComponent,
     categoriesComponent,
@@ -99,7 +98,6 @@ import { QuestionService } from './services/question.service';
     FourAnswersComponent,
     TwoAnswersComponent,
     evaluationComponent,
-    googleformularComponent,
     novafabComponent,
     Impressum,
     Datenschutzerklaerung,
