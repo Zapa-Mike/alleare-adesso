@@ -22,21 +22,20 @@ import { QuestionService } from '../services/question.service';
         <div class="TEST">
           <img
             *ngIf="storyvisible"
-            class="row"
+            class="row img"
             src="data:image/gif;base64,{{ activeStory.bildstory }}"
             alt="BILDANZEIGE"
-            class="img"
             width="auto"
             height="auto"
           />
           <img
+            id="image-radio"
+            class="row img"
             *ngIf="!storyvisible"
             alt="BILDANZEIGE"
-            class="img"
             width="auto"
             height="auto"
             src="data:image/gif;base64,{{ activeRadio.bildradio }}"
-            class="row"
           />
           <div *ngIf="storyvisible" class="row ImageStory">
             {{ activeStory.story }}

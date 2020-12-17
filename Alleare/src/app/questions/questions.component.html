@@ -25,22 +25,31 @@
             />
           </button>
         </div>
-        <div class="grid-containerNovaSprechblaseWillkommen">
-          <div
-            class="shadow bubble-bottom-right"
-            contenteditable="false"
-            id="WillkommenSpB"
-          >
-            Beantworte die folgenden Fragen und erhalte im Anschluss auf dich
-            zugeschnittene Empfehlungen.
+        <div
+          class="row grid-containera nova_and_question form-group fixed-bottom"
+        >
+          <div class="grid-itema tbq">
+            <img
+              src="/assets/Sprechblase/speech_bubble_one.png"
+              width="auto"
+              height="auto"
+              id="TalkBubble"
+            />
+            <div class="grid-itema questions">
+              <a>
+                Beantworte die folgenden Fragen und erhalte im Anschluss auf
+                dich zugeschnittene Empfehlungen.</a
+              >
+            </div>
           </div>
-
-          <img
-            src="/assets/nova/nova_fragenkatalog.png"
-            width="100"
-            height="100"
-            id="WillkommenNovaImage"
-          />
+          <div class="grid-itema nova_img">
+            <img
+              src="/assets/nova/nova_fragenkatalog.png"
+              width="auto"
+              height="auto"
+              id="NovaImage"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -51,9 +60,6 @@
       class="progress"
     ></mat-progress-bar>
     <div [hidden]="fragenkatalog">
-      <div class="Titel text-center">
-        <h1>Fragenkatalog</h1>
-      </div>
       <router-outlet></router-outlet>
     </div>
   </body>
