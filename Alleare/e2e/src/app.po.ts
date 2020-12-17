@@ -38,4 +38,11 @@ export class AppPage {
     );
     return element(by.cssContainingText('button', text));
   }
+  public clickButton(text: string) {
+    const until = protractor.ExpectedConditions;
+    browser.wait(
+      until.presenceOf(element(by.cssContainingText('button', text)))
+    );
+    return element(by.cssContainingText('button', text));
+  }
 }

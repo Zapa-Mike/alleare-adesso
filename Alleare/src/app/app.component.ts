@@ -11,8 +11,21 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements DoCheck, OnInit {
   public showNavbar = true;
   public showheader = true;
-  collections=["Bundeslaender","FAQ","Finanzen","Flashcards","Fragenkatalog","Gesundheit","Quiz","Reisen","Selbstständigkeit","Sport","Versicherungen","Wirtschaft"];
-  benutzercollections=["Fragenkatalog","Quiz","Versicherungen"]
+  collections = [
+    'Bundeslaender',
+    'FAQ',
+    'Finanzen',
+    'Flashcards',
+    'Fragenkatalog',
+    'Gesundheit',
+    'Quiz',
+    'Reisen',
+    'Selbstständigkeit',
+    'Sport',
+    'Versicherungen',
+    'Wirtschaft',
+  ];
+  benutzercollections = ['Fragenkatalog', 'Quiz', 'Versicherungen'];
   title = 'Alleare';
   
   constructor(private route: LocationStrategy) {
@@ -28,41 +41,40 @@ export class AppComponent implements DoCheck, OnInit {
     }
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-          .register('/sw.js', { scope: '/' })
-          .then(function(reg) {
-              console.log('Registration succeeded. Scope is ' + reg.scope);
-          })
-          .catch(function(error) {
-              console.log('Registration failed with ' + error);
-          });
-  }
+        .register('/sw.js', { scope: '/' })
+        .then(function (reg) {
+          console.log('Registration succeeded. Scope is ' + reg.scope);
+        })
+        .catch(function (error) {
+          console.log('Registration failed with ' + error);
+        });
+    }
     //Caching
     // for(let i=0;i<this.collections.length;i++){
     //   firebase.firestore().collection(this.collections[i]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
     //     snapshot.docChanges().forEach(function (change) {
     //       if (change.type === 'added') {
     //       }
-  
+
     //       var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
     //       console.log('Data came from ' + source);
     //     });
     //   });
     // }
 
-      //   for(let y=0;y<this.benutzercollections.length;y++){
-      // firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection(this.benutzercollections[y]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-      //   snapshot.docChanges().forEach(function (change) {
-      //     if (change.type === 'added') {
-      //     }
-  
-      //     var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-      //     console.log('Data came from ' + source);
-      //   });
-      //  });
-      // }
-    
+    //   for(let y=0;y<this.benutzercollections.length;y++){
+    // firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection(this.benutzercollections[y]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+    //   snapshot.docChanges().forEach(function (change) {
+    //     if (change.type === 'added') {
+    //     }
+
+    //     var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+    //     console.log('Data came from ' + source);
+    //   });
+    //  });
+    // }
   }
-  
+
   ngDoCheck() {
     // Controls Navbar and Header on all screens
     const route = this.route.path();

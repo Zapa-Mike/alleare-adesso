@@ -13,12 +13,12 @@ import { Component,} from '@angular/core';
       `
       .float-btn{
           background:transparent;
-          width:20vw;
-          height:20vw;
+          width:auto;
+          height:auto;
           position:fixed;
           box-shadow:none;
-          right:25px;
-          bottom:55px;
+          right:10vw;
+          bottom:61px;
           z-index:3;
           display:flex;
           align-items:center;

@@ -9,8 +9,10 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TippsComponent } from './tipps/tipps.component';
-import { EvaluationComponent} from './evaluation/evaluation.component';
-
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { StoriesComponent } from './questions/stories.component';
+import { OptionsComponent } from './questions/options.component';
+import { DropDownComponent } from './questions/dropDown.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,8 +24,16 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'nova', component: NovaComponent },
   { path: 'intro', component: IntroComponent },
-  { path: 'questions', component: QuestionsComponent },
-  { path: 'evaluation', component: EvaluationComponent}
+  {
+    path: 'questions',
+    component: QuestionsComponent,
+    children: [
+      { path: '', component: StoriesComponent },
+      { path: 'options', component: OptionsComponent },
+      { path: 'dropdown', component: DropDownComponent },
+    ],
+  },
+  { path: 'evaluation', component: EvaluationComponent },
 ];
 
 @NgModule({

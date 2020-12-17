@@ -9,7 +9,6 @@ describe('e2e tests', () => {
   });
 
   describe('routing tests', () => {
-
     it('should reach intro', () => {
       page.reachIntro();
       expect(page.getCurrentRoute()).toContain('intro');
@@ -51,27 +50,15 @@ describe('e2e tests', () => {
       page.reachIntro();
       browser.waitForAngularEnabled(false);
     });
-    
+
     it('should get intro submit button text', () => {
       const button = page.getButtonByText('WEITER');
       expect(button.getText()).toEqual('WEITER');
     });
-    
-    it('intro submit button should be disabled when large text is input', () => {
+
+    it('should  disable intro submit button when large text is input', () => {
       const button = page.getButtonByText('WEITER');
       expect(button.getText()).toEqual('WEITER');
     });
-
-
   });
 });
-
-// afterEach(async () => {
-//   // Assert that there are no errors emitted from the browser
-//   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-//   expect(logs).not.toContain(
-//     jasmine.objectContaining({
-//       level: logging.Level.SEVERE,
-//     } as logging.Entry)
-//   );
-// });
