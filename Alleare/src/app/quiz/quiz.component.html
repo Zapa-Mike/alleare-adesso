@@ -92,13 +92,13 @@
 
     <!--Quiz-Seiten mit Fragen und Antworten-->
     <div [hidden]="quiz">
-    <div class="Titel text-center" *ngIf="anzeigevier || anzeigezwei">
+    <div class="Titel text-center" *ngIf="showfour || showtwo">
       <h1>Quiz</h1>
     </div>
 
-    <four-answers *ngIf="anzeigevier"></four-answers>
-    <two-answers *ngIf="anzeigezwei"></two-answers>
-    <evaluation-quiz *ngIf="auswertung"></evaluation-quiz>
+    <four-answers *ngIf="showfour"></four-answers>
+    <two-answers *ngIf="showtwo"></two-answers>
+    <evaluation-quiz *ngIf="evaluation"></evaluation-quiz>
     <novafav-btn *ngIf="fabvisible"></novafav-btn>
   </div>
   </body>

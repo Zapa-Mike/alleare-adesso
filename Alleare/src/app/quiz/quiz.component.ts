@@ -14,9 +14,9 @@ import { DataService } from '../services/data.service';
 export class QuizComponent implements OnInit, DoCheck {
   routingindex; // muss von den templates hochgesetzt werden.
   reihenfolge = ['vier','zwei','vier','zwei','vier','zwei','vier','zwei'];
-  anzeigevier: boolean = false;
-  anzeigezwei: boolean = false;
-  auswertung = false;
+  showfour: boolean = false;
+  showtwo: boolean = false;
+  evaluation = false;
   dbantworten = firebase
     .firestore()
     .collection('Benutzer')
@@ -50,17 +50,17 @@ export class QuizComponent implements OnInit, DoCheck {
   ngDoCheck() {
     this.routingindex = this.dataservice.getquizrouting();
     if (this.reihenfolge[this.routingindex] == 'vier') {
-      this.anzeigezwei = false;
-      this.anzeigevier = true;
+      this.showtwo = false;
+      this.showfour = true;
     }
     if (this.reihenfolge[this.routingindex] == 'zwei') {
-      this.anzeigezwei = true;
-      this.anzeigevier = false;
+      this.showtwo = true;
+      this.showfour = false;
     }
     if (this.routingindex >= this.reihenfolge.length) {
-      this.anzeigezwei = false;
-      this.anzeigevier = false;
-      this.auswertung = true;
+      this.showtwo = false;
+      this.showfour = false;
+      this.evaluation = true;
     }
   }
   novaclick(){
