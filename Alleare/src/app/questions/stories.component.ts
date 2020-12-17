@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,11 @@ import { QuestionService } from '../services/question.service';
 @Component({
   selector: 'app-stories',
   template: `
-    <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+    <mat-progress-spinner
+      class="loading"
+      *ngIf="isLoading"
+      mode="indeterminate"
+    ></mat-progress-spinner>
     <div *ngIf="!isLoading">
       <div class="Frage">
         <div [formGroup]="form" class="card">
@@ -67,7 +71,7 @@ import { QuestionService } from '../services/question.service';
         <button
           id="Wbutton"
           class="btn"
-          (click)="weiter()"
+          (click)="continue()"
           [disabled]="form.controls.antwort.value.length < 1"
         >
           <!--Andere id als bei radio.component-->
@@ -80,7 +84,7 @@ import { QuestionService } from '../services/question.service';
         <button
           id="bbutton"
           class="btn"
-          (click)="zurueck()"
+          (click)="back()"
           [disabled]="this.index == 0"
         >
           <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
@@ -125,7 +129,7 @@ export class StoriesComponent implements OnInit {
   public storyvisible: boolean = true;
   public index: number = 0;
 
-  dbpushData = firebase
+  public dbpushData = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
@@ -139,24 +143,26 @@ export class StoriesComponent implements OnInit {
   ) {}
 
   private setInitialData() {
-    this.activeStory = this.Stories[this.index];
-    this.activeRadio = this.Radio[this.index];
+    // Daten werden gesetzt
+    this.activeStory = this.Stories[this.index]; // Story werden in der richtigen Reihenfolge angezeigt
+    this.activeRadio = this.Radio[this.index]; //  Radiofragen werden in der richtigen Reihenfolge angezeigt
     const docIds = [].concat(
-      this.Stories.map((o) => o.docidstory),
-      this.Radio.map((o) => o.docidradio)
+      this.Stories.map((o) => o.docidstory), // filtert aus dem Array Stories die IDs herraus und tut sie in das Array docIds
+      this.Radio.map((o) => o.docidradio) // filtet aus dem Array Radio die IDs herraus
     );
     docIds.map((id) => {
       this.result.push({
         docid: id,
-        antwort: '',
+        antwort: '', // tut alle Felder für die Antworten mit leeren Strings füllen
       });
     });
   }
 
   private async loadStories() {
-    this.Stories = await this.questionService.getStories();
+    this.Stories = await this.questionService.getStories(); //wartet darauf das Árray Stories geladen wurden
     const audios: HTMLAudioElement[] = this.questionService.audiofiles.map(
-      (file) => new Audio(file));
+      (file) => new Audio(file)
+    );
     this.Stories = this.Stories.map((o, index) => {
       // o ist die jeweilige Story und index ist der jeweilige Index
       return { ...o, audio: audios[index] }; //Fügt jedem Feld eine Audio hinzu
@@ -164,10 +170,11 @@ export class StoriesComponent implements OnInit {
   }
 
   private async loadRadio() {
-    this.Radio = await this.questionService.getradiostories();
+    this.Radio = await this.questionService.getradiostories(); // wartet darauf das alle Informationen in das Array Radio geladen wurden
   }
 
   private async loadData(): Promise<void> {
+    // sobald alle Daten geladen wurden, wird der Loadingkreis ausgeschaltet
     await this.loadStories();
     await this.loadRadio();
 
@@ -175,79 +182,87 @@ export class StoriesComponent implements OnInit {
   }
 
   public async ngOnInit() {
-    this.index=this.dataservice.getquestionstoryindex();
-    if(this.index==0){
+    this.index = this.dataservice.getquestionstoryindex(); // bekommt übergeben wie viele Storyfragen es sind
+    if (this.index == 0) {
       await this.loadData();
       this.setInitialData();
     }
-    if(this.index>0){
-      this.storyvisible = false; 
+    if (this.index > 0) {
+      this.storyvisible = false;
       await this.loadData();
-      this.setInitialData();
-      this.index=this.index-1;
-      this.setActiveRadio(this.index - this.Stories.length);
+      this.setInitialData(); // Setzt alles in richtiger Reihenfolge in die Oberfläche
+      this.index = this.index - 1;
+      this.setActiveRadio(this.index - this.Stories.length); // Setzt alles in richtiger Reihenfolge in die Oberfläche
     }
   }
 
   public playsound(): void {
     if (this.activeStory.audio.paused) {
-      this.activeStory.audio.play();
+      this.activeStory.audio.play(); // spielt Audioausgabe in den Storys
     } else {
-      this.activeStory.audio.pause();
+      this.activeStory.audio.pause(); // pausiert Audioausgabe in den Storys
     }
   }
 
-  public weiter() {
+  public continue() {
     this.dataservice.addquestionprogress(1); //ProgressBar
-    if(this.index<this.Stories.length){
-      this.activeStory.audio.pause(); // Damit beim weiter gehen, die Aduio aufhört zu spielen
+    if (this.index < this.Stories.length) {
+      this.activeStory.audio.pause(); // Damit beim weiter gehen, die Audio aufhört zu spielen
     }
     if (this.index < this.Stories.length + this.Radio.length) {
-      this.result[this.index].antwort = this.form.get('antwort').value;
+      this.result[this.index].antwort = this.form.get('antwort').value; // Sammelt Antworten im Result Array
       this.form.get('antwort').setValue('');
       this.index = this.index + 1;
-      this.dataservice.addquestionindex(this.index)
+      this.dataservice.addquestionindex(this.index);
       if (this.index < this.Stories.length) {
+        //setzt Storys
         this.setActiveStory(this.index);
       } else {
+        // Setzt Radiofragen
         this.storyvisible = false;
         this.setActiveRadio(this.index - this.Stories.length);
       }
     }
 
     if (this.index >= this.Stories.length + this.Radio.length) {
+      // nach allen Fragen wird das Template gewechselt
       this.pushData();
       this.router.navigate(['questions/options']);
     }
   }
 
   private setActiveRadio(index: number) {
+    // Richtige Radiofrage wird gesetzt
     this.activeRadio = this.Radio[index];
   }
 
   private setActiveStory(index: number): void {
+    // Richtige Story wird gesetzt
     this.activeStory = this.Stories[index];
   }
 
   private pushData(): void {
+    // abgegebene Antworten werden gepusht
     this.result.map((o) => {
       this.dbpushData.doc(o.docid).set({
+        // Setzt für die jeweilige ID die Antwort
         antwort: o.antwort,
       });
     });
   }
 
-  public zurueck() {
+  public back() {
     this.dataservice.addquestionprogress(-1); //ProgressBar
-    if(this.index<this.Stories.length){
+    if (this.index < this.Stories.length) {
       this.activeStory.audio.pause(); //Pausiert audio beim zurück gehen
     }
     this.index = this.index - 1;
     if (this.index < this.Stories.length) {
+      // Story wird angezeigt
       this.storyvisible = true;
     }
     if (this.storyvisible) {
-      this.setActiveStory(this.index);
+      this.setActiveStory(this.index); // aktuelle Story
     } else {
       this.setActiveRadio(this.index - this.Stories.length);
     }

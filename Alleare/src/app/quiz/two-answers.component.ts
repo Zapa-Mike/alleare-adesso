@@ -141,11 +141,12 @@ export class TwoAnswersComponent implements OnInit{
   async ngOnInit() {
     this.Data=await this.dbrequest();
     this.isLoading=false;
-    this.generatedquestions = this.quiz.getfragenauswahl();
+    this.generatedquestions = this.quiz.getChosenQuestion();
     this.indexrouting = this.dataservice.getquizrouting();
     this.index = this.dataservice.getindexspeichernzwei();
     await this.currentquestion();
   }
+  
  private currentquestion(){
   this.active=this.Data[this.generatedquestions[this.index]]
   }

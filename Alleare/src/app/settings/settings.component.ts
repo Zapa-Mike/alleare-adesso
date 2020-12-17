@@ -1,26 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.css'],
 })
-export class SettingsComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+export class SettingsComponent {
+  constructor(public dialog: MatDialog) {}
   openImpressum() {
-  this.dialog.open(Impressum);
-
+    this.dialog.open(Impressum); // Impressum wird aus impressum.html ins popUp geladen
   }
   openDatenschutz() {
-  this.dialog.open(Datenschutzerklaerung);
-
+    this.dialog.open(Datenschutzerklaerung); // Datenschutzerklärung wird aus Datenschutzerklaerung.html ins popUp geladen
   }
-  openNutzungsbedingungen(){
-    this.dialog.open(Nutzungsbedingungen);
-  }
-  ngOnInit(): void {
+  openNutzungsbedingungen() {
+    this.dialog.open(Nutzungsbedingungen); // Nutzungsbedingungen wird aus Nutzungsbedingungen.html ins popUp geladen
   }
 }
 @Component({
@@ -40,5 +35,3 @@ export class Datenschutzerklaerung {}
   templateUrl: 'Nutzungsbedingungen.html',
 })
 export class Nutzungsbedingungen {}
-
-
