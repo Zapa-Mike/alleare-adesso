@@ -16,10 +16,10 @@ import { VierRadio, ZweiBilder } from '../model/stories';
     ></mat-progress-spinner>
     <div *ngIf="!isLoading" [formGroup]="form">
       <div class="card2">
-        <div *ngIf="fourRadioVisible" class="ImageStory">
+        <div *ngIf="fourRadioVisible" class="OptionQuestion">
           {{ activFourRadio.frage }}
         </div>
-        <div *ngIf="!fourRadioVisible" class="ImageStory">
+        <div *ngIf="!fourRadioVisible" class="OptionQuestion">
           {{ activeTwoImages.frage }}
         </div>
         <div
