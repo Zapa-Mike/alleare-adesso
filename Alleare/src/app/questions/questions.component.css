@@ -351,6 +351,7 @@ input[type="radio"] {
   background-color: #f5ce00;
   width: 80vw;
   height: 5vw;
+  border-radius: 10px;
   border: none;
   font-size: 2.9vw;
 }
