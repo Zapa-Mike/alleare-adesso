@@ -43,16 +43,16 @@ import { QuestionService } from '../services/question.service';
           <div
             *ngIf="storyvisible"
             class="row AnhoerenButton"
-            class="btn"
-            id="anhoeren"
-            (click)="playsound()"
-          >
+            >
+            
+            <button class="btn" id="anhoeren" (click)="playsound()">
+            
             <img
               class="anhoerenIcon"
               src="/assets/icons/icon_anhoeren.svg"
-              alt="ANHÖREN_BUTTON"
-            />
-            <p>Vorlesen</p>
+              alt="ANHÖREN_BUTTON"/>
+              Anhören
+            </button>
           </div>
 
           <div class="row RadioButtonsJaNein">
