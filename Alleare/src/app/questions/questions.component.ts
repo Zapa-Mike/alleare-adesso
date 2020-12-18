@@ -1,7 +1,4 @@
-import {
-  Component,
-  DoCheck,
-} from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import firebase from 'firebase';
 import { DataService } from '.././services/data.service';
 
@@ -11,20 +8,20 @@ import { DataService } from '.././services/data.service';
   styleUrls: ['./questions.component.css'],
 })
 export class QuestionsComponent implements DoCheck {
-  verweis = firebase
+  public verweis = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
     .collection('Versicherungen');
-  fragenkatalog = true;
-  start = false;
+  public fragenkatalog = true;
+  public start = false;
 
-  progressquestions: number = 0;
-  progressquestionprozent: number = 0;
-  fragenlaenge: number;
+  public progressquestions: number = 0;
+  public progressquestionprozent: number = 0;
+  public fragenlaenge: number;
 
   constructor(private dataservice: DataService) {
-    this.dataservice.getquestionprogress();
+    this.dataservice.getquestionprogress(); // progressbar
     this.dataservice.questionprogress.subscribe((questionprogress) => {
       this.progressquestions = questionprogress;
     });
@@ -38,21 +35,22 @@ export class QuestionsComponent implements DoCheck {
       });
   }
 
-  weiter() {
-    this.dataservice.resetquestionprogress();
-    this.dataservice.addquestionprogress(0);
+  public further() {
+    this.dataservice.resetquestionprogress(); // progressbar
+    this.dataservice.addquestionprogress(0); // progressbar
     this.verweis.get().then((querysnapshot) => {
       // Löscht Favorisierung bei erneutem Aufruf der Fragenkatalogs
       querysnapshot.forEach((doc) => {
         doc.ref.delete();
       });
     });
-    this.fragenkatalog = false;
+    this.fragenkatalog = false; 
     this.start = true;
   }
 
   ngDoCheck() {
-    this.progressquestionprozent =
+    // progressbar
+    this.progressquestionprozent = 
       (100 * this.progressquestions) / this.fragenlaenge;
   }
 }

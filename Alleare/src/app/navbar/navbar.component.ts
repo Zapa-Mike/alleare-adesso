@@ -34,8 +34,8 @@ export class NavbarComponent implements DoCheck{
 
   constructor(private route: LocationStrategy) {}
 
-  ngDoCheck() {
-    this.homeIcon = this.homeD;
+  ngDoCheck() {//Navbar Bilderwechsel des derzeitigen routepaths
+      this.homeIcon = this.homeD;
       this.tippsIcon = this.tippsD;
       this.quizIcon = this.quiz;
       this.faqIcon = this.faqD;

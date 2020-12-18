@@ -9,10 +9,10 @@
           class="activeAllgemein col"
           (click)="allgemein()"
           (click)="toggleAllgemein()"
-          (click)="favorisiertToggle = true"
+          (click)="toggleFavored = true"
           [ngClass]="{
-            inactiveAllgemein: this.allgemeinToggle,
-            activeAllgemein: !this.allgemeinToggle
+            inactiveAllgemein: this. toggleGeneral,
+            activeAllgemein: !this. toggleGeneral
           }"
         >
           Allgemein
@@ -22,10 +22,10 @@
           class="inactiveFavorisiert col"
           (click)="favorisiert()"
           (click)="toggleFavorisiert()"
-          (click)="allgemeinToggle = true"
+          (click)=" toggleGeneral = true"
           [ngClass]="{
-            inactiveFavorisiert: this.favorisiertToggle,
-            activeFavorisiert: !this.favorisiertToggle
+            inactiveFavorisiert: this.toggleFavored,
+            activeFavorisiert: !this.toggleFavored
           }"
         >
           Favorisiert

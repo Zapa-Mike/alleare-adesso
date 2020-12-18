@@ -1,5 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, DoCheck, OnInit } from '@angular/core';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 export class AppComponent implements DoCheck, OnInit {
   public showNavbar = true;
   public showheader = true;
-  collections = [
+  public collections = [
     'Bundeslaender',
     'FAQ',
     'Finanzen',
@@ -23,56 +24,57 @@ export class AppComponent implements DoCheck, OnInit {
     'Versicherungen',
     'Wirtschaft',
   ];
-  benutzercollections = ['Fragenkatalog', 'Quiz', 'Versicherungen'];
-  title = 'Alleare';
+  public userCollections = ['Fragenkatalog', 'Quiz', 'Versicherungen'];
+  public title = 'Alleare';
 
   constructor(private route: LocationStrategy) {}
 
   ngOnInit() {
+    //'hans' = BenutzerID
     if (localStorage.getItem('hans') == null) {
-      var genzahl = Math.floor(Math.random() * 1000000000 + 1).toString();
-      localStorage.setItem('hans', genzahl);
+      // Setzt eine zufällige Zahl als Benutzerzahl
+      var userID = Math.floor(Math.random() * 1000000000 + 1).toString();
+      localStorage.setItem('hans', userID); // Zufallszahl wird als BenuterID in der DB hinterlegt
     } else {
-      console.log(localStorage.getItem('hans'), 'Schon gegeben');
+      console.log('BenutzerID: ' + localStorage.getItem('hans'));
     }
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/sw.js', { scope: '/' })
-        .then(function (reg) {
-          console.log('Registration succeeded. Scope is ' + reg.scope);
-        })
-        .catch(function (error) {
-          console.log('Registration failed with ' + error);
+
+    //Caching
+    for (let i = 0; i < this.collections.length; i++) {
+      firebase
+        .firestore()
+        .collection(this.collections[i])
+        .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+          snapshot.docChanges().forEach(function (change) {
+            if (change.type === 'added') {
+            }
+
+            var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+            console.log('Data came from ' + source);
+          });
         });
     }
-    //Caching
-    // for(let i=0;i<this.collections.length;i++){
-    //   firebase.firestore().collection(this.collections[i]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-    //     snapshot.docChanges().forEach(function (change) {
-    //       if (change.type === 'added') {
-    //       }
 
-    //       var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-    //       console.log('Data came from ' + source);
-    //     });
-    //   });
-    // }
+    for (let y = 0; y < this.userCollections.length; y++) {
+      firebase
+        .firestore()
+        .collection('Benutzer')
+        .doc(localStorage.getItem('hans'))
+        .collection(this.userCollections[y])
+        .onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
+          snapshot.docChanges().forEach(function (change) {
+            if (change.type === 'added') {
+            }
 
-    //   for(let y=0;y<this.benutzercollections.length;y++){
-    // firebase.firestore().collection('Benutzer').doc(localStorage.getItem('hans')).collection(this.benutzercollections[y]).onSnapshot({ includeMetadataChanges: true }, function (snapshot) {
-    //   snapshot.docChanges().forEach(function (change) {
-    //     if (change.type === 'added') {
-    //     }
-
-    //     var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
-    //     console.log('Data came from ' + source);
-    //   });
-    //  });
-    // }
+            var source = snapshot.metadata.fromCache ? 'local cache' : 'server';
+            console.log('Data came from ' + source);
+          });
+        });
+    }
   }
 
   ngDoCheck() {
-    // Controls Navbar and Header on all screens
+    // Blendet NavBar und Header passend in der gesamten App ein uns aus
     const route = this.route.path();
     if (route.startsWith('/home')) {
       this.showNavbar = false;
