@@ -13,8 +13,8 @@ import { QuestionService } from '../services/question.service';
     <mat-progress-spinner class="loading" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <div *ngIf="!isLoading">
       <div class="card2">
-        <div class="ImageStory">{{ activequestion.frage }}</div>
-        <div class="btn-group bundesliste">
+        <div class="OptionQuestion">{{ activequestion.frage }}</div>
+        <div class="bundesliste">
           <button
             type="button"
             class="DropdownB dropdown-toggle"

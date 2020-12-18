@@ -50,9 +50,10 @@ h1 {
   font-family: "Lato", sans-serif;
   position: relative;
   display: block;
-  width: 37vw;
-  font-size: 1.9vw;
-  right: 1vw;
+  width: 42vw;
+  font-size: 2.9vw;
+  right: 2vw;
+  bottom: 9vw;
 }
 
 #TalkBubble {
@@ -63,6 +64,15 @@ h1 {
   display: block;
   max-width: 40vw;
   bottom: 1vw;
+}
+#TalkBubbleWelcome {
+  float: right;
+  position: relative;
+  width: 50vw;
+  height: auto;
+  display: block;
+  max-width: 50vw;
+  bottom: 5vw;
 }
 
 #NovaImage {
@@ -93,8 +103,9 @@ h1 {
   align-content: center;
   display: block;
   width: 88vw;
-  height: 84vw;
+  height: 88vw;
   background-color: #ffffff;
+  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
   border-radius: 10px;
   padding: 0.1rem;
   margin: 3vw auto;
@@ -108,6 +119,8 @@ h1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: cover;
+  object-position: 50% 80%;
 }
 
 /*Storys-Text*/
@@ -117,19 +130,30 @@ h1 {
   width: 80vw;
   /* height: 30vw;*/
   display: block;
-  padding: 1.5vw 0vw 0.1vw 0vw;
+  padding: 0vw 0vw 0.1vw 0vw;
   margin: 0rem auto -1rem auto;
   font-size: 2.9vw;
+}
+/*Frage-Text options*/
+.OptionQuestion {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  width: 80vw;
+  /* height: 30vw;*/
+  display: block;
+  padding: 0vw 0vw 0.1vw 0vw;
+  margin: 1rem auto -1rem auto;
+  font-size: 3.5vw;
 }
 
 /*Anhören Button*/
 #anhoeren {
   padding: 0.5vw 0vw 1.5vw 0vw;
-  width: 20vw;
+  width: 25vw;
   height: 8vw;
 
   display: block;
-  margin: 0.4rem auto 0rem 1rem;
+  margin: 1.2rem auto 0.3rem 1rem;
   font-family: "Lato", sans-serif;
   font-size: 3.5vw;
   font-style: bold;
@@ -179,8 +203,9 @@ h1 {
 
 /*RadioButtonsJaNein Radiobutton*/
 input[type="radio"] {
-  width: 4vw;
-  height: 4vw;
+  width: 4.5vw;
+  height: 4.5vw;
+  margin-right: 1vw;
 }
 
 #WillkommenBild {
@@ -231,9 +256,12 @@ input[type="radio"] {
   height: 15vw;
   width: 20vw;
 }
-
+.labelBilder{
+  position: relative;
+}
 .radio-bild {
   margin: auto 5vw;
+  justify-items: center;
 }
 
 .bild-text {
@@ -317,6 +345,7 @@ input[type="radio"] {
 .DropdownB {
   background-color: #f5ce00;
   width: 80vw;
+  height: 5vw;
   border: none;
   font-size: 2.9vw;
 }
