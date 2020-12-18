@@ -256,8 +256,13 @@ input[type="radio"] {
   height: 15vw;
   width: 20vw;
 }
-.labelBilder{
-  position: relative;
+#auswahlBildEins{
+  width: 0.2vw;
+  height: 0.2vw;
+}
+#auswahlBildZwei{
+  width: 2vw;
+  height: 2vw;
 }
 .radio-bild {
   margin: auto 5vw;
