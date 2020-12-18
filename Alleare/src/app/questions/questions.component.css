@@ -81,7 +81,7 @@ h1 {
   width: 20vw;
   height: auto;
   display: block;
-  top: 6vw;
+  margin-bottom: 0;
   max-width: 15vw;
   max-height: auto;
 }
@@ -183,16 +183,7 @@ h1 {
   box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
   border-radius: 10px;
 }
-/*
-.card2 {
-  height: 18rem;
-  position: relative;
-  background-color: #ffffff;
-  margin-left: 3%;
-  margin-right: 3%;
-  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
-  border-radius: 10px;
-}
+
 
 /*RadioButtonsJaNein Text*/
 .RadioButtonsJaNein {
