@@ -41,6 +41,10 @@ import { QuestionService } from '../services/question.service';
       </div>
 
       <div class="col rowVZ">
+        
+        <button id="Zbutton" class="btn" (click)="zurueck()">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
         <button
           id="Vorbutton"
           class="btn"
@@ -53,9 +57,6 @@ import { QuestionService } from '../services/question.service';
             width="50"
             height="50"
           />
-        </button>
-        <button id="Zbutton" class="btn" (click)="zurueck()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
         </button>
       </div>
       <div class="d-flex Nova justify-content-end fixed-bottom">

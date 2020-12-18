@@ -20,7 +20,7 @@ import { VierRadio, ZweiBilder } from '../model/stories';
           {{ activFourRadio.frage }}
         </div>
         <div *ngIf="!fourRadioVisible" class="ImageStory">
-          {{ activFourRadio.frage }}
+          {{ activeTwoImages.frage }}
         </div>
         <div
           *ngIf="fourRadioVisible"
