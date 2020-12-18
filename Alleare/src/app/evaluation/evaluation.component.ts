@@ -20,18 +20,18 @@ export class EvaluationComponent implements OnInit {
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'));
   db1 = firebase.firestore();
-  standardversicherungen = ['Haftpflichtversicherung', 'Hausratversicherung'];
-  spinneranzeige:boolean=true;
+  standardinsurance = ['Haftpflichtversicherung', 'Hausratversicherung'];
+  loading:boolean=true;
 
   constructor(private dataservice:DataService) {}
 
  ngOnInit() {
    this.dataservice.deleteindexoption();//Löscht Index des Fragenkatalogs
    this.dataservice.deleteindexstory();//Löscht Index des Fragenkatalogs
-      for (let i = 0; i < this.standardversicherungen.length; i++) {
+      for (let i = 0; i < this.standardinsurance.length; i++) {
         this.db1
           .collection('Versicherungen')
-          .doc(this.standardversicherungen[i])
+          .doc(this.standardinsurance[i])
           .get()
           .then(function (doc) {
             perVersicherung.push(doc.id);
@@ -39,7 +39,7 @@ export class EvaluationComponent implements OnInit {
           });
       }
       this.db
-        .where('antwort', 'in', [
+        .where('antwort', 'in', [ //Fragt die Antworten auf die strings im Array ab
           'ja',
           'Arbeitnehmer',
           'Selbstständig',
@@ -58,7 +58,7 @@ export class EvaluationComponent implements OnInit {
               .then((doc) => {
                 perVersicherung.push(doc.data().versicherung);
                 var versicherung = doc.data().versicherung;
-                if(versicherung!= undefined){
+                if(versicherung!= undefined){ //Fals keine Versicherung auf die Frage
                   this.db1
                   .collection('Versicherungen')
                   .doc(versicherung)
@@ -67,14 +67,14 @@ export class EvaluationComponent implements OnInit {
                     Versicherungsprioritaet.push(doc.data().Priorisierung);
                   }).then(()=>{
                     this.sort();
-                    this.spinneranzeige=false;
+                    this.loading=false;
                   });
                 }
               });
           });
         });
   }
-  infofav(){
+  infofav(){//Weiterleitung zu Infos. Reiter:Favorisiert
     this.dataservice.setfav(true);
   }
 

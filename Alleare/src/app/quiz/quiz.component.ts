@@ -13,11 +13,11 @@ import { DataService } from '../services/data.service';
 })
 export class QuizComponent implements OnInit, DoCheck {
   routingindex; // muss von den templates hochgesetzt werden.
-  reihenfolge = ['vier','zwei','vier','zwei','vier','zwei','vier','zwei'];
+  order = ['vier','zwei','vier','zwei','vier','zwei','vier','zwei'];
   showfour: boolean = false;
   showtwo: boolean = false;
   evaluation = false;
-  dbantworten = firebase
+  dbanswers = firebase
     .firestore()
     .collection('Benutzer')
     .doc(localStorage.getItem('hans'))
@@ -30,41 +30,41 @@ export class QuizComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.dataservice.addquizrouting(0);
+    this.dataservice.addquizrouting(0); //Setzt die Indizes zurück
     this.dataservice.addindexspeichernzwei(0);
     this.dataservice.addindexspeichernvier(0);
 
-    this.dbantworten.get().then((querysnapshot) => {
+    this.dbanswers.get().then((querysnapshot) => { //Löscht QuizAntworten bei erneutem Aufruf
       //Löscht Benutzerantworten, von davor
       querysnapshot.forEach((doc) => {
         doc.ref.delete();
       });
     });
   }
-  forward(){
+  forward(){ //Ausschalten der Introanzeige
     this.fabvisible=true;
     this.start = true; 
     this.quiz = false; 
   }
 
   ngDoCheck() {
-    this.routingindex = this.dataservice.getquizrouting();
-    if (this.reihenfolge[this.routingindex] == 'vier') {
+    this.routingindex = this.dataservice.getquizrouting(); //Wechselt die Anzeige des Quiz, nach der Array Reihenfolge
+    if (this.order[this.routingindex] == 'vier') {
       this.showtwo = false;
       this.showfour = true;
     }
-    if (this.reihenfolge[this.routingindex] == 'zwei') {
+    if (this.order[this.routingindex] == 'zwei') {
       this.showtwo = true;
       this.showfour = false;
     }
-    if (this.routingindex >= this.reihenfolge.length) {
+    if (this.routingindex >= this.order.length) {
       this.showtwo = false;
       this.showfour = false;
       this.evaluation = true;
     }
   }
   novaclick(){
-    this.dbantworten.get().then((querysnapshot) => {
+    this.dbanswers.get().then((querysnapshot) => {
       //Löscht Benutzerantworten, von davor
       querysnapshot.forEach((doc) => {
         doc.ref.delete();
