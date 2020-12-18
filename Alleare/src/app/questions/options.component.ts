@@ -88,8 +88,9 @@ import { VierRadio, ZweiBilder } from '../model/stories';
               </div>
             </div>
           </div>
+        </div>
 
-          <!--AB HIER BEGINNT BILDERTEMPLATE-->
+        <!--AB HIER BEGINNT BILDERTEMPLATE-->
 
           <div *ngIf="twoImageVisible">
             <div class="grid-containerBilderAntwort">
@@ -120,7 +121,9 @@ import { VierRadio, ZweiBilder } from '../model/stories';
                     </p>
                   </div>
                 </div>
+
               </div>
+            </div>
 
               <div class="grid-element form-check-inline">
                 <div class="form-check form-check-inline">
@@ -149,12 +152,16 @@ import { VierRadio, ZweiBilder } from '../model/stories';
                     </p>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col rowVZ">
+     <div class="col rowVZ">
+        <button id="Zbutton" class="btn" (click)="back()">
+          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
+        </button>
         <button
           id="Vbutton"
           class="btn"
@@ -167,16 +174,14 @@ import { VierRadio, ZweiBilder } from '../model/stories';
             height="50"
           />
         </button>
-        <button id="Zbutton" class="btn" (click)="back()">
-          <img src="/assets/icons/icon_arrow_back.svg" width="50" height="50" />
-        </button>
+      </div>
       </div>
       <div class="d-flex Nova justify-content-end fixed-bottom">
         <img
           src="/assets/nova/nova_intro_rechts.png"
-          width="100"
-          height="100"
-          id="NovaImage"
+          width="auto>"
+          height="auto"
+          id="NovaImageOptions"
         />
       </div>
     </div>
@@ -191,12 +196,13 @@ export class OptionsComponent implements OnInit {
   public twoImages: ZweiBilder[] = [];
   public activFourRadio: VierRadio;
   public activeTwoImages: ZweiBilder;
+
   public index: number = 0;
   private result: Result[] = [];
   public isLoading = true;
-
   public fourRadioVisible: boolean = true;
   public twoImageVisible: boolean = false;
+
 
   dbpush = firebase
     .firestore()
@@ -215,7 +221,7 @@ export class OptionsComponent implements OnInit {
     this.activeTwoImages = this.twoImages[this.index]; // gibt die Fragen mit dem Typ "zweiBilder" in der richtigen Reihenfolge aus
     const docIds = [].concat(
       this.twoImages.map((o) => o.docid), // übergibt die Doc IDs von "zweiBilder" dem Array docIds
-      this.fourRadio.map((o) => o.docid) // übergibt die Doc IDs von "vierRadio" dem Array docIds
+      this.fourRadio.map((o) => o.docid) // übergibt die Doc IDs von "vierRadio" dem Array docIds+
     );
     docIds.map((id) => {
       //Pusht die docid Reihenfolge in das result
@@ -230,6 +236,7 @@ export class OptionsComponent implements OnInit {
   }
   private async loadbild() {
     this.twoImages = await this.questionService.getzweibilder();
+
   }
 
   public async ngOnInit() {
@@ -243,11 +250,13 @@ export class OptionsComponent implements OnInit {
       // schaltet die vierRadio-Fragen aus und die zweiBilder- Fragen ein
       this.fourRadioVisible = false;
       this.twoImageVisible = true;
+
       await this.loadvierradio();
       await this.loadbild();
       this.setInitialData();
       this.index = this.index - 1;
       this.setActiveZweibilder(this.index - this.fourRadio.length);
+
     }
 
     this.isLoading = false;
@@ -257,6 +266,7 @@ export class OptionsComponent implements OnInit {
     this.dataservice.addquestionprogress(1); //ProgressBar
     if (this.index < this.fourRadio.length + this.twoImages.length) {
       //sammelt alle Antworten in result
+
       this.result[this.index].antwort = this.form.get('antwort').value;
       this.form.get('antwort').setValue('');
       this.index = this.index + 1;
@@ -271,6 +281,7 @@ export class OptionsComponent implements OnInit {
     }
     if (this.index >= this.fourRadio.length + this.twoImages.length) {
       // Routet zu dropDown.component.ts
+
       this.pushData();
       this.router.navigate(['questions/dropdown']);
     }
@@ -283,6 +294,7 @@ export class OptionsComponent implements OnInit {
   private setActiveZweibilder(index: number) {
     // Speichert Antwort
     this.activeTwoImages = this.twoImages[index];
+
   }
 
   private pushData(): void {
@@ -306,6 +318,7 @@ export class OptionsComponent implements OnInit {
       this.fourRadioVisible = false;
       this.twoImageVisible = true;
       this.setActiveZweibilder(this.index - this.fourRadio.length);
+
     }
     if (this.index < 0) {
       this.dataservice.deleteindexoption();

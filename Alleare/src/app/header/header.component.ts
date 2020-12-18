@@ -1,7 +1,6 @@
 import { Component, DoCheck} from '@angular/core';
 import { DataService } from '../services/data.service';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,5 +14,4 @@ export class HeaderComponent implements DoCheck {
   ngDoCheck(){
     this.grau = this.DataService.getHeader();
   }
-  
 }

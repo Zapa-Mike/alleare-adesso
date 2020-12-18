@@ -1,178 +1,272 @@
 body {
+  position: fixed;
+  padding: 3.2rem 0rem 0rem 0rem;
   background-color: #f2f9fd;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: lato;
-  margin-bottom: 0%;
-  padding: 0%;
+  line-height: 1.3;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  overflow-x: hidden;
+}
+
+h1 {
+  margin: 1vw;
+  font-size: 5.1vw;
+}
+
+/* FOOTER       FOOTER     FOOTER*/
+.nova_and_question {
+  text-align: center;
+  grid-template-columns: auto auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem 0rem 1rem;
+}
+/*Grid container position NOVA UND BLASE FOOTER*/
+.grid-containera {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 90vw;
+  height: 20vw;
+}
+
+/*Text talk_bubble*/
+.questions {
+  float: right;
+  font-family: "Lato", sans-serif;
+  position: relative;
   display: block;
-  position: fixed;
+  width: 37vw;
+  font-size: 2.9vw;
+  bottom: 15vw;
+  right: 1vw;
 }
 
-.Titel {
-  padding-top: 2%;
-  color: #2a2d2f;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: lato;
-}
-.Titelintro {
-  margin-top: 50px;
-  padding-top: 2%;
-  color: #2a2d2f;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: lato;
+.Frage {
+  margin: 3vw auto;
 }
 
-/*Card*/
-.card {
+/*Text talk_bubble for fragenkatalog intro*/
+.fragenkatalog-intro-bubble {
+  float: right;
+  font-family: "Lato", sans-serif;
+  position: relative;
+  display: block;
+  width: 37vw;
+  font-size: 1.9vw;
+  right: 1vw;
+}
+
+#TalkBubble {
+  float: right;
+  position: relative;
+  width: 46vw;
   height: auto;
-  position: inherit;
+  display: block;
+  max-width: 40vw;
+  bottom: 1vw;
+}
+
+#NovaImage {
+  float: left;
+  position: relative;
+  width: 20vw;
+  height: auto;
+  display: block;
+  top: 6vw;
+  max-width: 15vw;
+  max-height: auto;
+}
+
+#NovaImageOptions {
+  width: 20vw;
+  height: auto;
+  right: 5vw;
+  position: relative;
+  max-width: 15vw;
+  max-height: auto;
+}
+
+/*STORIES         STORIES          STORIES*/
+
+/*background-border*/
+.hintergrund,
+.card2 {
+  align-content: center;
+  display: block;
+  width: 88vw;
+  height: 84vw;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0.1rem;
+  margin: 3vw auto;
+}
+
+/*ImageS center*/
+.img {
+  padding: 3vw 0vw 1.5vw 0vw;
+  width: 80vw;
+  height: 39vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Storys-Text*/
+.ImageStory {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  width: 80vw;
+  /* height: 30vw;*/
+  display: block;
+  padding: 1.5vw 0vw 0.1vw 0vw;
+  margin: 0rem auto -1rem auto;
+  font-size: 2.9vw;
+}
+
+/*Anhören Button*/
+#anhoeren {
+  padding: 0.5vw 0vw 1.5vw 0vw;
+  width: 10vw;
+  height: 8vw;
+
+  display: block;
+  margin: 0.4rem auto 0rem 1rem;
+  font-family: "Lato", sans-serif;
+  font-size: 2.5vw;
+  font-style: bold;
+  text-decoration: underline;
+}
+
+/*Anhören Textfield*/
+.anhoerenIcon {
+  width: 6vw;
+  height: 6vw;
+}
+
+/* JA NEIN ANTWORTEN     JA NEIN ANTWORTEN   JA NEIN ANTWORTEN */
+
+/*Card weißer Hintergrund*/
+.card {
+  background-color: orange;
+  height: 30rem;
+  width: 40rem;
+  left: 10%;
+  position: relative;
+  padding: 5% 0%;
+  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
+  border-radius: 10px;
+}
+/*
+.card2 {
+  height: 18rem;
+  position: relative;
   background-color: #ffffff;
   margin-left: 3%;
   margin-right: 3%;
   box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
   border-radius: 10px;
 }
-.card2 {
-  height: 60vw;
-  position: relative;
-  background-color: #ffffff;
-  margin-left: 3vw;
-  margin-right: 3vw;
-  box-shadow: 0 3px 6px 0 rgba(19, 19, 20, 0.25);
-  border-radius: 10px;
+
+/*RadioButtonsJaNein Text*/
+.RadioButtonsJaNein {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 0rem auto 0rem auto;
 }
 
-/*ImageS*/
-.img-responsive {
-  display: block;
+/*RadioButtonsJaNein Radiobutton*/
+input[type="radio"] {
+  width: 4vw;
+  height: 4vw;
+}
+
+#WillkommenBild {
+  height: 70vw;
+}
+
+.WillkommenBild {
+  margin: 2vw auto;
+  text-align: center;
+}
+
+.rowVZ {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 0.5rem 0rem 1rem;
+  width: 90vw;
   margin-left: auto;
   margin-right: auto;
-  max-width: 90%;
-  margin-top: 3%;
-  border-radius: 5px;
-  font: lato;
 }
 
-/*Storys*/
-.ImageStory {
-  font-family: lato;
+.bundesliste {
   text-align: center;
-  padding-top: 2%;
-  position: static;
-  margin-left: 5%;
-  margin-right: 5%;
-  max-width: 95%;
-  margin-bottom: 2%;
-  font-size: 1em;
+  margin: 10vw auto;
 }
 
-/*Anhören Button*/
-#anhoeren {
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  border-radius: 30px;
-  border-color: #4BA6E1;
-  background-color: none;
-  color: #4BA6E1;
-  margin-left: 5%;
-}
-.anhoerenIcon {
-  width: 20px;
-  height: 20px;
-}
-/**/
-.progress{
-  margin-top: 50px;
+.btn > img {
+  max-height: 10vw;
+  width: auto;
 }
 
-/*RadioButtonsJaNein*/
-.RadioButtonsJaNein {
-  padding-left: 15%;
-  padding-right: 15%;
-  margin-bottom: 3%;
-  margin-top: 3%;
-}
-#ButtonJa {
-  padding-left: 6%;
-}
-#ButtonNein {
-  float: right;
-  padding-right: 5%;
+#bbutton,
+#Wbutton {
+  padding: 0%;
   margin: 0%;
 }
-input {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+/*Radio Button*/
+#ButtonJa,
+#ButtonNein {
+  display: inline-block;
+  text-align: center;
+  padding: 0.1vw 0vw;
+  margin: 0rem auto -0rem auto;
+  font-size: 3.5vw;
 }
 
 /*Bilder in RadioB Frage*/
 .BildVorRadio {
-  border-radius: 5px;
-  margin-right: 5px;
+  height: 15vw;
+  width: 20vw;
+}
+
+.radio-bild {
+  margin: auto 5vw;
+}
+
+.bild-text {
+  text-align: center;
+  font-size: 2.9vw;
 }
 
 /*Grids*/
 .grid-containerBilderAntwort {
   display: grid;
-  padding-left: 5vw;
-  padding-right: 5vw;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-  padding-bottom: 2vh;
+  padding: 8vw;
+  margin-top: 25vw;
 }
 .grid-containerRadioBAntwort {
   display: grid;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  grid-template-columns: 40vw 40vw;
-  grid-template-rows: auto auto;
-  justify-content: center;
-  padding-bottom: 2%;
-}
-.grid-containerNovaSprechblase {
-  display: grid;
-  align-content: space-evenly;
+  margin: 18vw 2vw;
   grid-template-columns: auto auto;
-  grid-template-rows: 160px;
-  background-color: #f2f9fd;
-  padding: 10px;
-  padding-bottom: 0%;
-}
-.grid-element {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  align-content: center;
-  align-self: center;
-  justify-self: center;
+  grid-template-rows: auto;
+  padding: 0.1vw;
 }
 
-.Spalten{
-  padding-left: 8vw;
-}
-
-.grid-containerNovaSprechblaseWillkommen {
-  display: grid;
-  align-content: space-evenly;
-  grid-template-columns: auto auto;
-  grid-template-rows: 200px;
-  background-color: #f2f9fd;
-  padding: 10px;
-  padding-bottom: 0%;
-}
 /*Form-check*/
 .form-check {
-  width: max-content;
-  margin: 0%;
+  padding: 2vw;
+  margin: auto;
+}
+
+/*Otion Radiobbutton size*/
+.ORadio {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  padding: 0.1vw;
+  margin: 8vw;
+  font-size: 2.9vw;
 }
 
 /*Bilder Buttons*/
@@ -183,7 +277,7 @@ input {
 }
 #Bild {
   border-radius: 5px;
-  width: 115px;
+  width: 215px;
   height: 65px;
 }
 [type="radio"] + img {
@@ -192,143 +286,37 @@ input {
 [type="radio"]:checked + img {
   outline: 4px solid #f5ce00;
 }
-p {
-  margin: 0%;
-}
-
-/*Checkbox*/
-.checkbox {
-  margin-right: 5px;
-}
 
 /*Vor- und Zurück-Buttons*/
-.rowVZ {
-  padding-left: 20vw;
-  padding-right: 20vw;
-  padding-top: 1vh;
-  padding-bottom: 0%;
-  margin-bottom: 0%;
-}
-#Vorbutton {
-  float: right;
-  padding: 0%;
-  border: none;
-}
-#Vbutton {
-  float: right;
-  padding: 0%;
-  border: none;
-}
-#Zbutton {
-  padding: 0%;
-  border: none;
-}
-#bbutton {
-  padding: 0%;
-}
-#Wbutton {
-  /*gleiche wie Vbutton, nur andere id für jquery*/
-  float: right;
-  padding: 0%;
-  border: none;
-}
+
 #V1button {
   /*Weiterbutton der Willkommenseite*/
   padding: 0%;
-  margin-left: 48vw;
-}
-
-/*Sprechblase*/
-.bubble {
-  position: relative;
-  font-family: lato;
-  font-size: 14px;
-  line-height: 1.3;
-  width: 80%;
-  height: 70%;
-  background: #ffffff;
-  border-radius: 50%;
-  padding-top: 30px;
-  text-align: center;
-  color: #000;
-  margin-left: 15%;
-
-  word-wrap: break-word;
-}
-.bubble-bottom-right::after {
-  content: "";
-  position: absolute;
-  border-style: solid;
-  border-width: 0 18vw 10vw 0;
-  border-top: 0vw solid #ffffff;
-  border-color: #ffffff;
-  border-bottom: 13vw solid transparent;
-  right: 9vw;
-  bottom: -6vw;
+  margin-left: 75%;
 }
 
 #WillkommenSpB {
   position: relative;
   font-family: lato;
-  font-size: 4vw;
+  font-size: 12px;
   line-height: 1.3;
-  max-width: 60vw;
-  height: 45vw;
+  width: 200px;
+  height: 65%;
   background: #ffffff;
   border-radius: 50%;
-  padding: 7vw;
+  padding: 20px;
   text-align: center;
   color: #000;
   justify-self: right;
 }
 
-.WillkommenBild{
-  text-align: center;
-}
-#WillkommenBild{
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 75vw;
-  max-height: 75vh;
-  margin-top: 3%;
-}
-/*Nova Image*/
-.Nova {
-  padding-top: 2vh;
-}
-#NovaImage {
-  margin-right: 15vw;
-  float: right;
-  align-content: end;
-  width: 80px;
-  height: 80px;
-  align-self: end;
-}
-#WillkommenNovaImage {
-  margin-right: 15%;
-  float: right;
-  align-content: end;
-  width: 80px;
-  height: 80px;
-  align-self: end;
-}
-
 .DropdownB {
   background-color: #f5ce00;
+  width: 80vw;
   border: none;
-  width: 94%;
-  margin: auto;
-  border-radius: 10px;
-}
-#drop{
-  position:fixed;
-  max-height:40vw;
-  overflow:scroll; 
+  font-size: 2.9vw;
 }
 
-.bundesliste {
-  width: 100%;
-}
 /*Auswertung*/
 .Auswertung {
   align-content: center;
@@ -338,12 +326,13 @@ p {
   padding-right: 5%;
 }
 
-.loading{
+.loading {
   margin-left: auto;
   margin-right: auto;
 }
-:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-  stroke: #9CD1F0;
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #9cd1f0;
 }
 
 .ButtonVersicherung {
@@ -358,9 +347,7 @@ p {
   vertical-align: middle;
   font-size: 18px;
 }
-#pfeil {
-  float: right;
-}
+
 .btnZumHauptmenue {
   background-color: #38cddc;
   width: 200px;
@@ -379,9 +366,21 @@ p {
   grid-gap: 10px;
   margin-bottom: 5%;
 }
-::ng-deep .mat-progress-bar-fill::after {
-  background-color: #4BA6E1;
+
+#image-radio {
+  width: 80vw;
+  height: 75vw;
 }
-::ng-deep .mat-progress-bar-buffer {
-  background:#CFE8F8;
+
+#drop {
+  max-height: 64vw;
+  overflow: auto;
+  position: absolute;
+  transform: translate3d(10vw, 32vw, 0vw);
+  top: 0vw;
+  left: 0vw;
+  width: auto;
+  height: auto;
+  will-change: transform;
+  font-size: 2.9vw;
 }
