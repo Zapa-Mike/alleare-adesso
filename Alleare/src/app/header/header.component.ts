@@ -11,9 +11,7 @@ export class HeaderComponent implements DoCheck {
 
   constructor(private DataService: DataService) {}
 
-  ngDoCheck() {
-    if (this.grau == true) {
-    }
+  ngDoCheck(){
     this.grau = this.DataService.getHeader();
   }
 }

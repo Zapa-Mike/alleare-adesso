@@ -171,7 +171,7 @@ export class FourAnswersComponent implements OnInit{
  async ngOnInit() {
     this.Daten=await this.dbrequest();
     this.isLoading=false;
-    this.fragenauswahl = this.quiz.getfragenauswahl();
+    this.fragenauswahl = this.quiz.getChosenQuestion();
     this.indexrouting = this.dataservice.getquizrouting();
     this.index = this.dataservice.getindexspeichernvier();
     this.currentquestion();

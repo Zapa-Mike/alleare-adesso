@@ -24,15 +24,15 @@ export class QuestionService {
   public async getStories(): Promise<Story[]> {
     let data: Story[] = [];
     await this.dbget
-      .where('type', '==', 'radiostory')
+      .where('type', '==', 'radiostory') //filtert nach Fragen mit dem Typen:"radiostory"
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          data.push({
-            storyfrage: doc.data().frage,
-            docidstory: doc.id,
-            story: doc.data().story,
-            bildstory: doc.data().bild,
+          data.push({ // speichert alle relevanten Informationenen für die "radiostory" in dem Array Story 
+            storyfrage: doc.data().frage, //Frage
+            docidstory: doc.id, // ID
+            story: doc.data().story, // Story
+            bildstory: doc.data().bild, // Bild
           });
         });
       });
@@ -41,33 +41,33 @@ export class QuestionService {
   public async getradiostories(): Promise<Radio[]> {
     let data: Radio[] = [];
     await this.dbget
-      .where('type', '==', 'zweiradio')
+      .where('type', '==', 'zweiradio') // Filtert nach Fragen mit dem Typ "zweiradio"
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          data.push({
-            radiofrage: doc.data().frage,
-            docidradio: doc.id,
-            bildradio: doc.data().bild,
+          data.push({//pusht alle relevanten Informationen von "zweiradio" in das Array Radio 
+            radiofrage: doc.data().frage,//Frage
+            docidradio: doc.id,//ID
+            bildradio: doc.data().bild,//Bild
           });
         });
       });
     return data;
   }
   public async getvierradio():Promise<VierRadio[]>{
-    let data :VierRadio[]=[];
+    let data :VierRadio[]=[]; // Filtert nach allen Fragen mit dem Typ "vierradio" 
     await this.dbget
       .where('type', '==', 'vierradio')
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          data.push({
-            frage:doc.data().frage,
-            docid: doc.id,
-            antwort1: doc.data().antwort1,
-            antwort2: doc.data().antwort2,
-            antwort3: doc.data().antwort3,
-            antwort4: doc.data().antwort4
+          data.push({ // Speichert alle relevanten Informationen von "vierradio" im Array Vierradio
+            frage:doc.data().frage, //Frage
+            docid: doc.id,//ID
+            antwort1: doc.data().antwort1,//Antwortmöglichkeit 1
+            antwort2: doc.data().antwort2,//Antwortmöglichkeit 2
+            antwort3: doc.data().antwort3,//Antwortmöglichkeit 3
+            antwort4: doc.data().antwort4//Antwortmöglichkeit 4
           });
         });
       });
@@ -77,30 +77,30 @@ export class QuestionService {
   public async getzweibilder():Promise<ZweiBilder[]>{
     let data:ZweiBilder[]=[];
     await this.dbget
-      .where('type', '==', 'zweibilder')
+      .where('type', '==', 'zweibilder') //Filtert nach Fragen mit dem Typen "zweibilder"
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          data.push({
-            frage:doc.data().frage,
-            docid: doc.id,
-            bild1: doc.data().bild,
-            bild2: doc.data().bild2,
-            label1: doc.data().antwort1,
-            label2: doc.data().antwort2
+          data.push({ // Speichert alle relevanten Informationen für "zweibilder" in dem Array ZweiBilder
+            frage:doc.data().frage, //Frage
+            docid: doc.id,//ID
+            bild1: doc.data().bild, // Bild für Antwort 1
+            bild2: doc.data().bild2,// Bild für Antwort 2
+            label1: doc.data().antwort1,// Antwort 1
+            label2: doc.data().antwort2 // Antwort 2
           });
         });
       });
     return data;
   }
-  public async getdropdown():Promise<Dropdown[]>{
+  public async getdropdown():Promise<Dropdown[]>{ // Speichert alle Bundesländer ab 
     let data:Dropdown[]=[];
     await this.dbget1
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
           data.push({
-            bundesland:doc.data().name,
+            bundesland:doc.data().name,// Bundeslandname wird im Array Dropdown gespeichert
           })
         });
       });
@@ -109,12 +109,12 @@ export class QuestionService {
   public async getdropdownfrage():Promise<Dropdown[]>{
     let data:Dropdown[]=[];
     await this.dbget
-      .where('type', '==', 'liste')
+      .where('type', '==', 'liste') // Filtert nach Fragen mit dem Typen "liste"
       .get()
       .then((querysnapshot) => {
         querysnapshot.forEach((doc) => {
-          data.push({
-            frage:doc.data().frage,
+          data.push({ // Frage für die Listenfrage wird in das Array Dropdown gepusht 
+            frage:doc.data().frage, 
           })
         });
       });

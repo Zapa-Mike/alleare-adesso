@@ -9,8 +9,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./infos.component.css'],
 })
 export class InfosComponent implements OnInit{
-  allgemeinToggle = true;
-  favorisiertToggle = true;
+  toggleGeneral = true;
+  toggleFavored = true;
   ContentListe: string[] = [];
   Fieldnames = [];
   dbget = firebase.firestore().collection('Flashcards');
@@ -125,9 +125,9 @@ export class InfosComponent implements OnInit{
       }
   }
   toggleAllgemein() {
-    this.allgemeinToggle = !this.allgemeinToggle;
+    this.toggleGeneral = !this.toggleGeneral;
   }
   toggleFavorisiert() {
-    this.favorisiertToggle = !this.favorisiertToggle;
+    this.toggleFavored = !this.toggleFavored;
   }
 }

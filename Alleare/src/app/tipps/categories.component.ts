@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
-import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'tipps-categories',
@@ -12,28 +11,44 @@ import { DataService } from '../services/data.service';
       </div>
       <!--Kategorien tags-->
       <div class="categories">
-        <button (click)="auswahl($event)" id="Sport" class="topic">
+        <button (click)="selectedCategories($event)" id="Sport" class="topic">
           Sport
         </button>
-        <button (click)="auswahl($event)" id="Gesundheit" class="topic1">
+        <button
+          (click)="selectedCategories($event)"
+          id="Gesundheit"
+          class="topic1"
+        >
           Gesundheit
         </button>
-        <button (click)="auswahl($event)" id="Reisen" class="topic">
+        <button (click)="selectedCategories($event)" id="Reisen" class="topic">
           Reisen
         </button>
-        <button (click)="auswahl($event)" id="Finanzen" class="topic">
+        <button
+          (click)="selectedCategories($event)"
+          id="Finanzen"
+          class="topic"
+        >
           Finanzen
         </button>
-        <button (click)="auswahl($event)" id="Selbstständig" class="topic2">
+        <button
+          (click)="selectedCategories($event)"
+          id="Selbstständig"
+          class="topic2"
+        >
           Selbstständigkeit
         </button>
-        <button (click)="auswahl($event)" id="Wirtschaft" class="topic">
+        <button
+          (click)="selectedCategories($event)"
+          id="Wirtschaft"
+          class="topic"
+        >
           Wirtschaft
         </button>
       </div>
       <!--Themenbereiche-->
       <div *ngFor="let array of array1">
-        <div id="{{ array }}" class="box" (click)="weitergabe(array)">
+        <div id="{{ array }}" class="box" (click)="transfer(array)">
           <p>{{ array }}</p>
         </div>
       </div>
@@ -56,7 +71,7 @@ import { DataService } from '../services/data.service';
             <div class="artTitle">{{ topic }}</div>
             <div class="artBild">
               <img
-                src="data:image/gif;base64,{{ bilder }}"
+                src="data:image/gif;base64,{{ image }}"
                 class="img-responsive"
               />
             </div>
@@ -66,7 +81,7 @@ import { DataService } from '../services/data.service';
     </div>
     <div class="ArticlesList" *ngIf="articlesngif">
       <div class="title text-center form-inline">
-        <h1>{{ articleueberschrift }}</h1>
+        <h1>{{ articleHeading }}</h1>
         <!--Zurück Pfeil-->
         <img
           class="backArrow"
@@ -78,7 +93,7 @@ import { DataService } from '../services/data.service';
       <img
         class="articleImage"
         id="articleImage"
-        src="data:image/gif;base64,{{ bilder }}"
+        src="data:image/gif;base64,{{ image }}"
       />
       <div class="articleText">
         {{ articletext }}
@@ -87,9 +102,9 @@ import { DataService } from '../services/data.service';
   `,
   styleUrls: ['./tipps.component.css'],
 })
-export class categoriesComponent implements OnInit {
-  index: number = 0;
-  categories = [
+export class categoriesComponent {
+  public index: number = 0;
+  public categories = [
     'Gesundheit',
     'Sport',
     'Reisen',
@@ -97,29 +112,27 @@ export class categoriesComponent implements OnInit {
     'Wirtschaft',
     'Selbstständigkeit',
   ];
-  dbget = firebase.firestore();
-  array1 = [];
-  topics = [];
-  collection: string;
-  docid: string;
-  articleueberschrift: string;
-  articletext: string;
-  bildArtikel: string;
+  public dbget = firebase.firestore();
+  public array1 = [];
+  public topics = [];
+  public collection: string;
+  public docid: string;
+  public articleHeading: string;
+  public articletext: string;
+  public articleImage: string;
 
   //Routing
-  categoriesngif: boolean = true;
-  topicsngif: boolean = false;
-  articlesngif: boolean = false;
+  public categoriesngif: boolean = true;
+  public topicsngif: boolean = false;
+  public articlesngif: boolean = false;
 
   //Bilder
-  bilder: string;
-  bildanzeige: any;
+  public image: string;
 
-  constructor(private dataservice: DataService) {}
+  constructor() {}
 
-  ngOnInit() {}
-
-  auswahl(event: any) {
+  public selectedCategories(event: any) {
+    // Unterkategorien der ausgewählten Kategorie werden geladen ins array1
     switch (event.target.id) {
       case 'Gesundheit': {
         this.empty();
@@ -201,11 +214,13 @@ export class categoriesComponent implements OnInit {
       }
     }
   }
-  empty() {
+  private empty() {
     this.array1 = [];
     return this.array1;
   }
-  weitergabe(id: any) {
+
+  public transfer(id: any) {
+    // Titel der passenden Artikel werden in array1 geladen
     this.topics = [];
     this.docid = id;
     this.dbget
@@ -223,15 +238,16 @@ export class categoriesComponent implements OnInit {
       .doc(id)
       .get()
       .then((doc) => {
-        this.bilder = doc.data().bild;
+        this.image = doc.data().bild;
       });
     this.categoriesngif = false;
     this.topicsngif = true;
   }
-  article(topic: string) {
+  public article(topic: string) {
+    // Inhalte des einzelnen Artikel werden geladen
     this.topicsngif = false;
     this.articlesngif = true;
-    this.articleueberschrift = topic;
+    this.articleHeading = topic;
     //this.articletext
     this.dbget
       .collection(this.collection)
@@ -241,15 +257,17 @@ export class categoriesComponent implements OnInit {
       .get()
       .then((doc) => {
         this.articletext = doc.data().article;
-        this.bildArtikel = doc.data().bild;
+        this.articleImage = doc.data().bild;
       });
   }
 
-  backtocategories() {
+  public backtocategories() {
+    // Zurück zu der Übersicht
     this.topicsngif = false;
     this.categoriesngif = true;
   }
-  backtotopics() {
+  public backtotopics() {
+    // Zurück zur Auflistung der Artikel
     this.articlesngif = false;
     this.topicsngif = true;
   }
